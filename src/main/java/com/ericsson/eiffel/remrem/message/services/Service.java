@@ -1,10 +1,11 @@
-import com.ericsson.eiffel.remrem.message.services.MsgService;
+package com.ericsson.eiffel.remrem.message.services;
+
 import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class Library implements MsgService{
+public class Service implements MsgService{
 
     final String JSON_DOMAIN_ID = "domainId";
     final String JSON_TYPE = "type";
