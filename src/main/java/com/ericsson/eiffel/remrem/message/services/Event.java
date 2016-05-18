@@ -11,8 +11,7 @@ import java.util.Date;
  */
 abstract class Event {
     public Meta meta;
-    private transient String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    //public Data data;
+    private transient String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes, Meta.class);

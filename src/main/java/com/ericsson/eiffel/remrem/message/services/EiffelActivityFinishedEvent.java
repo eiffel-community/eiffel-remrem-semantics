@@ -1,7 +1,6 @@
 package com.ericsson.eiffel.remrem.message.services;
 
-
-import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class EiffelActivityFinishedEvent extends Event {
 
@@ -11,6 +10,7 @@ public class EiffelActivityFinishedEvent extends Event {
 
     public static class EiffelActivityFinishedData extends Data{
         private Data.Outcome outcome;
+        private List<persistentLog> persistentLogs;
     }
 
     public static class EiffelActivityFinishedLinks extends Links{
