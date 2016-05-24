@@ -1,10 +1,8 @@
-package com.ericsson.eiffel.remrem.message.services;
+package com.ericsson.eiffel.remrem.message.services.models;
 
 import lombok.Setter;
 
-/**
- * Created by ehenkan on 5/17/16.
- */
+
 public class Meta {
     private String domainId;
     private String id;
