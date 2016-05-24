@@ -5,5 +5,6 @@
 [![](https://jitpack.io/v/Ericsson/eiffel-remrem-semantics.svg)](https://jitpack.io/#Ericsson/eiffel-remrem-semantics)
 
 ## Eiffel Semantics Intro
+Eiffel semantics is designed to implement new Eiffel messaging standard.
 
 ## Use case examples
