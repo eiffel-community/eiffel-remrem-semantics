@@ -5,13 +5,12 @@ import com.ericsson.eiffel.remrem.message.services.events.EiffelArtifactPublishe
 import com.ericsson.eiffel.remrem.message.services.events.Event;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("eiffel-semantics") @Slf4j
+@Service("eiffel-semantics")
 public class SemanticsService implements MsgService{
 
     private Gson gson = new Gson();
@@ -24,12 +23,16 @@ public class SemanticsService implements MsgService{
     }
 
     @Override
-    public String generateMsg(String msgType, JsonObject msgNodes, JsonObject eventNodes){
+    public String generateMsg(String msgType, JsonObject bodyJson){
 
         Class<? extends Event> eventType = eventTypes.get(msgType);
         if(eventType == null) {
             return "Invalid Message Type";
         }
+
+        JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
+        JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
+
         Event event = gson.fromJson(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
 

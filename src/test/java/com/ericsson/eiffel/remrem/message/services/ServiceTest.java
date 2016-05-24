@@ -27,12 +27,12 @@ public class ServiceTest {
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             System.out.println(input);
 
-            JsonObject msgNodes = input.get("meta").getAsJsonObject();
+/*            JsonObject msgNodes = input.get("meta").getAsJsonObject();
             JsonObject eventNodes = new JsonObject();
             eventNodes.add("data", input.get("data"));
             eventNodes.add("links", input.get("links"));
-
-            String msg = service.generateMsg(msgType,msgNodes,eventNodes);
+            JsonObject*/
+            String msg = service.generateMsg(msgType,input);
             System.out.println(msg);
 
             Assert.assertTrue(msg.contains("data"));
