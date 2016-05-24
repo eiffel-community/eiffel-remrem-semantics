@@ -10,9 +10,9 @@ public class Meta {
     private String id;
     private String type;
     private String version;
-    private String time;
+    private long time;
 
-    public Meta(String domainId, String id, String type, String version, String time) {
+    public Meta(String domainId, String id, String type, String version, long time) {
         this.domainId = domainId;
         this.id = id;
         this.type = type;
@@ -24,7 +24,7 @@ public class Meta {
         this.type = type;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }
