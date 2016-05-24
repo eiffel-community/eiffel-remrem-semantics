@@ -10,9 +10,14 @@ public class Data {
         private String description;
     }
 
-    public static class persistentLog {
+    public static class PersistentLog {
         private String name;
         private String uris;
+    }
+
+    public static class Location {
+        private String type;
+        private String uri;
     }
 
     public static class Cause {
