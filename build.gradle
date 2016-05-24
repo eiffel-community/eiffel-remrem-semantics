@@ -1,10 +1,37 @@
+plugins{
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'maven'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
     }
 }
 
-apply plugin: 'java'
+jar {
+    baseName = 'remrem-semantics'
+    version =  '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     maven { url "https://jitpack.io" }
@@ -17,6 +44,8 @@ repositories {
         dirs 'libs'
     }
 }
+
+install.dependsOn shadowJar
 
 // In this section you declare the dependencies for your production and test code
 dependencies {

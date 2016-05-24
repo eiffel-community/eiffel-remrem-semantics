@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("eiffel") @Slf4j
+@Service("eiffel-semantics") @Slf4j
 public class SemanticsService implements MsgService{
 
     private Gson gson = new Gson();
