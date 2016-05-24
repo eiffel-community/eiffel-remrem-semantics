@@ -1,8 +1,6 @@
-package com.ericsson.eiffel.remrem.message.services;
+package com.ericsson.eiffel.remrem.message.services.models;
 
-/**
- * Created by ehenkan on 5/17/16.
- */
+
 public class Data {
 
     public static class Outcome {

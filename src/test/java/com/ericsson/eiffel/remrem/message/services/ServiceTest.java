@@ -18,7 +18,7 @@ public class ServiceTest {
     private String ARTIFACT_PUBLISHED = "eiffelartifactpublished";
 
     JsonParser parser = new JsonParser();
-    Service service = new Service();
+    SemanticsService service = new SemanticsService();
 
     private void testGenerateMsg(String msgType, String fileName) {
 

@@ -1,10 +1,37 @@
+plugins{
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'maven'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }
     }
 }
 
-apply plugin: 'java'
+jar {
+    baseName = 'remrem-semantics'
+    version =  '0.1.0'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     maven { url "https://jitpack.io" }
@@ -18,11 +45,14 @@ repositories {
     }
 }
 
+install.dependsOn shadowJar
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
+    compile 'org.springframework:spring-context:4.2.5.RELEASE'
     compile group: 'com.ericsson.duraci', name: 'messaging', version:'35.0.3'
     compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.1'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
-    //compile group: 'org.projectlombok', name: 'lombok', version: '0.11.0'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
     testCompile 'junit:junit:4.12'
 }
