@@ -24,7 +24,15 @@ public class Meta {
         this.type = type;
     }
 
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

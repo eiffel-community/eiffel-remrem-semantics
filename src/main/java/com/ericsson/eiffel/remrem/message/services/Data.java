@@ -12,7 +12,7 @@ public class Data {
 
     public static class PersistentLog {
         private String name;
-        private String uris;
+        private String uri;
     }
 
     public static class Location {

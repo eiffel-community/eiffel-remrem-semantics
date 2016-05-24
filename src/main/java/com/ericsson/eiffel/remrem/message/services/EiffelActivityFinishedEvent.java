@@ -10,7 +10,7 @@ public class EiffelActivityFinishedEvent extends Event {
 
     public static class EiffelActivityFinishedData extends Data{
         private Data.Outcome outcome;
-        private List<PersistentLog> PersistentLogs;
+        private List<PersistentLog> persistentLogs;
     }
 
     public static class EiffelActivityFinishedLinks extends Links{
