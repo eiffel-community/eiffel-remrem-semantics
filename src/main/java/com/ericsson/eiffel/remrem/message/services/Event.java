@@ -16,12 +16,7 @@ abstract class Event {
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes, Meta.class);
         meta.setType(msgType);
-        meta.setTime(getTime());
-    }
-
-    private String getTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
-        return formatter.format(new Date());
+        meta.setTime(System.currentTimeMillis());
     }
 
 }
