@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+
+  "definitions": {
+    "UUID": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    }
+  },
+
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer"
+        },
+        "domainId": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/definitions/UUID"
+        }
+      },
+      "required": [
+        "type",
+        "version",
+        "time",
+        "domainId",
+        "id"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "type": "object",
+          "properties": {
+            "verdict": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "description"
+          ]
+        },
+        "persistentLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "uri": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "uri"
+            ]
+          }
+        }
+      },
+      "required": [
+        "outcome",
+        "persistentLogs"
+      ]
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "activityExecution": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "activityExecution"
+      ]
+    }
+  },
+  "required": [
+    "meta",
+    "data",
+    "links"
+  ]
+}
