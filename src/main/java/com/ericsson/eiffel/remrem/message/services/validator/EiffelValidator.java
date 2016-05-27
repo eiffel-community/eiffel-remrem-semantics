@@ -1,0 +1,54 @@
+package com.ericsson.eiffel.remrem.message.services.validator;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jackson.JsonLoader;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.main.JsonSchema;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.google.gson.JsonObject;
+import lombok.extern.slf4j.Slf4j;
+
+import javax.xml.bind.ValidationException;
+
+@Slf4j
+public class EiffelValidator {
+    private JsonSchema validationSchema;
+    private String schemaResourceName;
+
+    public EiffelValidator(String schemaResourceName) {
+        this.schemaResourceName = schemaResourceName;
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonSchemaFactory factory = JsonSchemaFactory.byDefault();
+        ClassLoader classLoader = getClass().getClassLoader();
+        try {
+            validationSchema = factory.getJsonSchema(
+                    mapper.readTree(classLoader.getResourceAsStream(schemaResourceName))
+            );
+            log.debug("Validation schema loaded: {}", schemaResourceName);
+        } catch (Exception e) {
+            String message = "Cannot parse JSON schema. The resource: "
+                    + schemaResourceName + ". " + e.getClass() + ":  " + e.getMessage();
+            log.error(message, e);
+            throw new IllegalArgumentException(message, e);
+        }
+    }
+
+    public void validate(JsonObject jsonObjectInput) throws ValidationException {
+        try {
+            ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()));
+            if (!report.isSuccess()) {
+                log.warn(report.toString());
+                log.warn(jsonObjectInput.toString());
+                throw new ValidationException(report.toString());
+            }
+
+            log.debug("VALIDATED. Schema used: {}", schemaResourceName);
+        } catch (Exception e) {
+            String message = "Cannot validate given JSON string";
+            log.error(message, e);
+            throw new ValidationException(message, e);
+        }
+    }
+
+}

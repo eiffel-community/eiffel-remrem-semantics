@@ -1,6 +1,5 @@
 package com.ericsson.eiffel.remrem.message.services.models;
 
-import lombok.Setter;
 
 
 public class Meta {
@@ -9,14 +8,6 @@ public class Meta {
     private String type;
     private String version;
     private long time;
-
-    public Meta(String domainId, String id, String type, String version, long time) {
-        this.domainId = domainId;
-        this.id = id;
-        this.type = type;
-        this.version = version;
-        this.time = time;
-    }
 
     public void setType(String type) {
         this.type = type;
