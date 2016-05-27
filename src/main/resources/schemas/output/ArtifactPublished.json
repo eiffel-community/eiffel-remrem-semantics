@@ -5,7 +5,12 @@
     "UUID": {
       "type": "string",
       "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+
+    "locationsType": {
+      "enum": ["ARTIFACTORY", "NEXUS", "PLAIN", "OTHER"]
     }
+
   },
 
   "type": "object",
@@ -35,7 +40,8 @@
         "time",
         "domainId",
         "id"
-      ]
+      ],
+      "additionalProperties": false
     },
     "data": {
       "type": "object",
@@ -46,7 +52,7 @@
             "type": "object",
             "properties": {
               "type": {
-                "type": "string"
+                "$ref": "#/definitions/locationsType"
               },
               "uri": {
                 "type": "string"
@@ -55,13 +61,15 @@
             "required": [
               "type",
               "uri"
-            ]
+            ],
+            "additionalProperties": false
           }
         }
       },
       "required": [
         "locations"
-      ]
+      ],
+      "additionalProperties": false
     },
     "links": {
       "type": "object",
@@ -74,14 +82,15 @@
         }
       },
       "required": [
-        "context",
         "artifact"
-      ]
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
     "meta",
     "data",
     "links"
-  ]
+  ],
+  "additionalProperties": false
 }

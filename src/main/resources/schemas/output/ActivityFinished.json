@@ -5,6 +5,10 @@
     "UUID": {
       "type": "string",
       "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+
+    "verdict": {
+      "enum": ["SUCCESSFUL", "UNSUCCESSFUL", "FAILED", "ABORTED", "TIMED_OUT", "INCONCLUSIVE"]
     }
   },
 
@@ -35,7 +39,8 @@
         "time",
         "domainId",
         "id"
-      ]
+      ],
+      "additionalProperties": false
     },
     "data": {
       "type": "object",
@@ -44,7 +49,7 @@
           "type": "object",
           "properties": {
             "verdict": {
-              "type": "string"
+              "$ref": "#/definitions/verdict"
             },
             "description": {
               "type": "string"
@@ -53,7 +58,8 @@
           "required": [
             "verdict",
             "description"
-          ]
+          ],
+          "additionalProperties": false
         },
         "persistentLogs": {
           "type": "array",
@@ -70,7 +76,8 @@
             "required": [
               "name",
               "uri"
-            ]
+            ],
+            "additionalProperties": false
           }
         }
       },
@@ -88,12 +95,14 @@
       },
       "required": [
         "activityExecution"
-      ]
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
     "meta",
     "data",
     "links"
-  ]
+  ],
+  "additionalProperties": false
 }
