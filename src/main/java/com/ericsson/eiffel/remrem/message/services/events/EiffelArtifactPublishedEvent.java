@@ -1,8 +1,5 @@
 package com.ericsson.eiffel.remrem.message.services.events;
-
-import com.ericsson.eiffel.remrem.message.services.events.Event;
 import com.ericsson.eiffel.remrem.message.services.models.Data;
-import com.ericsson.eiffel.remrem.message.services.models.Links;
 
 import java.util.List;
 
@@ -16,8 +13,10 @@ public class EiffelArtifactPublishedEvent extends Event {
         private List<Location> locations;
     }
 
-    public static class EiffelArtifactPublishedLinks extends Links {
+    public static class EiffelArtifactPublishedLinks {
         private String context;
         private String artifact;
+        private String flowContext;
+        private List<String> causes;
     }
 }

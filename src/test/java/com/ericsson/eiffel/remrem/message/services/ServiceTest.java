@@ -8,9 +8,6 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ServiceTest {
 
@@ -39,10 +36,10 @@ public class ServiceTest {
     }
 
     @Test public void testActivityFinished() {
-        testGenerateMsg(ACTIVITY_FINISHED, "ActivityFinished.json");
+        testGenerateMsg(ACTIVITY_FINISHED, "input/ActivityFinished.json");
     }
 
     @Test public void testArtifactPublished() {
-        testGenerateMsg(ARTIFACT_PUBLISHED, "ArtifactPublished.json");
+        testGenerateMsg(ARTIFACT_PUBLISHED, "input/ArtifactPublished.json");
     }
 }

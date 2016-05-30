@@ -4,6 +4,7 @@ import com.ericsson.eiffel.remrem.message.services.events.EiffelActivityFinished
 import com.ericsson.eiffel.remrem.message.services.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.remrem.message.services.events.Event;
 import com.ericsson.eiffel.remrem.message.services.factory.EiffelOutputValidatorFactory;
+import com.ericsson.eiffel.remrem.message.services.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.message.services.validator.EiffelValidator;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -50,12 +51,13 @@ public class SemanticsService implements MsgService{
             outputValidate(eiffelType, result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            System.out.println(e);
             return e.getMessage();
         }
         return result;
     }
 
-    private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws ValidationException {
+    private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);

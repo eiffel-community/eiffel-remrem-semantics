@@ -8,8 +8,6 @@ import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.xml.bind.ValidationException;
-
 @Slf4j
 public class EiffelValidator {
     private JsonSchema validationSchema;
@@ -34,20 +32,20 @@ public class EiffelValidator {
         }
     }
 
-    public void validate(JsonObject jsonObjectInput) throws ValidationException {
+    public void validate(JsonObject jsonObjectInput) throws EiffelValidationException {
         try {
             ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()));
             if (!report.isSuccess()) {
                 log.warn(report.toString());
                 log.warn(jsonObjectInput.toString());
-                throw new ValidationException(report.toString());
+                throw new EiffelValidationException(report.toString());
             }
 
             log.debug("VALIDATED. Schema used: {}", schemaResourceName);
         } catch (Exception e) {
             String message = "Cannot validate given JSON string";
             log.error(message, e);
-            throw new ValidationException(message, e);
+            throw new EiffelValidationException(message, e);
         }
     }
 

@@ -4,7 +4,7 @@ package com.ericsson.eiffel.remrem.message.services.models;
 public class Data {
 
     public static class Outcome {
-        private String verdict;
+        private String conclusion;
         private String description;
     }
 
