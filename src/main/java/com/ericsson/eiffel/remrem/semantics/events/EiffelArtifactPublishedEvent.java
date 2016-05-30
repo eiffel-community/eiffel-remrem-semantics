@@ -15,8 +15,10 @@ public class EiffelArtifactPublishedEvent extends Event {
         private List<Location> locations;
     }
 
-    public static class EiffelArtifactPublishedLinks extends Links {
+    public static class EiffelArtifactPublishedLinks {
         private String context;
         private String artifact;
+        private String flowContext;
+        private List<String> causes;
     }
 }

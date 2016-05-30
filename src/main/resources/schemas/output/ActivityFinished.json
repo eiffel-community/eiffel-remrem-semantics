@@ -7,8 +7,12 @@
       "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
 
-    "verdict": {
+    "conclusion": {
       "enum": ["SUCCESSFUL", "UNSUCCESSFUL", "FAILED", "ABORTED", "TIMED_OUT", "INCONCLUSIVE"]
+    },
+
+    "eventType": {
+      "enum": ["eiffelactivityfinished", "eiffelartifactpublished"]
     }
   },
 
@@ -18,7 +22,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/eventType"
         },
         "version": {
           "type": "string"
@@ -31,6 +35,47 @@
         },
         "id": {
           "$ref": "#/definitions/UUID"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [
@@ -48,16 +93,15 @@
         "outcome": {
           "type": "object",
           "properties": {
-            "verdict": {
-              "$ref": "#/definitions/verdict"
+            "conclusion": {
+              "$ref": "#/definitions/conclusion"
             },
             "description": {
               "type": "string"
             }
           },
           "required": [
-            "verdict",
-            "description"
+            "conclusion"
           ],
           "additionalProperties": false
         },
@@ -82,13 +126,25 @@
         }
       },
       "required": [
-        "outcome",
-        "persistentLogs"
-      ]
+        "outcome"
+      ],
+      "additionalProperties": false
     },
     "links": {
       "type": "object",
       "properties": {
+        "context": {
+          "type": "string"
+        },
+        "causes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flowContext": {
+          "type": "string"
+        },
         "activityExecution": {
           "type": "string"
         }

@@ -9,6 +9,10 @@
 
     "locationsType": {
       "enum": ["ARTIFACTORY", "NEXUS", "PLAIN", "OTHER"]
+    },
+
+    "eventType": {
+      "enum": ["eiffelactivityfinished", "eiffelartifactpublished"]
     }
 
   },
@@ -19,7 +23,7 @@
       "type": "object",
       "properties": {
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/eventType"
         },
         "version": {
           "type": "string"
@@ -32,6 +36,47 @@
         },
         "id": {
           "$ref": "#/definitions/UUID"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
         }
       },
       "required": [
@@ -75,6 +120,15 @@
       "type": "object",
       "properties": {
         "context": {
+          "type": "string"
+        },
+        "causes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flowContext": {
           "type": "string"
         },
         "artifact": {

@@ -1,6 +1,7 @@
 package com.ericsson.eiffel.remrem.semantics.models;
 
 
+import java.util.List;
 
 public class Meta {
     private String domainId;
@@ -8,6 +9,21 @@ public class Meta {
     private String type;
     private String version;
     private long time;
+    private List<String> tags;
+    private Source source;
+
+    public static class Source {
+        private String host;
+        private String name;
+        private String uri;
+        private Serializer serializer;
+    }
+
+    public static class Serializer {
+        private String groupId;
+        private String artifactId;
+        private String version;
+    }
 
     public void setType(String type) {
         this.type = type;

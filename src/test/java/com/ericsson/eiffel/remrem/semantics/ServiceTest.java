@@ -36,10 +36,10 @@ public class ServiceTest {
     }
 
     @Test public void testActivityFinished() {
-        testGenerateMsg(ACTIVITY_FINISHED, "ActivityFinished.json");
+        testGenerateMsg(ACTIVITY_FINISHED, "input/ActivityFinished.json");
     }
 
     @Test public void testArtifactPublished() {
-        testGenerateMsg(ARTIFACT_PUBLISHED, "ArtifactPublished.json");
+        testGenerateMsg(ARTIFACT_PUBLISHED, "input/ArtifactPublished.json");
     }
 }
