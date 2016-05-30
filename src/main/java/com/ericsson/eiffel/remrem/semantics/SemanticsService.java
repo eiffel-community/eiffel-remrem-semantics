@@ -1,37 +1,45 @@
 package com.ericsson.eiffel.remrem.semantics;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.Event;
 import com.ericsson.eiffel.remrem.shared.MsgService;
 
+import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
+import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
+import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Service("eiffel-semantics")
-public class SemanticsService implements MsgService {
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
+
+@Service("eiffel-semantics") @Slf4j
+public class SemanticsService implements MsgService{
 
     private Gson gson = new Gson();
-    private Map<String, Class<? extends Event>> eventTypes;
+    private Map<EiffelEventType, Class<? extends Event>> eventTypes;
 
     public SemanticsService() {
         eventTypes = new HashMap<>();
-        eventTypes.put("eiffelartifactpublished", EiffelArtifactPublishedEvent.class);
-        eventTypes.put("eiffelactivityfinished", EiffelActivityFinishedEvent.class);
+        eventTypes.put(ARTIFACT_PUBLISHED, EiffelArtifactPublishedEvent.class);
+        eventTypes.put(ACTIVITY_FINISHED, EiffelActivityFinishedEvent.class);
     }
 
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson){
-
-        Class<? extends Event> eventType = eventTypes.get(msgType);
-        if(eventType == null) {
-            return "Invalid Message Type";
+        EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
+        if (eiffelType == null) {
+            throw new IllegalArgumentException("Unknown message type requested: " + msgType);
         }
+        Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
         JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
         JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
@@ -39,6 +47,21 @@ public class SemanticsService implements MsgService {
         Event event = gson.fromJson(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
 
-        return gson.toJson(event);
+        String result = gson.toJson(event);
+        System.out.println(result);
+        try {
+            outputValidate(eiffelType, result);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            System.out.println(e);
+            return e.getMessage();
+        }
+        return result;
+    }
+
+    private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
+        EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
+        JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
+        validator.validate(jsonObject);
     }
 }
