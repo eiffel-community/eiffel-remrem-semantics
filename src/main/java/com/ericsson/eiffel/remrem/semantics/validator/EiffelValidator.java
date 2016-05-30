@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+//todo optional fields links.causes and links.context should be mutual exclusive
 public class EiffelValidator {
     private JsonSchema validationSchema;
     private String schemaResourceName;
