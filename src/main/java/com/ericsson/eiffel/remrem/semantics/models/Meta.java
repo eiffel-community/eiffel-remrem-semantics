@@ -1,4 +1,4 @@
-package com.ericsson.eiffel.remrem.message.services.models;
+package com.ericsson.eiffel.remrem.semantics.models;
 
 import lombok.Setter;
 

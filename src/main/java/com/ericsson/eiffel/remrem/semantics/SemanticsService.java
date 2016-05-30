@@ -1,17 +1,20 @@
-package com.ericsson.eiffel.remrem.message.services;
+package com.ericsson.eiffel.remrem.semantics;
 
-import com.ericsson.eiffel.remrem.message.services.events.EiffelActivityFinishedEvent;
-import com.ericsson.eiffel.remrem.message.services.events.EiffelArtifactPublishedEvent;
-import com.ericsson.eiffel.remrem.message.services.events.Event;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.Event;
+import com.ericsson.eiffel.remrem.shared.MsgService;
+
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service("eiffel-semantics")
-public class SemanticsService implements MsgService{
+public class SemanticsService implements MsgService {
 
     private Gson gson = new Gson();
     private Map<String, Class<? extends Event>> eventTypes;

@@ -1,4 +1,4 @@
-package com.ericsson.eiffel.remrem.message.services;
+package com.ericsson.eiffel.remrem.semantics;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,9 +8,6 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ServiceTest {
 
