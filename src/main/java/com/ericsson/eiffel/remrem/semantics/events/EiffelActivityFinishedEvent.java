@@ -1,7 +1,6 @@
 package com.ericsson.eiffel.remrem.semantics.events;
 
 import com.ericsson.eiffel.remrem.semantics.models.Data;
-import com.ericsson.eiffel.remrem.semantics.models.Links;
 
 import java.util.List;
 
@@ -16,7 +15,10 @@ public class EiffelActivityFinishedEvent extends Event {
         private List<PersistentLog> persistentLogs;
     }
 
-    public static class EiffelActivityFinishedLinks extends Links {
+    public static class EiffelActivityFinishedLinks {
         private String activityExecution;
+        private String context;
+        private String flowContext;
+        private List<String> causes;
     }
 }

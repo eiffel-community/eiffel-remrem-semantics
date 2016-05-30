@@ -1,7 +1,7 @@
 package com.ericsson.eiffel.remrem.semantics.models;
 
-import lombok.Setter;
 
+import java.util.List;
 
 public class Meta {
     private String domainId;
@@ -9,13 +9,20 @@ public class Meta {
     private String type;
     private String version;
     private long time;
+    private List<String> tags;
+    private Source source;
 
-    public Meta(String domainId, String id, String type, String version, long time) {
-        this.domainId = domainId;
-        this.id = id;
-        this.type = type;
-        this.version = version;
-        this.time = time;
+    public static class Source {
+        private String host;
+        private String name;
+        private String uri;
+        private Serializer serializer;
+    }
+
+    public static class Serializer {
+        private String groupId;
+        private String artifactId;
+        private String version;
     }
 
     public void setType(String type) {

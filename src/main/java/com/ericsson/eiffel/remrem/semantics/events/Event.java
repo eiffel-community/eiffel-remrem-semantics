@@ -13,7 +13,7 @@ public abstract class Event {
     public static String  version = "0.1.0";
 
     public void generateMeta(String msgType, JsonObject msgNodes) {
-        meta = new Gson().fromJson(msgNodes, Meta.class);
+        meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
         meta.setType(msgType);
         meta.setTime(System.currentTimeMillis());
         meta.setVersion(version);
