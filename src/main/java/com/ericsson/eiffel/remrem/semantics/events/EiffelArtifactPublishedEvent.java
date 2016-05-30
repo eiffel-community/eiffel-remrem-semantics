@@ -1,8 +1,7 @@
-package com.ericsson.eiffel.remrem.message.services.events;
+package com.ericsson.eiffel.remrem.semantics.events;
 
-import com.ericsson.eiffel.remrem.message.services.events.Event;
-import com.ericsson.eiffel.remrem.message.services.models.Data;
-import com.ericsson.eiffel.remrem.message.services.models.Links;
+import com.ericsson.eiffel.remrem.semantics.models.Data;
+import com.ericsson.eiffel.remrem.semantics.models.Links;
 
 import java.util.List;
 

@@ -1,8 +1,10 @@
-package com.ericsson.eiffel.remrem.message.services.events;
+package com.ericsson.eiffel.remrem.semantics.events;
 
-import com.ericsson.eiffel.remrem.message.services.models.Meta;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
+import com.ericsson.eiffel.remrem.semantics.models.Meta;
+
 import java.util.UUID;
 
 
