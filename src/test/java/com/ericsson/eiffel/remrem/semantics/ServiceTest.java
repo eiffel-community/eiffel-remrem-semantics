@@ -22,7 +22,6 @@ public class ServiceTest {
         try {
             File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
-            System.out.println(input);
 
             String msg = service.generateMsg(msgType,input);
             System.out.println(msg);

@@ -48,13 +48,15 @@ public class SemanticsService implements MsgService{
         event.generateMeta(msgType, msgNodes);
 
         String result = gson.toJson(event);
-        System.out.println(result);
         try {
             outputValidate(eiffelType, result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             System.out.println(e);
-            return e.getMessage();
+            JsonObject errorResponse = new JsonObject();
+            errorResponse.addProperty("message", e.getMessage());
+            errorResponse.addProperty("cause", e.getCause().toString().replace("\n", ""));
+            return errorResponse.toString();
         }
         return result;
     }
