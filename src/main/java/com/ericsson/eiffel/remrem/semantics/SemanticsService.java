@@ -52,7 +52,6 @@ public class SemanticsService implements MsgService{
             outputValidate(eiffelType, result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            System.out.println(e);
             JsonObject errorResponse = new JsonObject();
             errorResponse.addProperty("message", e.getMessage());
             errorResponse.addProperty("cause", e.getCause().toString().replace("\n", ""));
