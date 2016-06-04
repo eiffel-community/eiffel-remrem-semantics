@@ -53,10 +53,16 @@ repositories {
 
 install.dependsOn shadowJar
 
-// In this section you declare the dependencies for your production and test code
+//configurations {
+//    runtime.exclude group: 'com.github.Ericsson', module: 'eiffel-remrem-shared'
+//    runtime.exclude group: 'org.slf4j', module: 'slf4j-api'
+//}
+
 dependencies {
     compile 'org.springframework:spring-context:4.2.5.RELEASE'
     compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'
+    compile 'com.github.fge:json-schema-validator:2.2.6'
+    compile 'org.slf4j:slf4j-api:1.7.18'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
     testCompile 'junit:junit:4.12'
