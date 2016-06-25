@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package com.ericsson.eiffel.remrem.semantics.models;
+
+message Meta {
+    string           id = 1;
+    EiffelEventType  type = 2;
+    string           version = 3; // version is redundant since we can use methods provided by protobuf to address versioning
+    int64            time = 4;
+    repeated  string tags = 5;
+    Data.Source      source = 6;
+
+    enum EiffelEventType {
+        NONE = 0; // Protobuf 3 will skill element 0 to be compatible with the protobuf 2 https://developers.google.com/protocol-buffers/docs/proto3#enum
+        EiffelActivityFinishedEvent = 1;
+        EiffelArtifactPublishedEvent =2;
+    }
+}
+
+message Link {
+    enum LinkType {
+        NONE = 0; // Protobuf 3 will skill element 0 to be compatible with the protobuf 2 https://developers.google.com/protocol-buffers/docs/proto3#enum
+        CAUSE = 1;
+        PREVIOUS_VERSION = 2;
+        // The rest of the link types will be added if needed
+    }
+    LinkType type = 1;
+    string   id   = 2;
+}
+
+message Data {
+    message Outcome {
+        string conclusion = 1;
+        string description = 2;
+    }
+
+    message PersistentLog {
+        string name = 1;
+        string uri = 2;
+    }
+
+    message Location {
+        string type = 1;
+        string uri = 2;
+    }
+
+    message Cause {
+        string type = 1;
+        string id = 2;
+    }
+
+    message Trigger {
+        string type = 1;
+        string description = 2;
+    }
+
+    message Source {
+        string domainId = 1;
+        string host = 2;
+        string name = 3;
+        string uri = 4;
+        Serializer serializer = 5;
+    }
+
+    message Serializer {
+        string groupId = 1;
+        string artifactId = 2;
+        string version = 3;
+    }
+}

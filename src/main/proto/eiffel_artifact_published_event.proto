@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.ericsson.eiffel.remrem.semantics.events;
+
+import "models.proto";
+
+message EiffelArtifactPublishedEvent {
+    models.Meta meta = 1;
+    repeated models.Link links = 2;
+    EiffelArtifactPublishedEventData data = 3;
+}
+
+message EiffelArtifactPublishedEventData {
+    repeated models.Data.Location locations = 1;
+}

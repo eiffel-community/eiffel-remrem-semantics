@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 //todo optional fields links.causes and links.context should be mutual exclusive
+// Do we really need all that when we can use protobuf to validate message for us?
 public class EiffelValidator {
     private JsonSchema validationSchema;
     private String schemaResourceName;
