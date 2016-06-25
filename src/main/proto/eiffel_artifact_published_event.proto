@@ -8,8 +8,9 @@ message EiffelArtifactPublishedEvent {
     models.Meta meta = 1;
     repeated models.Link links = 2;
     EiffelArtifactPublishedEventData data = 3;
+
+    message EiffelArtifactPublishedEventData {
+        repeated models.Data.Location locations = 1;
+    }
 }
 
-message EiffelArtifactPublishedEventData {
-    repeated models.Data.Location locations = 1;
-}
