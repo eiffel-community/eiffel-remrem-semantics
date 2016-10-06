@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package com.ericsson.eiffel.remrem.semantics.events;
+
+import "models.proto";
+
+message EiffelActivityFinishedEvent {
+    models.Meta meta = 1;
+    repeated models.Link links = 2;
+    EiffelActivityFinishedEventData data = 3;
+
+    message EiffelActivityFinishedEventData {
+        models.Data.Outcome                outcome = 1;
+        repeated models.Data.PersistentLog persistentLogs = 2;
+    }
+}
