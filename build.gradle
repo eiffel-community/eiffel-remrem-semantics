@@ -24,7 +24,7 @@ jar {
     baseName = 'eiffel-remrem-semantics'
     // If this version is updated please update it in Event.java 
     // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.4'
+    version =  '0.1.5'
     manifest {
         attributes('Semantics-Version': version)
     }
@@ -32,7 +32,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.1.4'
+    version =  '0.1.5'
     classifier = ''
 }
 

@@ -14,7 +14,7 @@ import java.util.jar.Manifest;
 
 public abstract class Event {
     public Meta meta;
-    public static String  version = "0.1.4";
+    public static String  version = "0.1.5";
 
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
