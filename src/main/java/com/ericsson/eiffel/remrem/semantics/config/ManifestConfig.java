@@ -1,4 +1,4 @@
-package config;
+package com.ericsson.eiffel.remrem.semantics.config;
 
 import java.io.IOException;
 import java.io.InputStream;

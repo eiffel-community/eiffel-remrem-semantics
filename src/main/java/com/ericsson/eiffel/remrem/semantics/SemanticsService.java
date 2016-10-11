@@ -44,7 +44,7 @@ public class SemanticsService implements MsgService{
         JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
         JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
 
-        Event event = gson.fromJson(eventNodes, eventType);
+        Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
 
         String result = gson.toJson(event);
@@ -58,6 +58,10 @@ public class SemanticsService implements MsgService{
             return errorResponse.toString();
         }
         return result;
+    }
+    
+    public Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
+    	return gson.fromJson(eventNodes, eventType);
     }
 
     private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
