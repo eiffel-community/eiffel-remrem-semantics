@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,14 +29,12 @@ public class ServiceTest {
     @InjectMocks
     SemanticsService service = new SemanticsService();
 
-    
-    private Event event;
-        
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        event = mock(Event.class);
-        when(event.getCurrentVersion()).thenReturn("0.1.0");
+        Attributes attributes = mock(Attributes.class);
+        when(attributes.getValue(anyString())).thenReturn("0.1.5");
+        
     }
     
     private void testGenerateMsg(String msgType, String fileName) {
