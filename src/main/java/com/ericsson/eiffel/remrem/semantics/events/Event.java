@@ -25,8 +25,8 @@ public abstract class Event {
         meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
         meta.setType(msgType);
         meta.setTime(System.currentTimeMillis());
-        // TO DO unit tests are not working
-        String version = attributes.getValue("Semantics-Version");
+        // TO DO unit tests are not working when dynamically read version from manifest file
+//        String version = attributes.getValue("Semantics-Version");
         meta.setVersion(version);
         meta.setId(UUID.randomUUID().toString());
     }
