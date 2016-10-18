@@ -1,7 +1,9 @@
 package com.ericsson.eiffel.remrem.semantics;
 
-import org.springframework.context.annotation.Configuration;
+import javax.inject.Named;
 
-@Configuration public class FakeConfig {
+//import org.springframework.context.annotation.Configuration;
+
+@Named public class FakeConfig {
 
 }

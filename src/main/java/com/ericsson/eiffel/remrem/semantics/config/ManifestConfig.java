@@ -5,12 +5,12 @@ import java.io.InputStream;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import javax.inject.Named;
 
-@Configuration
+
+@Named
 public class ManifestConfig {
-    @Bean
+    
     public Attributes getManifestAttributes() {
         InputStream manifestStream = Thread.currentThread()
                 .getContextClassLoader()

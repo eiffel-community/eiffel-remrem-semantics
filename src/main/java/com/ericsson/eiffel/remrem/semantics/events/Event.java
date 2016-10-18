@@ -5,20 +5,17 @@ import com.google.gson.JsonObject;
 
 import com.ericsson.eiffel.remrem.semantics.models.Meta;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.UUID;
 import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
 
 public abstract class Event {
     public Meta meta;
     public static String  version = "0.1.5";
 
-    @Autowired
+    @Inject
     private Attributes attributes;
 
     public void generateMeta(String msgType, JsonObject msgNodes) {

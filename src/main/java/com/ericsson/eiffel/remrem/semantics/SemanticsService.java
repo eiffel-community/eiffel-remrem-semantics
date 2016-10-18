@@ -13,15 +13,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Named;
+
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 
-@Service("eiffel-semantics") @Slf4j
+@Named("eiffel-semantics") @Slf4j
 public class SemanticsService implements MsgService{
 
     private Gson gson = new Gson();
