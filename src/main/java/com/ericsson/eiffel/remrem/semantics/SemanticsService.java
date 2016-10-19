@@ -13,15 +13,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Named;
+
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 
-@Service("eiffel-semantics") @Slf4j
+@Named("eiffel-semantics") @Slf4j
 public class SemanticsService implements MsgService{
 
     private Gson gson = new Gson();
@@ -44,7 +45,7 @@ public class SemanticsService implements MsgService{
         JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
         JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
 
-        Event event = gson.fromJson(eventNodes, eventType);
+        Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
 
         String result = gson.toJson(event);
@@ -58,6 +59,10 @@ public class SemanticsService implements MsgService{
             return errorResponse.toString();
         }
         return result;
+    }
+    
+    private Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
+    	return gson.fromJson(eventNodes, eventType);
     }
 
     private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
