@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public abstract class Event {
     public Meta meta;
-    public static String  version = "0.1.5";
+    public static String  version = "0.1.6";
 
     @Inject
     private Attributes attributes;
