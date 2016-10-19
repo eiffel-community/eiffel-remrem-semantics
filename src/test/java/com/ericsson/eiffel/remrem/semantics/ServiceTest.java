@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 import org.mockito.MockitoAnnotations;
@@ -30,9 +29,6 @@ public class ServiceTest {
     @InjectMocks
     SemanticsService service = new SemanticsService();	
     
- //   @Mock
-//    Attributes attributes;
-    
     @InjectMocks
     EiffelActivityFinishedEvent fEvent = new EiffelActivityFinishedEvent();
     
@@ -42,9 +38,7 @@ public class ServiceTest {
     @Before
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
-        MockitoAnnotations.initMocks(this);
-        Event event = mock(Event.class,  Mockito.CALLS_REAL_METHODS);
-//        when(service.createEvent(an, anyObject())).thenReturn(event);        
+        MockitoAnnotations.initMocks(this);        
         when(attributes.getValue(anyString())).thenReturn("0.1.5");
         
     }

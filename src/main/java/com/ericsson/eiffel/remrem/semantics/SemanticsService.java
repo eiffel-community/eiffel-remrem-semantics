@@ -61,7 +61,7 @@ public class SemanticsService implements MsgService{
         return result;
     }
     
-    public Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
+    private Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
     	return gson.fromJson(eventNodes, eventType);
     }
 
