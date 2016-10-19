@@ -10,7 +10,6 @@ import java.util.jar.Attributes;
 
 import javax.inject.Inject;
 
-
 public abstract class Event {
     public Meta meta;
     public static String  version = "0.1.5";
@@ -27,20 +26,4 @@ public abstract class Event {
         meta.setVersion(version);
         meta.setId(UUID.randomUUID().toString());
     }
-
-//    public String getCurrentVersion() {
-//    	InputStream manifestStream = Thread.currentThread()
-//    			.getContextClassLoader()
-//    			.getResourceAsStream("/META-INF/MANIFEST.MF");
-//    	try {
-//    		Manifest manifest = new Manifest(manifestStream);
-//    		Attributes attributes = manifest.getMainAttributes();
-//    		return attributes.getValue("Semantics-Version");
-//    	}
-//    	catch(IOException ex) {
-//    		
-//    	}
-//    	
-//    	return null;
-//    }
 }

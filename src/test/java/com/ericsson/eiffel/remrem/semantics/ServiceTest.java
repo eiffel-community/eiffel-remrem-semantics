@@ -39,10 +39,9 @@ public class ServiceTest {
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
         MockitoAnnotations.initMocks(this);        
-        when(attributes.getValue(anyString())).thenReturn("0.1.5");
-        
+        when(attributes.getValue(anyString())).thenReturn("0.1.5");        
     }
-    
+
     private void testGenerateMsg(String msgType, String fileName) {
 
         try {
