@@ -6,11 +6,14 @@ import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
 import com.google.gson.JsonObject;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //todo optional fields links.causes and links.context should be mutual exclusive
 public class EiffelValidator {
+    public static final Logger log = LoggerFactory.getLogger(EiffelValidator.class);
+
     private JsonSchema validationSchema;
     private String schemaResourceName;
 
@@ -45,7 +48,7 @@ public class EiffelValidator {
             log.debug("VALIDATED. Schema used: {}", schemaResourceName);
         } catch (Exception e) {
             String message = "Cannot validate given JSON string";
-            log.error(message, e);
+            log.debug(message, e);
             throw new EiffelValidationException(message, e);
         }
     }
