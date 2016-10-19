@@ -28,6 +28,7 @@ jar {
     manifest {
         attributes('Semantics-Version': version)
     }
+    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 shadowJar {
@@ -60,22 +61,13 @@ repositories {
 
 install.dependsOn shadowJar
 
-//configurations {
-//    runtime.exclude group: 'com.github.Ericsson', module: 'eiffel-remrem-shared'
-//    runtime.exclude group: 'org.slf4j', module: 'slf4j-api'
-//}
-
-ext {
-    sprintBootVersion = "1.4.1.RELEASE"
-}
-
 dependencies {
-    compile 'org.springframework:spring-context:4.3.3.RELEASE'
     compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'
     compile 'com.github.fge:json-schema-validator:2.2.6'
+    compile 'org.mockito:mockito-core:1.10.19'
+    compile 'javax.inject:javax.inject:1'
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
     testCompile 'junit:junit:4.12'
-    testCompile("org.springframework.boot:spring-boot-starter-test:$sprintBootVersion")
 }
