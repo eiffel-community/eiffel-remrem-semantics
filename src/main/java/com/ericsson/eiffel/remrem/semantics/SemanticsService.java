@@ -12,17 +12,21 @@ import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.inject.Named;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 
-@Service("eiffel-semantics") @Slf4j
+
+@Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
+
+    public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
     private Gson gson = new Gson();
     private Map<EiffelEventType, Class<? extends Event>> eventTypes;
@@ -37,29 +41,38 @@ public class SemanticsService implements MsgService{
     public String generateMsg(String msgType, JsonObject bodyJson){
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         if (eiffelType == null) {
-            throw new IllegalArgumentException("Unknown message type requested: " + msgType);
+            log.error("Unknown message type requested: " + msgType);
+            return createErrorResponse("Unknown message type requested", "'" + msgType + "' is not in the vocabulary of this service");
         }
         Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
         JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
         JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
 
-        Event event = gson.fromJson(eventNodes, eventType);
+        Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
 
         String result = gson.toJson(event);
         try {
             outputValidate(eiffelType, result);
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            JsonObject errorResponse = new JsonObject();
-            errorResponse.addProperty("message", e.getMessage());
-            errorResponse.addProperty("cause", e.getCause().toString().replace("\n", ""));
-            return errorResponse.toString();
+        } catch (EiffelValidationException e) {
+            log.error("Could not validate message. Reason:" +  e.getMessage() +"\nCause: " + e.getCause().toString());
+            return createErrorResponse(e.getMessage(), e.getCause().toString());
         }
         return result;
     }
+    
+    private Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
+    	return gson.fromJson(eventNodes, eventType);
+    }
 
+    private String createErrorResponse(final String message, final String cause){
+        JsonObject errorResponse = new JsonObject();
+        errorResponse.addProperty("message", message);
+        errorResponse.addProperty("cause", cause.replace("\n", ""));
+        return errorResponse.toString();
+    }
+    
     private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
