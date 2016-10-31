@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.ActivityCanceledData",
+	"properties": {
+		"reason": {
+			"type": "string"
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"additionalProperties": false
+}

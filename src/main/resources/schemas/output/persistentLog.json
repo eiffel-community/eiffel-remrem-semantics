@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.PersistentLog",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"uri": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"name",
+		"uri"
+	],
+	"additionalProperties": false
+}

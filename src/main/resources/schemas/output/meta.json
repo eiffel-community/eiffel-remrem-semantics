@@ -1,0 +1,36 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.Meta",
+	"properties": {
+		"id": {
+			"type": "string"
+		},
+		"type": {
+			"type": "string"
+		},
+		"version": {
+			"type": "string",
+			"pattern": "^(\\d+\\.)(\\d+\\.)(\\d+)$"
+		},
+		"time": {
+			"type": "integer","format":"utc-millisec"
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"source": {
+			"$ref": "source.json"
+		}
+	},
+	"required": [
+		"id",
+		"type",
+		"version",
+		"time",
+		"source"
+	],
+	"additionalProperties": false
+}

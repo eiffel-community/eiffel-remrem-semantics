@@ -24,7 +24,7 @@ jar {
     baseName = 'eiffel-remrem-semantics'
     // If this version is updated please update it in Event.java 
     // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.7'
+    version =  '0.1.8'
     manifest {
         attributes('Semantics-Version': version)
     }
@@ -33,7 +33,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.1.7'
+    version =  '0.1.8'
     classifier = ''
 }
 
@@ -77,4 +77,5 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
     testCompile 'junit:junit:4.12'
+	compile 'org.apache.commons:commons-lang3:3.5'
 }

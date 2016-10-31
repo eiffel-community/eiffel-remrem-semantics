@@ -1,0 +1,26 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.ActivityCLMEData",
+	"properties": {
+	 "name": {
+          "type": "string"
+        },
+         "value": {
+          "type": "string",
+          "enum": ["SUCCESS", "FAILURE", "INCONCLUSIVE"]
+        },
+		"issuer": {
+			"$ref": "issuer.json"
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"required": [
+		"name","value"
+	],
+	"additionalProperties": false
+}

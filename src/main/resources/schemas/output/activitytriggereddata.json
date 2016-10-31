@@ -1,0 +1,34 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.ActivityTriggeredData",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"categories": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"triggers": {
+			"type": "array",
+			"items": {
+				"$ref": "trigger.json"
+			}
+		},
+		"executionType": {
+			"type": "string"
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"name"
+	]
+}
