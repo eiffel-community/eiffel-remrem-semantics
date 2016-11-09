@@ -1,0 +1,49 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.ArtifactCreatedData",
+	"properties": {
+		"gav": {
+			"$ref": "gav.json"
+		},
+		"fileInformation": {
+			"type": "array",
+			"items": {
+				"$ref": "fileInformation.json"
+			}
+		},
+		"buildCommand": {
+			"type": "string"
+		},
+		"requiresImplementation": {
+			"type": "string",
+			"enum": [
+				"NONE",
+				"ANY",
+				"EXACTLY_ONE",
+				"AT_LEAST_ONE"
+			]
+		},
+		"dependsOn": {
+			"type": "array",
+			"items": {
+				"$ref": "gav.json"
+			}
+		},
+		"implements": {
+			"type": "array",
+			"items": {
+				"$ref": "gav.json"
+			}
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"required": [
+		"gav"
+	],
+	"additionalProperties": false
+}

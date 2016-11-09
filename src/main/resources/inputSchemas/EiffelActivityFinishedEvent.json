@@ -1,0 +1,22 @@
+{
+	"id": "https://raw.githubusercontent.com/xmairaa/eiffel-remrem-semantics/Gradlejsonschema2pojo/src/main/resources/inputSchemas/EiffelActivityFinishedEvent.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelActivityFinishedEvent",
+	"extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+	"properties": {
+		"meta": {
+			"$ref": "meta.json"
+		},
+		"data": {
+			"$ref": "activityfinisheddata.json"
+		},
+		"links": {
+			"$ref": "link.json"
+		}
+	},
+	"required": [
+		"data",
+		"links"
+	]
+}

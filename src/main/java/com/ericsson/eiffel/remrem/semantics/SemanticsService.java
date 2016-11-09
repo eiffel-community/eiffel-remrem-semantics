@@ -1,26 +1,27 @@
 package com.ericsson.eiffel.remrem.semantics;
 
 
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.Event;
-import com.ericsson.eiffel.remrem.shared.MsgService;
-
-import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
-import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
-import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.inject.Named;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
+import com.ericsson.eiffel.remrem.semantics.events.Event;
+import com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelActivityFinishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
+import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
+import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
+import com.ericsson.eiffel.remrem.shared.MsgService;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 
 @Named("eiffel-semantics")
@@ -40,6 +41,7 @@ public class SemanticsService implements MsgService{
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson){
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
+        System.out.println(msgType);
         if (eiffelType == null) {
             log.error("Unknown message type requested: " + msgType);
             return createErrorResponse("Unknown message type requested", "'" + msgType + "' is not in the vocabulary of this service");
@@ -51,7 +53,7 @@ public class SemanticsService implements MsgService{
 
         Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
-
+        event.setMeta(event.meta);
         String result = gson.toJson(event);
         try {
             outputValidate(eiffelType, result);

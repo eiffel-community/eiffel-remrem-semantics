@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.Link",
+	"properties": {
+		"type": {
+			"type": "string"
+		},
+		"target": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"type",
+		"target"
+	],
+	"additionalProperties": false
+}

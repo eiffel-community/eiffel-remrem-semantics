@@ -1,0 +1,19 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.Issuer",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"email": {
+			"type": "string"
+		},
+		"id": {
+			"type": "string"
+		},
+		"group": {
+			"type": "string"
+		}
+	},
+	"additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.ActivityStartedData",
+	"properties": {
+		"executionUri": {
+          "type": "string"
+        },
+		"liveLogs": {
+			"type": "array",
+			"items": {
+				"$ref": "persistentLog.json"
+			}
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"outcome"
+	]
+}

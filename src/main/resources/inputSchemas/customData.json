@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.CustomData",
+	"properties": {
+		"key": {
+			"type": "string"
+		},
+		"value": {
+		}
+	},
+	"required": [
+		"key",
+		"value"
+	],
+	"additionalProperties": false
+}

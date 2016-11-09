@@ -1,0 +1,23 @@
+{
+	"id": "https://raw.githubusercontent.com/xmairaa/eiffel-remrem-semantics/Gradlejsonschema2pojo/src/main/resources/inputSchemas/EiffelActivityCanceledEvent.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelActivityCanceledEvent",
+	"extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+	"properties": {
+		"meta": {
+			"$ref": "meta.json"
+		},
+		"data": {
+			"$ref": "activitycanceleddata.json"
+		},
+		"links": {
+			"$ref": "link.json"
+		}
+	},
+	"required": [
+		"meta",
+		"data",
+		"links"
+	]
+}
