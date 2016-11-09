@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.Source",
+	"properties": {
+		"domainId": {
+			"type": "string"
+		},
+		"host": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"serializer": {
+			"$ref": "gav.json"
+		},
+		"uri": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"domainId"
+	],
+	"additionalProperties": false
+}

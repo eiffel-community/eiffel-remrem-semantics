@@ -1,0 +1,23 @@
+{
+	"id": "file:///C:/Users/erjamni/git/RemremCode/src/main/resources/schemas/output/EiffelActivityFinishedEvent.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.EiffelArtifactCreatedEvent",
+	"extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+	"properties": {
+		"meta": {
+			"$ref": "meta.json"
+		},
+		"data": {
+			"$ref": "artifactcreateddata.json"
+		},
+		"links": {
+			"$ref": "link.json"
+		}
+	},
+	"required": [
+		"meta",
+		"data",
+		"links"
+	]
+}

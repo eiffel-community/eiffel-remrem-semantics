@@ -1,0 +1,19 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.Issuer",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"email": {
+			"type": "string"
+		},
+		"id": {
+			"type": "string"
+		},
+		"group": {
+			"type": "string"
+		}
+	},
+	"additionalProperties": false
+}

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "meta", "data", "links" })
-public class EiffelArtifactPublishedEvent extends Event {
+public class EiffelActivityStartedEvent extends Event {
 
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class EiffelArtifactPublishedEvent extends Event {
 	 * 
 	 */
 	@JsonProperty("data")
-	private ArtifactPublishedData data;
+	private ActivityStartedData data;
 	/**
 	 * 
 	 * (Required)
@@ -72,7 +72,7 @@ public class EiffelArtifactPublishedEvent extends Event {
 	 * @return The data
 	 */
 	@JsonProperty("data")
-	public ArtifactPublishedData getData() {
+	public ActivityStartedData getData() {
 		return data;
 	}
 
@@ -84,7 +84,7 @@ public class EiffelArtifactPublishedEvent extends Event {
 	 *            The data
 	 */
 	@JsonProperty("data")
-	public void setData(ArtifactPublishedData data) {
+	public void setData(ActivityStartedData data) {
 		this.data = data;
 	}
 
@@ -137,10 +137,10 @@ public class EiffelArtifactPublishedEvent extends Event {
 		if (other == this) {
 			return true;
 		}
-		if ((other instanceof EiffelArtifactPublishedEvent) == false) {
+		if ((other instanceof EiffelActivityStartedEvent) == false) {
 			return false;
 		}
-		EiffelArtifactPublishedEvent rhs = ((EiffelArtifactPublishedEvent) other);
+		EiffelActivityStartedEvent rhs = ((EiffelActivityStartedEvent) other);
 		return new EqualsBuilder().appendSuper(super.equals(other)).append(meta, rhs.meta).append(data, rhs.data)
 				.append(links, rhs.links).append(additionalProperties, rhs.additionalProperties).isEquals();
 	}

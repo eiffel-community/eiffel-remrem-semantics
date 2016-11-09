@@ -51,7 +51,7 @@ public class SemanticsService implements MsgService{
 
         Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
-
+        event.setMeta(event.meta);
         String result = gson.toJson(event);
         try {
             outputValidate(eiffelType, result);

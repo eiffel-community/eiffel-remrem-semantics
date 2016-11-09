@@ -1,0 +1,17 @@
+{
+	"javaType": "com.ericsson.eiffel.generated.FileInformation",
+	"type": "object",
+	"properties": {
+		"classifier": {
+			"type": "string"
+		},
+		"extension": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"classifier",
+		"extension"
+	],
+	"additionalProperties": false
+}

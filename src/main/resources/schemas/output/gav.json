@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.GAV",
+	"properties": {
+		"groupId": {
+			"type": "string"
+		},
+		"artifactId": {
+			"type": "string"
+		},
+		"version": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"groupId",
+		"artifactId",
+		"version"
+	],
+	"additionalProperties": false
+}

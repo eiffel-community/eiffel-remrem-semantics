@@ -1,0 +1,23 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.generated.Location",
+	"properties": {
+		"type": {
+			"type": "string",
+			"enum": [
+				"ARTIFACTORY",
+				"NEXUS",
+				"PLAIN",
+				"OTHER"
+			]
+		},
+		"uri": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"type",
+		"uri"
+	],
+	"additionalProperties": false
+}
