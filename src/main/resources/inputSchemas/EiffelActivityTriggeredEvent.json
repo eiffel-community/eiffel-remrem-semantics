@@ -1,0 +1,23 @@
+{
+	"id": "file:///C:/Users/erjamni/git/eiffel-remrem-semantics09112016/src/main/resources/inputSchemas/EiffelActivityTriggeredEvent.json",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelActivityTriggeredEvent",
+	"extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+	"properties": {
+		"meta": {
+			"$ref": "meta.json"
+		},
+		"data": {
+			"$ref": "activitytriggereddata.json"
+		},
+		"links": {
+			"$ref": "link.json"
+		}
+	},
+	"required": [
+		"meta",
+		"data",
+		"links"
+	]
+}

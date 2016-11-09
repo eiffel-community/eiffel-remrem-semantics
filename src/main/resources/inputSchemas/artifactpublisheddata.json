@@ -1,0 +1,22 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.ArtifactPublishedData",
+	"properties": {
+		"locations": {
+			"type": "array",
+			"items": {
+				"$ref": "location.json"
+			}
+		},
+		"customData": {
+			"type": "array",
+			"items": {
+				"$ref": "customData.json"
+			}
+		}
+	},
+	"required": [
+		"locations"
+	],
+	"additionalProperties": false
+}

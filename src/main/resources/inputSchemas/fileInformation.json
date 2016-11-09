@@ -1,0 +1,17 @@
+{
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.FileInformation",
+	"type": "object",
+	"properties": {
+		"classifier": {
+			"type": "string"
+		},
+		"extension": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"classifier",
+		"extension"
+	],
+	"additionalProperties": false
+}

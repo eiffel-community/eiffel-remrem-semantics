@@ -1,0 +1,17 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.PersistentLog",
+	"properties": {
+		"name": {
+			"type": "string"
+		},
+		"uri": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"name",
+		"uri"
+	],
+	"additionalProperties": false
+}

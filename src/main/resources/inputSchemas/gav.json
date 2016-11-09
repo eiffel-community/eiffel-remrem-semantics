@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.GAV",
+	"properties": {
+		"groupId": {
+			"type": "string"
+		},
+		"artifactId": {
+			"type": "string"
+		},
+		"version": {
+			"type": "string"
+		}
+	},
+	"required": [
+		"groupId",
+		"artifactId",
+		"version"
+	],
+	"additionalProperties": false
+}

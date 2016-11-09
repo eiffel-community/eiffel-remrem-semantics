@@ -35,6 +35,7 @@ public class ValidationTest {
 
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         validator.validate(jsonObject);
+        
     }
 
     @Test(expected = EiffelValidationException.class)
@@ -62,7 +63,8 @@ public class ValidationTest {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(ARTIFACT_PUBLISHED);
 
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
-        jsonObject.addProperty("additional", "additional");
+        jsonObject.remove("links");
         validator.validate(jsonObject);
+       
     }
 }

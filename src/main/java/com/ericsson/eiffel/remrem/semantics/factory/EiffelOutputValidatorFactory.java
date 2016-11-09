@@ -15,10 +15,10 @@ public class EiffelOutputValidatorFactory {
 
     static {
         validators.put(ACTIVITY_FINISHED,
-                new OutputValidator("schemas/output/ActivityFinished.json"));
+                new OutputValidator("inputSchemas/EiffelActivityFinishedEvent.json"));
 
         validators.put(ARTIFACT_PUBLISHED,
-                new OutputValidator("schemas/output/ArtifactPublished.json"));
+                new OutputValidator("inputSchemas/EiffelArtifactPublishedEvent.json"));
     }
 
     public static EiffelValidator getEiffelValidator(EiffelEventType type) {

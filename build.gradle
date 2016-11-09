@@ -1,10 +1,22 @@
-plugins{
-    id 'java'
-    id 'com.github.johnrengelman.shadow' version '1.2.3'
-    id 'maven'
-    id 'jacoco'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
-}
+apply plugin: 'java'
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+apply plugin: 'jsonschema2pojo'
+apply plugin: "com.github.kt3k.coveralls"
+
+buildscript {
+	repositories {
+	  mavenLocal()
+	  jcenter()
+	}
+	dependencies {
+	  classpath "com.github.jengelman.gradle.plugins:shadow:1.2.4"
+	  classpath 'org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:latest.integration'
+	  classpath 'joda-time:joda-time:2.2'
+	  classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3"
+	}
+  }
 
 jacocoTestReport {
     reports {
@@ -62,6 +74,11 @@ repositories {
 install.dependsOn shadowJar
 
 dependencies {
+	//classpath 'org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:latest.integration'
+	//classpath 'joda-time:joda-time:2.2'
+  }
+
+dependencies {
     compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'    
     compile('com.github.fge:json-schema-validator:2.2.6')
     {
@@ -77,4 +94,16 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
     testCompile 'junit:junit:4.12'
+	
+	compile 'org.apache.commons:commons-lang3:3.5'
+	compile 'javax.validation:validation-api:1.1.0.CR2'
+	compile 'joda-time:joda-time:2.2'
 }
+
+// This task for generate Eiffel events from json schema. Using the jsonschema2pojo plugin.
+jsonSchema2Pojo {
+	source = files("${sourceSets.main.output.resourcesDir}/inputSchemas")
+	targetDirectory = file("src/main/java")
+	targetPackage = 'com.ericsson.eiffel.remrem.semantics.events.schemagenerate'
+	useCommonsLang3 = true
+  }
