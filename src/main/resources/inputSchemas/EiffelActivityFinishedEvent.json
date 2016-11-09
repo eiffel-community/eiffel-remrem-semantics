@@ -1,5 +1,5 @@
 {
-	"id": "file:///C:/Users/erjamni/git/eiffel-remrem-semantics09112016/src/main/resources/inputSchemas/EiffelActivityFinishedEvent.json",
+	"id": "https://raw.githubusercontent.com/xmairaa/eiffel-remrem-semantics/Gradlejsonschema2pojo/src/main/resources/inputSchemas/EiffelActivityFinishedEvent.json",
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"javaType": "com.ericsson.eiffel.remrem.semantics.events.schemagenerate.EiffelActivityFinishedEvent",
