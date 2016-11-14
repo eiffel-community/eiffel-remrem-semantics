@@ -24,7 +24,7 @@ jar {
     baseName = 'eiffel-remrem-semantics'
     // If this version is updated please update it in Event.java 
     // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.6'
+    version =  '0.1.7'
     manifest {
         attributes('Semantics-Version': version)
     }
@@ -33,14 +33,14 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.1.6'
+    version =  '0.1.7'
     classifier = ''
 }
 
 apply plugin: 'eclipse'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.12'
+    gradleVersion = '3.1'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
@@ -62,8 +62,16 @@ repositories {
 install.dependsOn shadowJar
 
 dependencies {
-    compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'
-    compile 'com.github.fge:json-schema-validator:2.2.6'
+    compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'    
+    compile('com.github.fge:json-schema-validator:2.2.6')
+    {
+    // we need to exclude jackson-databind here and add a
+    // new version afterwards. The reason is the incompatibility
+    // with applications based on newer versions of Spring framework
+    // and using semantics as a library 
+        exclude module: 'jackson-databind'
+    }
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
     compile 'org.mockito:mockito-core:1.10.19'
     compile 'javax.inject:javax.inject:1'
     compile 'org.slf4j:slf4j-api:1.7.18'
