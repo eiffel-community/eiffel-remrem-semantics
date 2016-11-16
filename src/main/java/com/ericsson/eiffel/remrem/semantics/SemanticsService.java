@@ -78,4 +78,12 @@ public class SemanticsService implements MsgService{
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);
     }
+
+	@Override
+	public String getEventId(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(RemremSemanticsConstants.META)
+                && json.getAsJsonObject().getAsJsonObject(RemremSemanticsConstants.META).has(RemremSemanticsConstants.ID)) {
+            return json.getAsJsonObject().getAsJsonObject(RemremSemanticsConstants.META).get(RemremSemanticsConstants.ID).getAsString();
+        }
+        return null;}
 }
