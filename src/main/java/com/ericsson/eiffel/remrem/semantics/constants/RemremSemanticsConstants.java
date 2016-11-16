@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ericsson.eiffel.remrem.semantics;
+package com.ericsson.eiffel.remrem.semantics.constants;
 
 /**
  * @author erjamni

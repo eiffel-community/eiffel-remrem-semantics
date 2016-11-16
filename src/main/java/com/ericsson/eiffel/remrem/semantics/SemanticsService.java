@@ -1,6 +1,7 @@
 package com.ericsson.eiffel.remrem.semantics;
 
 
+import com.ericsson.eiffel.remrem.semantics.constants.RemremSemanticsConstants;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.Event;
@@ -79,11 +80,13 @@ public class SemanticsService implements MsgService{
         validator.validate(jsonObject);
     }
 
-	@Override
-	public String getEventId(JsonObject json) {
-        if (json.isJsonObject() && json.getAsJsonObject().has(RemremSemanticsConstants.META)
-                && json.getAsJsonObject().getAsJsonObject(RemremSemanticsConstants.META).has(RemremSemanticsConstants.ID)) {
-            return json.getAsJsonObject().getAsJsonObject(RemremSemanticsConstants.META).get(RemremSemanticsConstants.ID).getAsString();
+    @Override
+    public String getEventId(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(RemremSemanticsConstants.META) && json.getAsJsonObject()
+                .getAsJsonObject(RemremSemanticsConstants.META).has(RemremSemanticsConstants.ID)) {
+            return json.getAsJsonObject().getAsJsonObject(RemremSemanticsConstants.META)
+                    .get(RemremSemanticsConstants.ID).getAsString();
         }
-        return null;}
+        return null;
+    }
 }
