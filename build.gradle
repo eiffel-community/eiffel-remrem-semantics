@@ -24,7 +24,7 @@ jar {
     baseName = 'eiffel-remrem-semantics'
     // If this version is updated please update it in Event.java 
     // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.7'
+    version =  '0.1.8'
     manifest {
         attributes('Semantics-Version': version)
     }
@@ -33,7 +33,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.1.7'
+    version =  '0.1.8'
     classifier = ''
 }
 
@@ -62,7 +62,7 @@ repositories {
 install.dependsOn shadowJar
 
 dependencies {
-    compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.4'    
+    compile 'com.github.Ericsson:eiffel-remrem-shared:0.1.5'    
     compile('com.github.fge:json-schema-validator:2.2.6')
     {
     // we need to exclude jackson-databind here and add a
