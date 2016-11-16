@@ -1,30 +1,34 @@
 package com.ericsson.eiffel.remrem.semantics;
 
 
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Named;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.Event;
-import com.ericsson.eiffel.remrem.shared.MsgService;
-
 import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
+import com.ericsson.eiffel.remrem.shared.MsgService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.util.HashMap;
-import java.util.Map;
-import javax.inject.Named;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
-
 
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
+
+    private static final String ID = "id";
+    private static final String META = "meta";
 
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
@@ -77,5 +81,15 @@ public class SemanticsService implements MsgService{
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);
+    }
+
+    @Override
+    public String getEventId(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(META) && json.getAsJsonObject()
+                .getAsJsonObject(META).has(ID)) {
+            return json.getAsJsonObject().getAsJsonObject(META)
+                    .get(ID).getAsString();
+        }
+        return null;
     }
 }
