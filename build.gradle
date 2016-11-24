@@ -26,7 +26,9 @@ jar {
     // com.ericsson.eiffel.remrem.semantics.events
     version =  '0.1.7'
     manifest {
-        attributes('Semantics-Version': version)
+        attributes('remremVersionKey': 'semanticsVersion')
+        attributes('semanticsVersion': version)
+        attributes('isEndpointVersion': 'true')
     }
     from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 }
