@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "javaType": "com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent",
+  "extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+  "properties": {
+    "meta": {
+      "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Meta",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(\\d+\\.)(\\d+\\.)(\\d+)$"
+        },
+        "time": {
+          "type": "integer","format":"utc-millisec"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+		  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Source",
+          "properties": {
+            "domainId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+			  "javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "domainId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "version",
+        "time",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.ActivityFinishedData",
+      "properties": {
+        "outcome": {
+          "type": "object",
+		  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Outcome",
+          "properties": {
+            "conclusion": {
+              "type": "string",
+              "enum": [
+                "SUCCESSFUL", 
+                "UNSUCCESSFUL", 
+                "FAILED", 
+                "ABORTED", 
+                "TIMED_OUT", 
+                "INCONCLUSIVE"
+              ]
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "conclusion"
+          ]
+        },
+        "persistentLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.PersistentLog",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "uri": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "uri"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.CustomData",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "outcome"
+      ]
+    },
+    "links": {
+        "type": "object",
+		"javaType": "com.ericsson.eiffel.remrem.semantics.events.Link",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "target"
+        ],
+        "additionalProperties": false
+      
+    }
+  },
+  "required": [
+    "meta",
+    "data",
+    "links"
+  ]
+}

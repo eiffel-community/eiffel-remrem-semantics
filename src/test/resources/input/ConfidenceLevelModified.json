@@ -21,20 +21,22 @@
 	},
 	"eventParams": {
 		"data": {
-			"outcome": {
-				"conclusion": "TIMED_OUT",
-				"description": "Compilation timed out."
+			"name": "confidencelevel",
+			"value": "SUCCESS",
+			"issuer":{
+			"name": "sun"
 			},
-			"persistentLogs": [
+			"customData": [
 				{
-					"name": "firstLog",
-					"uri": "http://myHost.com/firstLog"
+					"key": "firstLog",
+					"value": "http://myHost.com/firstLog"
 				},
 				{
-					"name": "otherLog",
-					"uri": "http://myHost.com/firstLog33"
+					"key": "otherLog",
+					"value": "http://myHost.com/firstLog33"
 				}
 			]
+			
 		},
 		"links": {
 			"type": "LinkTargetType",

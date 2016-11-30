@@ -1,22 +1,129 @@
+
 package com.ericsson.eiffel.remrem.semantics.events;
 
-import com.ericsson.eiffel.remrem.semantics.models.Data;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import java.util.List;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "meta",
+    "data",
+    "links"
+})
+public class EiffelArtifactPublishedEvent
+    extends Event
+{
 
-public class EiffelArtifactPublishedEvent extends Event {
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("meta")
+    private Meta meta;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("data")
+    private ArtifactPublishedData data;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("links")
+    private Link links;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    EiffelArtifactPublishedData data;
-    EiffelArtifactPublishedLinks links;
-
-    public static class EiffelArtifactPublishedData extends Data {
-        private List<Location> locations;
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The meta
+     */
+    @JsonProperty("meta")
+    public Meta getMeta() {
+        return meta;
     }
 
-    public static class EiffelArtifactPublishedLinks {
-        private String context;
-        private String artifact;
-        private String flowContext;
-        private List<String> causes;
+    /**
+     * 
+     * (Required)
+     * 
+     * @param meta
+     *     The meta
+     */
+    @JsonProperty("meta")
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The data
+     */
+    @JsonProperty("data")
+    public ArtifactPublishedData getData() {
+        return data;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param data
+     *     The data
+     */
+    @JsonProperty("data")
+    public void setData(ArtifactPublishedData data) {
+        this.data = data;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The links
+     */
+    @JsonProperty("links")
+    public Link getLinks() {
+        return links;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param links
+     *     The links
+     */
+    @JsonProperty("links")
+    public void setLinks(Link links) {
+        this.links = links;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
 }
