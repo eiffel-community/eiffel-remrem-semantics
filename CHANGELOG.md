@@ -1,3 +1,6 @@
+## 0.1.9
+- added functionality for generate pojo's from schema's using the jsonschema2pojo library.
+
 ## 0.1.8
 - added getEventId functionality for get the event id from the json Object
 

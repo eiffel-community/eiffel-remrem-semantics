@@ -4,8 +4,13 @@ import java.util.HashMap;
 
 
 public enum EiffelEventType {
-    ARTIFACT_PUBLISHED("eiffelartifactpublished"),
-    ACTIVITY_FINISHED("eiffelactivityfinished");
+	ARTIFACT_PUBLISHED("eiffelartifactpublished"),
+    ACTIVITY_FINISHED("eiffelactivityfinished"),
+	ACTIVITY_CANCELED("eiffelactivitycanceled"),
+	ARTIFACT_CREATED("eiffelartifactcreated"),
+	ACTIVITY_TRIGGERED("eiffelactivitytriggered"),
+	CONFIDENCELEVEL_MODIFIED("eiffelconfidencelevelmodified"),
+	ACTIVITY_STARTED("eiffelactivitystarted");
 
     private String id;
 

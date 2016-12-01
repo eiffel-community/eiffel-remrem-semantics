@@ -1,0 +1,238 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "javaType": "com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactCreatedEvent",
+  "extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+  "properties": {
+    "meta": {
+      "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Meta",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(\\d+\\.)(\\d+\\.)(\\d+)$"
+        },
+        "time": {
+          "type": "integer","format":"utc-millisec"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+		  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Source",
+          "properties": {
+            "domainId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+			  "javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "domainId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "version",
+        "time",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.ArtifactCreatedData",
+      "properties": {
+        "gav": {
+          "type": "object",
+		  "javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+          "properties": {
+            "groupId": {
+              "type": "string"
+            },
+            "artifactId": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "groupId",
+            "artifactId",
+            "version"
+          ],
+          "additionalProperties": false
+        },
+        "fileInformation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.FileInformation",
+            "properties": {
+              "classifier": {
+                "type": "string"
+              },
+              "extension": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "classifier",
+              "extension"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "buildCommand": {
+          "type": "string"
+        },
+        "requiresImplementation": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "ANY", 
+            "EXACTLY_ONE", 
+            "AT_LEAST_ONE"
+          ]
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+            "properties": {
+              "groupId": {
+                "type": "string"
+              },
+              "artifactId": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "groupId",
+              "artifactId",
+              "version"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "implement": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+            "properties": {
+              "groupId": {
+                "type": "string"
+              },
+              "artifactId": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "groupId",
+              "artifactId",
+              "version"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.CustomData",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+              "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "gav"
+      ],
+      "additionalProperties": false
+    },
+    "links": {
+        "type": "object",
+		"javaType": "com.ericsson.eiffel.remrem.semantics.events.Link",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "target"
+        ],
+        "additionalProperties": false
+      
+    }
+  },
+  "required": [
+    "meta",
+    "data",
+    "links"
+  ]
+}

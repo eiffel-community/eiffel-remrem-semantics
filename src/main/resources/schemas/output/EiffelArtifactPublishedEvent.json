@@ -1,41 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-
-  "definitions": {
-    "UUID": {
-      "type": "string",
-      "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
-    },
-
-    "locationsType": {
-      "enum": ["ARTIFACTORY", "NEXUS", "PLAIN", "OTHER"]
-    },
-
-    "eventType": {
-      "enum": ["eiffelactivityfinished", "eiffelartifactpublished"]
-    }
-
-  },
-
   "type": "object",
+  "javaType": "com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent",
+  "extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
   "properties": {
     "meta": {
       "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Meta",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "type": {
-          "$ref": "#/definitions/eventType"
+          "type": "string"
         },
         "version": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^(\\d+\\.)(\\d+\\.)(\\d+)$"
         },
         "time": {
-          "type": "integer"
-        },
-        "domainId": {
-          "type": "string"
-        },
-        "id": {
-          "$ref": "#/definitions/UUID"
+          "type": "integer","format":"utc-millisec"
         },
         "tags": {
           "type": "array",
@@ -45,7 +29,11 @@
         },
         "source": {
           "type": "object",
+		  "javaType": "com.ericsson.eiffel.remrem.semantics.events.Source",
           "properties": {
+            "domainId": {
+              "type": "string"
+            },
             "host": {
               "type": "string"
             },
@@ -54,6 +42,7 @@
             },
             "serializer": {
               "type": "object",
+			  "javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
               "properties": {
                 "groupId": {
                   "type": "string"
@@ -76,28 +65,39 @@
               "type": "string"
             }
           },
+          "required": [
+            "domainId"
+          ],
           "additionalProperties": false
         }
       },
       "required": [
+        "id",
         "type",
         "version",
         "time",
-        "domainId",
-        "id"
+        "source"
       ],
       "additionalProperties": false
     },
     "data": {
       "type": "object",
+	  "javaType": "com.ericsson.eiffel.remrem.semantics.events.ArtifactPublishedData",
       "properties": {
         "locations": {
           "type": "array",
           "items": {
             "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.Location",
             "properties": {
               "type": {
-                "$ref": "#/definitions/locationsType"
+                "type": "string",
+                "enum": [
+                  "ARTIFACTORY", 
+                  "NEXUS", 
+                  "PLAIN", 
+                  "OTHER"
+                ]
               },
               "uri": {
                 "type": "string"
@@ -109,6 +109,25 @@
             ],
             "additionalProperties": false
           }
+        },
+        "customData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+			"javaType": "com.ericsson.eiffel.remrem.semantics.events.CustomData",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
         }
       },
       "required": [
@@ -117,34 +136,27 @@
       "additionalProperties": false
     },
     "links": {
-      "type": "object",
-      "properties": {
-        "context": {
-          "type": "string"
-        },
-        "causes": {
-          "type": "array",
-          "items": {
+        "type": "object",
+		"javaType": "com.ericsson.eiffel.remrem.semantics.events.Link",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
             "type": "string"
           }
         },
-        "flowContext": {
-          "type": "string"
-        },
-        "artifact": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "artifact"
-      ],
-      "additionalProperties": false
+        "required": [
+          "type",
+          "target"
+        ],
+        "additionalProperties": false
+      
     }
   },
   "required": [
     "meta",
     "data",
     "links"
-  ],
-  "additionalProperties": false
+  ]
 }

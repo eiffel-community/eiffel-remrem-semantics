@@ -1,26 +1,39 @@
 package com.ericsson.eiffel.remrem.semantics;
 
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import static org.mockito.Mockito.*;
-
-import org.mockito.MockitoAnnotations;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.jar.Attributes;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityCanceledEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityStartedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityTriggeredEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactCreatedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelConfidenceLevelModifiedEvent;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 public class ServiceTest {
 
-    private String ACTIVITY_FINISHED = "eiffelactivityfinished";
+	private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     private String ARTIFACT_PUBLISHED = "eiffelartifactpublished";
+    private String ARTIFACT_CREATED = "eiffelartifactcreated";
+    private String ACTIVITY_TRIGGERED = "eiffelactivitytriggered";
+    private String ACTIVITY_STARTED = "eiffelactivitystarted";
+    private String ACTIVITY_CANCELED = "eiffelactivitycanceled";
+    private String CONFIDENCELEVEL_MODIFIED = "eiffelconfidencelevelmodified";
 
     JsonParser parser = new JsonParser();
 
@@ -32,6 +45,21 @@ public class ServiceTest {
     
     @InjectMocks
     EiffelArtifactPublishedEvent aEvent = new EiffelArtifactPublishedEvent();
+    
+    @InjectMocks
+    EiffelArtifactCreatedEvent cEvent = new EiffelArtifactCreatedEvent();
+    
+    @InjectMocks
+    EiffelActivityTriggeredEvent tEvent = new EiffelActivityTriggeredEvent();
+    
+    @InjectMocks
+    EiffelActivityStartedEvent sEvent = new EiffelActivityStartedEvent();
+    
+    @InjectMocks
+    EiffelActivityCanceledEvent acEvent = new EiffelActivityCanceledEvent();
+    
+    @InjectMocks
+    EiffelConfidenceLevelModifiedEvent clEvent = new EiffelConfidenceLevelModifiedEvent();
     
     @Before
     public void setUp() throws Exception {
@@ -45,10 +73,7 @@ public class ServiceTest {
         try {
             File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
-
-            String msg = service.generateMsg(msgType,input);
-            System.out.println(msg);
-
+            String msg = service.generateMsg(msgType, input);
             Assert.assertTrue(msg.contains("data"));
             Assert.assertTrue(msg.contains("meta"));
             Assert.assertTrue(msg.contains("links"));
@@ -60,40 +85,53 @@ public class ServiceTest {
     @Test public void testActivityFinished() {
         testGenerateMsg(ACTIVITY_FINISHED, "input/ActivityFinished.json");
     }
-
     @Test public void testArtifactPublished() {
         testGenerateMsg(ARTIFACT_PUBLISHED, "input/ArtifactPublished.json");
     }
-
-    @Test public void testUnknownMessage() {
+    
+    @Test public void testArtifactCreated() {
+        testGenerateMsg(ARTIFACT_CREATED, "input/ArtifactCreated.json");
+    }
+    @Test public void testActivityTriggered() {
+        testGenerateMsg(ACTIVITY_TRIGGERED, "input/ActivityTriggered.json");
+    }
+    @Test public void testAcivityStarted() {
+        testGenerateMsg(ACTIVITY_STARTED, "input/ActivityStarted.json");
+    }
+    @Test public void testActivityCanceled() {
+        testGenerateMsg(ACTIVITY_CANCELED, "input/ActivityCanceled.json");
+    }
+    @Test public void testConfidenceLevelModified() {
+        testGenerateMsg(CONFIDENCELEVEL_MODIFIED, "input/ConfidenceLevelModified.json");
+    }
+    
+    @Test
+    public void testUnknownMessage() {
         try {
-            File file = new File(getClass().getClassLoader().getResource("input/ArtifactPublished.json").getFile());
+            File file = new File(
+                    getClass().getClassLoader().getResource("input/UnkownArtifactPublished.json").getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
-
-            String msg = service.generateMsg("unknownmessage",input);
-            System.out.println(msg);
-
+            String msg = service.generateMsg("unknownmessage", input);
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Unknown message type requested"));
             Assert.assertTrue(msg.contains("cause"));
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             Assert.assertFalse(false);
         }
     }
-    
-    @Test public void testInvalidMessage() {
+
+    @Test
+    public void testInvalidMessage() {
         try {
-            File file = new File(getClass().getClassLoader().getResource("input/ActivityFinishedInvalid.json").getFile());
+            File file = new File(
+                    getClass().getClassLoader().getResource("input/ActivityFinishedInvalid.json").getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
-
             String msg = service.generateMsg(ACTIVITY_FINISHED, input);
-            System.out.println(msg);
-
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
-            Assert.assertTrue(msg.contains("missing required properties ([\\\"activityExecution"));
-        } catch(FileNotFoundException e) {
+            Assert.assertTrue(msg.contains("missing required properties ([\\\"domainId"));
+        } catch (FileNotFoundException e) {
             Assert.assertFalse(false);
         }
     }

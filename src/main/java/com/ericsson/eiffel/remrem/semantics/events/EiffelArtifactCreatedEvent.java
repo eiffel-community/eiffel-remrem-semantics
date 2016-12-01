@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "data",
     "links"
 })
-public class EiffelActivityFinishedEvent
+public class EiffelArtifactCreatedEvent
     extends Event
 {
 
@@ -33,7 +33,7 @@ public class EiffelActivityFinishedEvent
      * 
      */
     @JsonProperty("data")
-    private ActivityFinishedData data;
+    private ArtifactCreatedData data;
     /**
      * 
      * (Required)
@@ -76,7 +76,7 @@ public class EiffelActivityFinishedEvent
      *     The data
      */
     @JsonProperty("data")
-    public ActivityFinishedData getData() {
+    public ArtifactCreatedData getData() {
         return data;
     }
 
@@ -88,7 +88,7 @@ public class EiffelActivityFinishedEvent
      *     The data
      */
     @JsonProperty("data")
-    public void setData(ActivityFinishedData data) {
+    public void setData(ArtifactCreatedData data) {
         this.data = data;
     }
 

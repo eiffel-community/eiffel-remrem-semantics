@@ -1,7 +1,7 @@
 {
 	"msgParams": {
 		"meta": {
-			"type": "EiffelActivityFinishedEvent",
+			"type": "EiffelActivityTriggeredEvent",
 			"tags": [
 				"tag1",
 				"tag2"
@@ -21,20 +21,26 @@
 	},
 	"eventParams": {
 		"data": {
-			"outcome": {
-				"conclusion": "TIMED_OUT",
-				"description": "Compilation timed out."
-			},
-			"persistentLogs": [
+			"name": "ActivityTrigger",
+			"triggers":[
 				{
-					"name": "firstLog",
-					"uri": "http://myHost.com/firstLog"
+				"type":"trigger"
 				},
 				{
-					"name": "otherLog",
-					"uri": "http://myHost.com/firstLog33"
+				"type":"trigger"
+				}
+			],
+			"customData": [
+				{
+					"key": "firstLog",
+					"value": "http://myHost.com/firstLog"
+				},
+				{
+					"key": "otherLog",
+					"value": "http://myHost.com/firstLog33"
 				}
 			]
+			
 		},
 		"links": {
 			"type": "LinkTargetType",

@@ -1,18 +1,16 @@
 package com.ericsson.eiffel.remrem.semantics.events;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import com.ericsson.eiffel.remrem.semantics.models.Meta;
-
 import java.util.UUID;
 import java.util.jar.Attributes;
 
 import javax.inject.Inject;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 public abstract class Event {
-    public Meta meta;
-    public static String  version = "0.1.8";
+	public transient Meta meta;
+    public static String  version = "0.1.9";
 
     @Inject
     private Attributes attributes;
@@ -26,4 +24,5 @@ public abstract class Event {
         meta.setVersion(version);
         meta.setId(UUID.randomUUID().toString());
     }
+    public abstract void setMeta(Meta meta);
 }
