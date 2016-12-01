@@ -105,7 +105,7 @@ public class SemanticsService implements MsgService{
     }
     @Override
     public String getServiceName() {
-        return "eiffel-semantics";
+        return "eiffelsemantics";
     }
 
     @Override
