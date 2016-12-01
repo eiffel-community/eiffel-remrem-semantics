@@ -81,11 +81,7 @@ public class SemanticsService implements MsgService{
     private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
-        try{
         validator.validate(jsonObject);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
     }
 
     @Override
