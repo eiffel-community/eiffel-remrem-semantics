@@ -28,6 +28,11 @@ import com.google.gson.JsonParser;
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
 
+    private static final String EVENT_PARAMS = "eventParams";
+    private static final String MSG_PARAMS = "msgParams";
+    private static final String MESSAGE = "message";
+    private static final String CAUSE = "cause";
+    private static final String EIFFELSEMANTICS = "eiffelsemantics";
     private static final String ID = "id";
     private static final String META = "meta";
 
@@ -51,8 +56,8 @@ public class SemanticsService implements MsgService{
         }
         Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
-        JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
-        JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
+        JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
+        JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
 
         Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
@@ -73,8 +78,8 @@ public class SemanticsService implements MsgService{
 
     private String createErrorResponse(final String message, final String cause){
         JsonObject errorResponse = new JsonObject();
-        errorResponse.addProperty("message", message);
-        errorResponse.addProperty("cause", cause.replace("\n", ""));
+        errorResponse.addProperty(MESSAGE, message);
+        errorResponse.addProperty(CAUSE, cause.replace("\n", ""));
         return errorResponse.toString();
     }
     
@@ -105,7 +110,7 @@ public class SemanticsService implements MsgService{
     }
     @Override
     public String getServiceName() {
-        return "eiffelsemantics";
+        return EIFFELSEMANTICS;
     }
 
     @Override
