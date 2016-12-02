@@ -1,3 +1,6 @@
+## 0.1.9
+- Implemented getServiceName and added remrem-protocol-interface
+
 ## 0.1.8
 - added getEventId functionality for get the event id from the json Object
 

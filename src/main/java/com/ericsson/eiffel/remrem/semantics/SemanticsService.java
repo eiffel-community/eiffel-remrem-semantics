@@ -12,13 +12,14 @@ import javax.inject.Named;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ericsson.eiffel.remrem.protocol.MsgService;
+import com.ericsson.eiffel.remrem.protocol.ValidationResult;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.remrem.semantics.events.Event;
 import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
-import com.ericsson.eiffel.remrem.shared.MsgService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -27,6 +28,11 @@ import com.google.gson.JsonParser;
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
 
+    private static final String EVENT_PARAMS = "eventParams";
+    private static final String MSG_PARAMS = "msgParams";
+    private static final String MESSAGE = "message";
+    private static final String CAUSE = "cause";
+    private static final String EIFFELSEMANTICS = "eiffelsemantics";
     private static final String ID = "id";
     private static final String META = "meta";
 
@@ -50,8 +56,8 @@ public class SemanticsService implements MsgService{
         }
         Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
-        JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
-        JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
+        JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
+        JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
 
         Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);
@@ -72,8 +78,8 @@ public class SemanticsService implements MsgService{
 
     private String createErrorResponse(final String message, final String cause){
         JsonObject errorResponse = new JsonObject();
-        errorResponse.addProperty("message", message);
-        errorResponse.addProperty("cause", cause.replace("\n", ""));
+        errorResponse.addProperty(MESSAGE, message);
+        errorResponse.addProperty(CAUSE, cause.replace("\n", ""));
         return errorResponse.toString();
     }
     
@@ -91,5 +97,33 @@ public class SemanticsService implements MsgService{
                     .get(ID).getAsString();
         }
         return null;
+    }
+
+    @Override
+    public String getFamily(JsonObject eiffelMessage) {
+        return null;
+    }
+    
+    @Override
+    public String getType(JsonObject eiffelMessage) {
+        return null;
+    }
+    @Override
+    public String getServiceName() {
+        return EIFFELSEMANTICS;
+    }
+
+    @Override
+    public ValidationResult validateMsg(String msgType, JsonObject jsonvalidateMessage) {
+        ValidationResult validationResult = null;
+        EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
+        String result = gson.toJson(jsonvalidateMessage);
+        try {
+            outputValidate(eiffelType, result);
+            validationResult = new ValidationResult(true, "");
+        } catch (EiffelValidationException e) {
+            validationResult = new ValidationResult(false, e.getLocalizedMessage());
+        }
+        return validationResult;
     }
 }

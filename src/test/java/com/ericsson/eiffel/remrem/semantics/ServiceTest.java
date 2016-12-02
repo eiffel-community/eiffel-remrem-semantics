@@ -1,21 +1,27 @@
 package com.ericsson.eiffel.remrem.semantics;
 
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.InjectMocks;
-import static org.mockito.Mockito.*;
-
-import org.mockito.MockitoAnnotations;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.jar.Attributes;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import com.ericsson.eiffel.remrem.protocol.ValidationResult;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
+import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 public class ServiceTest {
 
@@ -96,5 +102,24 @@ public class ServiceTest {
         } catch(FileNotFoundException e) {
             Assert.assertFalse(false);
         }
+    }
+
+    @Test
+    public void validateMessage() {
+        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+        JsonObject input;
+        ValidationResult msg = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            msg = service.validateMsg(ACTIVITY_FINISHED, input);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Assert.assertNotNull(msg);
+        Assert.assertTrue(msg.isValid());
     }
 }
