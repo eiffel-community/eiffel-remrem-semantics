@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "id": "5db9f39a-4c77-44d8-b660-0c1328354acd",
+    "type": "EiffelSourceChangeSubmittedEvent",
+    "version": "1.0.0",
+    "time": 1481536194107,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "gitIdentifier": {
+      "commitId": "1234",
+      "repoUri": "http:\/\/myHost.com"
+    },
+    "svnIdentifier": {
+      "revision": 12345,
+      "directory": "first",
+      "repoUri": "http:\/\/myHost.com"
+    },
+    "ccCompositeIdentifier": {
+      "vobs": [
+        "a",
+        "b"
+      ],
+      "branch": "sub",
+      "configSpec": "eventConfig"
+    },
+    "hgIdentifier": {
+      "commitId": "xxx",
+      "repoUri": "http:\/\/myHost.com"
+    },
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http:\/\/myHost.com\/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http:\/\/myHost.com\/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}

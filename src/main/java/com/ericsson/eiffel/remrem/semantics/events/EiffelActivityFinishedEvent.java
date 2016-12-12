@@ -1,24 +1,104 @@
+
 package com.ericsson.eiffel.remrem.semantics.events;
 
-import com.ericsson.eiffel.remrem.semantics.models.Data;
-
+import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-public class EiffelActivityFinishedEvent extends Event {
+public class EiffelActivityFinishedEvent
+    extends Event
+{
 
-    EiffelActivityFinishedData data;
-    EiffelActivityFinishedLinks links;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @SerializedName("meta")
+    @Expose
+    private Meta meta;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @SerializedName("data")
+    @Expose
+    private ActivityFinishedData data;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @SerializedName("links")
+    @Expose
+    private List<Link> links = new ArrayList<Link>();
 
-
-    public static class EiffelActivityFinishedData extends Data {
-        private Data.Outcome outcome;
-        private List<PersistentLog> persistentLogs;
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The meta
+     */
+    public Meta getMeta() {
+        return meta;
     }
 
-    public static class EiffelActivityFinishedLinks {
-        private String activityExecution;
-        private String context;
-        private String flowContext;
-        private List<String> causes;
+    /**
+     * 
+     * (Required)
+     * 
+     * @param meta
+     *     The meta
+     */
+    public void setMeta(Meta meta) {
+        this.meta = meta;
     }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The data
+     */
+    public ActivityFinishedData getData() {
+        return data;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param data
+     *     The data
+     */
+    public void setData(ActivityFinishedData data) {
+        this.data = data;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @return
+     *     The links
+     */
+    public List<Link> getLinks() {
+        return links;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     * @param links
+     *     The links
+     */
+    public void setLinks(List<Link> links) {
+        this.links = links;
+    }
+
 }

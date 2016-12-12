@@ -1,0 +1,274 @@
+{
+  "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+  "type": "object",
+  "javaType": "com.ericsson.eiffel.remrem.semantics.events.EiffelSourceChangeSubmittedEvent",
+  "extendsJavaClass": "com.ericsson.eiffel.remrem.semantics.events.Event",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "javaType": "com.ericsson.eiffel.remrem.semantics.events.Meta",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EiffelActivityCanceledEvent",
+            "EiffelActivityFinishedEvent",
+            "EiffelActivityStartedEvent",
+            "EiffelActivityTriggeredEvent",
+            "EiffelAnnouncementPublishedEvent",
+            "EiffelArtifactCreatedEvent",
+            "EiffelArtifactPublishedEvent",
+            "EiffelCompositionDefinedEvent",
+            "EiffelConfidenceLevelModifiedEvent",
+            "EiffelConfigurationAppliedEvent",
+            "EiffelEnvironmentDefinedEvent",
+            "EiffelFlowContextDefinedEvent",
+            "EiffelSourceChangeCreatedEvent",
+            "EiffelSourceChangeSubmittedEvent",
+            "EiffelTestCaseFinishedEvent",
+            "EiffelTestCaseStartedEvent",
+            "EiffelTestSuiteFinishedEvent",
+            "EiffelTestSuiteStartedEvent"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "enum": [
+            "1.0.0"
+          ],
+          "default": "1.0.0"
+        },
+        "time": {
+          "type": "integer",
+          "format": "utc-millisec"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.Source",
+          "properties": {
+            "domainId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.remrem.semantics.events.GAV",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "domainId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "version",
+        "time",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "javaType": "com.ericsson.eiffel.remrem.semantics.events.SourceChangeSubmittedData",
+      "properties": {
+        "submitter": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.Submitter",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "group": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "gitIdentifier": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.GitIdentifier",
+          "properties": {
+            "commitId": {
+              "type": "string"
+            },
+            "branch": {
+              "type": "string"
+            },
+            "repoName": {
+              "type": "string"
+            },
+            "repoUri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "commitId",
+            "repoUri"
+          ],
+          "additionalProperties": false
+        },
+        "svnIdentifier": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.SVNIdentifier",
+          "properties": {
+            "revision": {
+              "type": "integer"
+            },
+            "directory": {
+              "type": "string"
+            },
+            "repoName": {
+              "type": "string"
+            },
+            "repoUri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "revision",
+            "directory",
+            "repoUri"
+          ],
+          "additionalProperties": false
+        },
+        "ccCompositeIdentifier": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.CCCompositeIdentifier",
+          "properties": {
+            "vobs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "branch": {
+              "type": "string"
+            },
+            "configSpec": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "vobs",
+            "branch",
+            "configSpec"
+          ],
+          "additionalProperties": false
+        },
+        "hgIdentifier": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.remrem.semantics.events.HGIdentifier",
+          "properties": {
+            "commitId": {
+              "type": "string"
+            },
+            "branch": {
+              "type": "string"
+            },
+            "repoName": {
+              "type": "string"
+            },
+            "repoUri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "commitId",
+            "repoUri"
+          ],
+          "additionalProperties": false
+        },
+        "customData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "javaType": "com.ericsson.eiffel.remrem.semantics.events.CustomData",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "javaType": "com.ericsson.eiffel.remrem.semantics.events.Link",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "target"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "data",
+    "links"
+  ],
+  "additionalProperties": false
+}

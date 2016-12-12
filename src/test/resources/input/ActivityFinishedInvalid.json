@@ -1,20 +1,23 @@
-{"msgParams": {
-  "meta": {
-    "type": "EiffelActivityFinishedEvent",
-    "domainId": "example.domain",
-    "tags": ["tag1", "tag2"],
-    "source": {
-      "host": "host",
-      "name": "name",
-      "uri": "http://java.sun.com/j2se/1.3/",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelActivityFinishedEvent",
+      "tags": [
+        "tag1",
+        "tag2"
+      ],
+      "source": {
+        "host": "host",
+        "name": "name",
+        "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
+        "serializer": {
+          "groupId": "G",
+          "artifactId": "A",
+          "version": "V"
+        }
       }
     }
-  }
-},
+  },
   "eventParams": {
     "data": {
       "outcome": {
@@ -24,7 +27,7 @@
       "persistentLogs": [
         {
           "name": "firstLog",
-          "uri": "http://myHost.com/firstLog"
+          "uri": "http:\/\/myHost.com\/firstLog"
         },
         {
           "name": "otherLog",
@@ -32,10 +35,11 @@
         }
       ]
     },
-    "links": {
-      "activityExecutionMisspelled": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1",
-      "causes": ["cause1", "cause2"],
-      "flowContext": "flowContext"
-    }
+    "links": [
+      {
+        "type": "LinkTargetType",
+        "target": "LinkTarget"
+      }
+    ]
   }
 }

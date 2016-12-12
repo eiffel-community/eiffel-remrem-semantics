@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "id": "42896182-53ca-4567-95e5-9d6eab6930b8",
+    "type": "EiffelTestSuiteStartedEvent",
+    "version": "1.0.0",
+    "time": 1481534905829,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "name": "EiffelEvent",
+    "categories": [
+      
+    ],
+    "types": [
+      
+    ],
+    "liveLogs": [
+      {
+        "name": "Eiffel",
+        "uri": "http:\/\/java.sun.com"
+      }
+    ],
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http:\/\/myHost.com\/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http:\/\/myHost.com\/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}
