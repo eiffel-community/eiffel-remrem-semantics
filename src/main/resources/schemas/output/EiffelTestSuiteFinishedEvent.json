@@ -160,7 +160,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "javaType": "com.ericsson.eiffel.remrem.semantics.events.CusomData",
+            "javaType": "com.ericsson.eiffel.remrem.semantics.events.CustomData",
             "properties": {
               "key": {
                 "type": "string"

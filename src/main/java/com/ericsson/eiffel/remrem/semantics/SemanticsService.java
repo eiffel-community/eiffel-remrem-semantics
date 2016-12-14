@@ -105,8 +105,8 @@ public class SemanticsService implements MsgService{
         }
         Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
-        JsonObject msgNodes = bodyJson.get("msgParams").getAsJsonObject();
-        JsonObject eventNodes = bodyJson.get("eventParams").getAsJsonObject();
+        JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
+        JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
 
         Event event = createEvent(eventNodes, eventType);
         event.generateMeta(msgType, msgNodes);

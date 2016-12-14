@@ -20,8 +20,7 @@ public abstract class Event {
 
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
-        Meta.Type type = Meta.Type.fromValue(msgType);
-        meta.setType(type);
+        meta.setType(Meta.Type.fromValue(msgType));
         meta.setTime(System.currentTimeMillis());
         // TO DO unit tests are not working when dynamically read version from manifest file
 //        String version = attributes.getValue("Semantics-Version");

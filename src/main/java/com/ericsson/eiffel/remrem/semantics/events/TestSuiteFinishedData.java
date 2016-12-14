@@ -25,7 +25,7 @@ public class TestSuiteFinishedData {
      */
     @SerializedName("customData")
     @Expose
-    private List<CusomData> customData = new ArrayList<CusomData>();
+    private List<CustomData> customData = new ArrayList<CustomData>();
 
     /**
      * 
@@ -68,7 +68,7 @@ public class TestSuiteFinishedData {
      * @return
      *     The customData
      */
-    public List<CusomData> getCustomData() {
+    public List<CustomData> getCustomData() {
         return customData;
     }
 
@@ -77,7 +77,7 @@ public class TestSuiteFinishedData {
      * @param customData
      *     The customData
      */
-    public void setCustomData(List<CusomData> customData) {
+    public void setCustomData(List<CustomData> customData) {
         this.customData = customData;
     }
 
