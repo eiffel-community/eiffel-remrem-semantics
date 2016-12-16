@@ -99,9 +99,9 @@ dependencies {
 
 // This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
 jsonSchema2Pojo {
-    source = files("${sourceSets.main.output.resourcesDir}/schemas/output")
+    source = files("${sourceSets.main.output.resourcesDir}/schemas/input")
     targetDirectory = file("src/main/java")
-    targetPackage = 'com.ericsson.eiffel.remrem.semantics.events'
+    targetPackage = 'com.ericsson.eiffel.semantics.events'
     useCommonsLang3 = true
     includeHashcodeAndEquals = false
     includeToString = false

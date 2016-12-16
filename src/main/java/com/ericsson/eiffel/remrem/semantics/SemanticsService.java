@@ -30,28 +30,28 @@ import org.slf4j.LoggerFactory;
 
 import com.ericsson.eiffel.remrem.protocol.MsgService;
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityCanceledEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityStartedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelActivityTriggeredEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelAnnouncementPublishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactCreatedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelArtifactPublishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelCompositionDefinedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelConfidenceLevelModifiedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelConfigurationAppliedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelEnvironmentDefinedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelFlowContextDefinedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelSourceChangeCreatedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelSourceChangeSubmittedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelTestCaseFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelTestCaseStartedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelTestSuiteFinishedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.EiffelTestSuiteStartedEvent;
-import com.ericsson.eiffel.remrem.semantics.events.Event;
 import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
+import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
+import com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelActivityStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelActivityTriggeredEvent;
+import com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
+import com.ericsson.eiffel.semantics.events.Event;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -70,10 +70,11 @@ public class SemanticsService implements MsgService{
 
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
-    private Gson gson = new Gson();
-    private Map<EiffelEventType, Class<? extends Event>> eventTypes;
-
-    public SemanticsService() {
+    private static Gson gson = new Gson();
+    private static Map<EiffelEventType, Class<? extends Event>> eventTypes=SemanticsService.eventType();
+    
+    public static Map<EiffelEventType, Class<? extends Event>> eventType()
+    {
         eventTypes = new HashMap<>();
         eventTypes.put(ARTIFACT_PUBLISHED, EiffelArtifactPublishedEvent.class);
         eventTypes.put(ACTIVITY_FINISHED, EiffelActivityFinishedEvent.class);
@@ -93,9 +94,8 @@ public class SemanticsService implements MsgService{
         eventTypes.put(TESTCASE_STARTED, EiffelTestCaseStartedEvent.class);
         eventTypes.put(TESTSUITE_FINISHED, EiffelTestSuiteFinishedEvent.class);
         eventTypes.put(TESTSUITE_STARTED, EiffelTestSuiteStartedEvent.class);
-
+       return eventTypes; 
     }
-
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson){
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
@@ -108,11 +108,9 @@ public class SemanticsService implements MsgService{
         JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
         JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
 
-        Event event = createEvent(eventNodes, eventType);
-        event.generateMeta(msgType, msgNodes);
-        event.setMeta(event.meta);
+        Event event = eventCreation(msgType, eventType, msgNodes, eventNodes);
 
-        String result = gson.toJson(event);
+       String result = gson.toJson(event);
         try {
             outputValidate(eiffelType, result);
         } catch (EiffelValidationException e) {
@@ -121,15 +119,22 @@ public class SemanticsService implements MsgService{
         }
         return result;
     }
+    private static Event eventCreation(String msgType, Class<? extends Event> eventType, JsonObject msgNodes,
+            JsonObject eventNodes) {
+        Event event = createEvent(eventNodes, eventType);
+        event.generateMeta(msgType, msgNodes);
+        event.setMeta(event.meta);
+        return event;
+    }
     
-    private Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
+    private static Event createEvent(JsonObject eventNodes, Class<? extends Event> eventType) {
         return gson.fromJson(eventNodes, eventType);
     }
 
     private String createErrorResponse(final String message, final String cause){
         JsonObject errorResponse = new JsonObject();
-        errorResponse.addProperty("message", message);
-        errorResponse.addProperty("cause", cause.replace("\n", ""));
+        errorResponse.addProperty(MESSAGE, message);
+        errorResponse.addProperty(CAUSE, cause.replace("\n", ""));
         return errorResponse.toString();
     }
     

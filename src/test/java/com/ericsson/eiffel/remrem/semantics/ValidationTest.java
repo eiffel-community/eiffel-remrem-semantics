@@ -19,7 +19,6 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STAR
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
 
-
 import java.io.File;
 import java.net.URL;
 
