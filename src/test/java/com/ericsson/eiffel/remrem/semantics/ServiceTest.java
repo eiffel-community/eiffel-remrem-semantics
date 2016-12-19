@@ -132,8 +132,6 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
             File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(msgType,input);
-            System.out.println(msgType);
-            System.out.println(input);
             Assert.assertTrue(msg.contains("data"));
             Assert.assertTrue(msg.contains("meta"));
             Assert.assertTrue(msg.contains("links"));

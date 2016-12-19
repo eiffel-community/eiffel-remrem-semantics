@@ -24,7 +24,6 @@ public abstract class Event {
         meta.setTime(System.currentTimeMillis());
         // TO DO unit tests are not working when dynamically read version from manifest file
 //        String version = attributes.getValue("Semantics-Version");
-        meta.setVersion(meta.getVersion().fromValue(version));
         meta.setId(UUID.randomUUID().toString());
     }
     public abstract void setMeta(Meta meta);

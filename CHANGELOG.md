@@ -1,3 +1,6 @@
+## 0.2.0
+- Implemented pojo's generation from json schemas using jsonSchema2pojo plugin
+  used Eiffel repo schemas 1.0.0 for this pojo generation
 ## 0.1.9
 - Implemented getServiceName and added remrem-protocol-interface
 
