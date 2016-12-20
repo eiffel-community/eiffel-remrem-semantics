@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "id": "f23dec91-2d15-41da-8063-69f921e4a4ce",
+    "type": "EiffelTestCaseStartedEvent",
+    "version": "1.0.0",
+    "time": 1481292688572,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "testCase": {
+      "id": "123456"
+    },
+    "parameters": [
+      {
+        "name": "Eiffel",
+        "value": "testcase"
+      }
+    ],
+    "liveLogs": [
+      
+    ],
+    "customData": [
+      
+    ]
+  },
+  "links": [
+    
+  ]
+}

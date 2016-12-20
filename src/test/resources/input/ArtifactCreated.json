@@ -1,0 +1,68 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelArtifactCreatedEvent",
+      "version": "1.0.0",
+      "tags": [
+        "tag1",
+        "tag2"
+      ],
+      "source": {
+        "domainId": "domainID",
+        "host": "host",
+        "name": "name",
+        "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
+        "serializer": {
+          "groupId": "G",
+          "artifactId": "A",
+          "version": "V"
+        }
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "gav": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "fileInformation": [
+        {
+          "classifier": "x",
+          "extension": "y"
+        }
+      ],
+      "dependsOn": [
+        {
+          "groupId": "G",
+          "artifactId": "A",
+          "version": "V"
+        }
+      ],
+      "implement": [
+        {
+          "groupId": "G",
+          "artifactId": "A",
+          "version": "V"
+        }
+      ],
+      "customData": [
+        {
+          "key": "firstLog",
+          "value": "http:\/\/myHost.com\/firstLog"
+        },
+        {
+          "key": "otherLog",
+          "value": "http:\/\/myHost.com\/firstLog33"
+        }
+      ]
+    },
+    "links": [
+      {
+        "type": "LinkTargetType",
+        "target": "LinkTarget"
+      }
+    ]
+  }
+}

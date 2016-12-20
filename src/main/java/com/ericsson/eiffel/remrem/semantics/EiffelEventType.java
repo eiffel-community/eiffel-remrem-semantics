@@ -4,9 +4,25 @@ import java.util.HashMap;
 
 
 public enum EiffelEventType {
-    ARTIFACT_PUBLISHED("eiffelartifactpublished"),
-    ACTIVITY_FINISHED("eiffelactivityfinished");
-
+    ARTIFACT_PUBLISHED("EiffelArtifactPublishedEvent"),
+    ACTIVITY_FINISHED("EiffelActivityFinishedEvent"),
+    ACTIVITY_CANCELED("EiffelActivityCanceledEvent"),
+    ARTIFACT_CREATED("EiffelArtifactCreatedEvent"),
+    ACTIVITY_TRIGGERED("EiffelActivityTriggeredEvent"),
+    CONFIDENCELEVEL_MODIFIED("EiffelConfidenceLevelModifiedEvent"),
+    ACTIVITY_STARTED("EiffelActivityStartedEvent"),
+    ANNOUNCEMENT_PUBLISHED("EiffelAnnouncementPublishedEvent"),
+    COMPOSITION_DEFINED("EiffelCompositionDefinedEvent"),
+    CONFIGURATION_APPLIED("EiffelConfigurationAppliedEvent"),
+    ENVIRONMENT_DEFINED("EiffelEnvironmentDefinedEvent"),
+    FLOWCONTEXT_DEFINED("EiffelFlowContextDefinedEvent"),
+    SOURCECHANGE_CREATED("EiffelSourceChangeCreatedEvent"),
+    SOURCECHANGE_SUBMITTED("EiffelSourceChangeSubmittedEvent"),
+    TESTCASE_FINISHED("EiffelTestCaseFinishedEvent"),
+    TESTCASE_STARTED("EiffelTestCaseStartedEvent"),
+    TESTSUITE_FINISHED("EiffelTestSuiteFinishedEvent"),
+    TESTSUITE_STARTED("EiffelTestSuiteStartedEvent");
+    
     private String id;
 
     EiffelEventType(String id) {

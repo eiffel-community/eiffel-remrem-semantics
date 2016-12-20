@@ -1,0 +1,216 @@
+{
+  "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+  "type": "object",
+  "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent",
+  "extendsJavaClass": "com.ericsson.eiffel.semantics.events.Event",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "javaType": "com.ericsson.eiffel.semantics.events.Meta",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "EiffelActivityCanceledEvent",
+            "EiffelActivityFinishedEvent",
+            "EiffelActivityStartedEvent",
+            "EiffelActivityTriggeredEvent",
+            "EiffelAnnouncementPublishedEvent",
+            "EiffelArtifactCreatedEvent",
+            "EiffelArtifactPublishedEvent",
+            "EiffelCompositionDefinedEvent",
+            "EiffelConfidenceLevelModifiedEvent",
+            "EiffelConfigurationAppliedEvent",
+            "EiffelEnvironmentDefinedEvent",
+            "EiffelFlowContextDefinedEvent",
+            "EiffelSourceChangeCreatedEvent",
+            "EiffelSourceChangeSubmittedEvent",
+            "EiffelTestCaseFinishedEvent",
+            "EiffelTestCaseStartedEvent",
+            "EiffelTestSuiteFinishedEvent",
+            "EiffelTestSuiteStartedEvent"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "enum": [
+            "1.0.0"
+          ],
+          "default": "1.0.0"
+        },
+        "time": {
+          "type": "integer",
+          "format": "utc-millisec"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.Source",
+          "properties": {
+            "domainId": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "serializer": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.semantics.events.GAV",
+              "properties": {
+                "groupId": {
+                  "type": "string"
+                },
+                "artifactId": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId",
+                "artifactId",
+                "version"
+              ],
+              "additionalProperties": false
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "domainId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "version",
+        "time",
+        "source"
+      ],
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "javaType": "com.ericsson.eiffel.semantics.events.TestCaseFinishedData",
+      "properties": {
+        "outcome": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.DataOutcome",
+          "properties": {
+            "verdict": {
+              "type": "string",
+              "enum": [
+                "PASSED",
+                "FAILED",
+                "INCONCLUSIVE"
+              ]
+            },
+            "conclusion": {
+              "type": "string",
+              "enum": [
+                "SUCCESSFUL",
+                "FAILED",
+                "ABORTED",
+                "TIMED_OUT",
+                "INCONCLUSIVE"
+              ]
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "verdict",
+            "conclusion"
+          ],
+          "additionalProperties": false
+        },
+        "persistentLogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "javaType": "com.ericsson.eiffel.semantics.events.PersistentLog",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "uri": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "uri"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "customData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "javaType": "com.ericsson.eiffel.semantics.events.CustomData",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "outcome"
+      ],
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "target"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "meta",
+    "data",
+    "links"
+  ],
+  "additionalProperties": false
+}
