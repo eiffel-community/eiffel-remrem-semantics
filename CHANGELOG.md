@@ -1,3 +1,6 @@
+## 0.2.1
+- Removed unused dependencies and updated some versions
+
 ## 0.2.0
 - Implemented pojo's generation from json schemas using jsonSchema2pojo plugin
   we used Eiffel repo,topic-drop4 branch sha_id: 5bc648b4fb906db6c370e35fe45c941462ca18a8

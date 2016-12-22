@@ -47,7 +47,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.0'
+    version =  '0.2.1'
     classifier = ''
 }
 
@@ -87,14 +87,13 @@ dependencies {
         exclude module: 'jackson-databind'
     }
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
-    compile 'org.mockito:mockito-core:1.10.19'
     compile 'javax.inject:javax.inject:1'
-    compile 'org.slf4j:slf4j-api:1.7.18'
-    compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'com.google.code.gson:gson:2.6.2'
+//    compile 'javax.validation:validation-api:1.1.0.Final'
+    testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile 'junit:junit:4.12'
-    compile 'org.apache.commons:commons-lang3:3.5'
-    compile 'javax.validation:validation-api:1.1.0.CR2'
-    compile 'joda-time:joda-time:2.2'
+    testCompile 'org.skyscreamer:jsonassert:1.4.0'
 }
 
 // This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
