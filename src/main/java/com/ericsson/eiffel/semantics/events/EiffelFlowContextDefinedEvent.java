@@ -25,7 +25,7 @@ public class EiffelFlowContextDefinedEvent
      */
     @SerializedName("data")
     @Expose
-    private FlowContextDefinedData data;
+    private EiffelFlowContextDefinedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelFlowContextDefinedEvent
      * (Required)
      * 
      */
-    public FlowContextDefinedData getData() {
+    public EiffelFlowContextDefinedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelFlowContextDefinedEvent
      * (Required)
      * 
      */
-    public void setData(FlowContextDefinedData data) {
+    public void setData(EiffelFlowContextDefinedEventData data) {
         this.data = data;
     }
 

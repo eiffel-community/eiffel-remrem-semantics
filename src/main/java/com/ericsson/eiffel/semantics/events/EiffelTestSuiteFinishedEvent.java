@@ -25,7 +25,7 @@ public class EiffelTestSuiteFinishedEvent
      */
     @SerializedName("data")
     @Expose
-    private TestSuiteFinishedData data;
+    private EiffelTestSuiteFinishedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelTestSuiteFinishedEvent
      * (Required)
      * 
      */
-    public TestSuiteFinishedData getData() {
+    public EiffelTestSuiteFinishedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelTestSuiteFinishedEvent
      * (Required)
      * 
      */
-    public void setData(TestSuiteFinishedData data) {
+    public void setData(EiffelTestSuiteFinishedEventData data) {
         this.data = data;
     }
 

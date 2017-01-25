@@ -18,6 +18,8 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINI
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
 import java.io.File;
 import java.net.URL;
@@ -279,7 +281,6 @@ public class ValidationTest {
     public void TestValidTestSuiteStartedOutput() throws Exception {
         String json = getResourceContents("output/TestSuiteStarted.json");
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(TESTSUITE_STARTED);
-
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         validator.validate(jsonObject);
         
@@ -289,12 +290,26 @@ public class ValidationTest {
     public void TestValidTestSuiteFinishedOutput() throws Exception {
         String json = getResourceContents("output/TestSuiteFinished.json");
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(TESTSUITE_FINISHED);
-
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         validator.validate(jsonObject);
         
     }
-    
+     
+     @Test
+     public void TestValidIssueVerifiedOutput() throws Exception {
+    	 String json = getResourceContents("output/IssueVerified.json");
+    	 EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(ISSUE_VERIFIED);
+    	 JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+    	 validator.validate(jsonObject);
+     }
+     
+     @Test
+     public void TestValidArtifactReusedOutput() throws Exception {
+    	 String json = getResourceContents("output/ArtifactReused.json");
+    	 EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(ARTIFACT_REUSED);
+    	 JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+    	 validator.validate(jsonObject);
+     }
     
     
 }

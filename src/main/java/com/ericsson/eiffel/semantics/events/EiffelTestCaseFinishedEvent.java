@@ -25,7 +25,7 @@ public class EiffelTestCaseFinishedEvent
      */
     @SerializedName("data")
     @Expose
-    private TestCaseFinishedData data;
+    private EiffelTestCaseFinishedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelTestCaseFinishedEvent
      * (Required)
      * 
      */
-    public TestCaseFinishedData getData() {
+    public EiffelTestCaseFinishedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelTestCaseFinishedEvent
      * (Required)
      * 
      */
-    public void setData(TestCaseFinishedData data) {
+    public void setData(EiffelTestCaseFinishedEventData data) {
         this.data = data;
     }
 

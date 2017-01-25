@@ -4,7 +4,7 @@ package com.ericsson.eiffel.semantics.events;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HGIdentifier {
+public class HgIdentifier {
 
     /**
      * 

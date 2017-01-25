@@ -25,7 +25,7 @@ public class EiffelEnvironmentDefinedEvent
      */
     @SerializedName("data")
     @Expose
-    private EnvironmentDefinedData data;
+    private EiffelEnvironmentDefinedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public EnvironmentDefinedData getData() {
+    public EiffelEnvironmentDefinedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public void setData(EnvironmentDefinedData data) {
+    public void setData(EiffelEnvironmentDefinedEventData data) {
         this.data = data;
     }
 

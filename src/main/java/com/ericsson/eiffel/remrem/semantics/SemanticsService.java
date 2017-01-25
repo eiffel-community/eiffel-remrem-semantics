@@ -19,6 +19,8 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINI
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +53,8 @@ import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.Event;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -94,6 +98,8 @@ public class SemanticsService implements MsgService{
         eventTypes.put(TESTCASE_STARTED, EiffelTestCaseStartedEvent.class);
         eventTypes.put(TESTSUITE_FINISHED, EiffelTestSuiteFinishedEvent.class);
         eventTypes.put(TESTSUITE_STARTED, EiffelTestSuiteStartedEvent.class);
+        eventTypes.put(ISSUE_VERIFIED, EiffelIssueVerifiedEvent.class);
+        eventTypes.put(ARTIFACT_REUSED, EiffelArtifactReusedEvent.class);
        return eventTypes; 
     }
     @Override

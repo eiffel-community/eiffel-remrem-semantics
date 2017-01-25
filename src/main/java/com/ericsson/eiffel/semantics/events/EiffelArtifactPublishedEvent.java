@@ -25,7 +25,7 @@ public class EiffelArtifactPublishedEvent
      */
     @SerializedName("data")
     @Expose
-    private ArtifactPublishedData data;
+    private EiffelArtifactPublishedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelArtifactPublishedEvent
      * (Required)
      * 
      */
-    public ArtifactPublishedData getData() {
+    public EiffelArtifactPublishedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelArtifactPublishedEvent
      * (Required)
      * 
      */
-    public void setData(ArtifactPublishedData data) {
+    public void setData(EiffelArtifactPublishedEventData data) {
         this.data = data;
     }
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "javaType": "com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent",
   "extendsJavaClass": "com.ericsson.eiffel.semantics.events.Event",
@@ -21,15 +21,18 @@
             "EiffelAnnouncementPublishedEvent",
             "EiffelArtifactCreatedEvent",
             "EiffelArtifactPublishedEvent",
+            "EiffelArtifactReusedEvent",
             "EiffelCompositionDefinedEvent",
             "EiffelConfidenceLevelModifiedEvent",
             "EiffelConfigurationAppliedEvent",
             "EiffelEnvironmentDefinedEvent",
             "EiffelFlowContextDefinedEvent",
+            "EiffelIssueVerifiedEvent",
             "EiffelSourceChangeCreatedEvent",
             "EiffelSourceChangeSubmittedEvent",
             "EiffelTestCaseFinishedEvent",
             "EiffelTestCaseStartedEvent",
+            "EiffelTestExecutionRecipeCollectionCreatedEvent",
             "EiffelTestSuiteFinishedEvent",
             "EiffelTestSuiteStartedEvent"
           ]
@@ -66,7 +69,7 @@
             },
             "serializer": {
               "type": "object",
-              "javaType": "com.ericsson.eiffel.semantics.events.GAV",
+              "javaType": "com.ericsson.eiffel.semantics.events.Serializer",
               "properties": {
                 "groupId": {
                   "type": "string"
@@ -106,7 +109,7 @@
     },
     "data": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.FlowContextDefinedData",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEventData",
       "properties": {
         "product": {
           "type": "string"
