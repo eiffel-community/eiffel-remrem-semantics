@@ -36,7 +36,7 @@ jar {
     baseName = 'eiffel-remrem-semantics'
     // If this version is updated please update it in Event.java 
     // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.8'
+    version =  '0.2.1'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -98,16 +98,21 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'org.eclipse.jgit:org.eclipse.jgit.archive:4.5.0.201609210915-r'
 }
-
-/*Gradle task to execute  java class*/
+/**
+ * Gradle task to execute  java class 
+ */
 task runJava(type:JavaExec){
-	main 'com.ericsson.eiffel.remrem.semantics.clone.CloneRemoteRepository'
+	def remoteURL='https://github.com/Ericsson/eiffel.git'
+	def branch='topic-drop4'
+	main 'com.ericsson.eiffel.remrem.semantics.clone.CloneEiffelRepository'
 	classpath sourceSets.main.runtimeClasspath
+	args=	[remoteURL,branch]
 }
 
 jar.dependsOn runJava
-
-/* This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.*/
+/**
+ * This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
+ */
 jsonSchema2Pojo {
     source = files("${sourceSets.main.output.resourcesDir}/schemas/input")
     targetDirectory = file("src/main/java")
