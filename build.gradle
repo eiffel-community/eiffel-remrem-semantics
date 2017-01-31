@@ -34,9 +34,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    // If this version is updated please update it in Event.java 
-    // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.1.8'
+    version =  '0.2.0'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
