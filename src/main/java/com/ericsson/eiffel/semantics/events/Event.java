@@ -1,17 +1,11 @@
 package com.ericsson.eiffel.semantics.events;
 
 import java.util.UUID;
-import javax.inject.Inject;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-
 public abstract class Event {
-	public transient Meta meta;
-    public static String  version = "1.0.0";
-
-    @Inject
+    public transient Meta meta;
 
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
