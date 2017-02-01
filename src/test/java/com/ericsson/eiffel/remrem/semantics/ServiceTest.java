@@ -133,7 +133,7 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
         MockitoAnnotations.initMocks(this);        
-        when(attributes.getValue(anyString())).thenReturn("0.2.0");        
+        when(attributes.getValue(anyString())).thenReturn("0.2.1");        
     }
 
     private void testGenerateMsg(String msgType, String fileName) {
