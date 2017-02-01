@@ -19,7 +19,7 @@ public class CloneEiffelRepository {
 	private static File localPath;
 
 	private void cloneEiffelRepo(String repoURL, String branch) {
-		localPath = new File(homeDir + "\\" + EiffelConstants.EIFFEL);
+		localPath = new File(homeDir+"\\"+EiffelConstants.EIFFEL);
 		try {
 			System.out.println("Latest Schema's Updating...");
 			if (!localPath.exists()) {
@@ -32,7 +32,11 @@ public class CloneEiffelRepository {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new CloneEiffelRepository().cloneEiffelRepo(args[0], args[1]);
+		if(Boolean.parseBoolean(args[2])){
+			new CloneEiffelRepository().cloneEiffelRepo(args[0], args[1]);
+		}else{
+			System.out.println("Please specify the clone property in build.gradle as an argument");
+		}
 	}
 
 }
