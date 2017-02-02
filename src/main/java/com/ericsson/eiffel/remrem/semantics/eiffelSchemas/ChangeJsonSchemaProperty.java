@@ -1,6 +1,7 @@
 package com.ericsson.eiffel.remrem.semantics.eiffelSchemas;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -8,6 +9,8 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -29,7 +32,7 @@ public class ChangeJsonSchemaProperty {
 	private static String fileName;
 	private static boolean isMeta = false;
 	private static boolean isEnumType = false;
-	private ArrayList<String> allFileNames;
+	private ArrayList<String> allJsonFileNames;
 
 	/**
 	 * 
@@ -46,7 +49,7 @@ public class ChangeJsonSchemaProperty {
 	 * 
 	 */
 	public void modifyJsonFileContent(File jsonFile, String name, ArrayList<String> fileNames) {
-		allFileNames = fileNames;
+		allJsonFileNames = fileNames;
 		try {
 			fileName = name;
 			byte[] fileBytes = Files.readAllBytes(Paths.get(jsonFile.getAbsolutePath()));
@@ -55,7 +58,7 @@ public class ChangeJsonSchemaProperty {
 			count = 0;
 			JsonObject obj = new JsonObject();
 			addAttributesToJsonSchema(jsonContent, name, obj);
-			new CreateSemanticsInputJson().createNewJsonSchema(fileName, obj);
+			createNewInputJsonSchema(fileName, obj);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,7 +131,7 @@ public class ChangeJsonSchemaProperty {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							jsonObject.add(valueSet.getKey(), parser.parse(allFileNames.toString()));
+							jsonObject.add(valueSet.getKey(), parser.parse(allJsonFileNames.toString()));
 							isEnumType = false;
 						}
 					}
@@ -190,6 +193,29 @@ public class ChangeJsonSchemaProperty {
 				addAttributesToJsonSchema(jsonValue.getAsJsonObject(), elementName, newJsonObj);
 			}
 			jsonObject.add(elementName, newJsonObj);
+		}
+	}
+	
+	public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
+		String currentWorkingDir = EiffelConstants.USER_DIR;
+		FileWriter writer = null;
+		String copyFilePath = currentWorkingDir + "\\" + EiffelConstants.INPUT_EIFFEL_SCHEMAS;
+		String newFileName = copyFilePath + "\\" + jsonFileName + EiffelConstants.JSON_MIME_TYPE;
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		JsonParser jp = new JsonParser();
+		JsonElement je = jp.parse(jsonObject.toString());
+		String prettyJsonString = gson.toJson(je);
+		try {
+			writer = new FileWriter(newFileName);
+			writer.write(prettyJsonString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 }

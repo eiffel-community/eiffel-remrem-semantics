@@ -97,14 +97,14 @@ dependencies {
     compile 'org.eclipse.jgit:org.eclipse.jgit.archive:4.5.0.201609210915-r'
 }
 /**
- * Gradle task to execute  java class 
+ * Gradle task to execute  java class based on input flag value
  */
 task runJava(type:JavaExec){
 	def remoteURL='https://github.com/Ericsson/eiffel.git'
 	def branch='topic-drop4'
 	//this property is used to clone the repo, set value to "true" to clone.
-	def isClonable = "false" 
-	main 'com.ericsson.eiffel.remrem.semantics.clone.CloneEiffelRepository'
+	def isClonable = "true" 
+	main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
 	classpath sourceSets.main.runtimeClasspath
 	args=	[remoteURL,branch,isClonable]
 }

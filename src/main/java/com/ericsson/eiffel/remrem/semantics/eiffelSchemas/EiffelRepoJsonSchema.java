@@ -17,16 +17,19 @@ import org.apache.commons.io.FileUtils;
  */
 public class EiffelRepoJsonSchema {
 	private HashMap<String, File> jsonFiles;
+	private File localSchemasPath;
 	private static ArrayList<String> jsonFileNames;
+	
+	public EiffelRepoJsonSchema(File localSchemasPath) {
+		this.localSchemasPath=localSchemasPath;
+	}
 
 	/**
 	 * This method is used to read Eiffel Schemas that are cloned from Eiffel
 	 * Repo
-	 * 
-	 * @param localPath
-	 *            - The Cloned Eiffel Repo path is sent as a parameter
 	 */
-	public void readEiffelRepoSchemas(File localPath) {
+	
+	public void readSchemas() {
 		try {
 			FileUtils.cleanDirectory(new File(EiffelConstants.USER_DIR + "\\" + EiffelConstants.INPUT_EIFFEL_SCHEMAS));
 		} catch (IOException e) {
@@ -34,7 +37,7 @@ public class EiffelRepoJsonSchema {
 		}
 		jsonFileNames = new ArrayList<String>();
 		jsonFiles = new HashMap<String, File>();
-		String filePath = localPath + EiffelConstants.SCHEMA_LOCATION;
+		String filePath = localSchemasPath + EiffelConstants.SCHEMA_LOCATION;
 		File file = new File(filePath);
 		if (file.isDirectory()) {
 			loadEiffelSchemas(filePath, "");
@@ -50,22 +53,22 @@ public class EiffelRepoJsonSchema {
 	/**
 	 * This method is used to load all the files from the Eiffel Schemas folder.
 	 * 
-	 * @param filePath
+	 * @param jsonFilePath
 	 *            - This parameter is used to pass Location of the Schemas Directory
-	 * @param name
+	 * @param directoryName
 	 *            - This parameter is used to rename the File with corresponding
 	 *            event name.
 	 * 
 	 */
-	private void loadEiffelSchemas(String filePath, String name) {
-		File file = new File(filePath);
+	private void loadEiffelSchemas(String jsonFilePath, String directoryName) {
+		File file = new File(jsonFilePath);
 		File[] files = file.listFiles();
-		for (File f : files) {
-			if (f.isDirectory()) {
-				loadEiffelSchemas(f.getAbsolutePath(), f.getName());
+		for (File jsonFile : files) {
+			if (jsonFile.isDirectory()) {
+				loadEiffelSchemas(jsonFile.getAbsolutePath(), jsonFile.getName());
 			} else {
-				jsonFileNames.add(name);
-				jsonFiles.put(name, f);
+				jsonFileNames.add(directoryName);
+				jsonFiles.put(directoryName, jsonFile);
 			}
 		}
 	}
