@@ -15,12 +15,12 @@ import org.apache.commons.io.FileUtils;
  * @author xdurvak
  *
  */
-public class EiffelRepoJsonSchema {
+public class LocalRepo {
 	private HashMap<String, File> jsonFiles;
 	private File localSchemasPath;
 	private static ArrayList<String> jsonFileNames;
 	
-	public EiffelRepoJsonSchema(File localSchemasPath) {
+	public LocalRepo(File localSchemasPath) {
 		this.localSchemasPath=localSchemasPath;
 	}
 
@@ -46,12 +46,12 @@ public class EiffelRepoJsonSchema {
 		while (iter.hasNext()) {
 			String filename = iter.next();
 			File jsonFile = jsonFiles.get(filename);
-			new ChangeJsonSchemaProperty().modifyJsonFileContent(jsonFile, filename, jsonFileNames);
+			new SchemaFile().modify(jsonFile, filename, jsonFileNames);
 		}
 	}
 
 	/**
-	 * This method is used to load all the files from the Eiffel Schemas folder.
+	 * This method is used to load all the schema files from the Eiffel Schemas folder.
 	 * 
 	 * @param jsonFilePath
 	 *            - This parameter is used to pass Location of the Schemas Directory

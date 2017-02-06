@@ -23,7 +23,7 @@ import com.google.gson.JsonParser;
  * @author xdurvak
  *
  */
-public class ChangeJsonSchemaProperty {
+public class SchemaFile {
 	private static String fileContent;
 	private final static JsonParser parser = new JsonParser();
 	private static int count = 0;
@@ -48,7 +48,7 @@ public class ChangeJsonSchemaProperty {
 	 *            contains all events names
 	 * 
 	 */
-	public void modifyJsonFileContent(File jsonFile, String name, ArrayList<String> fileNames) {
+	public void modify(File jsonFile, String name, ArrayList<String> fileNames) {
 		allJsonFileNames = fileNames;
 		try {
 			fileName = name;

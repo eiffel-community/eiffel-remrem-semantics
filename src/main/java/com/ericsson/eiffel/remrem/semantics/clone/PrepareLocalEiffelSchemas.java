@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.eclipse.jgit.api.Git;
 
-import com.ericsson.eiffel.remrem.semantics.eiffelSchemas.EiffelRepoJsonSchema;
+import com.ericsson.eiffel.remrem.semantics.eiffelSchemas.LocalRepo;
 import com.ericsson.eiffel.remrem.semantics.eiffelSchemas.EiffelConstants;
 
 /**
@@ -43,7 +43,7 @@ public class PrepareLocalEiffelSchemas {
 			File localEiffelRepoPath = new File(
 					System.getProperty(EiffelConstants.USER_HOME) + "\\" + EiffelConstants.EIFFEL);
 			cloneEiffelRepo(args[0], args[1], localEiffelRepoPath);
-			new EiffelRepoJsonSchema(localEiffelRepoPath).readSchemas();
+			new LocalRepo(localEiffelRepoPath).readSchemas();
 		} else {
 			System.out.println("Please specify the clone property in build.gradle as an argument");
 		}
