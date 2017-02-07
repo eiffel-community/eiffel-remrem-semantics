@@ -5,8 +5,8 @@ import java.io.IOException;
 
 import org.eclipse.jgit.api.Git;
 
-import com.ericsson.eiffel.remrem.semantics.eiffelSchemas.LocalRepo;
-import com.ericsson.eiffel.remrem.semantics.eiffelSchemas.EiffelConstants;
+import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
+import com.ericsson.eiffel.remrem.semantics.schemas.LocalRepo;
 
 /**
  * This class is used to Clone the Eiffel Repo from github

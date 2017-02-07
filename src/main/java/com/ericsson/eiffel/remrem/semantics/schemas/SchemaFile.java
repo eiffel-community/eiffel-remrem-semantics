@@ -1,4 +1,4 @@
-package com.ericsson.eiffel.remrem.semantics.eiffelSchemas;
+package com.ericsson.eiffel.remrem.semantics.schemas;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
@@ -24,42 +25,42 @@ import com.google.gson.JsonParser;
  *
  */
 public class SchemaFile {
-	private static String fileContent;
-	private final static JsonParser parser = new JsonParser();
-	private static int count = 0;
-	static boolean isItemObject = false;
-	private static String oldName = "";
-	private static String fileName;
-	private static boolean isMeta = false;
-	private static boolean isEnumType = false;
-	private ArrayList<String> allJsonFileNames;
+	private JsonParser parser = new JsonParser();
+	private boolean isEvent;
+	private String eventName;
+	private boolean isMeta = false;
+	private boolean isEnumType = false;
+	private ArrayList<String> allEiffelEventNames;
 
 	/**
-	 * 
 	 * This method is used to modify the Eiffel repo json files content
 	 * 
-	 * @param jsonFile-
-	 *            Eiffel repo json schema file is sent as an input parameter
-	 * @param name-
-	 *            name of the json schema file sent as an input parameter used
-	 *            to rename the file with that name
-	 * @param fileNames-this
-	 *            parameter is used to set enum constants in meta and it
-	 *            contains all events names
-	 * 
+	 * @param jsonFiles
+	 *            - ArrayList of Eiffel event jsons passed as an input parameter
+	 *            to this method
+	 * @param eventNames-
+	 *            ArrayList of Eiffel Event names passed as an input parameter
+	 *            to this method
 	 */
-	public void modify(File jsonFile, String name, ArrayList<String> fileNames) {
-		allJsonFileNames = fileNames;
+	public void modify(List<File> jsonFiles, ArrayList<String> eventNames) {
+		File jsonFile = new File("");
+		allEiffelEventNames = eventNames;
 		try {
-			fileName = name;
-			byte[] fileBytes = Files.readAllBytes(Paths.get(jsonFile.getAbsolutePath()));
-			fileContent = new String(fileBytes);
-			JsonObject jsonContent = parser.parse(fileContent).getAsJsonObject();
-			count = 0;
-			JsonObject obj = new JsonObject();
-			addAttributesToJsonSchema(jsonContent, name, obj);
-			createNewInputJsonSchema(fileName, obj);
+			Iterator<String> iter = eventNames.iterator();
+			int count = 0;
+			while (iter.hasNext()) {
+				eventName = iter.next();
+				jsonFile = jsonFiles.get(count);
+				byte[] fileBytes = Files.readAllBytes(Paths.get(jsonFile.getAbsolutePath()));
+				String fileContent = new String(fileBytes);
+				JsonObject jsonContent = parser.parse(fileContent).getAsJsonObject();
+				JsonObject obj = new JsonObject();
+				isEvent = true;
+				addAttributesToJsonSchema(jsonContent, eventName, obj);
+				createNewInputJsonSchema(eventName, obj);
+				count++;
 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -87,7 +88,7 @@ public class SchemaFile {
 			Entry<String, JsonElement> valueSet = keyValue.next();
 			if (valueSet.getValue().isJsonObject()) {
 				String name = valueSet.getKey();
-				oldName = jsonElementName;
+				String previousObjectName = jsonElementName;
 				if (name.equals(EiffelConstants.META)) {
 					isMeta = true;
 				}
@@ -95,17 +96,18 @@ public class SchemaFile {
 					isEnumType = true;
 					isMeta = false;
 				}
-				addingItemsProperties(name, valueSet.getValue(), jsonObject);
+				addingItemsProperties(name, valueSet.getValue(), jsonObject, previousObjectName);
 			} else {
 				if (EiffelConstants.TYPE.equals(valueSet.getKey())) {
 					if (EiffelConstants.OBJECTTYPE.equals(valueSet.getValue().getAsString())) {
 						jsonObject.add(EiffelConstants.TYPE, valueSet.getValue());
-						if (count == 0) {
+						if (isEvent) {
 							jsonObject.add(EiffelConstants.JAVA_TYPE,
 									parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
 											.concat(StringUtils.capitalize(jsonElementName)) + "\""));
 							jsonObject.add(EiffelConstants.EXTENDS_JAVA_CLASS,
 									parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS_EVENT));
+							isEvent = false;
 
 						} else {
 							jsonElementName = modifyClassName(jsonElementName);
@@ -114,13 +116,12 @@ public class SchemaFile {
 									|| jsonElementName.equals(EiffelConstants.OUTCOME))
 								jsonObject.add(EiffelConstants.JAVA_TYPE,
 										parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
-												.concat(fileName + "" + newClassName) + "\""));
+												.concat(eventName + "" + newClassName) + "\""));
 							else
 								jsonObject.add(EiffelConstants.JAVA_TYPE, parser
 										.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS.concat(newClassName)
 												+ "\""));
 						}
-						count++;
 					} else {
 						jsonObject.add(EiffelConstants.TYPE, valueSet.getValue());
 						if (jsonElementName.equals(EiffelConstants.TIME)) {
@@ -131,7 +132,7 @@ public class SchemaFile {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							jsonObject.add(valueSet.getKey(), parser.parse(allJsonFileNames.toString()));
+							jsonObject.add(valueSet.getKey(), parser.parse(allEiffelEventNames.toString()));
 							isEnumType = false;
 						}
 					}
@@ -171,7 +172,6 @@ public class SchemaFile {
 	}
 
 	/**
-	 * 
 	 * This method is used to iterate over the items array because items is an
 	 * array of jsonObject
 	 * 
@@ -182,20 +182,31 @@ public class SchemaFile {
 	 * @param jsonObject
 	 *            - JsonObject which is having property 'Items' is an input to
 	 *            this method
-	 * 
+	 * @param previousObjectName
+	 *            - name of the previousObject to this items object is an input
+	 *            parameter to this method
 	 */
-	private void addingItemsProperties(String elementName, JsonElement jsonValue, JsonObject jsonObject) {
+	private void addingItemsProperties(String elementName, JsonElement jsonValue, JsonObject jsonObject,
+			String previousObjectName) {
 		if (jsonValue.isJsonObject()) {
 			JsonObject newJsonObj = new JsonObject();
 			if (elementName.equals(EiffelConstants.ITEMS)) {
-				addAttributesToJsonSchema(jsonValue.getAsJsonObject(), modifyClassName(oldName), newJsonObj);
+				addAttributesToJsonSchema(jsonValue.getAsJsonObject(), modifyClassName(previousObjectName), newJsonObj);
 			} else {
 				addAttributesToJsonSchema(jsonValue.getAsJsonObject(), elementName, newJsonObj);
 			}
 			jsonObject.add(elementName, newJsonObj);
 		}
 	}
-	
+
+	/**
+	 * @param jsonFileName-
+	 *            name of the input json file is to be created is an input
+	 *            parameter to this method
+	 * @param jsonObject
+	 *            - josnObject having required properties to generate events is
+	 *            an input parameter to this method
+	 */
 	public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
 		String currentWorkingDir = EiffelConstants.USER_DIR;
 		FileWriter writer = null;

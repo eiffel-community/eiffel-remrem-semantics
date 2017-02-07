@@ -1,4 +1,4 @@
-package com.ericsson.eiffel.remrem.semantics.eiffelSchemas;
+package com.ericsson.eiffel.remrem.semantics.schemas;
 
 /**
  * This is a constants class used in other classes

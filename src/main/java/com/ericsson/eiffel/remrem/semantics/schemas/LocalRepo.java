@@ -1,10 +1,9 @@
-package com.ericsson.eiffel.remrem.semantics.eiffelSchemas;
+package com.ericsson.eiffel.remrem.semantics.schemas;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
@@ -16,45 +15,39 @@ import org.apache.commons.io.FileUtils;
  *
  */
 public class LocalRepo {
-	private HashMap<String, File> jsonFiles;
+	private List<File> jsonEventSchemas;
 	private File localSchemasPath;
-	private static ArrayList<String> jsonFileNames;
-	
+	private ArrayList<String> jsonEventNames;
+
 	public LocalRepo(File localSchemasPath) {
-		this.localSchemasPath=localSchemasPath;
+		this.localSchemasPath = localSchemasPath;
 	}
 
 	/**
 	 * This method is used to read Eiffel Schemas that are cloned from Eiffel
 	 * Repo
 	 */
-	
+
 	public void readSchemas() {
 		try {
 			FileUtils.cleanDirectory(new File(EiffelConstants.USER_DIR + "\\" + EiffelConstants.INPUT_EIFFEL_SCHEMAS));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		jsonFileNames = new ArrayList<String>();
-		jsonFiles = new HashMap<String, File>();
+		jsonEventNames = new ArrayList<String>();
+		jsonEventSchemas = new ArrayList<File>();
 		String filePath = localSchemasPath + EiffelConstants.SCHEMA_LOCATION;
-		File file = new File(filePath);
-		if (file.isDirectory()) {
-			loadEiffelSchemas(filePath, "");
-		}
-		Iterator<String> iter = jsonFileNames.iterator();
-		while (iter.hasNext()) {
-			String filename = iter.next();
-			File jsonFile = jsonFiles.get(filename);
-			new SchemaFile().modify(jsonFile, filename, jsonFileNames);
-		}
+		loadEiffelSchemas(filePath, "");
+		new SchemaFile().modify(jsonEventSchemas,jsonEventNames);
 	}
 
 	/**
-	 * This method is used to load all the schema files from the Eiffel Schemas folder.
+	 * This method is used to load all the schema files from the Eiffel Schemas
+	 * folder.
 	 * 
 	 * @param jsonFilePath
-	 *            - This parameter is used to pass Location of the Schemas Directory
+	 *            - This parameter is used to pass Location of the Schemas
+	 *            Directory
 	 * @param directoryName
 	 *            - This parameter is used to rename the File with corresponding
 	 *            event name.
@@ -67,8 +60,8 @@ public class LocalRepo {
 			if (jsonFile.isDirectory()) {
 				loadEiffelSchemas(jsonFile.getAbsolutePath(), jsonFile.getName());
 			} else {
-				jsonFileNames.add(directoryName);
-				jsonFiles.put(directoryName, jsonFile);
+				jsonEventNames.add(directoryName);
+				jsonEventSchemas.add(jsonFile);
 			}
 		}
 	}
