@@ -38,7 +38,6 @@ public class LocalRepo {
 		jsonEventSchemas = new ArrayList<File>();
 		String filePath = localSchemasPath + EiffelConstants.SCHEMA_LOCATION;
 		loadEiffelSchemas(filePath, "");
-		new SchemaFile().modify(jsonEventSchemas,jsonEventNames);
 	}
 
 	/**
@@ -65,5 +64,15 @@ public class LocalRepo {
 			}
 		}
 	}
+
+	public List<File> getJsonEventSchemas() {
+		return jsonEventSchemas;
+	}
+
+	public ArrayList<String> getJsonEventNames() {
+		return jsonEventNames;
+	}
+	
+	
 
 }

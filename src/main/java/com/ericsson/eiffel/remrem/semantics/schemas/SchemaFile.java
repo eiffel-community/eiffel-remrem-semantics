@@ -27,10 +27,16 @@ import com.google.gson.JsonParser;
 public class SchemaFile {
 	private JsonParser parser = new JsonParser();
 	private boolean isEvent;
-	private String eventName;
 	private boolean isMeta = false;
 	private boolean isEnumType = false;
-	private ArrayList<String> allEiffelEventNames;
+	List<File> jsonFiles;
+	ArrayList<String> eventNames;
+	String eventName = null;
+
+	public SchemaFile(ArrayList<String> eventNames) {
+		super();
+		this.eventNames = eventNames;
+	}
 
 	/**
 	 * This method is used to modify the Eiffel repo json files content
@@ -42,25 +48,22 @@ public class SchemaFile {
 	 *            ArrayList of Eiffel Event names passed as an input parameter
 	 *            to this method
 	 */
-	public void modify(List<File> jsonFiles, ArrayList<String> eventNames) {
-		File jsonFile = new File("");
-		allEiffelEventNames = eventNames;
+	public void modify(File jsonFile, String eventName) {
 		try {
-			Iterator<String> iter = eventNames.iterator();
-			int count = 0;
-			while (iter.hasNext()) {
-				eventName = iter.next();
-				jsonFile = jsonFiles.get(count);
-				byte[] fileBytes = Files.readAllBytes(Paths.get(jsonFile.getAbsolutePath()));
-				String fileContent = new String(fileBytes);
-				JsonObject jsonContent = parser.parse(fileContent).getAsJsonObject();
-				JsonObject obj = new JsonObject();
-				isEvent = true;
-				addAttributesToJsonSchema(jsonContent, eventName, obj);
-				createNewInputJsonSchema(eventName, obj);
-				count++;
+			this.eventName = eventName;
+			byte[] fileBytes = Files.readAllBytes(Paths.get(jsonFile.getAbsolutePath()));
+			String fileContent = new String(fileBytes);
+			JsonObject jsonContent = parser.parse(fileContent).getAsJsonObject();
+			JsonObject obj = new JsonObject();
+			isEvent = true;
 
-			}
+			// Added Java Types and ExtendedTypes to the Json Schema
+			addAttributesToJsonSchema(jsonContent, eventName, obj);
+
+			// Copy the jsonschema content to the file in project directory
+			// (/input/schemas)
+			createNewInputJsonSchema(eventName, obj);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -116,7 +119,7 @@ public class SchemaFile {
 									|| jsonElementName.equals(EiffelConstants.OUTCOME))
 								jsonObject.add(EiffelConstants.JAVA_TYPE,
 										parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
-												.concat(eventName + "" + newClassName) + "\""));
+												.concat(this.eventName + "" + newClassName) + "\""));
 							else
 								jsonObject.add(EiffelConstants.JAVA_TYPE, parser
 										.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS.concat(newClassName)
@@ -132,7 +135,7 @@ public class SchemaFile {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							jsonObject.add(valueSet.getKey(), parser.parse(allEiffelEventNames.toString()));
+							jsonObject.add(valueSet.getKey(), parser.parse(eventNames.toString()));
 							isEnumType = false;
 						}
 					}

@@ -2,11 +2,14 @@ package com.ericsson.eiffel.remrem.semantics.clone;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jgit.api.Git;
 
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 import com.ericsson.eiffel.remrem.semantics.schemas.LocalRepo;
+import com.ericsson.eiffel.remrem.semantics.schemas.SchemaFile;
 
 /**
  * This class is used to Clone the Eiffel Repo from github
@@ -39,11 +42,31 @@ public class PrepareLocalEiffelSchemas {
 	}
 
 	public static void main(String[] args) throws IOException {
+
+		// IsClonable checking from build.gradle
 		if (Boolean.parseBoolean(args[2])) {
-			File localEiffelRepoPath = new File(
-					System.getProperty(EiffelConstants.USER_HOME) + "\\" + EiffelConstants.EIFFEL);
+
+			File localEiffelRepoPath = new File(System.getProperty(EiffelConstants.USER_HOME) + "\\" + EiffelConstants.EIFFEL);
+
+			// Clone Repo from GitHub
 			cloneEiffelRepo(args[0], args[1], localEiffelRepoPath);
-			new LocalRepo(localEiffelRepoPath).readSchemas();
+
+			// Read and Load JsonSchemas from Cloned Directory
+			LocalRepo LocalRepo = new LocalRepo(localEiffelRepoPath);
+			LocalRepo.readSchemas();
+			
+			ArrayList<String> jsonEventNames = LocalRepo.getJsonEventNames();
+			List<File> jsonEventSchemas = LocalRepo.getJsonEventSchemas();
+
+			// Schema changes
+			SchemaFile schemaFile = new SchemaFile(jsonEventNames);
+			// Iterate the Each jsonSchema file for Add and Modify properties
+			if (jsonEventNames != null && jsonEventSchemas != null) {
+				for (int i = 0; i < jsonEventNames.size(); i++) {
+					schemaFile.modify(jsonEventSchemas.get(i), jsonEventNames.get(i));
+				}
+			}
+
 		} else {
 			System.out.println("Please specify the clone property in build.gradle as an argument");
 		}
