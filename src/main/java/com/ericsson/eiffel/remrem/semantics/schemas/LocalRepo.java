@@ -15,7 +15,7 @@ import org.apache.commons.io.FileUtils;
  *
  */
 public class LocalRepo {
-	private List<File> jsonEventSchemas;
+	private ArrayList<File> jsonEventSchemas;
 	private File localSchemasPath;
 	private ArrayList<String> jsonEventNames;
 
@@ -65,7 +65,7 @@ public class LocalRepo {
 		}
 	}
 
-	public List<File> getJsonEventSchemas() {
+	public ArrayList<File> getJsonEventSchemas() {
 		return jsonEventSchemas;
 	}
 

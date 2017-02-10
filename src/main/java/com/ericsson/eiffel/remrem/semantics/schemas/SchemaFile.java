@@ -29,15 +29,13 @@ public class SchemaFile {
 	private boolean isEvent;
 	private boolean isMeta = false;
 	private boolean isEnumType = false;
-	List<File> jsonFiles;
-	ArrayList<String> eventNames;
-	String eventName = null;
+	private String allEventNames;
+	private String eventName = null;
 
-	public SchemaFile(ArrayList<String> eventNames) {
+	public SchemaFile(String eventNames) {
 		super();
-		this.eventNames = eventNames;
+		this.allEventNames = eventNames;
 	}
-
 	/**
 	 * This method is used to modify the Eiffel repo json files content
 	 * 
@@ -135,7 +133,7 @@ public class SchemaFile {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							jsonObject.add(valueSet.getKey(), parser.parse(eventNames.toString()));
+							jsonObject.add(valueSet.getKey(), parser.parse(allEventNames));
 							isEnumType = false;
 						}
 					}

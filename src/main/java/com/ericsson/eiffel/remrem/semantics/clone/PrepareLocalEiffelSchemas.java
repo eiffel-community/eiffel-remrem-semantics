@@ -20,7 +20,7 @@ import com.ericsson.eiffel.remrem.semantics.schemas.SchemaFile;
 public class PrepareLocalEiffelSchemas {
 
 	/**
-	 * this method is used to clone Eiffel repository from github.
+	 * This method is used to clone Eiffel repository from github.
 	 * 
 	 * @param repoURL-
 	 *            repository url to clone as an input parameter
@@ -52,14 +52,14 @@ public class PrepareLocalEiffelSchemas {
 			cloneEiffelRepo(args[0], args[1], localEiffelRepoPath);
 
 			// Read and Load JsonSchemas from Cloned Directory
-			LocalRepo LocalRepo = new LocalRepo(localEiffelRepoPath);
-			LocalRepo.readSchemas();
+			LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
+			localRepo.readSchemas();
 			
-			ArrayList<String> jsonEventNames = LocalRepo.getJsonEventNames();
-			List<File> jsonEventSchemas = LocalRepo.getJsonEventSchemas();
+			ArrayList<String> jsonEventNames = localRepo.getJsonEventNames();
+			ArrayList<File> jsonEventSchemas = localRepo.getJsonEventSchemas();
 
 			// Schema changes
-			SchemaFile schemaFile = new SchemaFile(jsonEventNames);
+			SchemaFile schemaFile = new SchemaFile(jsonEventNames.toString());
 			// Iterate the Each jsonSchema file for Add and Modify properties
 			if (jsonEventNames != null && jsonEventSchemas != null) {
 				for (int i = 0; i < jsonEventNames.size(); i++) {
