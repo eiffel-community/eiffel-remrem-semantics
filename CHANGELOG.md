@@ -1,3 +1,7 @@
+## 0.2.1
+- Implemented build step process to clone eiffel repo,topic-drop4 branch schema's dynamically
+- Added functionality for adding properties JavaType and extendJavaType to the cloned schema's to generate pojo's
+
 ## 0.2.0
 - Implemented pojo's generation from json schemas using jsonSchema2pojo plugin
   we used Eiffel repo,topic-drop4 branch sha_id: 5bc648b4fb906db6c370e35fe45c941462ca18a8

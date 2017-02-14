@@ -34,9 +34,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    // If this version is updated please update it in Event.java 
-    // com.ericsson.eiffel.remrem.semantics.events
-    version =  '0.2.0'
+    version =  '0.2.1'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -47,7 +45,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.0'
+    version =  '0.2.1'
     classifier = ''
 }
 
@@ -95,9 +93,26 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'javax.validation:validation-api:1.1.0.CR2'
     compile 'joda-time:joda-time:2.2'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.eclipse.jgit:org.eclipse.jgit.archive:4.5.0.201609210915-r'
+}
+/**
+ * Gradle task to execute  java class based on input flag value
+ */
+task runJava(type:JavaExec){
+	def remoteURL='https://github.com/Ericsson/eiffel.git'
+	def branch='topic-drop4'
+	//this property is used to clone the repo, set value to "true" to clone.
+	def isClonable = "false" 
+	main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
+	classpath sourceSets.main.runtimeClasspath
+	args=	[remoteURL,branch,isClonable]
 }
 
-// This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
+jar.dependsOn runJava
+/**
+ * This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
+ */
 jsonSchema2Pojo {
     source = files("${sourceSets.main.output.resourcesDir}/schemas/input")
     targetDirectory = file("src/main/java")

@@ -25,7 +25,7 @@ public class EiffelConfigurationAppliedEvent
      */
     @SerializedName("data")
     @Expose
-    private ConfigurationAppliedData data;
+    private EiffelConfigurationAppliedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelConfigurationAppliedEvent
      * (Required)
      * 
      */
-    public ConfigurationAppliedData getData() {
+    public EiffelConfigurationAppliedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelConfigurationAppliedEvent
      * (Required)
      * 
      */
-    public void setData(ConfigurationAppliedData data) {
+    public void setData(EiffelConfigurationAppliedEventData data) {
         this.data = data;
     }
 

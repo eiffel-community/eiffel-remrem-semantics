@@ -35,6 +35,8 @@ import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -60,6 +62,8 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     private String TESTCASE_STARTED = "EiffelTestCaseStartedEvent";
     private String TESTSUITE_FINISHED = "EiffelTestSuiteFinishedEvent";
     private String TESTSUITE_STARTED = "EiffelTestSuiteStartedEvent";
+    private String ISSUE_VERIFIED = "EiffelIssueVerifiedEvent";
+    private String ARTIFACT_REUSED = "EiffelArtifactReusedEvent";
     
     JsonParser parser = new JsonParser();
 
@@ -118,12 +122,18 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     
     @InjectMocks
     EiffelTestSuiteStartedEvent tssEvent = new EiffelTestSuiteStartedEvent();
+    
+    @InjectMocks
+    EiffelIssueVerifiedEvent ivEvent = new EiffelIssueVerifiedEvent();
+    
+    @InjectMocks
+    EiffelArtifactReusedEvent arEvent = new EiffelArtifactReusedEvent();
       
     @Before
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
         MockitoAnnotations.initMocks(this);        
-        when(attributes.getValue(anyString())).thenReturn("0.2.0");        
+        when(attributes.getValue(anyString())).thenReturn("0.2.1");        
     }
 
     private void testGenerateMsg(String msgType, String fileName) {
@@ -198,6 +208,12 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     }
     @Test public void testTestSuiteFinished() {
         testGenerateMsg(TESTSUITE_FINISHED, "input/TestSuiteFinished.json");
+    }
+    @Test public void testTestIssueVerified() {
+    	testGenerateMsg(ISSUE_VERIFIED, "input/IssueVerified.json");
+    }
+    @Test public void testTestArtifactReused() {
+    	testGenerateMsg(ARTIFACT_REUSED, "input/ArtifactReused.json");
     }
     @Test public void testUnknownMessage() {
         try {

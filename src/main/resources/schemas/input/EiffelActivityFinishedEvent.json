@@ -1,5 +1,5 @@
 {
-  "$schema": "http:\/\/json-schema.org\/draft-04\/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent",
   "extendsJavaClass": "com.ericsson.eiffel.semantics.events.Event",
@@ -21,15 +21,18 @@
             "EiffelAnnouncementPublishedEvent",
             "EiffelArtifactCreatedEvent",
             "EiffelArtifactPublishedEvent",
+            "EiffelArtifactReusedEvent",
             "EiffelCompositionDefinedEvent",
             "EiffelConfidenceLevelModifiedEvent",
             "EiffelConfigurationAppliedEvent",
             "EiffelEnvironmentDefinedEvent",
             "EiffelFlowContextDefinedEvent",
+            "EiffelIssueVerifiedEvent",
             "EiffelSourceChangeCreatedEvent",
             "EiffelSourceChangeSubmittedEvent",
             "EiffelTestCaseFinishedEvent",
             "EiffelTestCaseStartedEvent",
+            "EiffelTestExecutionRecipeCollectionCreatedEvent",
             "EiffelTestSuiteFinishedEvent",
             "EiffelTestSuiteStartedEvent"
           ]
@@ -66,7 +69,7 @@
             },
             "serializer": {
               "type": "object",
-              "javaType": "com.ericsson.eiffel.semantics.events.GAV",
+              "javaType": "com.ericsson.eiffel.semantics.events.Serializer",
               "properties": {
                 "groupId": {
                   "type": "string"
@@ -106,11 +109,11 @@
     },
     "data": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.ActivityFinishedData",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEventData",
       "properties": {
         "outcome": {
           "type": "object",
-          "javaType": "com.ericsson.eiffel.semantics.events.Outcome",
+          "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEventOutcome",
           "properties": {
             "conclusion": {
               "type": "string",

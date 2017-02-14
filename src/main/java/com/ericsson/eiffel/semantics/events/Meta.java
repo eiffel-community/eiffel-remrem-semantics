@@ -26,6 +26,11 @@ public class Meta {
     @SerializedName("type")
     @Expose
     private Meta.Type type;
+    /**
+     * 
+     * (Required)
+     * 
+     */
     @SerializedName("version")
     @Expose
     private Meta.Version version = Meta.Version.fromValue("1.0.0");
@@ -85,10 +90,20 @@ public class Meta {
         this.type = type;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     public Meta.Version getVersion() {
         return version;
     }
 
+    /**
+     * 
+     * (Required)
+     * 
+     */
     public void setVersion(Meta.Version version) {
         this.version = version;
     }
@@ -153,6 +168,8 @@ public class Meta {
         EIFFEL_ARTIFACT_CREATED_EVENT("EiffelArtifactCreatedEvent"),
         @SerializedName("EiffelArtifactPublishedEvent")
         EIFFEL_ARTIFACT_PUBLISHED_EVENT("EiffelArtifactPublishedEvent"),
+        @SerializedName("EiffelArtifactReusedEvent")
+        EIFFEL_ARTIFACT_REUSED_EVENT("EiffelArtifactReusedEvent"),
         @SerializedName("EiffelCompositionDefinedEvent")
         EIFFEL_COMPOSITION_DEFINED_EVENT("EiffelCompositionDefinedEvent"),
         @SerializedName("EiffelConfidenceLevelModifiedEvent")
@@ -163,6 +180,8 @@ public class Meta {
         EIFFEL_ENVIRONMENT_DEFINED_EVENT("EiffelEnvironmentDefinedEvent"),
         @SerializedName("EiffelFlowContextDefinedEvent")
         EIFFEL_FLOW_CONTEXT_DEFINED_EVENT("EiffelFlowContextDefinedEvent"),
+        @SerializedName("EiffelIssueVerifiedEvent")
+        EIFFEL_ISSUE_VERIFIED_EVENT("EiffelIssueVerifiedEvent"),
         @SerializedName("EiffelSourceChangeCreatedEvent")
         EIFFEL_SOURCE_CHANGE_CREATED_EVENT("EiffelSourceChangeCreatedEvent"),
         @SerializedName("EiffelSourceChangeSubmittedEvent")
@@ -171,6 +190,8 @@ public class Meta {
         EIFFEL_TEST_CASE_FINISHED_EVENT("EiffelTestCaseFinishedEvent"),
         @SerializedName("EiffelTestCaseStartedEvent")
         EIFFEL_TEST_CASE_STARTED_EVENT("EiffelTestCaseStartedEvent"),
+        @SerializedName("EiffelTestExecutionRecipeCollectionCreatedEvent")
+        EIFFEL_TEST_EXECUTION_RECIPE_COLLECTION_CREATED_EVENT("EiffelTestExecutionRecipeCollectionCreatedEvent"),
         @SerializedName("EiffelTestSuiteFinishedEvent")
         EIFFEL_TEST_SUITE_FINISHED_EVENT("EiffelTestSuiteFinishedEvent"),
         @SerializedName("EiffelTestSuiteStartedEvent")

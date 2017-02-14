@@ -1,7 +1,6 @@
 package com.ericsson.eiffel.semantics.events;
 
 import java.util.UUID;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

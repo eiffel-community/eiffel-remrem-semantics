@@ -25,7 +25,7 @@ public class EiffelActivityFinishedEvent
      */
     @SerializedName("data")
     @Expose
-    private ActivityFinishedData data;
+    private EiffelActivityFinishedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelActivityFinishedEvent
      * (Required)
      * 
      */
-    public ActivityFinishedData getData() {
+    public EiffelActivityFinishedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelActivityFinishedEvent
      * (Required)
      * 
      */
-    public void setData(ActivityFinishedData data) {
+    public void setData(EiffelActivityFinishedEventData data) {
         this.data = data;
     }
 

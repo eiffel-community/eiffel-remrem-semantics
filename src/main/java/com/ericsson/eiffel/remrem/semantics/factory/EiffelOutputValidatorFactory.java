@@ -22,6 +22,8 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINI
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
 import java.util.EnumMap;
 
@@ -48,6 +50,8 @@ public class EiffelOutputValidatorFactory {
         validators.put(TESTCASE_STARTED, new OutputValidator("schemas/input/EiffelTestCaseStartedEvent.json"));
         validators.put(TESTSUITE_FINISHED, new OutputValidator("schemas/input/EiffelTestSuiteFinishedEvent.json"));
         validators.put(TESTSUITE_STARTED, new OutputValidator("schemas/input/EiffelTestSuiteStartedEvent.json"));
+        validators.put(ISSUE_VERIFIED, new OutputValidator("schemas/input/EiffelIssueVerifiedEvent.json"));
+        validators.put(ARTIFACT_REUSED, new OutputValidator("schemas/input/EiffelArtifactReusedEvent.json"));
         validators.put(CONFIDENCELEVEL_MODIFIED,
                 new OutputValidator("schemas/input/EiffelConfidenceLevelModifiedEvent.json"));
     }
