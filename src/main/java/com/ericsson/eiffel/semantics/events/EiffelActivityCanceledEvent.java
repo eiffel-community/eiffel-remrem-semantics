@@ -25,7 +25,7 @@ public class EiffelActivityCanceledEvent
      */
     @SerializedName("data")
     @Expose
-    private ActivityCanceledData data;
+    private EiffelActivityCanceledEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelActivityCanceledEvent
      * (Required)
      * 
      */
-    public ActivityCanceledData getData() {
+    public EiffelActivityCanceledEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelActivityCanceledEvent
      * (Required)
      * 
      */
-    public void setData(ActivityCanceledData data) {
+    public void setData(EiffelActivityCanceledEventData data) {
         this.data = data;
     }
 

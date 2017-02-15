@@ -25,7 +25,7 @@ public class EiffelConfidenceLevelModifiedEvent
      */
     @SerializedName("data")
     @Expose
-    private ActivityCLMEData data;
+    private EiffelConfidenceLevelModifiedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public ActivityCLMEData getData() {
+    public EiffelConfidenceLevelModifiedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public void setData(ActivityCLMEData data) {
+    public void setData(EiffelConfidenceLevelModifiedEventData data) {
         this.data = data;
     }
 

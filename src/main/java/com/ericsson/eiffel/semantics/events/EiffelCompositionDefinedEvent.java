@@ -25,7 +25,7 @@ public class EiffelCompositionDefinedEvent
      */
     @SerializedName("data")
     @Expose
-    private CompositionDefinedData data;
+    private EiffelCompositionDefinedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public CompositionDefinedData getData() {
+    public EiffelCompositionDefinedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public void setData(CompositionDefinedData data) {
+    public void setData(EiffelCompositionDefinedEventData data) {
         this.data = data;
     }
 

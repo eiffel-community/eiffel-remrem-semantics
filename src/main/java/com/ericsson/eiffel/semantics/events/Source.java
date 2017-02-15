@@ -22,7 +22,7 @@ public class Source {
     private String name;
     @SerializedName("serializer")
     @Expose
-    private GAV serializer;
+    private Serializer serializer;
     @SerializedName("uri")
     @Expose
     private String uri;
@@ -61,11 +61,11 @@ public class Source {
         this.name = name;
     }
 
-    public GAV getSerializer() {
+    public Serializer getSerializer() {
         return serializer;
     }
 
-    public void setSerializer(GAV serializer) {
+    public void setSerializer(Serializer serializer) {
         this.serializer = serializer;
     }
 

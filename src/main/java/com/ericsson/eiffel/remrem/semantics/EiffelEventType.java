@@ -21,7 +21,9 @@ public enum EiffelEventType {
     TESTCASE_FINISHED("EiffelTestCaseFinishedEvent"),
     TESTCASE_STARTED("EiffelTestCaseStartedEvent"),
     TESTSUITE_FINISHED("EiffelTestSuiteFinishedEvent"),
-    TESTSUITE_STARTED("EiffelTestSuiteStartedEvent");
+    TESTSUITE_STARTED("EiffelTestSuiteStartedEvent"),
+    ISSUE_VERIFIED("EiffelIssueVerifiedEvent"),
+    ARTIFACT_REUSED("EiffelArtifactReusedEvent");
     
     private String id;
 

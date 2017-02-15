@@ -25,7 +25,7 @@ public class EiffelSourceChangeSubmittedEvent
      */
     @SerializedName("data")
     @Expose
-    private SourceChangeSubmittedData data;
+    private EiffelSourceChangeSubmittedEventData data;
     /**
      * 
      * (Required)
@@ -58,7 +58,7 @@ public class EiffelSourceChangeSubmittedEvent
      * (Required)
      * 
      */
-    public SourceChangeSubmittedData getData() {
+    public EiffelSourceChangeSubmittedEventData getData() {
         return data;
     }
 
@@ -67,7 +67,7 @@ public class EiffelSourceChangeSubmittedEvent
      * (Required)
      * 
      */
-    public void setData(SourceChangeSubmittedData data) {
+    public void setData(EiffelSourceChangeSubmittedEventData data) {
         this.data = data;
     }
 
