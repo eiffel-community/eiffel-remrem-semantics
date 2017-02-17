@@ -30,5 +30,8 @@ public final class EiffelConstants {
 	public static String SCHEMA_LOCATION = "\\schemas";
 	public static String JSON_MIME_TYPE = ".json";
 	public static String USER_HOME = "user.home";
-
+	public static final String ACTIVITY = "activity";
+	public static final String ARTIFACT = "artifact";
+	public static final String CM = "cm";
+	public static final String TEST = "test";
 }

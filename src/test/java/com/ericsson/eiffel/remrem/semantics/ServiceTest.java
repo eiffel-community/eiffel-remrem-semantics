@@ -1,5 +1,6 @@
 package com.ericsson.eiffel.remrem.semantics;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -259,5 +260,41 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
         }
         Assert.assertNotNull(msg);
         Assert.assertTrue(msg.isValid());
+    }
+
+    @Test
+    public void testGetFamily() {
+        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+        JsonObject input;
+        String family = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            family = service.getFamily(input);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals("activity", family);
+    }
+
+    @Test
+    public void testGetType() {
+        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+        JsonObject input;
+        String type = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            type = service.getType(input);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals("finished", type);
     }
 }
