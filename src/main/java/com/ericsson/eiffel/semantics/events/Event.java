@@ -12,6 +12,7 @@ import com.google.gson.JsonObject;
 public abstract class Event {
     public transient Meta meta;
     public static final Logger log = LoggerFactory.getLogger(Event.class);
+
     public void generateMeta(String msgType, JsonObject msgNodes) {
         meta = new Gson().fromJson(msgNodes.get("meta"), Meta.class);
         meta.setType(Meta.Type.fromValue(msgType));
