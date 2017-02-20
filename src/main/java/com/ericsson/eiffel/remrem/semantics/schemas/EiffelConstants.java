@@ -33,5 +33,8 @@ public final class EiffelConstants {
 	public static final String ACTIVITY = "activity";
 	public static final String ARTIFACT = "artifact";
 	public static final String CM = "cm";
-	public static final String TEST = "test";
+	public static final String INFO = "info";
+	public static final String CONFIGURATION = "configuration";
+	public static final String FLOWCONTEXT = "flowcontext";
+    public static final String TEST = "test";
 }
