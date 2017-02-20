@@ -60,7 +60,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
 
@@ -71,6 +70,7 @@ public class SemanticsService implements MsgService{
     private static final String EIFFELSEMANTICS = "eiffelsemantics";
     private static final String ID = "id";
     private static final String META = "meta";
+    private static final String TYPE = "type";
 
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
@@ -162,13 +162,24 @@ public class SemanticsService implements MsgService{
 
     @Override
     public String getFamily(JsonObject eiffelMessage) {
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
+                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
+            return Event
+                    .getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+        }
         return null;
     }
-    
+
     @Override
     public String getType(JsonObject eiffelMessage) {
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
+                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
+            return Event
+                    .getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+        }
         return null;
     }
+
     @Override
     public String getServiceName() {
         return EIFFELSEMANTICS;

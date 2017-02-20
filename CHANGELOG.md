@@ -1,3 +1,6 @@
+## 0.2.2
+- Implemented family and type functionality for creating RoutingKey in REMREM Semantics.
+
 ## 0.2.1
 - Implemented build step process to clone eiffel repo,topic-drop4 branch schema's dynamically
 - Added functionality for adding properties JavaType and extendJavaType to the cloned schema's to generate pojo's
