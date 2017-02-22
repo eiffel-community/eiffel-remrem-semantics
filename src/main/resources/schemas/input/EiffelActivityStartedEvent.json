@@ -6,7 +6,10 @@
   "properties": {
     "meta": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.Meta",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityStartedEventMeta",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Meta"
+      ],
       "properties": {
         "id": {
           "type": "string"
@@ -14,27 +17,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "EiffelActivityCanceledEvent",
-            "EiffelActivityFinishedEvent",
-            "EiffelActivityStartedEvent",
-            "EiffelActivityTriggeredEvent",
-            "EiffelAnnouncementPublishedEvent",
-            "EiffelArtifactCreatedEvent",
-            "EiffelArtifactPublishedEvent",
-            "EiffelArtifactReusedEvent",
-            "EiffelCompositionDefinedEvent",
-            "EiffelConfidenceLevelModifiedEvent",
-            "EiffelConfigurationAppliedEvent",
-            "EiffelEnvironmentDefinedEvent",
-            "EiffelFlowContextDefinedEvent",
-            "EiffelIssueVerifiedEvent",
-            "EiffelSourceChangeCreatedEvent",
-            "EiffelSourceChangeSubmittedEvent",
-            "EiffelTestCaseFinishedEvent",
-            "EiffelTestCaseStartedEvent",
-            "EiffelTestExecutionRecipeCollectionCreatedEvent",
-            "EiffelTestSuiteFinishedEvent",
-            "EiffelTestSuiteStartedEvent"
+            "eiffelactivitystarted"
           ]
         },
         "version": {
@@ -144,7 +127,14 @@
                 "type": "string"
               },
               "value": {
-                "type": "string"
+                "anyOf": [
+                  {
+                    "type": "object"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ]
               }
             },
             "required": [

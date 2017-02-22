@@ -17,7 +17,7 @@ public class EiffelConfidenceLevelModifiedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelConfidenceLevelModifiedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelConfidenceLevelModifiedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelConfidenceLevelModifiedEventMeta meta) {
         this.meta = meta;
     }
 

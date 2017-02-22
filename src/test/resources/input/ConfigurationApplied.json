@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "EiffelConfigurationAppliedEvent",
+      "type": "eiffelconfigurationapplied",
       "version": "1.0.0",
       "tags": [
         "tag1",

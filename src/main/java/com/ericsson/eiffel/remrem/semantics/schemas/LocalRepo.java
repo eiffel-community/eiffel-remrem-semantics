@@ -3,7 +3,6 @@ package com.ericsson.eiffel.remrem.semantics.schemas;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
@@ -30,7 +29,7 @@ public class LocalRepo {
 
 	public void readSchemas() {
 		try {
-			FileUtils.cleanDirectory(new File(EiffelConstants.USER_DIR + "\\" + EiffelConstants.INPUT_EIFFEL_SCHEMAS));
+			FileUtils.cleanDirectory(new File(EiffelConstants.USER_DIR + File.separator + EiffelConstants.INPUT_EIFFEL_SCHEMAS));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

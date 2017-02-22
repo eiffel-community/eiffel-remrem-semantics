@@ -17,7 +17,7 @@ public class EiffelActivityTriggeredEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelActivityTriggeredEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelActivityTriggeredEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelActivityTriggeredEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelActivityTriggeredEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelActivityTriggeredEventMeta meta) {
         this.meta = meta;
     }
 

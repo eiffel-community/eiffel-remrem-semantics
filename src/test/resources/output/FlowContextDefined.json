@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "c1e69fc7-adaa-463c-b1b6-4a4a9ef738a6",
-    "type": "EiffelFlowContextDefinedEvent",
+    "type": "eiffelflowcontextdefined",
     "version": "1.0.0",
     "time": 1481292688188,
     "tags": [

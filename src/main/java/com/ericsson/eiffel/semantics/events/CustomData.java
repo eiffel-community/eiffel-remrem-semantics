@@ -21,7 +21,7 @@ public class CustomData {
      */
     @SerializedName("value")
     @Expose
-    private String value;
+    private Object value;
 
     /**
      * 
@@ -46,7 +46,7 @@ public class CustomData {
      * (Required)
      * 
      */
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
@@ -55,7 +55,7 @@ public class CustomData {
      * (Required)
      * 
      */
-    public void setValue(String value) {
+    public void setValue(Object value) {
         this.value = value;
     }
 

@@ -17,7 +17,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelTestExecutionRecipeCollectionCreatedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelTestExecutionRecipeCollectionCreatedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelTestExecutionRecipeCollectionCreatedEventMeta meta) {
         this.meta = meta;
     }
 

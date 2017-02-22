@@ -4,14 +4,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
+
 import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -29,22 +30,15 @@ public class SchemaFile {
 	private boolean isEvent;
 	private boolean isMeta = false;
 	private boolean isEnumType = false;
-	private String allEventNames;
 	private String eventName = null;
 
-	public SchemaFile(String eventNames) {
-		super();
-		this.allEventNames = eventNames;
-	}
 	/**
 	 * This method is used to modify the Eiffel repo json files content
 	 * 
-	 * @param jsonFiles
-	 *            - ArrayList of Eiffel event jsons passed as an input parameter
-	 *            to this method
-	 * @param eventNames-
-	 *            ArrayList of Eiffel Event names passed as an input parameter
-	 *            to this method
+	 * @param jsonFile
+	 *            -Eiffel repo event json passed as an input parameter
+	 * @param eventName-
+	 *            Event name passed as an input parameter
 	 */
 	public void modify(File jsonFile, String eventName) {
 		try {
@@ -73,11 +67,9 @@ public class SchemaFile {
 	 * and other required properties to input jsons
 	 * 
 	 * @param jsonContent-
-	 *            Eiffel repo json file content sent as an input parameter to
-	 *            this method
+	 *            Eiffel repo json file content sent as an input parameter
 	 * @param jsonElementName
-	 *            - Name of the json elements as an input parameter to this
-	 *            method
+	 *            - Name of the json elements as an input parameter
 	 * @param jsonObject
 	 *            - Json object is sent as an input to this to add required json
 	 *            properties to generate event pojo's
@@ -105,7 +97,7 @@ public class SchemaFile {
 						if (isEvent) {
 							jsonObject.add(EiffelConstants.JAVA_TYPE,
 									parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
-											.concat(StringUtils.capitalize(jsonElementName)) + "\""));
+											.concat(StringUtils.capitalize(jsonElementName))));
 							jsonObject.add(EiffelConstants.EXTENDS_JAVA_CLASS,
 									parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS_EVENT));
 							isEvent = false;
@@ -113,15 +105,24 @@ public class SchemaFile {
 						} else {
 							jsonElementName = modifyClassName(jsonElementName);
 							String newClassName = StringUtils.capitalize(jsonElementName);
-							if (jsonElementName.equals(EiffelConstants.DATA)
-									|| jsonElementName.equals(EiffelConstants.OUTCOME))
+							if (jsonElementName.equals(EiffelConstants.META)) {
+								// To generate event specific Meta class
 								jsonObject.add(EiffelConstants.JAVA_TYPE,
 										parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
-												.concat(this.eventName + "" + newClassName) + "\""));
-							else
-								jsonObject.add(EiffelConstants.JAVA_TYPE, parser
-										.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS.concat(newClassName)
-												+ "\""));
+												.concat(this.eventName + "" + newClassName)));
+								JsonArray list = new JsonArray();
+								list.add("com.ericsson.eiffel.semantics.events.Meta");
+								jsonObject.add(EiffelConstants.JAVA_INTERFACES, list);
+							} else if (jsonElementName.equals(EiffelConstants.DATA)
+									|| jsonElementName.equals(EiffelConstants.OUTCOME)) {
+								// Data and Outcome is different at event level
+								jsonObject.add(EiffelConstants.JAVA_TYPE,
+										parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
+												.concat(this.eventName + "" + newClassName)));
+							} else {
+								jsonObject.add(EiffelConstants.JAVA_TYPE, parser.parse(
+										EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS.concat(newClassName)));
+							}
 						}
 					} else {
 						jsonObject.add(EiffelConstants.TYPE, valueSet.getValue());
@@ -133,7 +134,9 @@ public class SchemaFile {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							jsonObject.add(valueSet.getKey(), parser.parse(allEventNames));
+							//To change the eventType in meta
+							jsonObject.add(valueSet.getKey(),
+									parser.parse(valueSet.getValue().toString().toLowerCase().replace("event", "")));
 							isEnumType = false;
 						}
 					}
@@ -141,7 +144,17 @@ public class SchemaFile {
 			}
 		}
 		if (values.isEmpty()) {
-			jsonObject.add(EiffelConstants.TYPE, parser.parse("string"));
+			// If value field doesn't have any data type we make it to
+			// accept either object or string value
+			JsonArray array = new JsonArray();
+			JsonObject obj1 = new JsonObject();
+			JsonObject obj2 = new JsonObject();
+			obj1.add(EiffelConstants.TYPE, parser.parse(EiffelConstants.OBJECTTYPE));
+			obj2.add(EiffelConstants.TYPE, parser.parse(EiffelConstants.STRING));
+			array.add(obj1);
+			array.add(obj2);
+			jsonObject.add(EiffelConstants.ANYOF, array);
+
 		}
 	}
 
@@ -160,11 +173,11 @@ public class SchemaFile {
 		String newClassName = className;
 		if (className.endsWith("s")) {
 			if (className.equals(EiffelConstants.DEPENDENCIES)) {
-				newClassName = "dependency";
+				newClassName = EiffelConstants.DEPENDENCY;
 			} else if (className.equals(EiffelConstants.BATCHES)) {
-				newClassName = "batch";
+				newClassName = EiffelConstants.BATCH;
 			} else if (className.equals(EiffelConstants.PROPERTIES)) {
-				newClassName = "property";
+				newClassName = EiffelConstants.PROPERTY;
 			} else {
 				newClassName = StringUtils.chop(className);
 			}
@@ -211,8 +224,8 @@ public class SchemaFile {
 	public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
 		String currentWorkingDir = EiffelConstants.USER_DIR;
 		FileWriter writer = null;
-		String copyFilePath = currentWorkingDir + "\\" + EiffelConstants.INPUT_EIFFEL_SCHEMAS;
-		String newFileName = copyFilePath + "\\" + jsonFileName + EiffelConstants.JSON_MIME_TYPE;
+		String copyFilePath = currentWorkingDir + File.separator + EiffelConstants.INPUT_EIFFEL_SCHEMAS;
+		String newFileName = copyFilePath + File.separator + jsonFileName + EiffelConstants.JSON_MIME_TYPE;
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		JsonParser jp = new JsonParser();
 		JsonElement je = jp.parse(jsonObject.toString());

@@ -1,9 +1,9 @@
 {
   "meta": {
-    "id": "d1beee7f-6deb-43bf-928d-74ded005e00c",
-    "type": "EiffelTestCaseFinishedEvent",
+    "id": "bd06181d-6fd3-462c-8b1a-0196342cac1a",
+    "type": "eiffeltestsuitefinished",
     "version": "1.0.0",
-    "time": 1481292688514,
+    "time": 1487674645367,
     "tags": [
       "tag1",
       "tag2"
@@ -17,7 +17,7 @@
         "artifactId": "A",
         "version": "V"
       },
-      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+      "uri": "http://java.sun.com/j2se/1.3/"
     }
   },
   "data": {
@@ -28,17 +28,17 @@
     "persistentLogs": [
       {
         "name": "Eiffel",
-        "uri": "http:\/\/java.sun.com"
+        "uri": "http://java.sun.com"
       }
     ],
     "customData": [
       {
         "key": "firstLog",
-        "value": "http:\/\/myHost.com\/firstLog"
+        "value": "http://myHost.com/firstLog"
       },
       {
         "key": "otherLog",
-        "value": "http:\/\/myHost.com\/firstLog33"
+        "value": "http://myHost.com/firstLog33"
       }
     ]
   },

@@ -17,7 +17,7 @@ public class EiffelActivityCanceledEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelActivityCanceledEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelActivityCanceledEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelActivityCanceledEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelActivityCanceledEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelActivityCanceledEventMeta meta) {
         this.meta = meta;
     }
 
