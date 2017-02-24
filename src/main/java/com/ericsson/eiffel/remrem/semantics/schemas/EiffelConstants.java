@@ -37,7 +37,7 @@ public final class EiffelConstants {
 	public static String CONFIGURATION = "configuration";
 	public static String FLOWCONTEXT = "flowcontext";
 	public static String TEST = "test";
-	public static String REMOTE_REFS = "refs/remotes/origin/";
+	public static String REMOTE_REFERENCES = "refs/remotes/origin/";
 	public static String JAVA_INTERFACES = "javaInterfaces";
 	public static String DEPENDENCY = "dependency";
 	public static String BATCH = "batch";

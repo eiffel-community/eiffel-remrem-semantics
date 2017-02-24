@@ -37,8 +37,8 @@ public class SchemaFile {
 	 * 
 	 * @param jsonFile
 	 *            -Eiffel repo event json passed as an input parameter
-	 * @param eventName-
-	 *            Event name passed as an input parameter
+	 * @param eventName
+	 *            -Event name passed as an input parameter
 	 */
 	public void modify(File jsonFile, String eventName) {
 		try {
@@ -66,12 +66,12 @@ public class SchemaFile {
 	 * This method is used to adding the attributes JavaType ,ExtendsJavaType
 	 * and other required properties to input jsons
 	 * 
-	 * @param jsonContent-
-	 *            Eiffel repo json file content sent as an input parameter
+	 * @param jsonContent
+	 *            -Eiffel repo json file content sent as an input parameter
 	 * @param jsonElementName
-	 *            - Name of the json elements as an input parameter
+	 *            -Name of the json elements as an input parameter
 	 * @param jsonObject
-	 *            - Json object is sent as an input to this to add required json
+	 *            -Json object is sent as an input to this to add required json
 	 *            properties to generate event pojo's
 	 */
 	private void addAttributesToJsonSchema(JsonObject jsonContent, String jsonElementName, JsonObject jsonObject) {
@@ -134,7 +134,7 @@ public class SchemaFile {
 					jsonObject.add(valueSet.getKey(), valueSet.getValue());
 					if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
 						if (isEnumType) {
-							//To change the eventType in meta
+							// To change the eventType in meta
 							jsonObject.add(valueSet.getKey(),
 									parser.parse(valueSet.getValue().toString().toLowerCase().replace("event", "")));
 							isEnumType = false;
@@ -166,7 +166,7 @@ public class SchemaFile {
 	 * @param className-
 	 *            This parameter having class names to check which are ending
 	 *            with 's' or not.
-	 * @return String -this returns modified class name
+	 * @return String this returns modified class name
 	 * 
 	 */
 	private String modifyClassName(String className) {
@@ -214,11 +214,11 @@ public class SchemaFile {
 	}
 
 	/**
-	 * @param jsonFileName-
-	 *            name of the input json file is to be created is an input
+	 * @param jsonFileName
+	 *            -name of the input json file is to be created is an input
 	 *            parameter to this method
 	 * @param jsonObject
-	 *            - josnObject having required properties to generate events is
+	 *            -josnObject having required properties to generate events is
 	 *            an input parameter to this method
 	 */
 	public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {

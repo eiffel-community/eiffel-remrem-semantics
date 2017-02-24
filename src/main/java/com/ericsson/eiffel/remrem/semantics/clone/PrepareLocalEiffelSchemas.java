@@ -34,37 +34,29 @@ public class PrepareLocalEiffelSchemas {
 		Git localGitRepo = null;
 		// checking for repository exists or not in the localEiffelRepoPath
 		if (!localEiffelRepoPath.exists()) {
-			System.out.println("Git repository does not exist, Cloning now..");
 			try {
-				localGitRepo = Git.cloneRepository().setURI(repoURL).setDirectory(localEiffelRepoPath).call();
+				// cloning github repository by using URL,branch name into local
+				localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch(branch).setDirectory(localEiffelRepoPath)
+						.call();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
+			// If required repository already exists
 			try {
 				localGitRepo = Git.open(localEiffelRepoPath);
+				
+				//adding complete remote reference to the branch name
+				String remoteBranch = EiffelConstants.REMOTE_REFERENCES.concat(branch);
+				
+				// To fetch if any changes are available on remote repository.
 				localGitRepo.fetch().call();
+				
+				// checkout to input branch
+				localGitRepo.checkout().setName(remoteBranch).call();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		try {
-			// To check specified branch is available or not
-			List<Ref> call = localGitRepo.branchList().setListMode(ListMode.ALL).call();
-			String remoteBranch = null;
-			for (Ref ref : call) {
-				if (ref.getName().equals(EiffelConstants.REMOTE_REFS + branch)) {
-					remoteBranch = ref.getName();
-				}
-			}
-			if (!remoteBranch.equals(null)) {
-				localGitRepo.checkout().setName(remoteBranch).call();
-			} else {
-				System.out.println("Remote branch doesn't exist checkout unsuccessful");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

@@ -1,6 +1,6 @@
 package com.ericsson.eiffel.remrem.semantics;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -143,11 +143,8 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
         	URL url = getClass().getClassLoader().getResource(fileName);
             String path = url.getPath().replace("%20"," ");
             File file = new File(path); 
-            //File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(msgType,input);
-            System.out.println(msgType);
-            System.out.println(msg);
             Assert.assertTrue(msg.contains("data"));
             Assert.assertTrue(msg.contains("meta"));
             Assert.assertTrue(msg.contains("links"));
