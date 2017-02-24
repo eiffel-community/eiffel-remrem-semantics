@@ -123,10 +123,10 @@ task runJava(type:JavaExec){
 //please set 'runJava.enabled= true' to execute the :runJava task if needed only.
 runJava.enabled=false;
 
-//To execute the task compileSourceCode first.
+//To execute the task compileSourceCode first in gradle build.
 compileSourceCode.execute()
 
-//To execute the runJava task
+//To execute the runJava task after compileSourceCode.
 runJava.execute()
 
 //This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
