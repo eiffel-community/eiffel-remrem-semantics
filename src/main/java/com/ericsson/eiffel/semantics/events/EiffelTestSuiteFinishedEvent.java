@@ -17,7 +17,7 @@ public class EiffelTestSuiteFinishedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelTestSuiteFinishedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelTestSuiteFinishedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelTestSuiteFinishedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelTestSuiteFinishedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelTestSuiteFinishedEventMeta meta) {
         this.meta = meta;
     }
 

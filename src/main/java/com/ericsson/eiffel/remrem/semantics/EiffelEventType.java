@@ -4,26 +4,26 @@ import java.util.HashMap;
 
 
 public enum EiffelEventType {
-    ARTIFACT_PUBLISHED("EiffelArtifactPublishedEvent"),
-    ACTIVITY_FINISHED("EiffelActivityFinishedEvent"),
-    ACTIVITY_CANCELED("EiffelActivityCanceledEvent"),
-    ARTIFACT_CREATED("EiffelArtifactCreatedEvent"),
-    ACTIVITY_TRIGGERED("EiffelActivityTriggeredEvent"),
-    CONFIDENCELEVEL_MODIFIED("EiffelConfidenceLevelModifiedEvent"),
-    ACTIVITY_STARTED("EiffelActivityStartedEvent"),
-    ANNOUNCEMENT_PUBLISHED("EiffelAnnouncementPublishedEvent"),
-    COMPOSITION_DEFINED("EiffelCompositionDefinedEvent"),
-    CONFIGURATION_APPLIED("EiffelConfigurationAppliedEvent"),
-    ENVIRONMENT_DEFINED("EiffelEnvironmentDefinedEvent"),
-    FLOWCONTEXT_DEFINED("EiffelFlowContextDefinedEvent"),
-    SOURCECHANGE_CREATED("EiffelSourceChangeCreatedEvent"),
-    SOURCECHANGE_SUBMITTED("EiffelSourceChangeSubmittedEvent"),
-    TESTCASE_FINISHED("EiffelTestCaseFinishedEvent"),
-    TESTCASE_STARTED("EiffelTestCaseStartedEvent"),
-    TESTSUITE_FINISHED("EiffelTestSuiteFinishedEvent"),
-    TESTSUITE_STARTED("EiffelTestSuiteStartedEvent"),
-    ISSUE_VERIFIED("EiffelIssueVerifiedEvent"),
-    ARTIFACT_REUSED("EiffelArtifactReusedEvent");
+    ARTIFACT_PUBLISHED("eiffelartifactpublished"),
+    ACTIVITY_FINISHED("eiffelactivityfinished"),
+    ACTIVITY_CANCELED("eiffelactivitycanceled"),
+    ARTIFACT_CREATED("eiffelartifactcreated"),
+    ACTIVITY_TRIGGERED("eiffelactivitytriggered"),
+    CONFIDENCELEVEL_MODIFIED("eiffelconfidencelevelmodified"),
+    ACTIVITY_STARTED("eiffelactivitystarted"),
+    ANNOUNCEMENT_PUBLISHED("eiffelannouncementpublished"),
+    COMPOSITION_DEFINED("eiffelcompositiondefined"),
+    CONFIGURATION_APPLIED("eiffelconfigurationapplied"),
+    ENVIRONMENT_DEFINED("eiffelenvironmentdefined"),
+    FLOWCONTEXT_DEFINED("eiffelflowcontextdefined"),
+    SOURCECHANGE_CREATED("eiffelsourcechangecreated"),
+    SOURCECHANGE_SUBMITTED("eiffelsourcechangesubmitted"),
+    TESTCASE_FINISHED("eiffeltestcasefinished"),
+    TESTCASE_STARTED("eiffeltestcasestarted"),
+    TESTSUITE_FINISHED("eiffeltestsuitefinished"),
+    TESTSUITE_STARTED("eiffeltestsuitestarted"),
+    ISSUE_VERIFIED("eiffelissueverified"),
+    ARTIFACT_REUSED("eiffelartifactreused");
     
     private String id;
 

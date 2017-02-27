@@ -1,1 +1,42 @@
-{"meta":{"id":"4e8c9519-d878-4179-b514-548c8db78248","type":"EiffelActivityCanceledEvent","version":"1.0.0","time":1481281099259,"tags":["tag1","tag2"],"source":{"domainId":"domainID","host":"host","name":"name","serializer":{"groupId":"G","artifactId":"A","version":"V"},"uri":"http://java.sun.com/j2se/1.3/"}},"data":{"reason":"Sample Reason","customData":[{"key":"firstLog","value":"http://myHost.com/firstLog"},{"key":"otherLog","value":"http://myHost.com/firstLog33"}]},"links":[{"type":"LinkTargetType","target":"LinkTarget"}]}
+{
+  "meta": {
+    "id": "4e8c9519-d878-4179-b514-548c8db78248",
+    "type": "eiffelactivitycanceled",
+    "version": "1.0.0",
+    "time": 1481281099259,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "reason": "Sample Reason",
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http:\/\/myHost.com\/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http:\/\/myHost.com\/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}

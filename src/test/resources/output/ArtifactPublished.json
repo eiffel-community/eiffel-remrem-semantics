@@ -1,1 +1,44 @@
-{"meta":{"id":"7afba8fd-ef6b-41cc-9d57-261c5ce8622d","type":"EiffelArtifactPublishedEvent","version":"1.0.0","time":1481281099844,"tags":["tag1","tag2"],"source":{"domainId":"example.domain","host":"host","name":"name","serializer":{"groupId":"G","artifactId":"A","version":"V"},"uri":"http://java.sun.com/j2se/1.3/"}},"data":{"locations":[{"type":"ARTIFACTORY","uri":"https://one.place"},{"type":"PLAIN","uri":"http://another.com"}],"customData":[]},"links":[{"type":"LinkTargetType","target":"LinkTarget"}]}
+{
+  "meta": {
+    "id": "7afba8fd-ef6b-41cc-9d57-261c5ce8622d",
+    "type": "eiffelartifactpublished",
+    "version": "1.0.0",
+    "time": 1481281099844,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "example.domain",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http://java.sun.com/j2se/1.3/"
+    }
+  },
+  "data": {
+    "locations": [
+      {
+        "type": "ARTIFACTORY",
+        "uri": "https://one.place"
+      },
+      {
+        "type": "PLAIN",
+        "uri": "http://another.com"
+      }
+    ],
+    "customData": [
+      
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}

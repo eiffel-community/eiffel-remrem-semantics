@@ -4,15 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.jgit.api.Git;
-
+import org.eclipse.jgit.api.ListBranchCommand.ListMode;
+import org.eclipse.jgit.lib.Ref;
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 import com.ericsson.eiffel.remrem.semantics.schemas.LocalRepo;
 import com.ericsson.eiffel.remrem.semantics.schemas.SchemaFile;
 
 /**
- * This class is used to Clone the Eiffel Repo from github
+ * This class is used to Clone the eiffel repo from github
  * 
  * @author xdurvak
  */
@@ -20,55 +20,73 @@ import com.ericsson.eiffel.remrem.semantics.schemas.SchemaFile;
 public class PrepareLocalEiffelSchemas {
 
 	/**
-	 * This method is used to clone Eiffel repository from github.
+	 * This method is used to clone repository from github using the URL and
+	 * branch to local destination folder.
 	 * 
-	 * @param repoURL-
-	 *            repository url to clone as an input parameter
-	 * @param branch-
-	 *            specific branch name as an input parameter
+	 * @param repoURL
+	 *            repository url to clone.
+	 * @param branch
+	 *            specific branch name of the repository to clone
 	 * @param localEiffelRepoPath
-	 *            - destination path to place the cloned repo as an input
-	 *            parameter
+	 *            destination path to clone the repo.
 	 */
 	private static void cloneEiffelRepo(String repoURL, String branch, File localEiffelRepoPath) {
-		try {
-			System.out.println("Latest Schema's Updating...");
-			if (!localEiffelRepoPath.exists()) {
-				Git.cloneRepository().setURI(repoURL).setBranch(branch).setDirectory(localEiffelRepoPath).call();
+		Git localGitRepo = null;
+		// checking for repository exists or not in the localEiffelRepoPath
+		if (!localEiffelRepoPath.exists()) {
+			try {
+				// cloning github repository by using URL,branch name into local
+				localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch(branch).setDirectory(localEiffelRepoPath)
+						.call();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			// If required repository already exists
+			try {
+				localGitRepo = Git.open(localEiffelRepoPath);
+				
+				//adding complete remote reference to the branch name
+				String remoteBranch = EiffelConstants.REMOTE_REFERENCES.concat(branch);
+				
+				// To fetch if any changes are available on remote repository.
+				localGitRepo.fetch().call();
+				
+				// checkout to input branch
+				localGitRepo.checkout().setName(remoteBranch).call();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static void main(String[] args) throws IOException {
+		// Read arguments from the Gradle Task.
+		String eiffelRepoUrl = args[0];
+		String eiffelRepoBranch = args[1];
+		File localEiffelRepoPath = new File(
+				System.getProperty(EiffelConstants.USER_HOME) + File.separator + EiffelConstants.EIFFEL);
 
-		// IsClonable checking from build.gradle
-		if (Boolean.parseBoolean(args[2])) {
+		// Clone Repo from GitHub
+		cloneEiffelRepo(eiffelRepoUrl, eiffelRepoBranch, localEiffelRepoPath);
 
-			File localEiffelRepoPath = new File(System.getProperty(EiffelConstants.USER_HOME) + "\\" + EiffelConstants.EIFFEL);
+		// Read and Load JsonSchemas from Cloned Directory
+		LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
+		localRepo.readSchemas();
 
-			// Clone Repo from GitHub
-			cloneEiffelRepo(args[0], args[1], localEiffelRepoPath);
-
-			// Read and Load JsonSchemas from Cloned Directory
-			LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
-			localRepo.readSchemas();
-			
-			ArrayList<String> jsonEventNames = localRepo.getJsonEventNames();
-			ArrayList<File> jsonEventSchemas = localRepo.getJsonEventSchemas();
-
-			// Schema changes
-			SchemaFile schemaFile = new SchemaFile(jsonEventNames.toString());
-			// Iterate the Each jsonSchema file for Add and Modify properties
-			if (jsonEventNames != null && jsonEventSchemas != null) {
-				for (int i = 0; i < jsonEventNames.size(); i++) {
-					schemaFile.modify(jsonEventSchemas.get(i), jsonEventNames.get(i));
-				}
+		ArrayList<String> jsonEventNames = localRepo.getJsonEventNames();
+		ArrayList<File> jsonEventSchemas = localRepo.getJsonEventSchemas();
+		
+		//Schema changes
+		SchemaFile schemaFile = new SchemaFile();
+		
+		// Iterate the Each jsonSchema file to Add and Modify the necessary
+		// properties
+		if (jsonEventNames != null && jsonEventSchemas != null) {
+			for (int i = 0; i < jsonEventNames.size(); i++) {
+				schemaFile.modify(jsonEventSchemas.get(i), jsonEventNames.get(i));
 			}
-
-		} else {
-			System.out.println("Please specify the clone property in build.gradle as an argument");
 		}
+
 	}
 }

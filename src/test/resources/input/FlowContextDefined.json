@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "EiffelFlowContextDefinedEvent",
+      "type": "eiffelflowcontextdefined",
       "version": "1.0.0",
       "tags": [
         "tag1",

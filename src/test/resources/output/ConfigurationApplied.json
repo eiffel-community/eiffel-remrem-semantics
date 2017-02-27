@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "0417646c-3980-4761-b840-eb18bc78ffd8",
-    "type": "EiffelConfigurationAppliedEvent",
+    "type": "eiffelconfigurationapplied",
     "version": "1.0.0",
     "time": 1481292688410,
     "tags": [

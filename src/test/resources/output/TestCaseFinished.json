@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "d1beee7f-6deb-43bf-928d-74ded005e00c",
-    "type": "EiffelTestCaseFinishedEvent",
+    "type": "eiffeltestcasefinished",
     "version": "1.0.0",
     "time": 1481292688514,
     "tags": [

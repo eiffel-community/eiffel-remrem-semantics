@@ -17,7 +17,7 @@ public class EiffelEnvironmentDefinedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelEnvironmentDefinedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelEnvironmentDefinedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelEnvironmentDefinedEventMeta meta) {
         this.meta = meta;
     }
 

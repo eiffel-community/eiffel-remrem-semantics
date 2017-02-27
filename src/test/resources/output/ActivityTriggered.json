@@ -1,1 +1,53 @@
-{"meta":{"id":"e0d2ba34-1e79-43ce-828c-a54b20b629b7","type":"EiffelActivityTriggeredEvent","version":"1.0.0","time":1481281099873,"tags":["tag1","tag2"],"source":{"domainId":"domainID","host":"host","name":"name","serializer":{"groupId":"G","artifactId":"A","version":"V"},"uri":"http://java.sun.com/j2se/1.3/"}},"data":{"name":"ActivityTrigger","categories":[],"triggers":[{"type":"trigger"},{"type":"trigger"}],"customData":[{"key":"firstLog","value":"http://myHost.com/firstLog"},{"key":"otherLog","value":"http://myHost.com/firstLog33"}]},"links":[{"type":"LinkTargetType","target":"LinkTarget"}]}
+{
+  "meta": {
+    "id": "e0d2ba34-1e79-43ce-828c-a54b20b629b7",
+    "type": "eiffelactivitytriggered",
+    "version": "1.0.0",
+    "time": 1481281099873,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "name": "ActivityTrigger",
+    "categories": [
+      
+    ],
+    "triggers": [
+      {
+        "type": "trigger"
+      },
+      {
+        "type": "trigger"
+      }
+    ],
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http:\/\/myHost.com\/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http:\/\/myHost.com\/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}

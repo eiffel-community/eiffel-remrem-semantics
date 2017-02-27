@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "EiffelArtifactPublishedEvent",
+      "type": "eiffelartifactpublished",
       "tags": [
         "tag1",
         "tag2"

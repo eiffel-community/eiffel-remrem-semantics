@@ -1,3 +1,6 @@
+## 0.2.3
+- Implemented event specific meta class generation functionality
+
 ## 0.2.2
 - Implemented family and type functionality for creating RoutingKey in REMREM Semantics.
 

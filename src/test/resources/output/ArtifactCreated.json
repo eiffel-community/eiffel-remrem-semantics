@@ -1,1 +1,62 @@
-{"meta":{"id":"6f79025d-9dd3-4993-9441-879dc13c73a4","type":"EiffelArtifactCreatedEvent","version":"1.0.0","time":1483452918415,"tags":["tag1","tag2"],"source":{"domainId":"domainID","host":"host","name":"name","serializer":{"groupId":"G","artifactId":"A","version":"V"},"uri":"http://java.sun.com/j2se/1.3/"}},"data":{"gav":{"groupId":"G","artifactId":"A","version":"V"},"fileInformation":[{"classifier":"x","extension":"y"}],"dependsOn":[{"groupId":"G","artifactId":"A","version":"V"}],"implements":[],"customData":[{"key":"firstLog","value":"http://myHost.com/firstLog"},{"key":"otherLog","value":"http://myHost.com/firstLog33"}]},"links":[{"type":"LinkTargetType","target":"LinkTarget"}]}
+{
+  "meta": {
+    "id": "6f79025d-9dd3-4993-9441-879dc13c73a4",
+    "type": "eiffelartifactcreated",
+    "version": "1.0.0",
+    "time": 1483452918415,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+    }
+  },
+  "data": {
+    "gav": {
+      "groupId": "G",
+      "artifactId": "A",
+      "version": "V"
+    },
+    "fileInformation": [
+      {
+        "classifier": "x",
+        "extension": "y"
+      }
+    ],
+    "dependsOn": [
+      {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      }
+    ],
+    "implements": [
+      
+    ],
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http:\/\/myHost.com\/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http:\/\/myHost.com\/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }
+  ]
+}

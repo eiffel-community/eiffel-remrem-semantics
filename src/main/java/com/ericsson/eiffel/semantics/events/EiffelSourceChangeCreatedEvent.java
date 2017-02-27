@@ -17,7 +17,7 @@ public class EiffelSourceChangeCreatedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelSourceChangeCreatedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelSourceChangeCreatedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelSourceChangeCreatedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelSourceChangeCreatedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelSourceChangeCreatedEventMeta meta) {
         this.meta = meta;
     }
 

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "ef6f892e-4ad7-4d4c-b9cc-adcbac10a887",
-    "type": "EiffelAnnouncementPublishedEvent",
+    "type": "eiffelannouncementpublished",
     "version": "1.0.0",
     "time": 1481292688281,
     "tags": [

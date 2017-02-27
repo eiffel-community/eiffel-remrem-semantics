@@ -17,7 +17,7 @@ public class EiffelCompositionDefinedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelCompositionDefinedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelCompositionDefinedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelCompositionDefinedEventMeta meta) {
         this.meta = meta;
     }
 

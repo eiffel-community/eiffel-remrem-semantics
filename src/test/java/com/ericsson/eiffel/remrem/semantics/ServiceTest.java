@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.jar.Attributes;
 
 import org.junit.Assert;
@@ -17,7 +18,6 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
-import com.ericsson.eiffel.remrem.semantics.SemanticsService;
 import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityStartedEvent;
@@ -25,19 +25,19 @@ import com.ericsson.eiffel.semantics.events.EiffelActivityTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -45,26 +45,26 @@ import com.google.gson.JsonSyntaxException;
 
 public class ServiceTest {
 
-private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
-    private String ARTIFACT_PUBLISHED = "EiffelArtifactPublishedEvent";
-    private String ARTIFACT_CREATED = "EiffelArtifactCreatedEvent";
-    private String ACTIVITY_TRIGGERED = "EiffelActivityTriggeredEvent";
-    private String ACTIVITY_STARTED = "EiffelActivityStartedEvent";
-    private String ACTIVITY_CANCELED = "EiffelActivityCanceledEvent";
-    private String CONFIDENCELEVEL_MODIFIED = "EiffelConfidenceLevelModifiedEvent";
-    private String ANNOUNCEMENT_PUBLISHED = "EiffelAnnouncementPublishedEvent";
-    private String COMPOSITION_DEFINED = "EiffelCompositionDefinedEvent";
-    private String CONFIGURATION_APPLIED = "EiffelConfigurationAppliedEvent";
-    private String ENVIRONMENT_DEFINED = "EiffelEnvironmentDefinedEvent";
-    private String FLOWCONTEXT_DEFINED = "EiffelFlowContextDefinedEvent";
-    private String SOURCECHANGE_CREATED = "EiffelSourceChangeCreatedEvent";
-    private String SOURCECHANGE_SUBMITTED = "EiffelSourceChangeSubmittedEvent";
-    private String TESTCASE_FINISHED = "EiffelTestCaseFinishedEvent";
-    private String TESTCASE_STARTED = "EiffelTestCaseStartedEvent";
-    private String TESTSUITE_FINISHED = "EiffelTestSuiteFinishedEvent";
-    private String TESTSUITE_STARTED = "EiffelTestSuiteStartedEvent";
-    private String ISSUE_VERIFIED = "EiffelIssueVerifiedEvent";
-    private String ARTIFACT_REUSED = "EiffelArtifactReusedEvent";
+private String ACTIVITY_FINISHED = "eiffelactivityfinished";
+    private String ARTIFACT_PUBLISHED = "eiffelartifactpublished";
+    private String ARTIFACT_CREATED = "eiffelartifactcreated";
+    private String ACTIVITY_TRIGGERED = "eiffelactivitytriggered";
+    private String ACTIVITY_STARTED = "eiffelactivitystarted";
+    private String ACTIVITY_CANCELED = "eiffelactivitycanceled";
+    private String CONFIDENCELEVEL_MODIFIED = "eiffelconfidencelevelmodified";
+    private String ANNOUNCEMENT_PUBLISHED = "eiffelannouncementpublished";
+    private String COMPOSITION_DEFINED = "eiffelcompositiondefined";
+    private String CONFIGURATION_APPLIED = "eiffelconfigurationapplied";
+    private String ENVIRONMENT_DEFINED = "eiffelenvironmentdefined";
+    private String FLOWCONTEXT_DEFINED = "eiffelflowcontextdefined";
+    private String SOURCECHANGE_CREATED = "eiffelsourcechangecreated";
+    private String SOURCECHANGE_SUBMITTED = "eiffelsourcechangesubmitted";
+    private String TESTCASE_FINISHED = "eiffeltestcasefinished";
+    private String TESTCASE_STARTED = "eiffeltestcasestarted";
+    private String TESTSUITE_FINISHED = "eiffeltestsuitefinished";
+    private String TESTSUITE_STARTED = "eiffeltestsuitestarted";
+    private String ISSUE_VERIFIED = "eiffelissueverified";
+    private String ARTIFACT_REUSED = "eiffelartifactreused";
     
     JsonParser parser = new JsonParser();
 
@@ -134,13 +134,15 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
         MockitoAnnotations.initMocks(this);        
-        when(attributes.getValue(anyString())).thenReturn("0.2.1");        
+        when(attributes.getValue(anyString())).thenReturn("0.2.3");        
     }
 
     private void testGenerateMsg(String msgType, String fileName) {
 
         try {
-            File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
+        	URL url = getClass().getClassLoader().getResource(fileName);
+            String path = url.getPath().replace("%20"," ");
+            File file = new File(path); 
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(msgType,input);
             Assert.assertTrue(msg.contains("data"));
@@ -218,7 +220,9 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     }
     @Test public void testUnknownMessage() {
         try {
-            File file = new File(getClass().getClassLoader().getResource("input/ArtifactPublished.json").getFile());
+        	URL url = getClass().getClassLoader().getResource("input/ArtifactPublished.json");
+            String path = url.getPath().replace("%20"," ");
+            File file = new File(path); 
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg("unknownmessage",input);
             Assert.assertTrue(msg.contains("message"));
@@ -231,7 +235,9 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
     
     @Test public void testInvalidMessage() {
         try {
-            File file = new File(getClass().getClassLoader().getResource("input/ActivityFinishedInvalid.json").getFile());
+        	URL url = getClass().getClassLoader().getResource("input/ActivityFinishedInvalid.json");
+            String path = url.getPath().replace("%20"," ");
+            File file = new File(path); 
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(ACTIVITY_FINISHED, input);
             Assert.assertTrue(msg.contains("message"));
@@ -245,7 +251,9 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
 
     @Test
     public void validateMessage() {
-        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
         JsonObject input;
         ValidationResult msg = null;
         try {
@@ -261,10 +269,12 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
         Assert.assertNotNull(msg);
         Assert.assertTrue(msg.isValid());
     }
-
+    
     @Test
     public void testGetFamily() {
-        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
         JsonObject input;
         String family = null;
         try {
@@ -282,7 +292,9 @@ private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
 
     @Test
     public void testGetType() {
-        File file = new File(getClass().getClassLoader().getResource("output/ActivityFinished.json").getFile());
+    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
         JsonObject input;
         String type = null;
         try {

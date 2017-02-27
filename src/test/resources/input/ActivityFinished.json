@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "EiffelActivityFinishedEvent",
+      "type": "eiffelactivityfinished",
       "version": "1.0.0",
       "tags": [
         "tag1",
@@ -22,6 +22,16 @@
   },
   "eventParams": {
     "data": {
+     "customData": [
+        {
+          "key": "firstLog",
+          "value": "http:\/\/myHost.com\/firstLog"
+        },
+        {
+          "key": "otherLog",
+          "value": "http:\/\/myHost.com\/firstLog33"
+        }
+      ],
       "outcome": {
         "conclusion": "TIMED_OUT",
         "description": "Compilation timed out."

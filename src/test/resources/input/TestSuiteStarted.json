@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "EiffelTestSuiteStartedEvent",
+      "type": "eiffeltestsuitestarted",
       "version": "1.0.0",
       "tags": [
         "tag1",

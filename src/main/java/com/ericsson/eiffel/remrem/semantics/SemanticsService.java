@@ -127,9 +127,9 @@ public class SemanticsService implements MsgService{
     }
     private static Event eventCreation(String msgType, Class<? extends Event> eventType, JsonObject msgNodes,
             JsonObject eventNodes) {
+    	eventNodes.add("meta", msgNodes.get("meta"));
         Event event = createEvent(eventNodes, eventType);
-        event.generateMeta(msgType, msgNodes);
-        event.setMeta(event.meta);
+        event.setMeta(event.generateMeta(event.getMeta()));
         return event;
     }
     

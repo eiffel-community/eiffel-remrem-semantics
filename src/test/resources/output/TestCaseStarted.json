@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "f23dec91-2d15-41da-8063-69f921e4a4ce",
-    "type": "EiffelTestCaseStartedEvent",
+    "type": "eiffeltestcasestarted",
     "version": "1.0.0",
     "time": 1481292688572,
     "tags": [

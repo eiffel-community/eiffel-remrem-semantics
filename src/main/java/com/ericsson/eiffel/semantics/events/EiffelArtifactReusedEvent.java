@@ -17,7 +17,7 @@ public class EiffelArtifactReusedEvent
      */
     @SerializedName("meta")
     @Expose
-    private Meta meta;
+    private EiffelArtifactReusedEventMeta meta;
     /**
      * 
      * (Required)
@@ -40,7 +40,7 @@ public class EiffelArtifactReusedEvent
      * (Required)
      * 
      */
-    public Meta getMeta() {
+    public EiffelArtifactReusedEventMeta getMeta() {
         return meta;
     }
 
@@ -49,7 +49,7 @@ public class EiffelArtifactReusedEvent
      * (Required)
      * 
      */
-    public void setMeta(Meta meta) {
+    public void setMeta(EiffelArtifactReusedEventMeta meta) {
         this.meta = meta;
     }
 

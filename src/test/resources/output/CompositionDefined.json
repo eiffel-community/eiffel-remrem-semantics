@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "365b9b90-7f63-47bb-8a2e-1b3ba399d955",
-    "type": "EiffelCompositionDefinedEvent",
+    "type": "eiffelcompositiondefined",
     "version": "1.0.0",
     "time": 1481536193488,
     "tags": [
