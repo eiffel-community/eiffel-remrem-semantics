@@ -111,6 +111,7 @@ task compileSourceCode (type: JavaCompile) {
 
 //runJava task to clone schemas from github and modify the schema's for generate pojo's
 task runJava(type:JavaExec){
+	doFirst{
 	// remote repository URL to clone
 	def remoteURL='https://github.com/Ericsson/eiffel.git'
 	//specific branch name to clone
@@ -118,6 +119,7 @@ task runJava(type:JavaExec){
 	main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
 	classpath sourceSets.main.runtimeClasspath
 	args=	[remoteURL,branch]
+	}
 }
 
 //please set 'runJava.enabled= true' to execute the :runJava task if needed only.
@@ -126,8 +128,8 @@ runJava.enabled=false;
 //To execute the task compileSourceCode first in gradle build.
 compileSourceCode.execute()
 
-//To execute the runJava task after compileSourceCode.
-runJava.execute()
+//To execute the runJava task before jsonSchema2pojo plugin execution .
+generateJsonSchema2Pojo.dependsOn runJava
 
 //This task is used to generate Eiffel events from json schema using jsonschema2pojo plugin.
 jsonSchema2Pojo {
