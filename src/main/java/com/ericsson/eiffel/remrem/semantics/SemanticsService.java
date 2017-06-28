@@ -22,6 +22,7 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,7 +63,10 @@ import com.google.gson.JsonParser;
 
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService{
-
+    private static final String ERROR = "error";
+    private static final String SUPPORTED_EVENT_TYPES = "SUPPORTED_EVENT_TYPES";
+    private static final String RESULT = "result";
+    private static final String UNKNOWN_EVENT_TYPE_REQUESTED = "Unknown event type requested";
     private static final String EVENT_PARAMS = "eventParams";
     private static final String MSG_PARAMS = "msgParams";
     private static final String MESSAGE = "message";
@@ -71,11 +75,17 @@ public class SemanticsService implements MsgService{
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
-
+    private static final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes=SemanticsService.eventType();
+    
+    public SemanticsService(){
+        for (final EiffelEventType msg : EiffelEventType.values()) {
+            supportedEventTypes.add(msg.getEventName());
+        }
+    }
     
     public static Map<EiffelEventType, Class<? extends Event>> eventType()
     {
@@ -107,7 +117,7 @@ public class SemanticsService implements MsgService{
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         if (eiffelType == null) {
             log.error("Unknown message type requested: " + msgType);
-            return createErrorResponse("Unknown message type requested", "'" + msgType + "' is not in the vocabulary of this service");
+            return createErrorResponse(msgType,supportedEventTypes);
         }
         Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
@@ -143,7 +153,13 @@ public class SemanticsService implements MsgService{
         errorResponse.addProperty(CAUSE, cause.replace("\n", ""));
         return errorResponse.toString();
     }
-    
+    private String createErrorResponse(final String message, final ArrayList<String> supportedEventTypes){
+        JsonObject errorResponse = new JsonObject();
+        errorResponse.addProperty(RESULT, ERROR);
+        errorResponse.addProperty(MESSAGE, UNKNOWN_EVENT_TYPE_REQUESTED+"  -  " + message);
+        errorResponse.addProperty(SUPPORTED_EVENT_TYPES,supportedEventTypes.toString());
+        return errorResponse.toString();
+    }
     private void outputValidate(EiffelEventType eiffelType, String jsonStringInput) throws EiffelValidationException {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();

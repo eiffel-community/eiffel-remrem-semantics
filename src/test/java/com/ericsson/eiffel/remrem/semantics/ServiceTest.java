@@ -226,8 +226,8 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg("unknownmessage",input);
             Assert.assertTrue(msg.contains("message"));
-            Assert.assertTrue(msg.contains("Unknown message type requested"));
-            Assert.assertTrue(msg.contains("cause"));
+            Assert.assertTrue(msg.contains("Unknown event type requested"));
+            Assert.assertTrue(msg.contains("SUPPORTED_EVENT_TYPES"));
         } catch(FileNotFoundException e) {
             Assert.assertFalse(false);
         }

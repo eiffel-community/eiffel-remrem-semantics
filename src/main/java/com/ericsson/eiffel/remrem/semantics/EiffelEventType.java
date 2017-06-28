@@ -40,4 +40,8 @@ public enum EiffelEventType {
         }
         return idMap.get(id);
     }
+    
+    String getEventName() {
+        return id;
+    }
 }

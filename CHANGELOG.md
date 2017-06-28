@@ -1,3 +1,6 @@
+## 0.2.4
+- Improved exception handling functionality for event type mismatch
+
 ## 0.2.3
 - Implemented event specific meta class generation functionality
 
