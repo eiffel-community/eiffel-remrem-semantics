@@ -34,7 +34,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.3'
+    version =  '0.2.4'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -50,7 +50,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.3'
+    version =  '0.2.4'
     classifier = ''
 }
 
