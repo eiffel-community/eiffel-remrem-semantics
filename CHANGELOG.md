@@ -1,3 +1,6 @@
+## 0.2.5
+- added copyright headers to the source code
+
 ## 0.2.4
 - Improved exception handling functionality for event type mismatch
 
