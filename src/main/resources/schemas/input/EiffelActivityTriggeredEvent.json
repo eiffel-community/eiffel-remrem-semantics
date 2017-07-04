@@ -75,9 +75,30 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
+          "additionalProperties": false
+        },
+        "security": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.Security",
+          "properties": {
+            "sdm": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.semantics.events.Sdm",
+              "properties": {
+                "authorIdentity": {
+                  "type": "string"
+                },
+                "encryptedDigest": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "authorIdentity",
+                "encryptedDigest"
+              ],
+              "additionalProperties": false
+            }
+          },
           "additionalProperties": false
         }
       },
@@ -85,8 +106,7 @@
         "id",
         "type",
         "version",
-        "time",
-        "source"
+        "time"
       ],
       "additionalProperties": false
     },
@@ -110,7 +130,14 @@
             "javaType": "com.ericsson.eiffel.semantics.events.Trigger",
             "properties": {
               "type": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "MANUAL",
+                  "EIFFEL_EVENT",
+                  "SOURCE_CHANGE",
+                  "TIMER",
+                  "OTHER"
+                ]
               },
               "description": {
                 "type": "string"
@@ -123,7 +150,13 @@
           }
         },
         "executionType": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "SEMI_AUTOMATED",
+            "AUTOMATED",
+            "OTHER"
+          ]
         },
         "customData": {
           "type": "array",
@@ -141,6 +174,12 @@
                   },
                   {
                     "type": "string"
+                  },
+                  {
+                    "type": "array"
+                  },
+                  {
+                    "type": "number"
                   }
                 ]
               }

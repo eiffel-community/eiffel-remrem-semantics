@@ -59,14 +59,12 @@ public class EiffelActivityStartedEventMeta implements Meta
     @SerializedName("tags")
     @Expose
     private List<String> tags = new ArrayList<String>();
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("source")
     @Expose
     private Source source;
+    @SerializedName("security")
+    @Expose
+    private Security security;
 
     /**
      * 
@@ -148,22 +146,20 @@ public class EiffelActivityStartedEventMeta implements Meta
         this.tags = tags;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public Source getSource() {
         return source;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setSource(Source source) {
         this.source = source;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
     }
 
     public enum Type {

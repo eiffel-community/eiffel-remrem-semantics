@@ -27,7 +27,9 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIGURATION_APPLIED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
@@ -55,7 +57,9 @@ public class EiffelOutputValidatorFactory {
         validators.put(ACTIVITY_TRIGGERED, new OutputValidator("schemas/input/EiffelActivityTriggeredEvent.json"));
         validators.put(ANNOUNCEMENT_PUBLISHED, new OutputValidator("schemas/input/EiffelAnnouncementPublishedEvent.json"));
         validators.put(COMPOSITION_DEFINED, new OutputValidator("schemas/input/EiffelCompositionDefinedEvent.json"));
-        validators.put(CONFIGURATION_APPLIED, new OutputValidator("schemas/input/EiffelConfigurationAppliedEvent.json"));
+        validators.put(TESTCASE_CANCELED, new OutputValidator("schemas/input/EiffelTestCaseCanceledEvent.json"));
+        validators.put(TESTCASE_TRIGGERED, new OutputValidator("schemas/input/EiffelTestCaseTriggeredEvent.json"));
+        validators.put(EXECUTION_RECIPE_COLLECTION_CREATED, new OutputValidator("schemas/input/EiffelTestExecutionRecipeCollectionCreatedEvent.json"));
         validators.put(ENVIRONMENT_DEFINED, new OutputValidator("schemas/input/EiffelEnvironmentDefinedEvent.json"));
         validators.put(FLOWCONTEXT_DEFINED, new OutputValidator("schemas/input/EiffelFlowContextDefinedEvent.json"));        
         validators.put(SOURCECHANGE_CREATED, new OutputValidator("schemas/input/EiffelSourceChangeCreatedEvent.json"));

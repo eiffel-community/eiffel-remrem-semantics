@@ -17,25 +17,33 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
-      "type": {
-        "type": "Event",
-        "tracker": "EventTracker",
+      "submitter": {
+        "name": "Event",
+        "email": "test@mail.com",
         "id": "123468",
-        "uri": "http:\/\/myHost.com",
-        "transition": "EventTransition"
+        "group": "http:\/\/myHost.com"
       },
       "gitIdentifier": {
         "commitId": "1234",
-        "repoUri": "http:\/\/myHost.com"
+        "repoUri": "http:\/\/myHost.com",
+        "branch": "test",
+        "repoName": "Sample"
       },
       "svnIdentifier": {
         "revision": "12345",
         "directory": "first",
+        "repoName": "Sample",
         "repoUri": "http:\/\/myHost.com"
       },
       "ccCompositeIdentifier": {
@@ -48,10 +56,11 @@
       },
       "hgIdentifier": {
         "commitId": "xxx",
+        "branch": "Test",
+        "repoName": "Sample",
         "repoUri": "http:\/\/myHost.com"
       },
-      "customData": [
-        {
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -61,11 +70,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

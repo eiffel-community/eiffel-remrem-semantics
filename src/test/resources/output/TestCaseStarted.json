@@ -1,13 +1,10 @@
 {
   "meta": {
-    "id": "f23dec91-2d15-41da-8063-69f921e4a4ce",
+    "id": "2def01be-4425-4e3d-b289-bd8eef16a31b",
     "type": "eiffeltestcasestarted",
     "version": "1.0.0",
-    "time": 1481292688572,
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
+    "time": 1499076743661,
+    "tags": ["tag1", "tag2"],
     "source": {
       "domainId": "domainID",
       "host": "host",
@@ -17,27 +14,31 @@
         "artifactId": "A",
         "version": "V"
       },
-      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
     }
   },
   "data": {
-    "testCase": {
-      "id": "123456"
-    },
-    "parameters": [
-      {
-        "name": "Eiffel",
-        "value": "testcase"
-      }
-    ],
-    "liveLogs": [
-      
-    ],
-    "customData": [
-      
-    ]
+    "executor": "Test",
+    "liveLogs": [{
+      "name": "Eiffel",
+      "uri": "http://java.sun.com"
+    }],
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
   },
-  "links": [
-    
-  ]
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
 }

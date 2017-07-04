@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "id": "4b0bbf9b-50fe-46b0-97b0-02c09def1806",
+    "type": "eiffeltestcasecanceled",
+    "version": "1.0.0",
+    "time": 1499076743066,
+    "tags": ["tag1", "tag2"],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
+    }
+  },
+  "data": {
+    "reason": "Sample Reason",
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
+  },
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
+}

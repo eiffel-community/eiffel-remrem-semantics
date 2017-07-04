@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "javaType": "com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEvent",
+  "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent",
   "extendsJavaClass": "com.ericsson.eiffel.semantics.events.Event",
   "properties": {
     "meta": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEventMeta",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEventMeta",
       "javaInterfaces": [
         "com.ericsson.eiffel.semantics.events.Meta"
       ],
@@ -17,7 +17,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "eiffelconfigurationapplied"
+            "eiffeltestcasetriggered"
           ]
         },
         "version": {
@@ -75,9 +75,30 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
+          "additionalProperties": false
+        },
+        "security": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.Security",
+          "properties": {
+            "sdm": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.semantics.events.Sdm",
+              "properties": {
+                "authorIdentity": {
+                  "type": "string"
+                },
+                "encryptedDigest": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "authorIdentity",
+                "encryptedDigest"
+              ],
+              "additionalProperties": false
+            }
+          },
           "additionalProperties": false
         }
       },
@@ -85,34 +106,93 @@
         "id",
         "type",
         "version",
-        "time",
-        "source"
+        "time"
       ],
       "additionalProperties": false
     },
     "data": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEventData",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEventData",
       "properties": {
-        "items": {
+        "testCase": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.TestCase",
+          "properties": {
+            "tracker": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "uri": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        },
+        "recipeId": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "triggers": {
           "type": "array",
           "items": {
             "type": "object",
-            "javaType": "com.ericsson.eiffel.semantics.events.Property",
+            "javaType": "com.ericsson.eiffel.semantics.events.Trigger",
             "properties": {
               "type": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "MANUAL",
+                  "EIFFEL_EVENT",
+                  "SOURCE_CHANGE",
+                  "TIMER",
+                  "OTHER"
+                ]
               },
-              "name": {
-                "type": "string"
-              },
-              "uri": {
+              "description": {
                 "type": "string"
               }
             },
             "required": [
-              "name"
-            ]
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "executionType": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "SEMI_AUTOMATED",
+            "AUTOMATED",
+            "OTHER"
+          ]
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "javaType": "com.ericsson.eiffel.semantics.events.Parameter",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "value"
+            ],
+            "additionalProperties": false
           }
         },
         "customData": {
@@ -131,6 +211,12 @@
                   },
                   {
                     "type": "string"
+                  },
+                  {
+                    "type": "array"
+                  },
+                  {
+                    "type": "number"
                   }
                 ]
               }
@@ -144,7 +230,7 @@
         }
       },
       "required": [
-        "items"
+        "testCase"
       ],
       "additionalProperties": false
     },

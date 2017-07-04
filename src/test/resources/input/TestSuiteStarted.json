@@ -17,20 +17,28 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
       "name": "EiffelEvent",
-      "liveLogs": [
-        {
-          "name": "Eiffel",
-          "uri": "http:\/\/java.sun.com"
-        }
+      "categories": ["first", "second"],
+      "types": [
+        "ACCESSIBILITY",
+        "BACKUP_RECOVERY"
       ],
-      "customData": [
-        {
+      "liveLogs": [{
+        "name": "Eiffel",
+        "uri": "http:\/\/java.sun.com"
+      }],
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -40,11 +48,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

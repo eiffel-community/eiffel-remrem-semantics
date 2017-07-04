@@ -17,14 +17,20 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
       "name": "CompositionDefinedEvent",
-      "customData": [
-        {
+      "version": "1.0.0",
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -34,11 +40,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

@@ -75,9 +75,30 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
+          "additionalProperties": false
+        },
+        "security": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.Security",
+          "properties": {
+            "sdm": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.semantics.events.Sdm",
+              "properties": {
+                "authorIdentity": {
+                  "type": "string"
+                },
+                "encryptedDigest": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "authorIdentity",
+                "encryptedDigest"
+              ],
+              "additionalProperties": false
+            }
+          },
           "additionalProperties": false
         }
       },
@@ -85,8 +106,7 @@
         "id",
         "type",
         "version",
-        "time",
-        "source"
+        "time"
       ],
       "additionalProperties": false
     },
@@ -94,54 +114,8 @@
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEventData",
       "properties": {
-        "testCase": {
-          "type": "object",
-          "javaType": "com.ericsson.eiffel.semantics.events.TestCase",
-          "properties": {
-            "tracker": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "uri": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "id"
-          ],
-          "additionalProperties": false
-        },
         "executor": {
           "type": "string"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "name",
-              "value"
-            ],
-            "additionalProperties": false
-          }
-        },
-        "executionType": {
-          "type": "string",
-          "enum": [
-            "MANUAL",
-            "SEMI_AUTOMATED",
-            "AUTOMATED",
-            "OTHER"
-          ]
         },
         "liveLogs": {
           "type": "array",
@@ -179,6 +153,12 @@
                   },
                   {
                     "type": "string"
+                  },
+                  {
+                    "type": "array"
+                  },
+                  {
+                    "type": "number"
                   }
                 ]
               }
@@ -191,9 +171,6 @@
           }
         }
       },
-      "required": [
-        "testCase"
-      ],
       "additionalProperties": false
     },
     "links": {

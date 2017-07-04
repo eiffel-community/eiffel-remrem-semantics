@@ -17,6 +17,12 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
@@ -27,28 +33,24 @@
         "artifactId": "A",
         "version": "V"
       },
-      "fileInformation": [
-        {
-          "classifier": "x",
-          "extension": "y"
-        }
-      ],
-      "dependsOn": [
-        {
-          "groupId": "G",
-          "artifactId": "A",
-          "version": "V"
-        }
-      ],
-      "implement": [
-        {
-          "groupId": "G",
-          "artifactId": "A",
-          "version": "V"
-        }
-      ],
-      "customData": [
-        {
+      "fileInformation": [{
+        "classifier": "x",
+        "extension": "y"
+      }],
+      "buildCommand": "trigger",
+      "requiresImplementation": "NONE",
+      "name": "event",
+      "dependsOn": [{
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      }],
+      "implement": [{
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      }],
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -58,11 +60,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

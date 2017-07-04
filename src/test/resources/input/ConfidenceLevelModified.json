@@ -17,6 +17,12 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
@@ -25,10 +31,12 @@
       "name": "confidencelevel",
       "value": "SUCCESS",
       "issuer": {
-        "name": "sun"
+        "name": "sun",
+        "email": "sample@mail.com",
+        "id": "xyz123",
+        "group": "Test"
       },
-      "customData": [
-        {
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -38,11 +46,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

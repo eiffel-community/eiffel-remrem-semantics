@@ -24,7 +24,9 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIGURATION_APPLIED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
@@ -59,7 +61,9 @@ import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
@@ -89,7 +93,7 @@ public class SemanticsService implements MsgService{
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
-    private static final ArrayList<String> supportedEventTypes = new ArrayList<String>();
+    private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
     private static Gson gson = new Gson();
@@ -113,7 +117,9 @@ public class SemanticsService implements MsgService{
         eventTypes.put(CONFIDENCELEVEL_MODIFIED, EiffelConfidenceLevelModifiedEvent.class);
         eventTypes.put(ANNOUNCEMENT_PUBLISHED, EiffelAnnouncementPublishedEvent.class);
         eventTypes.put(COMPOSITION_DEFINED, EiffelCompositionDefinedEvent.class);
-        eventTypes.put(CONFIGURATION_APPLIED, EiffelConfigurationAppliedEvent.class);
+        eventTypes.put(TESTCASE_CANCELED, EiffelTestCaseCanceledEvent.class);
+        eventTypes.put(TESTCASE_TRIGGERED, EiffelTestCaseTriggeredEvent.class);
+        eventTypes.put(EXECUTION_RECIPE_COLLECTION_CREATED, EiffelTestExecutionRecipeCollectionCreatedEvent.class);
         eventTypes.put(ENVIRONMENT_DEFINED, EiffelEnvironmentDefinedEvent.class);
         eventTypes.put(FLOWCONTEXT_DEFINED, EiffelFlowContextDefinedEvent.class);
         eventTypes.put(SOURCECHANGE_CREATED, EiffelSourceChangeCreatedEvent.class);

@@ -1,13 +1,10 @@
 {
   "meta": {
-    "id": "0677d61c-49ba-4308-9dbb-249aacb60a51",
+    "id": "cd249d3b-d666-4b53-af2d-ae8b1f14434d",
     "type": "eiffelissueverified",
     "version": "1.0.0",
-    "time": 1483703975483,
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
+    "time": 1499076743471,
+    "tags": ["tag1", "tag2"],
     "source": {
       "domainId": "domainID",
       "host": "host",
@@ -18,27 +15,32 @@
         "version": "V"
       },
       "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
     }
   },
   "data": {
-    "issues": [
-      
-    ],
-    "customData": [
-      {
-        "key": "firstLog",
-        "value": "http://myHost.com/firstLog"
-      },
-      {
-        "key": "otherLog",
-        "value": "http://myHost.com/firstLog33"
-      }
-    ]
+    "issues": [{
+      "type": "BUG",
+      "tracker": "Sample",
+      "id": "zyx123",
+      "uri": "http://myHost.com/firstLog",
+      "value": "SUCCESS"
+    }],
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
   },
-  "links": [
-    {
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
-    }
-  ]
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
 }

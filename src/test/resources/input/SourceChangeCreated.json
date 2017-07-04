@@ -17,27 +17,48 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
-      "issues": [
-        {
-          "type": "IMPROVEMENT",
-          "tracker": "EventTracker",
-          "id": "123468",
-          "uri": "http:\/\/myHost.com",
-          "transition": "RESOLVED"
-        }
-      ],
+      "author": {
+        "name": "test",
+        "email": "test@mail.com",
+        "id": "xyz123",
+        "group": "Sample"
+      },
+      "change": {
+        "insertions": 123,
+        "deletions": 345,
+        "files": "text",
+        "tracker": "new tracker",
+        "details": "sample",
+        "id": "xyz123"
+      },
+      "issues": [{
+        "type": "IMPROVEMENT",
+        "tracker": "EventTracker",
+        "id": "123468",
+        "uri": "http:\/\/myHost.com",
+        "transition": "RESOLVED"
+      }],
       "gitIdentifier": {
         "commitId": "1234",
+        "branch": "branch",
+        "repoName": "semantics",
         "repoUri": "http:\/\/myHost.com"
       },
       "svnIdentifier": {
         "revision": "12345",
         "directory": "first",
+        "repoName": "semantics",
         "repoUri": "http:\/\/myHost.com"
       },
       "ccCompositeIdentifier": {
@@ -50,10 +71,11 @@
       },
       "hgIdentifier": {
         "commitId": "xxx",
+        "branch": "branch",
+        "repoName": "semantics",
         "repoUri": "http:\/\/myHost.com"
       },
-      "customData": [
-        {
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -63,11 +85,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

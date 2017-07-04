@@ -30,6 +30,9 @@ public class TestCase {
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("version")
+    @Expose
+    private String version;
     @SerializedName("uri")
     @Expose
     private String uri;
@@ -58,6 +61,14 @@ public class TestCase {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public String getUri() {

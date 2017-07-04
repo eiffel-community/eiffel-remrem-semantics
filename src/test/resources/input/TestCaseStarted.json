@@ -17,40 +17,41 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
       "testCase": {
-        "id": "123456"
+        "tracker": "test",
+        "id": "123456",
+        "uri": "http:\/\/java.sun.com"
       },
-      "parameters": [
+      "executor": "Test",
+      "liveLogs": [{
+        "name": "Eiffel",
+        "uri": "http:\/\/java.sun.com"
+      }],
+      "customData": [{
+          "key": "firstLog",
+          "value": "http:\/\/myHost.com\/firstLog"
+        },
         {
-          "name": "Eiffel",
-          "value": "testcase"
+          "key": "otherLog",
+          "value": "http:\/\/myHost.com\/firstLog33"
         }
       ]
     },
-    "liveLogs": {
-      "name": "Eiffel",
-      "uri": "http:\/\/java.sun.com"
-    },
-    "customData": [
-      {
-        "key": "firstLog",
-        "value": "http:\/\/myHost.com\/firstLog"
-      },
-      {
-        "key": "otherLog",
-        "value": "http:\/\/myHost.com\/firstLog33"
-      }
-    ]
-  },
-  "links": [
-    {
+
+    "links": [{
       "type": "LinkTargetType",
       "target": "LinkTarget"
-    }
-  ]
+    }]
+  }
 }

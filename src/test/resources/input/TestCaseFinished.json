@@ -2,7 +2,7 @@
   "msgParams": {
     "meta": {
       "type": "eiffeltestcasefinished",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "tags": [
         "tag1",
         "tag2"
@@ -17,6 +17,12 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
@@ -24,16 +30,18 @@
     "data": {
       "outcome": {
         "verdict": "PASSED",
-        "conclusion": "SUCCESSFUL"
+        "conclusion": "SUCCESSFUL",
+        "description": "Sample description",
+        "metrics": [{
+          "name": "test",
+          "value": "test1"
+        }]
       },
-      "persistentLogs": [
-        {
-          "name": "Eiffel",
-          "uri": "http:\/\/java.sun.com"
-        }
-      ],
-      "customData": [
-        {
+      "persistentLogs": [{
+        "name": "Eiffel",
+        "uri": "http:\/\/java.sun.com"
+      }],
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -43,11 +51,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

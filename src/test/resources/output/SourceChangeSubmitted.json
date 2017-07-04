@@ -1,13 +1,10 @@
 {
   "meta": {
-    "id": "5db9f39a-4c77-44d8-b660-0c1328354acd",
+    "id": "1ec3101e-4c6f-4364-a0d5-63f91d1b3050",
     "type": "eiffelsourcechangesubmitted",
     "version": "1.0.0",
-    "time": 1481536194107,
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
+    "time": 1499076743092,
+    "tags": ["tag1", "tag2"],
     "source": {
       "domainId": "domainID",
       "host": "host",
@@ -17,46 +14,55 @@
         "artifactId": "A",
         "version": "V"
       },
-      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
     }
   },
   "data": {
+    "submitter": {
+      "name": "Event",
+      "email": "test@mail.com",
+      "id": "123468",
+      "group": "http://myHost.com"
+    },
     "gitIdentifier": {
       "commitId": "1234",
-      "repoUri": "http:\/\/myHost.com"
+      "branch": "test",
+      "repoName": "Sample",
+      "repoUri": "http://myHost.com"
     },
     "svnIdentifier": {
       "revision": 12345,
       "directory": "first",
-      "repoUri": "http:\/\/myHost.com"
+      "repoName": "Sample",
+      "repoUri": "http://myHost.com"
     },
     "ccCompositeIdentifier": {
-      "vobs": [
-        "a",
-        "b"
-      ],
+      "vobs": ["a", "b"],
       "branch": "sub",
       "configSpec": "eventConfig"
     },
     "hgIdentifier": {
       "commitId": "xxx",
-      "repoUri": "http:\/\/myHost.com"
+      "branch": "Test",
+      "repoName": "Sample",
+      "repoUri": "http://myHost.com"
     },
-    "customData": [
-      {
-        "key": "firstLog",
-        "value": "http:\/\/myHost.com\/firstLog"
-      },
-      {
-        "key": "otherLog",
-        "value": "http:\/\/myHost.com\/firstLog33"
-      }
-    ]
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
   },
-  "links": [
-    {
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
-    }
-  ]
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
 }

@@ -21,7 +21,7 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelConfigurationAppliedEventMeta implements Meta
+public class EiffelTestCaseCanceledEventMeta implements Meta
 {
 
     /**
@@ -39,7 +39,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      */
     @SerializedName("type")
     @Expose
-    private EiffelConfigurationAppliedEventMeta.Type type;
+    private EiffelTestCaseCanceledEventMeta.Type type;
     /**
      * 
      * (Required)
@@ -47,7 +47,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelConfigurationAppliedEventMeta.Version version = EiffelConfigurationAppliedEventMeta.Version.fromValue("1.0.0");
+    private EiffelTestCaseCanceledEventMeta.Version version = EiffelTestCaseCanceledEventMeta.Version.fromValue("1.0.0");
     /**
      * 
      * (Required)
@@ -59,14 +59,12 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
     @SerializedName("tags")
     @Expose
     private List<String> tags = new ArrayList<String>();
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("source")
     @Expose
     private Source source;
+    @SerializedName("security")
+    @Expose
+    private Security security;
 
     /**
      * 
@@ -91,7 +89,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      * (Required)
      * 
      */
-    public EiffelConfigurationAppliedEventMeta.Type getType() {
+    public EiffelTestCaseCanceledEventMeta.Type getType() {
         return type;
     }
 
@@ -100,7 +98,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      * (Required)
      * 
      */
-    public void setType(EiffelConfigurationAppliedEventMeta.Type type) {
+    public void setType(EiffelTestCaseCanceledEventMeta.Type type) {
         this.type = type;
     }
 
@@ -109,7 +107,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      * (Required)
      * 
      */
-    public EiffelConfigurationAppliedEventMeta.Version getVersion() {
+    public EiffelTestCaseCanceledEventMeta.Version getVersion() {
         return version;
     }
 
@@ -118,7 +116,7 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
      * (Required)
      * 
      */
-    public void setVersion(EiffelConfigurationAppliedEventMeta.Version version) {
+    public void setVersion(EiffelTestCaseCanceledEventMeta.Version version) {
         this.version = version;
     }
 
@@ -148,33 +146,31 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
         this.tags = tags;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public Source getSource() {
         return source;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setSource(Source source) {
         this.source = source;
     }
 
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
+    }
+
     public enum Type {
 
-        @SerializedName("eiffelconfigurationapplied")
-        EIFFELCONFIGURATIONAPPLIED("eiffelconfigurationapplied");
+        @SerializedName("eiffeltestcasecanceled")
+        EIFFELTESTCASECANCELED("eiffeltestcasecanceled");
         private final String value;
-        private final static Map<String, EiffelConfigurationAppliedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelConfigurationAppliedEventMeta.Type>();
+        private final static Map<String, EiffelTestCaseCanceledEventMeta.Type> CONSTANTS = new HashMap<String, EiffelTestCaseCanceledEventMeta.Type>();
 
         static {
-            for (EiffelConfigurationAppliedEventMeta.Type c: values()) {
+            for (EiffelTestCaseCanceledEventMeta.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -192,8 +188,8 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
             return this.value;
         }
 
-        public static EiffelConfigurationAppliedEventMeta.Type fromValue(String value) {
-            EiffelConfigurationAppliedEventMeta.Type constant = CONSTANTS.get(value);
+        public static EiffelTestCaseCanceledEventMeta.Type fromValue(String value) {
+            EiffelTestCaseCanceledEventMeta.Type constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
@@ -208,10 +204,10 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
         @SerializedName("1.0.0")
         _1_0_0("1.0.0");
         private final String value;
-        private final static Map<String, EiffelConfigurationAppliedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelConfigurationAppliedEventMeta.Version>();
+        private final static Map<String, EiffelTestCaseCanceledEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestCaseCanceledEventMeta.Version>();
 
         static {
-            for (EiffelConfigurationAppliedEventMeta.Version c: values()) {
+            for (EiffelTestCaseCanceledEventMeta.Version c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -229,8 +225,8 @@ public class EiffelConfigurationAppliedEventMeta implements Meta
             return this.value;
         }
 
-        public static EiffelConfigurationAppliedEventMeta.Version fromValue(String value) {
-            EiffelConfigurationAppliedEventMeta.Version constant = CONSTANTS.get(value);
+        public static EiffelTestCaseCanceledEventMeta.Version fromValue(String value) {
+            EiffelTestCaseCanceledEventMeta.Version constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {

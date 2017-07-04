@@ -19,36 +19,21 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelConfigurationAppliedEventData {
+public class EiffelTestCaseCanceledEventData {
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @SerializedName("items")
+    @SerializedName("reason")
     @Expose
-    private List<Property> items = new ArrayList<Property>();
+    private String reason;
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public List<Property> getItems() {
-        return items;
+    public String getReason() {
+        return reason;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setItems(List<Property> items) {
-        this.items = items;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public List<CustomData> getCustomData() {

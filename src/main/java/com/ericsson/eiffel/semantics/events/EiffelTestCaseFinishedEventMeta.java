@@ -47,7 +47,7 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelTestCaseFinishedEventMeta.Version version = EiffelTestCaseFinishedEventMeta.Version.fromValue("1.0.0");
+    private EiffelTestCaseFinishedEventMeta.Version version = EiffelTestCaseFinishedEventMeta.Version.fromValue("1.0.1");
     /**
      * 
      * (Required)
@@ -59,14 +59,12 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
     @SerializedName("tags")
     @Expose
     private List<String> tags = new ArrayList<String>();
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("source")
     @Expose
     private Source source;
+    @SerializedName("security")
+    @Expose
+    private Security security;
 
     /**
      * 
@@ -148,22 +146,20 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
         this.tags = tags;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public Source getSource() {
         return source;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setSource(Source source) {
         this.source = source;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
     }
 
     public enum Type {
@@ -205,8 +201,8 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("1.0.0")
-        _1_0_0("1.0.0");
+        @SerializedName("1.0.1")
+        _1_0_1("1.0.1");
         private final String value;
         private final static Map<String, EiffelTestCaseFinishedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestCaseFinishedEventMeta.Version>();
 

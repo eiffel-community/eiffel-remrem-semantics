@@ -129,7 +129,7 @@ task runJava(type:JavaExec){
 	// remote repository URL to clone
 	def remoteURL='https://github.com/Ericsson/eiffel.git'
 	//specific branch name to clone
-	def branch='topic-drop4'
+	def branch='master'
 	main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
 	classpath sourceSets.main.runtimeClasspath
 	args=	[remoteURL,branch]

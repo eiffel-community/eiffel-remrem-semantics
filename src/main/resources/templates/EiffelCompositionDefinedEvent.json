@@ -1,0 +1,44 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": <required>
+      "version": <required>
+      "tags": [],
+      "source": {
+        "domainId":
+        "host":
+        "name":
+        "uri":
+        "serializer": {
+          "groupId": <required>
+          "artifactId": <required>
+          "version": <required>
+        }
+      },
+      "security":{
+        "sdm": {
+            "authorIdentity": <required>
+            "encryptedDigest": <required>
+        }
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "name": <required>
+      "version":
+      "customData": [
+        {
+          "key": <required>
+          "value": <required>
+        }
+      ]
+    },
+    "links": [
+      {
+        "type": <required>
+        "target": <required>
+      }
+    ]
+  }
+}

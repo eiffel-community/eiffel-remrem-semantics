@@ -17,28 +17,31 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
       "reason": "Sample Reason",
-      "customData": [
-        {
+      "customData": [{
           "key": "firstLog",
-          "value": "http:\/\/myHost.com\/firstLog"
+          "value": 1234
         },
         {
           "key": "otherLog",
-          "value": "http:\/\/myHost.com\/firstLog33"
+          "value": 1234
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }
