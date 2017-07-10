@@ -1,13 +1,10 @@
 {
   "meta": {
-    "id": "4e8c9519-d878-4179-b514-548c8db78248",
+    "id": "d34af25b-0745-411c-b7e7-83c7dfddca6f",
     "type": "eiffelactivitycanceled",
     "version": "1.0.0",
-    "time": 1481281099259,
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
+    "time": 1499076742953,
+    "tags": ["tag1", "tag2"],
     "source": {
       "domainId": "domainID",
       "host": "host",
@@ -17,26 +14,27 @@
         "artifactId": "A",
         "version": "V"
       },
-      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
     }
   },
   "data": {
     "reason": "Sample Reason",
-    "customData": [
-      {
-        "key": "firstLog",
-        "value": "http:\/\/myHost.com\/firstLog"
-      },
-      {
-        "key": "otherLog",
-        "value": "http:\/\/myHost.com\/firstLog33"
-      }
-    ]
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
   },
-  "links": [
-    {
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
-    }
-  ]
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
 }

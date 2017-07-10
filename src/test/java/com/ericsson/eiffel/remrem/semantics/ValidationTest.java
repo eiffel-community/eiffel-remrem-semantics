@@ -23,7 +23,6 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIGURATION_APPLIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
@@ -34,6 +33,9 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FIN
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 
 import java.io.File;
 import java.net.URL;
@@ -222,9 +224,29 @@ public class ValidationTest {
     }
     
      @Test
-    public void TestValidConfigurationAppliedOutput() throws Exception {
-        String json = getResourceContents("output/ConfigurationApplied.json");
-        EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(CONFIGURATION_APPLIED);
+    public void TestValidTestCaseCanceledOutput() throws Exception {
+        String json = getResourceContents("output/TestCaseCanceled.json");
+        EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(TESTCASE_CANCELED);
+
+        JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+        validator.validate(jsonObject);
+        
+    }
+     
+     @Test
+    public void TestValidTestCaseTriggeredOutput() throws Exception {
+        String json = getResourceContents("output/TestCaseTriggered.json");
+        EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(TESTCASE_TRIGGERED);
+
+        JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
+        validator.validate(jsonObject);
+        
+    }
+     
+     @Test
+    public void TestValidExecutionRecipeCollectionCreatedOutput() throws Exception {
+        String json = getResourceContents("output/ExecutionRecipeCollection.json");
+        EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(EXECUTION_RECIPE_COLLECTION_CREATED);
 
         JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
         validator.validate(jsonObject);

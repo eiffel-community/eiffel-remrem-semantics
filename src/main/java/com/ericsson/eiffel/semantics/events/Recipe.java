@@ -35,11 +35,6 @@ public class Recipe {
     @SerializedName("testCase")
     @Expose
     private TestCase testCase;
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("constraints")
     @Expose
     private Constraint constraints;
@@ -80,20 +75,10 @@ public class Recipe {
         this.testCase = testCase;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public Constraint getConstraints() {
         return constraints;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setConstraints(Constraint constraints) {
         this.constraints = constraints;
     }

@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "id": "279e7f72-6bee-4361-ae3d-8cf60f98cb61",
+    "type": "eiffeltestexecutionrecipecollectioncreated",
+    "version": "1.0.0",
+    "time": 1499075985537,
+    "tags": ["tag1", "tag2"],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
+    }
+  },
+  "data": {
+    "selectionStrategy": {
+      "tracker": "new tracker",
+      "id": "123546",
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "batchesUri": "http://java.sun.com/j2se/1.3/",
+    "batches": [{
+      "name": "test",
+      "priority": 1,
+      "recipes": [{
+        "id": "d1fae846-3b48-476d-b57a-46b8fd8d513f",
+        "testCase": {
+          "tracker": "test",
+          "id": "d1fae846-3b48-476d-b57a-46b8fd8d513f",
+          "uri": "http://java.sun.com/j2se/1.3/"
+        },
+        "constraints": {}
+      }],
+      "dependencies": [{
+        "dependent": "test",
+        "dependency": "sample"
+      }]
+    }],
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
+  },
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
+}

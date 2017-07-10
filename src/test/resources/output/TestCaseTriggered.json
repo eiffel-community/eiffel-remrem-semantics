@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "id": "1d9350fe-9f09-429d-8b74-935964f757ae",
+    "type": "eiffeltestcasetriggered",
+    "version": "1.0.0",
+    "time": 1499153356435,
+    "tags": ["tag1", "tag2"],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": {
+        "groupId": "G",
+        "artifactId": "A",
+        "version": "V"
+      },
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
+    }
+  },
+  "data": {
+    "testCase": {
+      "tracker": "test",
+      "id": "d1fae846-3b48-476d-b57a-46b8fd8d513f",
+      "version": "1.0.0",
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "recipeId": "d1fae846-3b48-476d-b57a-46b8fd8d513f",
+    "triggers": [{
+      "type": "MANUAL",
+      "description": "new one"
+    }],
+    "executionType": "MANUAL",
+    "parameters": [{
+      "name": "test",
+      "value": "sample"
+    }],
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
+  },
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
+}

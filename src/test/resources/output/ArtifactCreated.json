@@ -1,13 +1,10 @@
 {
   "meta": {
-    "id": "6f79025d-9dd3-4993-9441-879dc13c73a4",
+    "id": "a21b737e-cc8a-4d97-b6d7-eb84600999bd",
     "type": "eiffelartifactcreated",
     "version": "1.0.0",
-    "time": 1483452918415,
-    "tags": [
-      "tag1",
-      "tag2"
-    ],
+    "time": 1499076743424,
+    "tags": ["tag1", "tag2"],
     "source": {
       "domainId": "domainID",
       "host": "host",
@@ -17,7 +14,13 @@
         "artifactId": "A",
         "version": "V"
       },
-      "uri": "http:\/\/java.sun.com\/j2se\/1.3\/"
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "sdm": {
+        "authorIdentity": "test",
+        "encryptedDigest": "sample"
+      }
     }
   },
   "data": {
@@ -26,37 +29,29 @@
       "artifactId": "A",
       "version": "V"
     },
-    "fileInformation": [
-      {
-        "classifier": "x",
-        "extension": "y"
-      }
-    ],
-    "dependsOn": [
-      {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      }
-    ],
-    "implements": [
-      
-    ],
-    "customData": [
-      {
-        "key": "firstLog",
-        "value": "http:\/\/myHost.com\/firstLog"
-      },
-      {
-        "key": "otherLog",
-        "value": "http:\/\/myHost.com\/firstLog33"
-      }
-    ]
+    "fileInformation": [{
+      "classifier": "x",
+      "extension": "y"
+    }],
+    "buildCommand": "trigger",
+    "requiresImplementation": "NONE",
+    "dependsOn": [{
+      "groupId": "G",
+      "artifactId": "A",
+      "version": "V"
+    }],
+    "implements": [],
+    "name": "event",
+    "customData": [{
+      "key": "firstLog",
+      "value": "http://myHost.com/firstLog"
+    }, {
+      "key": "otherLog",
+      "value": "http://myHost.com/firstLog33"
+    }]
   },
-  "links": [
-    {
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
-    }
-  ]
+  "links": [{
+    "type": "LinkTargetType",
+    "target": "LinkTarget"
+  }]
 }

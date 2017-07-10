@@ -42,14 +42,16 @@ import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelConfigurationAppliedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
 import com.google.gson.JsonIOException;
@@ -59,7 +61,7 @@ import com.google.gson.JsonSyntaxException;
 
 public class ServiceTest {
 
-private String ACTIVITY_FINISHED = "eiffelactivityfinished";
+    private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     private String ARTIFACT_PUBLISHED = "eiffelartifactpublished";
     private String ARTIFACT_CREATED = "eiffelartifactcreated";
     private String ACTIVITY_TRIGGERED = "eiffelactivitytriggered";
@@ -68,7 +70,6 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     private String CONFIDENCELEVEL_MODIFIED = "eiffelconfidencelevelmodified";
     private String ANNOUNCEMENT_PUBLISHED = "eiffelannouncementpublished";
     private String COMPOSITION_DEFINED = "eiffelcompositiondefined";
-    private String CONFIGURATION_APPLIED = "eiffelconfigurationapplied";
     private String ENVIRONMENT_DEFINED = "eiffelenvironmentdefined";
     private String FLOWCONTEXT_DEFINED = "eiffelflowcontextdefined";
     private String SOURCECHANGE_CREATED = "eiffelsourcechangecreated";
@@ -79,6 +80,10 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     private String TESTSUITE_STARTED = "eiffeltestsuitestarted";
     private String ISSUE_VERIFIED = "eiffelissueverified";
     private String ARTIFACT_REUSED = "eiffelartifactreused";
+    private String TESTCASE_CANCELED="eiffeltestcasecanceled";
+    private String TESTCASE_TRIGGERED="eiffeltestcasetriggered";
+    private String EXECUTION_RECIPE_COLLECTION_CREATED="eiffeltestexecutionrecipecollectioncreated";
+    
     
     JsonParser parser = new JsonParser();
 
@@ -111,8 +116,7 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     @InjectMocks
     EiffelCompositionDefinedEvent cdEvent = new EiffelCompositionDefinedEvent();
     
-    @InjectMocks
-    EiffelConfigurationAppliedEvent caEvent = new EiffelConfigurationAppliedEvent();
+    EiffelTestCaseCanceledEvent tcEvent = new EiffelTestCaseCanceledEvent();
     
     @InjectMocks
     EiffelEnvironmentDefinedEvent edEvent = new EiffelEnvironmentDefinedEvent();
@@ -143,6 +147,15 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     
     @InjectMocks
     EiffelArtifactReusedEvent arEvent = new EiffelArtifactReusedEvent();
+    
+    @InjectMocks
+    EiffelTestCaseCanceledEvent tccEvent = new EiffelTestCaseCanceledEvent();
+    
+    @InjectMocks
+    EiffelTestCaseTriggeredEvent tctEvent = new EiffelTestCaseTriggeredEvent();
+    
+    @InjectMocks
+    EiffelTestExecutionRecipeCollectionCreatedEvent terEvent = new EiffelTestExecutionRecipeCollectionCreatedEvent();
       
     @Before
     public void setUp() throws Exception {
@@ -159,6 +172,8 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
             File file = new File(path); 
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(msgType,input);
+            System.out.println(msgType);
+            System.out.println(msg);
             Assert.assertTrue(msg.contains("data"));
             Assert.assertTrue(msg.contains("meta"));
             Assert.assertTrue(msg.contains("links"));
@@ -197,9 +212,6 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
         testGenerateMsg(COMPOSITION_DEFINED, "input/CompositionDefined.json");
     }
     
-    @Test public void testConfigurationApplied() {
-        testGenerateMsg(CONFIGURATION_APPLIED, "input/ConfigurationApplied.json");
-    }
     @Test public void testEnvironmentDefined() {
         testGenerateMsg(ENVIRONMENT_DEFINED, "input/EnvironmentDefined.json");
     }
@@ -229,8 +241,17 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
     @Test public void testTestIssueVerified() {
     	testGenerateMsg(ISSUE_VERIFIED, "input/IssueVerified.json");
     }
+    @Test public void testTestCaseCanceled() {
+    	testGenerateMsg(TESTCASE_CANCELED, "input/TestCaseCanceled.json");
+    }
+    @Test public void testTestCaseTriggered() {
+        testGenerateMsg(TESTCASE_TRIGGERED, "input/TestCaseTriggered.json");
+    }
+    @Test public void testTestExcecutionRecipeCollectionCreated() {
+        testGenerateMsg(EXECUTION_RECIPE_COLLECTION_CREATED, "input/ExecutionRecipeCollection.json");
+    }
     @Test public void testTestArtifactReused() {
-    	testGenerateMsg(ARTIFACT_REUSED, "input/ArtifactReused.json");
+        testGenerateMsg(ARTIFACT_REUSED, "input/ArtifactReused.json");
     }
     @Test public void testUnknownMessage() {
         try {
@@ -257,7 +278,7 @@ private String ACTIVITY_FINISHED = "eiffelactivityfinished";
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
-            Assert.assertTrue(msg.contains("missing required properties ([\\\"domainId"));
+            Assert.assertTrue(msg.contains("missing required properties ([\\\"type"));
         } catch(FileNotFoundException e) {
             Assert.assertFalse(false);
         }

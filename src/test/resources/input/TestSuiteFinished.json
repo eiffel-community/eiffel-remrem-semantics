@@ -17,6 +17,12 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
@@ -24,16 +30,15 @@
     "data": {
       "outcome": {
         "verdict": "PASSED",
-        "conclusion": "SUCCESSFUL"
+        "conclusion": "SUCCESSFUL",
+        "description": "sample"
       },
-      "persistentLogs": [
-        {
-          "name": "Eiffel",
-          "uri": "http:\/\/java.sun.com"
-        }
-      ],
-      "customData": [
-        {
+
+      "persistentLogs": [{
+        "name": "Eiffel",
+        "uri": "http:\/\/java.sun.com"
+      }],
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -43,11 +48,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

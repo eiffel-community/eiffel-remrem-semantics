@@ -1,7 +1,6 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffelactivityfinished",
       "tags": [
         "tag1",
         "tag2"
@@ -15,6 +14,12 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
@@ -24,8 +29,7 @@
         "conclusion": "TIMED_OUT",
         "description": "Compilation timed out."
       },
-      "persistentLogs": [
-        {
+      "persistentLogs": [{
           "name": "firstLog",
           "uri": "http:\/\/myHost.com\/firstLog"
         },
@@ -35,11 +39,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

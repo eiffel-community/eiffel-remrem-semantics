@@ -17,14 +17,26 @@
           "artifactId": "A",
           "version": "V"
         }
+      },
+      "security": {
+        "sdm": {
+          "authorIdentity": "test",
+          "encryptedDigest": "sample"
+        }
       }
     }
   },
   "eventParams": {
     "data": {
       "reason": "Sample Reason",
-      "customData": [
-        {
+      "issues": [{
+        "type": "BUG",
+        "tracker": "Sample",
+        "id": "zyx123",
+        "uri": "http:\/\/myHost.com\/firstLog",
+        "value": "SUCCESS"
+      }],
+      "customData": [{
           "key": "firstLog",
           "value": "http:\/\/myHost.com\/firstLog"
         },
@@ -34,11 +46,9 @@
         }
       ]
     },
-    "links": [
-      {
-        "type": "LinkTargetType",
-        "target": "LinkTarget"
-      }
-    ]
+    "links": [{
+      "type": "LinkTargetType",
+      "target": "LinkTarget"
+    }]
   }
 }

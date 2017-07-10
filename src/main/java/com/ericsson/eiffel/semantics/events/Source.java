@@ -19,11 +19,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Source {
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("domainId")
     @Expose
     private String domainId;
@@ -40,20 +35,10 @@ public class Source {
     @Expose
     private String uri;
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public String getDomainId() {
         return domainId;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setDomainId(String domainId) {
         this.domainId = domainId;
     }

@@ -75,9 +75,30 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
+          "additionalProperties": false
+        },
+        "security": {
+          "type": "object",
+          "javaType": "com.ericsson.eiffel.semantics.events.Security",
+          "properties": {
+            "sdm": {
+              "type": "object",
+              "javaType": "com.ericsson.eiffel.semantics.events.Sdm",
+              "properties": {
+                "authorIdentity": {
+                  "type": "string"
+                },
+                "encryptedDigest": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "authorIdentity",
+                "encryptedDigest"
+              ],
+              "additionalProperties": false
+            }
+          },
           "additionalProperties": false
         }
       },
@@ -85,8 +106,7 @@
         "id",
         "type",
         "version",
-        "time",
-        "source"
+        "time"
       ],
       "additionalProperties": false
     },
@@ -125,6 +145,12 @@
                   },
                   {
                     "type": "string"
+                  },
+                  {
+                    "type": "array"
+                  },
+                  {
+                    "type": "number"
                   }
                 ]
               }
