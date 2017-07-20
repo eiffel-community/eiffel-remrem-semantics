@@ -46,7 +46,7 @@ public class EiffelSourceChangeCreatedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelSourceChangeCreatedEventLink> links = new ArrayList<EiffelSourceChangeCreatedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelSourceChangeCreatedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelSourceChangeCreatedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelSourceChangeCreatedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelSourceChangeCreatedEventLink> links) {
         this.links = links;
     }
 

@@ -188,10 +188,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "SUBJECT",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "SUB_CONFIDENCE_LEVEL"
+            ]
           },
           "target": {
             "type": "string"

@@ -47,8 +47,28 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "CAUSE",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "CAUSE",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
+    },
+    {
+      "type": "SUBJECT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee3"
+    },
+    {
+      "type": "SUBJECT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee4"
+    },
+    {
+      "type": "SUB_CONFIDENCE_LEVEL",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee5"
+    },
+    {
+      "type": "SUB_CONFIDENCE_LEVEL",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee6"
     }]
   }
 }

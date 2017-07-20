@@ -32,6 +32,8 @@ public final class EiffelConstants {
     public static String OUTCOME = "outcome";
     public static String DATA = "data";
     public static String META = "meta";
+    public static String LINKS = "links";
+    public static String LINK = "link";
     public static String EXTENDS_JAVA_CLASS = "extendsJavaClass";
     public static String COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS_EVENT = "com.ericsson.eiffel.semantics.events.Event";
     public static String JAVA_TYPE = "javaType";
@@ -60,4 +62,6 @@ public final class EiffelConstants {
     public static String PROPERTY = "property";
     public static String ANYOF = "anyOf";
     public static String STRING = "string";
+    public static boolean MULTIPLE_ALLOWED = true;
+    public static boolean MULTIPLE_NOT_ALLOWED = false;
 }

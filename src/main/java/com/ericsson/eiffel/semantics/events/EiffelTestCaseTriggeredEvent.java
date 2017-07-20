@@ -46,7 +46,7 @@ public class EiffelTestCaseTriggeredEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelTestCaseTriggeredEventLink> links = new ArrayList<EiffelTestCaseTriggeredEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelTestCaseTriggeredEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelTestCaseTriggeredEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelTestCaseTriggeredEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelTestCaseTriggeredEventLink> links) {
         this.links = links;
     }
 

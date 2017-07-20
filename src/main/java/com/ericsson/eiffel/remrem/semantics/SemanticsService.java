@@ -40,6 +40,7 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUS
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Named;
@@ -49,6 +50,7 @@ import org.slf4j.LoggerFactory;
 
 import com.ericsson.eiffel.remrem.protocol.MsgService;
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
+import com.ericsson.eiffel.remrem.semantics.config.LinksConfiguration;
 import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
@@ -76,6 +78,8 @@ import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.Event;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -93,6 +97,11 @@ public class SemanticsService implements MsgService{
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
+    private static final String LINKS = "links";
+    private static final String CAUSE_LINK = "CAUSE";
+    private static final String CONTEXT_LINK = "CONTEXT";
+    private static final String CONFIG_FILE = "linksValidation.properties";
+
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
@@ -184,6 +193,58 @@ public class SemanticsService implements MsgService{
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);
+        linksValidation(eiffelType, jsonObject);
+    }
+
+    public void linksValidation(EiffelEventType eiffelType, JsonObject jsonObject) throws EiffelValidationException {
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        try {
+            List<String> requiredLinks = LinksConfiguration.getRequiredLinks(eiffelType.getEventName());
+            List<String> optionalLinks = LinksConfiguration.getOptionalLinks(eiffelType.getEventName());
+
+            if(requiredLinks == null && optionalLinks == null) {
+                throw new EiffelValidationException(eiffelType.getEventName()+"event links not configured in property file "+CONFIG_FILE);
+            }
+            JsonArray links = jsonObject.getAsJsonObject().getAsJsonArray(LINKS);
+
+            if (links.size() != 0) {
+                for (JsonElement link : links) {
+                    String linkType = link.getAsJsonObject().get("type").getAsString();
+                    Integer count = map.get(linkType);
+                    if (count == null) {
+                        count = 0;
+                    }
+                    count++;
+                    map.put(linkType, count);
+                }
+                if(requiredLinks != null) {
+                    for (String requiredLink : requiredLinks) {
+                        Integer count = map.get(requiredLink);
+                        if(count == null) {
+                            throw new EiffelValidationException("Mandatory links missing");
+                        } else if(count > 1 && !Links.valueOf(requiredLink).isMultipleAllowed()) {
+                            throw new EiffelValidationException("Multiple trace links not allowed for link type " +requiredLink);
+                        }
+                    }
+                }
+                if(map.containsKey(CAUSE_LINK) && map.containsKey(CONTEXT_LINK)) {
+                    throw new EiffelValidationException("Link types " +CAUSE_LINK+" and "+CONTEXT_LINK+" should not be in one event");
+                }
+                for (String optionalLink : optionalLinks) {
+                    Integer count = map.get(optionalLink);
+                    if(count != null && (count > 1 && !Links.valueOf(optionalLink).isMultipleAllowed())) {
+                        throw new EiffelValidationException("Multiple trace links not allowed for link type " +optionalLink);
+                    }
+                }
+            }
+            else if(requiredLinks != null && map.isEmpty()) {
+                throw new EiffelValidationException("Mandatory links missing");
+            }
+        } catch (Exception e) {
+            String message = "Cannot validate given JSON string";
+            log.debug(message, e);
+            throw new EiffelValidationException(message, e);
+        }
     }
 
     @Override

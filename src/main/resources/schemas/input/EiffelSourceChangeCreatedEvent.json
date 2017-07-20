@@ -335,10 +335,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "PREVIOUS_VERSION",
+              "BASE"
+            ]
           },
           "target": {
             "type": "string"

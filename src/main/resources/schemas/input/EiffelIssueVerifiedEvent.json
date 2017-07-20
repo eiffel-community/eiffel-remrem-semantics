@@ -202,10 +202,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "IUT",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "ENVIRONMENT",
+              "VERIFICATION_BASIS"
+            ]
           },
           "target": {
             "type": "string"

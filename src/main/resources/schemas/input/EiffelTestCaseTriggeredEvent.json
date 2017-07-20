@@ -238,10 +238,16 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "IUT",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT"
+            ]
           },
           "target": {
             "type": "string"
