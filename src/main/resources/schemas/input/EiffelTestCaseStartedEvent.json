@@ -177,10 +177,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "TEST_CASE_EXECUTION",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "ENVIRONMENT"
+            ]
           },
           "target": {
             "type": "string"

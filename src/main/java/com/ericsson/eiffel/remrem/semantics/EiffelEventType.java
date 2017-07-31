@@ -57,7 +57,7 @@ public enum EiffelEventType {
         return idMap.get(id);
     }
     
-    String getEventName() {
+    public String getEventName() {
         return id;
     }
 }

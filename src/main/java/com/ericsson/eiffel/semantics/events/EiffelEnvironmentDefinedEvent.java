@@ -46,7 +46,7 @@ public class EiffelEnvironmentDefinedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelEnvironmentDefinedEventLink> links = new ArrayList<EiffelEnvironmentDefinedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelEnvironmentDefinedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelEnvironmentDefinedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelEnvironmentDefinedEventLink> links) {
         this.links = links;
     }
 

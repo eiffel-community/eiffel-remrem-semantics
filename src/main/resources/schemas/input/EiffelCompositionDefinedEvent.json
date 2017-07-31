@@ -163,10 +163,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "PREVIOUS_VERSION",
+              "ELEMENT"
+            ]
           },
           "target": {
             "type": "string"

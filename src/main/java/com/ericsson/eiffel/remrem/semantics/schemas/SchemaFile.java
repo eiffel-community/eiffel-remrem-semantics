@@ -24,6 +24,7 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.ericsson.eiffel.remrem.semantics.config.LinksConfiguration;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -43,7 +44,9 @@ public class SchemaFile {
     private JsonParser parser = new JsonParser();
     private boolean isEvent;
     private boolean isMeta = false;
+    private boolean isLinks = false;
     private boolean isEnumType = false;
+    private boolean isTypeFirst = false;
     private String eventName = null;
 
     /**
@@ -62,6 +65,7 @@ public class SchemaFile {
             JsonObject jsonContent = parser.parse(fileContent).getAsJsonObject();
             JsonObject obj = new JsonObject();
             isEvent = true;
+            isTypeFirst=true;
 
             // Added Java Types and ExtendedTypes to the Json Schema
             addAttributesToJsonSchema(jsonContent, eventName, obj);
@@ -98,6 +102,8 @@ public class SchemaFile {
                 String previousObjectName = jsonElementName;
                 if (name.equals(EiffelConstants.META)) {
                     isMeta = true;
+                }if(name.equals(EiffelConstants.LINKS)){
+                    isLinks = true;
                 }
                 if (name.equals(EiffelConstants.TYPE) && isMeta) {
                     isEnumType = true;
@@ -128,7 +134,7 @@ public class SchemaFile {
                                 list.add("com.ericsson.eiffel.semantics.events.Meta");
                                 jsonObject.add(EiffelConstants.JAVA_INTERFACES, list);
                             } else if (jsonElementName.equals(EiffelConstants.DATA)
-                                    || jsonElementName.equals(EiffelConstants.OUTCOME)) {
+                                    || jsonElementName.equals(EiffelConstants.OUTCOME) || jsonElementName.equals(EiffelConstants.LINK)) {
                                 // Data and Outcome is different at event level
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
@@ -143,6 +149,13 @@ public class SchemaFile {
                         if (jsonElementName.equals(EiffelConstants.TIME)) {
                             jsonObject.add(EiffelConstants.FORMAT, parser.parse(EiffelConstants.UTC_MILLISEC));
                         }
+                    }
+                    if(isTypeFirst && isLinks && valueSet.getKey().equals("type") && valueSet.getValue().toString().equals("\"string\"")){
+                        //Adding required and optional links types to type element under Links
+                        jsonObject.add("enum", parser.parse(LinksConfiguration.getLinks(eventName.toLowerCase().replace("event", "")).toString()));
+                        isLinks = false;
+                        isTypeFirst = false;
+
                     }
                 } else {
                     jsonObject.add(valueSet.getKey(), valueSet.getValue());

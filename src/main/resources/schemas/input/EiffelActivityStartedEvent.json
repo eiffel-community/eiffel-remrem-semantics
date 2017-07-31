@@ -177,10 +177,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityStartedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "ACTIVITY_EXECUTION",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "PREVIOUS_ACTIVITY_EXECUTION"
+            ]
           },
           "target": {
             "type": "string"

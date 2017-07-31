@@ -46,7 +46,7 @@ public class EiffelFlowContextDefinedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelFlowContextDefinedEventLink> links = new ArrayList<EiffelFlowContextDefinedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelFlowContextDefinedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelFlowContextDefinedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelFlowContextDefinedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelFlowContextDefinedEventLink> links) {
         this.links = links;
     }
 

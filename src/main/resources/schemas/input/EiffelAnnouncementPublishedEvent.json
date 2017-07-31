@@ -179,10 +179,16 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT",
+              "MODIFIED_ANNOUNCEMENT"
+            ]
           },
           "target": {
             "type": "string"

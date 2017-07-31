@@ -46,7 +46,7 @@ public class EiffelConfidenceLevelModifiedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelConfidenceLevelModifiedEventLink> links = new ArrayList<EiffelConfidenceLevelModifiedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelConfidenceLevelModifiedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelConfidenceLevelModifiedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelConfidenceLevelModifiedEventLink> links) {
         this.links = links;
     }
 

@@ -46,7 +46,7 @@ public class EiffelActivityStartedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelActivityStartedEventLink> links = new ArrayList<EiffelActivityStartedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelActivityStartedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelActivityStartedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelActivityStartedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelActivityStartedEventLink> links) {
         this.links = links;
     }
 

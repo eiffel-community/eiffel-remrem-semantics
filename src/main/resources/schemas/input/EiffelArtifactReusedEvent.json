@@ -154,10 +154,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "COMPOSITION",
+              "REUSED_ARTIFACT",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT"
+            ]
           },
           "target": {
             "type": "string"

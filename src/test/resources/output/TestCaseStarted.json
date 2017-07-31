@@ -38,7 +38,11 @@
     }]
   },
   "links": [{
-    "type": "LinkTargetType",
-    "target": "LinkTarget"
-  }]
+      "type": "TEST_CASE_EXECUTION",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "ENVIRONMENT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
+    }]
 }

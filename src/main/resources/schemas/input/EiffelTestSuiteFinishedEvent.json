@@ -202,10 +202,16 @@
       "type": "array",
       "items": {
         "type": "object",
-        "javaType": "com.ericsson.eiffel.semantics.events.Link",
+        "javaType": "com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEventLink",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "TEST_SUITE_EXECUTION",
+              "CAUSE",
+              "CONTEXT",
+              "FLOW_CONTEXT"
+            ]
           },
           "target": {
             "type": "string"

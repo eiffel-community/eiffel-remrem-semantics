@@ -46,7 +46,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelTestExecutionRecipeCollectionCreatedEventLink> links = new ArrayList<EiffelTestExecutionRecipeCollectionCreatedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelTestExecutionRecipeCollectionCreatedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelTestExecutionRecipeCollectionCreatedEventLink> links) {
         this.links = links;
     }
 

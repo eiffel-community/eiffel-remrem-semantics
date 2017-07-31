@@ -46,7 +46,7 @@ public class EiffelIssueVerifiedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelIssueVerifiedEventLink> links = new ArrayList<EiffelIssueVerifiedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelIssueVerifiedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelIssueVerifiedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelIssueVerifiedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelIssueVerifiedEventLink> links) {
         this.links = links;
     }
 

@@ -46,7 +46,7 @@ public class EiffelCompositionDefinedEvent
      */
     @SerializedName("links")
     @Expose
-    private List<Link> links = new ArrayList<Link>();
+    private List<EiffelCompositionDefinedEventLink> links = new ArrayList<EiffelCompositionDefinedEventLink>();
 
     /**
      * 
@@ -89,7 +89,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public List<Link> getLinks() {
+    public List<EiffelCompositionDefinedEventLink> getLinks() {
         return links;
     }
 
@@ -98,7 +98,7 @@ public class EiffelCompositionDefinedEvent
      * (Required)
      * 
      */
-    public void setLinks(List<Link> links) {
+    public void setLinks(List<EiffelCompositionDefinedEventLink> links) {
         this.links = links;
     }
 

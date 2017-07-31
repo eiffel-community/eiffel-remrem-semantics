@@ -42,7 +42,7 @@
     }]
   },
   "links": [{
-    "type": "LinkTargetType",
-    "target": "LinkTarget"
-  }]
+      "type": "CAUSE",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    }]
 }

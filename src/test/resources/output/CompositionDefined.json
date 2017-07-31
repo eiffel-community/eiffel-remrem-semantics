@@ -35,7 +35,23 @@
     }]
   },
   "links": [{
-    "type": "LinkTargetType",
-    "target": "LinkTarget"
-  }]
+      "type": "ELEMENT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "ELEMENT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
+    },
+    {
+      "type": "ELEMENT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee3"
+    },
+    {
+      "type": "ELEMENT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee4"
+    },
+    {
+      "type": "PREVIOUS_VERSION",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee5"
+    }]
 }
