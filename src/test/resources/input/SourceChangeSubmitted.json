@@ -71,8 +71,12 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "CHANGE",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "PREVIOUS_VERSION",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
     }]
   }
 }

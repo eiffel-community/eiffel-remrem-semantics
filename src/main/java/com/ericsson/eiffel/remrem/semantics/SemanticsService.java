@@ -184,6 +184,7 @@ public class SemanticsService implements MsgService{
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);
+        validator.linksValidation(eiffelType, jsonObject);
     }
 
     @Override

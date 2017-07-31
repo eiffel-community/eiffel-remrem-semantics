@@ -60,4 +60,6 @@ public final class EiffelConstants {
     public static String PROPERTY = "property";
     public static String ANYOF = "anyOf";
     public static String STRING = "string";
+    public static boolean MULTIPLE_ALLOWED = true;
+    public static boolean MULTIPLE_NOT_ALLOWED = false;
 }

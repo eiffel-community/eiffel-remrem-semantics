@@ -1,3 +1,6 @@
+## 0.2.6
+- Added links validation to events based on the Bordeaux edition of protocol
+
 ## 0.2.5
 - added copyright headers to the source code
 

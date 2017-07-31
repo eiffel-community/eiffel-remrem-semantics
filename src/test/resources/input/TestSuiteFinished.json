@@ -49,8 +49,8 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "TEST_SUITE_EXECUTION",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
     }]
   }
 }

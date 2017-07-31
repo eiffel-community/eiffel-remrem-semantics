@@ -55,8 +55,12 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "IUT",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
     }]
   }
 }
