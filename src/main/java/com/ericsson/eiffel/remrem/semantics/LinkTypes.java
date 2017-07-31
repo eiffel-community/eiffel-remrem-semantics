@@ -16,7 +16,7 @@ package com.ericsson.eiffel.remrem.semantics;
 
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 
-public enum Links {
+public enum LinkTypes {
 
     CAUSE(EiffelConstants.MULTIPLE_ALLOWED),
     CONTEXT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
@@ -42,7 +42,7 @@ public enum Links {
 
     private final boolean multipleAllowed;   
 
-    Links(boolean multipleAllowed) {
+    LinkTypes(boolean multipleAllowed) {
        this.multipleAllowed = multipleAllowed;
    }
 
