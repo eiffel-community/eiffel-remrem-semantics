@@ -40,5 +40,9 @@
   "links": [{
       "type": "ENVIRONMENT",
       "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "TEST_CASE_EXECUTION",
+      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
     }]
 }

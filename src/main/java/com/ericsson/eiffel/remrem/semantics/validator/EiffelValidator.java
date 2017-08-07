@@ -19,6 +19,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,7 +49,8 @@ public class EiffelValidator {
     private static final String LINKS = "links";
     private static final String CAUSE_LINK = "CAUSE";
     private static final String CONTEXT_LINK = "CONTEXT";
-    private static final String CONFIG_FILE = "linksValidation.properties";
+
+    private List<String> linkTypes = Stream.of(LinkTypes.values()).map(LinkTypes::name).collect(Collectors.toList());
 
     public EiffelValidator(String schemaResourceName) {
         this.schemaResourceName = schemaResourceName;
@@ -92,7 +95,7 @@ public class EiffelValidator {
             List<String> optionalLinks = LinksConfiguration.getOptionalLinks(eiffelType.getEventName());
 
             if(requiredLinks == null && optionalLinks == null) {
-                throw new EiffelValidationException(eiffelType.getEventName()+"event links not configured in property file "+CONFIG_FILE);
+                throw new EiffelValidationException(eiffelType.getEventName()+"event links not configured");
             }
             JsonArray links = jsonObject.getAsJsonObject().getAsJsonArray(LINKS);
 
@@ -112,7 +115,10 @@ public class EiffelValidator {
                 }
                 linksSet.removeAll(optionalLinks);
                 if(!linksSet.isEmpty()) {
-                    throw new EiffelValidationException(StringUtils.join(linksSet, ',') + " link types not allowed for event "+eiffelType.getEventName());
+                    linksSet.retainAll(linkTypes);
+                    if(!linksSet.isEmpty()) {
+                            throw new EiffelValidationException(StringUtils.join(linksSet, ',') + " link types not allowed for event "+eiffelType.getEventName());
+                    }
                 }
                 if(requiredLinks != null) {
                     for (String requiredLink : requiredLinks) {
