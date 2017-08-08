@@ -46,9 +46,10 @@ public class EiffelValidator {
     private JsonSchema validationSchema;
     private String schemaResourceName;
 
-    private static final String LINKS = "links";
     private static final String CAUSE_LINK = "CAUSE";
     private static final String CONTEXT_LINK = "CONTEXT";
+
+    private LinksConfiguration linksConfiguration = new LinksConfiguration();
 
     private List<String> linkTypes = Stream.of(LinkTypes.values()).map(LinkTypes::name).collect(Collectors.toList());
 
@@ -88,16 +89,21 @@ public class EiffelValidator {
         }
     }
 
-    public void linksValidation(EiffelEventType eiffelType, JsonObject jsonObject) throws EiffelValidationException {
+    /**
+     * This method is used to validate links in an event
+     * @param eiffelType is an event type
+     * @param jsonObject is links in an event
+     * @throws EiffelValidationException
+     */
+    public void linksValidation(EiffelEventType eiffelType, JsonArray links) throws EiffelValidationException {
         Map<String, Integer> map = new HashMap<String, Integer>();
         try {
-            List<String> requiredLinks = LinksConfiguration.getRequiredLinks(eiffelType.getEventName());
-            List<String> optionalLinks = LinksConfiguration.getOptionalLinks(eiffelType.getEventName());
+            List<String> requiredLinks = linksConfiguration.getRequiredLinks(eiffelType.getEventName());
+            List<String> optionalLinks = linksConfiguration.getOptionalLinks(eiffelType.getEventName());
 
             if(requiredLinks == null && optionalLinks == null) {
                 throw new EiffelValidationException(eiffelType.getEventName()+"event links not configured");
             }
-            JsonArray links = jsonObject.getAsJsonObject().getAsJsonArray(LINKS);
 
             if (links.size() != 0) {
                 for (JsonElement link : links) {

@@ -15,46 +15,51 @@
 package com.ericsson.eiffel.remrem.semantics.config;
 
 import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
  * This class is used to read required and optional links from linksValidation.properties file
- * 
- * @author xumakap
  *
  */
+
 public class LinksConfiguration {
 
-    private static final ResourceBundle links = ResourceBundle.getBundle("linksValidation", Locale.getDefault());
-    private static Enumeration<String> keys = links.getKeys();
+    private ResourceBundle links;
+    private final String REQUIRED_LINKS = "requiredLinks";
+    private final String OPTIONAL_LINKS = "optionalLinks";
+    private final String DOT = ".";
 
-    private static final String REQUIRED_LINKS = "requiredLinks";
-    private static final String OPTIONAL_LINKS = "optionalLinks";
-    static HashMap<String, List<String>> requiredLinksMap = new HashMap<String, List<String>>();
-    static HashMap<String, List<String>> optionalLinksMap = new HashMap<String, List<String>>();
-
-    public static List<String> getRequiredLinks(String eventType) {
-
-        if (requiredLinksMap.size() == 0 || optionalLinksMap.size() == 0) {
-            while (keys.hasMoreElements()) {
-                String key = keys.nextElement();
-                if (key.contains(REQUIRED_LINKS)) {
-                    List<String> requiredLinkslist = links.getString(key).isEmpty() ? null : Arrays.asList(links.getString(key).split(","));
-                    requiredLinksMap.put(key.split("\\.")[0], requiredLinkslist);
-                } else if (key.contains(OPTIONAL_LINKS)) {
-                    List<String> optionalLinkslist = links.getString(key).isEmpty() ? null : Arrays.asList(links.getString(key).split(","));
-                    optionalLinksMap.put(key.split("\\.")[0], optionalLinkslist);
-                }
-            }
-        }
-        return requiredLinksMap.get(eventType);
+    public LinksConfiguration() {
+        links = ResourceBundle.getBundle("linksValidation", Locale.getDefault());
     }
 
-    public static List<String> getOptionalLinks(String eventType) {
-        return optionalLinksMap.get(eventType);
+    /**
+     * This method is used to get required link types from property file based on event type
+     * @param eventType
+     * @return Required link types list
+     */
+    public List<String> getRequiredLinks(String eventType) {
+        String key = eventType + DOT + REQUIRED_LINKS;
+        List<String> requiredLinkslist = null;
+        if(links.containsKey(key)) {
+            requiredLinkslist = links.getString(key).isEmpty() ? null : Arrays.asList(links.getString(key).split(","));
+        }
+        return requiredLinkslist;
+    }
+
+    /**
+     * This method is used to get optional link types from property file based on event type
+     * @param eventType
+     * @return Optional link types list
+     */
+    public List<String> getOptionalLinks(String eventType) {
+        String key = eventType + DOT + OPTIONAL_LINKS;
+        List<String> optionalLinkslist = null;
+        if(links.containsKey(key)) {
+            optionalLinkslist = links.getString(key).isEmpty() ? null : Arrays.asList(links.getString(key).split(","));
+        }
+        return optionalLinkslist;
     }
 }
