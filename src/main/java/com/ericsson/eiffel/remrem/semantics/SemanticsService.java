@@ -93,7 +93,6 @@ public class SemanticsService implements MsgService{
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
-    private static final String LINKS = "links";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
@@ -185,7 +184,6 @@ public class SemanticsService implements MsgService{
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
         validator.validate(jsonObject);
-        validator.linksValidation(eiffelType, jsonObject.get(LINKS).getAsJsonArray());
     }
 
     @Override
