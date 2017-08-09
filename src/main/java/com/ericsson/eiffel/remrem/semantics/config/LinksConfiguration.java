@@ -58,17 +58,6 @@ public class LinksConfiguration {
         return getLinkTypesFromConfiguration(key);
     }
 
-    private List<String> getLinkTypesFromConfiguration(String key) {
-        List<String> linkTypeList = new ArrayList<String>();
-        try {
-            if (!links.getString(key).isEmpty()) {
-                linkTypeList = Arrays.asList(links.getString(key).split(","));
-            }
-            return linkTypeList;
-        } catch (MissingResourceException e) {
-            return linkTypeList;
-        }
-    }
     /**
      * This method is used to get optional link types based on event type
      * @param eventType of an Eiffel event
@@ -80,7 +69,13 @@ public class LinksConfiguration {
         return getLinkTypesFromConfiguration(key);
     }
 
-    /*private List<String> getLinkTypesFromConfiguration(String key) {
+    /**
+     * This method is used to get link types based on key
+     * @param key is <eventType>.requiredLinks or <eventType>.optionalLinks
+     *     For Eg: eiffelactivitycanceled.requiredLinks, eiffelactivitycanceled.optionalLinks
+     * @return list of link types for an event else return an empty list
+     */
+    private List<String> getLinkTypesFromConfiguration(String key) {
         List<String> linkTypeList = new ArrayList<String>();
         try {
             if (!links.getString(key).isEmpty()) {
@@ -90,7 +85,7 @@ public class LinksConfiguration {
         } catch (MissingResourceException e) {
             return linkTypeList;
         }
-    }*/
+    }
 
     /**
      * This method is used to get all link types from LinkTypes Enum

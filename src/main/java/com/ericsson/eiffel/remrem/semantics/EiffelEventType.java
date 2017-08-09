@@ -41,32 +41,32 @@ public enum EiffelEventType {
     ISSUE_VERIFIED("eiffelissueverified"),
     ARTIFACT_REUSED("eiffelartifactreused");
     
-    private String eventName;
+    private String eventType;
 
-    EiffelEventType(String eventName) {
-        this.eventName = eventName;
+    EiffelEventType(String eventType) {
+        this.eventType = eventType;
     }
 
-    static HashMap<String, EiffelEventType> eventNameMap = new HashMap<String, EiffelEventType>();
+    static HashMap<String, EiffelEventType> eventTypeMap = new HashMap<String, EiffelEventType>();
 
     /**
-     * This method used to get EiffelEventType Enum constant based on event name
-     * @param eventName of an eiffel event
+     * This method used to get EiffelEventType Enum constant based on event type
+     * @param eventType of an eiffel event
      * @return Enum constant of EiffelEventType
      */
-    public static EiffelEventType fromString(String eventName) {
-        if (eventNameMap.size() == 0) {
+    public static EiffelEventType fromString(String eventType) {
+        if (eventTypeMap.size() == 0) {
             for (EiffelEventType type : values())
-                eventNameMap.put(type.eventName, type);
+                eventTypeMap.put(type.eventType, type);
         }
-        return eventNameMap.get(eventName);
+        return eventTypeMap.get(eventType);
     }
 
     /**
-     * This method used to get event name of an eiffel event based on Enum constant
-     * @return event name of an eiffel event
+     * This method used to get event type of an eiffel event based on Enum constant
+     * @return event type of an eiffel event
      */
     public String getEventName() {
-        return eventName;
+        return eventType;
     }
 }
