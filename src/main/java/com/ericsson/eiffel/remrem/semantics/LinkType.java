@@ -16,7 +16,11 @@ package com.ericsson.eiffel.remrem.semantics;
 
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 
-public enum LinkTypes {
+/**
+ * This class contains list of link types and multiple tracability for those link types.
+ *
+ */
+public enum LinkType {
 
     CAUSE(EiffelConstants.MULTIPLE_ALLOWED),
     CONTEXT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
@@ -42,10 +46,15 @@ public enum LinkTypes {
 
     private final boolean multipleAllowed;   
 
-    LinkTypes(boolean multipleAllowed) {
+    LinkType(boolean multipleAllowed) {
        this.multipleAllowed = multipleAllowed;
    }
 
+   /**
+    * This method checks multiple traces allowed for a link type
+    * @return true if multiple traces allowed for the link type
+    *         false if multiple traces not allowed for the link type
+    */
    public boolean isMultipleAllowed() {
        return multipleAllowed;
    }

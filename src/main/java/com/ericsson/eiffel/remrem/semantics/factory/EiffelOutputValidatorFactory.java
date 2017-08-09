@@ -46,120 +46,120 @@ import java.util.EnumMap;
 
 public class EiffelOutputValidatorFactory {
 
-    private static LinksConfiguration linksConfiguration = new LinksConfiguration();
+    private static final LinksConfiguration linksConfiguration = new LinksConfiguration();
     private static final EnumMap<EiffelEventType, EiffelValidator> validators = new EnumMap<>(EiffelEventType.class);
 
     static {
         String eventType = ACTIVITY_FINISHED.getEventName();
         validators.put(ACTIVITY_FINISHED,
                 new OutputValidator("schemas/input/EiffelActivityFinishedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ARTIFACT_PUBLISHED.getEventName();
         validators.put(ARTIFACT_PUBLISHED,
                 new OutputValidator("schemas/input/EiffelArtifactPublishedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ARTIFACT_CREATED.getEventName();
         validators.put(ARTIFACT_CREATED,
                 new OutputValidator("schemas/input/EiffelArtifactCreatedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ACTIVITY_STARTED.getEventName();
         validators.put(ACTIVITY_STARTED,
                 new OutputValidator("schemas/input/EiffelActivityStartedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ACTIVITY_CANCELED.getEventName();
         validators.put(ACTIVITY_CANCELED,
                 new OutputValidator("schemas/input/EiffelActivityCanceledEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ACTIVITY_TRIGGERED.getEventName();
         validators.put(ACTIVITY_TRIGGERED,
                 new OutputValidator("schemas/input/EiffelActivityTriggeredEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ANNOUNCEMENT_PUBLISHED.getEventName();
         validators.put(ANNOUNCEMENT_PUBLISHED,
                 new OutputValidator("schemas/input/EiffelAnnouncementPublishedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = COMPOSITION_DEFINED.getEventName();
         validators.put(COMPOSITION_DEFINED,
                 new OutputValidator("schemas/input/EiffelCompositionDefinedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTCASE_CANCELED.getEventName();
         validators.put(TESTCASE_CANCELED,
                 new OutputValidator("schemas/input/EiffelTestCaseCanceledEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTCASE_TRIGGERED.getEventName();
         validators.put(TESTCASE_TRIGGERED,
                 new OutputValidator("schemas/input/EiffelTestCaseTriggeredEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = EXECUTION_RECIPE_COLLECTION_CREATED.getEventName();
         validators.put(EXECUTION_RECIPE_COLLECTION_CREATED,
                 new OutputValidator("schemas/input/EiffelTestExecutionRecipeCollectionCreatedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ENVIRONMENT_DEFINED.getEventName();
         validators.put(ENVIRONMENT_DEFINED,
                 new OutputValidator("schemas/input/EiffelEnvironmentDefinedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = FLOWCONTEXT_DEFINED.getEventName();
         validators.put(FLOWCONTEXT_DEFINED,
                 new OutputValidator("schemas/input/EiffelFlowContextDefinedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = SOURCECHANGE_CREATED.getEventName();
         validators.put(SOURCECHANGE_CREATED,
                 new OutputValidator("schemas/input/EiffelSourceChangeCreatedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = SOURCECHANGE_SUBMITTED.getEventName();
         validators.put(SOURCECHANGE_SUBMITTED,
                 new OutputValidator("schemas/input/EiffelSourceChangeSubmittedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTCASE_FINISHED.getEventName();
         validators.put(TESTCASE_FINISHED,
                 new OutputValidator("schemas/input/EiffelTestCaseFinishedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTCASE_STARTED.getEventName();
         validators.put(TESTCASE_STARTED,
                 new OutputValidator("schemas/input/EiffelTestCaseStartedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTSUITE_FINISHED.getEventName();
         validators.put(TESTSUITE_FINISHED,
                 new OutputValidator("schemas/input/EiffelTestSuiteFinishedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = TESTSUITE_STARTED.getEventName();
         validators.put(TESTSUITE_STARTED,
                 new OutputValidator("schemas/input/EiffelTestSuiteStartedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ISSUE_VERIFIED.getEventName();
         validators.put(ISSUE_VERIFIED,
                 new OutputValidator("schemas/input/EiffelIssueVerifiedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = ARTIFACT_REUSED.getEventName();
         validators.put(ARTIFACT_REUSED,
                 new OutputValidator("schemas/input/EiffelArtifactReusedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
         eventType = CONFIDENCELEVEL_MODIFIED.getEventName();
         validators.put(CONFIDENCELEVEL_MODIFIED,
                 new OutputValidator("schemas/input/EiffelConfidenceLevelModifiedEvent.json", eventType,
-                        linksConfiguration.getRequiredLinks(eventType), linksConfiguration.getOptionalLinks(eventType),
-                        linksConfiguration.getLinkTypes()));
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
     }
 
     public static EiffelValidator getEiffelValidator(EiffelEventType type) {

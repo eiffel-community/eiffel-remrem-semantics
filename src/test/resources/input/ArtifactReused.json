@@ -40,15 +40,15 @@
     },
     "links": [{
       "type": "CONTEXT",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
       "type": "REUSED_ARTIFACT",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     },
     {
       "type": "COMPOSITION",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee3"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee3"
     }]
   }
 }

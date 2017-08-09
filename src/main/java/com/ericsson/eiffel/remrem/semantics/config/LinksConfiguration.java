@@ -18,63 +18,85 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.ericsson.eiffel.remrem.semantics.LinkTypes;
+import com.ericsson.eiffel.remrem.semantics.LinkType;
 
 /**
- * This class is used to read required and optional links from linksValidation.properties file
+ * This class is used to read required and optional link types from linksValidation.properties file
  *
  */
 
 public class LinksConfiguration {
 
     private ResourceBundle links;
-    private List<String> linkTypes;
+    private List<String> allLinkTypes;
     private final String REQUIRED_LINKS = "requiredLinks";
     private final String OPTIONAL_LINKS = "optionalLinks";
     private final String DOT = ".";
 
+    /**
+     * Initializes links of type ResourceBundle from linksValidation property file and
+     *        allLinkTypes of type list from LinkType Enum class
+     */
     public LinksConfiguration() {
         links = ResourceBundle.getBundle("linksValidation", Locale.getDefault());
-        linkTypes = Stream.of(LinkTypes.values()).map(LinkTypes::name).collect(Collectors.toList());
+        allLinkTypes = Stream.of(LinkType.values()).map(LinkType::name).collect(Collectors.toList());
     }
 
     /**
-     * This method is used to get required link types from property file based on event type
-     * @param eventType
-     * @return Required link types list if event has required link types otherwise return empty list
+     * This method is used to get required link types based on event type
+     * @param eventType of an Eiffel event
+     *          For Eg: eiffelartifactpublished, eiffelactivityfinished
+     * @return list of link types required for an event else return an empty list
      */
-    public List<String> getRequiredLinks(String eventType) {
+    public List<String> getRequiredLinkTypes(String eventType) {
         String key = eventType + DOT + REQUIRED_LINKS;
-        List<String> requiredLinkslist = new ArrayList<String>();
-        if(links.containsKey(key)) {
-            requiredLinkslist = links.getString(key).isEmpty() ? requiredLinkslist : Arrays.asList(links.getString(key).split(","));
-        }
-        return requiredLinkslist;
+        return getLinkTypesFromConfiguration(key);
     }
 
-    /**
-     * This method is used to get optional link types from property file based on event type
-     * @param eventType
-     * @return Optional link types list if event has optional link types otherwise return empty list
-     */
-    public List<String> getOptionalLinks(String eventType) {
-        String key = eventType + DOT + OPTIONAL_LINKS;
-        List<String> optionalLinkslist = new ArrayList<String>();
-        if(links.containsKey(key)) {
-            optionalLinkslist = links.getString(key).isEmpty() ? optionalLinkslist : Arrays.asList(links.getString(key).split(","));
+    private List<String> getLinkTypesFromConfiguration(String key) {
+        List<String> linkTypeList = new ArrayList<String>();
+        try {
+            if (!links.getString(key).isEmpty()) {
+                linkTypeList = Arrays.asList(links.getString(key).split(","));
+            }
+            return linkTypeList;
+        } catch (MissingResourceException e) {
+            return linkTypeList;
         }
-        return optionalLinkslist;
     }
+    /**
+     * This method is used to get optional link types based on event type
+     * @param eventType of an Eiffel event
+     *          For Eg: eiffelartifactpublished, eiffelactivityfinished
+     * @return list of optional link types for an event else return an empty list
+     */
+    public List<String> getOptionalLinkTypes(String eventType) {
+        String key = eventType + DOT + OPTIONAL_LINKS;
+        return getLinkTypesFromConfiguration(key);
+    }
+
+    /*private List<String> getLinkTypesFromConfiguration(String key) {
+        List<String> linkTypeList = new ArrayList<String>();
+        try {
+            if (!links.getString(key).isEmpty()) {
+                linkTypeList = Arrays.asList(links.getString(key).split(","));
+            }
+            return linkTypeList;
+        } catch (MissingResourceException e) {
+            return linkTypeList;
+        }
+    }*/
 
     /**
      * This method is used to get all link types from LinkTypes Enum
-     * @return link types list
+     * @return list of all link types
      */
-    public List<String> getLinkTypes() {
-        return linkTypes;
+    public List<String> getAllLinkTypes() {
+        return allLinkTypes;
     }
 }

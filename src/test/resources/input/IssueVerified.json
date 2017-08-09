@@ -48,19 +48,19 @@
     },
     "links": [{
       "type": "VERIFICATION_BASIS",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee1"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
       "type": "CAUSE",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee2"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     },
     {
       "type": "IUT",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee3"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee3"
     },
     {
       "type": "ENVIRONMENT",
-      "target": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeee4"
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee4"
     }]
   }
 }
