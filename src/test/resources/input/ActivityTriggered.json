@@ -54,8 +54,8 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "CAUSE",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     }]
   }
 }

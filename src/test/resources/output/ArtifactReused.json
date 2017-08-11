@@ -33,7 +33,15 @@
     }]
   },
   "links": [{
-    "type": "LinkTargetType",
-    "target": "LinkTarget"
-  }]
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "REUSED_ARTIFACT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    },
+    {
+      "type": "COMPOSITION",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee3"
+    }]
 }

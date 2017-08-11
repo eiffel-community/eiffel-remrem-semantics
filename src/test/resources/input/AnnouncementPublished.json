@@ -42,8 +42,12 @@
       ]
     },
     "links": [{
-      "type": "LinkTargetType",
-      "target": "LinkTarget"
+      "type": "MODIFIED_ANNOUNCEMENT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "FLOW_CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     }]
   }
 }

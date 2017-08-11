@@ -14,11 +14,13 @@
 */
 package com.ericsson.eiffel.remrem.semantics.validator;
 
+import java.util.List;
+
 /**
  * Created by ehenkan on 5/27/16.
  */
 public class OutputValidator extends EiffelValidator {
-    public OutputValidator(String schemaResourceName) {
-        super(schemaResourceName);
+    public OutputValidator(String schemaResourceName,String eventType, List<String> requiredLinkTypes, List<String> optionalLinkTypes, List<String> allLinkTypes) {
+        super(schemaResourceName, eventType, requiredLinkTypes, optionalLinkTypes, allLinkTypes);
     }
 }
