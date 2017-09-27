@@ -4,7 +4,7 @@
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+ 
     http://www.apache.org/licenses/LICENSE-2.0
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -164,8 +164,8 @@ public class EiffelTestCaseCanceledEventMeta implements Meta
 
     public enum Type {
 
-        @SerializedName("eiffeltestcasecanceled")
-        EIFFELTESTCASECANCELED("eiffeltestcasecanceled");
+        @SerializedName("EiffelTestCaseCanceledEvent")
+        EIFFEL_TEST_CASE_CANCELED_EVENT("EiffelTestCaseCanceledEvent");
         private final String value;
         private final static Map<String, EiffelTestCaseCanceledEventMeta.Type> CONSTANTS = new HashMap<String, EiffelTestCaseCanceledEventMeta.Type>();
 

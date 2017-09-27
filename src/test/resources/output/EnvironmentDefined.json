@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "47560f3d-d46e-41fe-aecb-08ded542e625",
-    "type": "eiffelenvironmentdefined",
+    "type": "EiffelEnvironmentDefinedEvent",
     "version": "1.0.0",
     "time": 1499076743604,
     "tags": ["tag1", "tag2"],

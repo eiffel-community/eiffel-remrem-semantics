@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffelissueverified",
+      "type": "EiffelIssueVerifiedEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",

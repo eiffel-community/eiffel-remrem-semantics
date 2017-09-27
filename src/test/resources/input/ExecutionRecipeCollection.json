@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffeltestexecutionrecipecollectioncreated",
+      "type": "EiffelTestExecutionRecipeCollectionCreatedEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",

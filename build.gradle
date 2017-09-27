@@ -48,7 +48,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.6'
+    version =  '0.2.7'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -64,7 +64,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.6'
+    version =  '0.2.7'
     classifier = ''
 }
 
@@ -139,8 +139,11 @@ task runJava(type:JavaExec){
 //please set 'runJava.enabled= true' to execute the :runJava task if needed only.
 runJava.enabled=false;
 
-//To execute the task compileSourceCode first in gradle build.
-compileSourceCode.execute()
+/*To execute the task compileSourceCode first in gradle build when runJava.enabled=true
+
+please uncomment this compileSourceCode.execute() when runJava method enabled(runJava.enabled=true)*/
+
+//compileSourceCode.execute();
 
 //To execute the runJava task before jsonSchema2pojo plugin execution .
 generateJsonSchema2Pojo.dependsOn runJava

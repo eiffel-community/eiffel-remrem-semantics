@@ -18,28 +18,28 @@ import java.util.HashMap;
 
 
 public enum EiffelEventType {
-    ARTIFACT_PUBLISHED("eiffelartifactpublished"),
-    ACTIVITY_FINISHED("eiffelactivityfinished"),
-    ACTIVITY_CANCELED("eiffelactivitycanceled"),
-    ARTIFACT_CREATED("eiffelartifactcreated"),
-    ACTIVITY_TRIGGERED("eiffelactivitytriggered"),
-    CONFIDENCELEVEL_MODIFIED("eiffelconfidencelevelmodified"),
-    ACTIVITY_STARTED("eiffelactivitystarted"),
-    ANNOUNCEMENT_PUBLISHED("eiffelannouncementpublished"),
-    COMPOSITION_DEFINED("eiffelcompositiondefined"),
-    TESTCASE_CANCELED("eiffeltestcasecanceled"),
-    TESTCASE_TRIGGERED("eiffeltestcasetriggered"),
-    EXECUTION_RECIPE_COLLECTION_CREATED("eiffeltestexecutionrecipecollectioncreated"),
-    ENVIRONMENT_DEFINED("eiffelenvironmentdefined"),
-    FLOWCONTEXT_DEFINED("eiffelflowcontextdefined"),
-    SOURCECHANGE_CREATED("eiffelsourcechangecreated"),
-    SOURCECHANGE_SUBMITTED("eiffelsourcechangesubmitted"),
-    TESTCASE_FINISHED("eiffeltestcasefinished"),
-    TESTCASE_STARTED("eiffeltestcasestarted"),
-    TESTSUITE_FINISHED("eiffeltestsuitefinished"),
-    TESTSUITE_STARTED("eiffeltestsuitestarted"),
-    ISSUE_VERIFIED("eiffelissueverified"),
-    ARTIFACT_REUSED("eiffelartifactreused");
+    ARTIFACT_PUBLISHED("EiffelArtifactPublishedEvent"),
+    ACTIVITY_FINISHED("EiffelActivityFinishedEvent"),
+    ACTIVITY_CANCELED("EiffelActivityCanceledEvent"),
+    ARTIFACT_CREATED("EiffelArtifactCreatedEvent"),
+    ACTIVITY_TRIGGERED("EiffelActivityTriggeredEvent"),
+    CONFIDENCELEVEL_MODIFIED("EiffelConfidenceLevelModifiedEvent"),
+    ACTIVITY_STARTED("EiffelActivityStartedEvent"),
+    ANNOUNCEMENT_PUBLISHED("EiffelAnnouncementPublishedEvent"),
+    COMPOSITION_DEFINED("EiffelCompositionDefinedEvent"),
+    TESTCASE_CANCELED("EiffelTestCaseCanceledEvent"),
+    TESTCASE_TRIGGERED("EiffelTestCaseTriggeredEvent"),
+    EXECUTION_RECIPE_COLLECTION_CREATED("EiffelTestExecutionRecipeCollectionCreatedEvent"),
+    ENVIRONMENT_DEFINED("EiffelEnvironmentDefinedEvent"),
+    FLOWCONTEXT_DEFINED("EiffelFlowContextDefinedEvent"),
+    SOURCECHANGE_CREATED("EiffelSourceChangeCreatedEvent"),
+    SOURCECHANGE_SUBMITTED("EiffelSourceChangeSubmittedEvent"),
+    TESTCASE_FINISHED("EiffelTestCaseFinishedEvent"),
+    TESTCASE_STARTED("EiffelTestCaseStartedEvent"),
+    TESTSUITE_FINISHED("EiffelTestSuiteFinishedEvent"),
+    TESTSUITE_STARTED("EiffelTestSuiteStartedEvent"),
+    ISSUE_VERIFIED("EiffelIssueVerifiedEvent"),
+    ARTIFACT_REUSED("EiffelArtifactReusedEvent");
     
     private String eventType;
 
@@ -51,15 +51,16 @@ public enum EiffelEventType {
 
     /**
      * This method used to get EiffelEventType Enum constant based on event type
+     * Supports eventType, if we passed as lower case from cli and service and also check eventType is valid or not
      * @param eventType of an eiffel event
      * @return Enum constant of EiffelEventType
      */
     public static EiffelEventType fromString(String eventType) {
         if (eventTypeMap.size() == 0) {
             for (EiffelEventType type : values())
-                eventTypeMap.put(type.eventType, type);
+                eventTypeMap.put(type.eventType.toLowerCase(), type);
         }
-        return eventTypeMap.get(eventType);
+        return eventTypeMap.get(eventType.toLowerCase().replace("event", "") + "event");
     }
 
     /**

@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "d34af25b-0745-411c-b7e7-83c7dfddca6f",
-    "type": "eiffelactivitycanceled",
+    "type": "EiffelActivityCanceledEvent",
     "version": "1.0.0",
     "time": 1499076742953,
     "tags": ["tag1", "tag2"],

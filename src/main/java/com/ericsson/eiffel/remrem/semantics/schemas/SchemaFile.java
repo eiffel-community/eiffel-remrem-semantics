@@ -43,7 +43,6 @@ public class SchemaFile {
     private JsonParser parser = new JsonParser();
     private boolean isEvent;
     private boolean isMeta = false;
-    private boolean isEnumType = false;
     private String eventName = null;
 
     /**
@@ -100,7 +99,6 @@ public class SchemaFile {
                     isMeta = true;
                 }
                 if (name.equals(EiffelConstants.TYPE) && isMeta) {
-                    isEnumType = true;
                     isMeta = false;
                 }
                 addingItemsProperties(name, valueSet.getValue(), jsonObject, previousObjectName);
@@ -146,14 +144,6 @@ public class SchemaFile {
                     }
                 } else {
                     jsonObject.add(valueSet.getKey(), valueSet.getValue());
-                    if (valueSet.getKey().equals(EiffelConstants.ENUM)) {
-                        if (isEnumType) {
-                            // To change the eventType in meta
-                            jsonObject.add(valueSet.getKey(),
-                                    parser.parse(valueSet.getValue().toString().toLowerCase().replace("event", "")));
-                            isEnumType = false;
-                        }
-                    }
                 }
             }
         }

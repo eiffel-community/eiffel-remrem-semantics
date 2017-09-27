@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "e59e1757-ea9a-44e9-b7ab-3080eb780d2b",
-    "type": "eiffelartifactreused",
+    "type": "EiffelArtifactReusedEvent",
     "version": "1.0.0",
     "time": 1499076743568,
     "tags": ["tag1", "tag2"],

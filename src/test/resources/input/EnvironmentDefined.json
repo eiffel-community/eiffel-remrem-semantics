@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffelenvironmentdefined",
+      "type": "EiffelEnvironmentDefinedEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",

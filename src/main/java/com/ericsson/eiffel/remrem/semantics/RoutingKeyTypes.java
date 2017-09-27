@@ -18,27 +18,26 @@ import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 
 public enum RoutingKeyTypes {    
     
-    eiffelactivitycanceled(EiffelConstants.ACTIVITY, "canceled"),
-    eiffelactivityfinished(EiffelConstants.ACTIVITY,"finished"),
-    eiffelactivitystarted(EiffelConstants.ACTIVITY,"started"),
-    eiffelactivitytriggered(EiffelConstants.ACTIVITY,"triggered"),
-    eiffelannouncementpublished(EiffelConstants.INFO,"announcement"),
-    eiffelartifactcreated(EiffelConstants.ARTIFACT,"created"),
-    eiffelartifactpublished(EiffelConstants.ARTIFACT,"published"),
-    eiffelartifactreused(EiffelConstants.ARTIFACT,"reused"),
-    eiffelcompositiondefined(EiffelConstants.CM,"composition"),
-    eiffelconfidencelevelmodified(EiffelConstants.ARTIFACT,"modified"),
-    eiffelconfigurationapplied(EiffelConstants.CONFIGURATION,"applied"),
-    eiffelenvironmentdefined(EiffelConstants.CM,"environment"),
-    eiffelflowcontextdefined(EiffelConstants.FLOWCONTEXT,"defined"),
-    eiffelissueverified(EiffelConstants.TEST,"issueverified"),
-    eiffelsourcechangecreated(EiffelConstants.CM,"scmchange"),
-    eiffelsourcechangesubmitted(EiffelConstants.CM,"scmproposedchange"),
-    eiffeltestcasefinished(EiffelConstants.TEST,"casefinished"),
-    eiffeltestcasestarted(EiffelConstants.TEST,"casestarted"),
-    eiffeltestsuitefinished(EiffelConstants.TEST,"suitefinished"),
-    eiffeltestsuitestarted(EiffelConstants.TEST,"suitestarted"),
-    eiffeltestexecutionrecipecollectioncreated(EiffelConstants.TEST,"execution");
+	EiffelActivityCanceledEvent(EiffelConstants.ACTIVITY, "canceled"),
+    EiffelActivityFinishedEvent(EiffelConstants.ACTIVITY,"finished"),
+    EiffelActivityStartedEvent(EiffelConstants.ACTIVITY,"started"),
+    EiffelActivityTriggeredEvent(EiffelConstants.ACTIVITY,"triggered"),
+    EiffelAnnouncementPublishedEvent(EiffelConstants.INFO,"announcement"),
+    EiffelArtifactCreatedEvent(EiffelConstants.ARTIFACT,"created"),
+    EiffelArtifactPublishedEvent(EiffelConstants.ARTIFACT,"published"),
+    EiffelArtifactReusedEvent(EiffelConstants.ARTIFACT,"reused"),
+    EiffelCompositionDefinedEvent(EiffelConstants.CM,"composition"),
+    EiffelConfidenceLevelModifiedEvent(EiffelConstants.ARTIFACT,"modified"),
+    EiffelEnvironmentDefinedEvent(EiffelConstants.CM,"environment"),
+    EiffelFlowContextDefinedEvent(EiffelConstants.FLOWCONTEXT,"defined"),
+    EiffelIssueVerifiedEvent(EiffelConstants.TEST,"issueverified"),
+    EiffelSourceChangeCreatedEvent(EiffelConstants.CM,"scmchange"),
+    EiffelSourceChangeSubmittedEvent(EiffelConstants.CM,"scmproposedchange"),
+    EiffelTestCaseFinishedEvent(EiffelConstants.TEST,"casefinished"),
+    EiffelTestCaseStartedEvent(EiffelConstants.TEST,"casestarted"),
+    EiffelTestSuiteFinishedEvent(EiffelConstants.TEST,"suitefinished"),
+    EiffelTestSuiteStartedEvent(EiffelConstants.TEST,"suitestarted"),
+    EiffelTestExecutionRecipeCollectionCreatedEvent(EiffelConstants.TEST,"execution");
            
     private final String family;   // family
      private final String type; // type

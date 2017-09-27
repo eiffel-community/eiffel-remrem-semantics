@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffeltestcasecanceled",
+      "type": "EiffelTestCaseCanceledEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",
