@@ -4,7 +4,7 @@
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+ 
     http://www.apache.org/licenses/LICENSE-2.0
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -164,8 +164,8 @@ public class EiffelCompositionDefinedEventMeta implements Meta
 
     public enum Type {
 
-        @SerializedName("eiffelcompositiondefined")
-        EIFFELCOMPOSITIONDEFINED("eiffelcompositiondefined");
+        @SerializedName("EiffelCompositionDefinedEvent")
+        EIFFEL_COMPOSITION_DEFINED_EVENT("EiffelCompositionDefinedEvent");
         private final String value;
         private final static Map<String, EiffelCompositionDefinedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelCompositionDefinedEventMeta.Type>();
 

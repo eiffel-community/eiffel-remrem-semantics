@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffelconfidencelevelmodified",
+      "type": "EiffelConfidenceLevelModifiedEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",

@@ -17,7 +17,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "eiffelactivitycanceled"
+            "EiffelActivityCanceledEvent"
           ]
         },
         "version": {

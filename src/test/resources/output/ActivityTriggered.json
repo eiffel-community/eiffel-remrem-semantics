@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "e3ce725b-9376-4e5e-9f13-c04d82e8f35e",
-    "type": "eiffelactivitytriggered",
+    "type": "EiffelActivityTriggeredEvent",
     "version": "1.0.0",
     "time": 1499153257788,
     "tags": ["tag1", "tag2"],

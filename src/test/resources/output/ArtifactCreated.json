@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "a21b737e-cc8a-4d97-b6d7-eb84600999bd",
-    "type": "eiffelartifactcreated",
+    "type": "EiffelArtifactCreatedEvent",
     "version": "1.0.0",
     "time": 1499076743424,
     "tags": ["tag1", "tag2"],

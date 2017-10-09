@@ -1,7 +1,7 @@
 {
   "meta": {
     "id": "4b0bbf9b-50fe-46b0-97b0-02c09def1806",
-    "type": "eiffeltestcasecanceled",
+    "type": "EiffelTestCaseCanceledEvent",
     "version": "1.0.0",
     "time": 1499076743066,
     "tags": ["tag1", "tag2"],

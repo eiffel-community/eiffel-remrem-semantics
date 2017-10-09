@@ -1,7 +1,7 @@
 {
   "msgParams": {
     "meta": {
-      "type": "eiffelsourcechangecreated",
+      "type": "EiffelSourceChangeCreatedEvent",
       "version": "1.0.0",
       "tags": [
         "tag1",

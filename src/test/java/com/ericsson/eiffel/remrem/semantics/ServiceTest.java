@@ -61,28 +61,28 @@ import com.google.gson.JsonSyntaxException;
 
 public class ServiceTest {
 
-    private String ACTIVITY_FINISHED = "eiffelactivityfinished";
-    private String ARTIFACT_PUBLISHED = "eiffelartifactpublished";
-    private String ARTIFACT_CREATED = "eiffelartifactcreated";
-    private String ACTIVITY_TRIGGERED = "eiffelactivitytriggered";
-    private String ACTIVITY_STARTED = "eiffelactivitystarted";
-    private String ACTIVITY_CANCELED = "eiffelactivitycanceled";
-    private String CONFIDENCELEVEL_MODIFIED = "eiffelconfidencelevelmodified";
-    private String ANNOUNCEMENT_PUBLISHED = "eiffelannouncementpublished";
-    private String COMPOSITION_DEFINED = "eiffelcompositiondefined";
-    private String ENVIRONMENT_DEFINED = "eiffelenvironmentdefined";
-    private String FLOWCONTEXT_DEFINED = "eiffelflowcontextdefined";
-    private String SOURCECHANGE_CREATED = "eiffelsourcechangecreated";
-    private String SOURCECHANGE_SUBMITTED = "eiffelsourcechangesubmitted";
-    private String TESTCASE_FINISHED = "eiffeltestcasefinished";
-    private String TESTCASE_STARTED = "eiffeltestcasestarted";
-    private String TESTSUITE_FINISHED = "eiffeltestsuitefinished";
-    private String TESTSUITE_STARTED = "eiffeltestsuitestarted";
-    private String ISSUE_VERIFIED = "eiffelissueverified";
-    private String ARTIFACT_REUSED = "eiffelartifactreused";
-    private String TESTCASE_CANCELED="eiffeltestcasecanceled";
-    private String TESTCASE_TRIGGERED="eiffeltestcasetriggered";
-    private String EXECUTION_RECIPE_COLLECTION_CREATED="eiffeltestexecutionrecipecollectioncreated";
+    private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
+    private String ARTIFACT_PUBLISHED = "EiffelArtifactPublishedEvent";
+    private String ARTIFACT_CREATED = "EiffelArtifactCreatedEvent";
+    private String ACTIVITY_TRIGGERED = "EiffelActivityTriggeredEvent";
+    private String ACTIVITY_STARTED = "EiffelActivityStartedEvent";
+    private String ACTIVITY_CANCELED = "EiffelActivityCanceledEvent";
+    private String CONFIDENCELEVEL_MODIFIED = "EiffelConfidenceLevelModifiedEvent";
+    private String ANNOUNCEMENT_PUBLISHED = "EiffelAnnouncementPublishedEvent";
+    private String COMPOSITION_DEFINED = "EiffelCompositionDefinedEvent";
+    private String ENVIRONMENT_DEFINED = "EiffelEnvironmentDefinedEvent";
+    private String FLOWCONTEXT_DEFINED = "EiffelFlowContextDefinedEvent";
+    private String SOURCECHANGE_CREATED = "EiffelSourceChangeCreatedEvent";
+    private String SOURCECHANGE_SUBMITTED = "EiffelSourceChangeSubmittedEvent";
+    private String TESTCASE_FINISHED = "EiffelTestCaseFinishedEvent";
+    private String TESTCASE_STARTED = "EiffelTestCaseStartedEvent";
+    private String TESTSUITE_FINISHED = "EiffelTestSuiteFinishedEvent";
+    private String TESTSUITE_STARTED = "EiffelTestSuiteStartedEvent";
+    private String ISSUE_VERIFIED = "EiffelIssueVerifiedEvent";
+    private String ARTIFACT_REUSED = "EiffelArtifactReusedEvent";
+    private String TESTCASE_CANCELED="EiffelTestCaseCanceledEvent";
+    private String TESTCASE_TRIGGERED="EiffelTestCaseTriggeredEvent";
+    private String EXECUTION_RECIPE_COLLECTION_CREATED="EiffelTestExecutionRecipeCollectionCreatedEvent";
     
     
     JsonParser parser = new JsonParser();
