@@ -64,7 +64,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.8'
+    version =  '0.3.0'
     classifier = ''
 }
 
@@ -93,8 +93,7 @@ repositories {
 install.dependsOn shadowJar
 
 dependencies {
-    compile 'com.github.Ericsson:eiffel-remrem-shared:0.2.0' 
-    compile 'com.github.Ericsson:eiffel-remrem-protocol-interface:0.0.1'    
+    compile 'com.github.Ericsson:eiffel-remrem-protocol-interface:0.0.5'
     compile('com.github.fge:json-schema-validator:2.2.6')
     {
     // we need to exclude jackson-databind here and add a

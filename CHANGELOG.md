@@ -1,3 +1,6 @@
+## 0.3.0
+- Implemented routing key for eiffel messages in REMReM semantics.
+
 ## 0.2.9
 - Implemented functionality to accept case insensitive eventType while generating events
 

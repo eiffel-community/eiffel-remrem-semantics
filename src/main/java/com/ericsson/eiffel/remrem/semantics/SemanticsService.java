@@ -43,6 +43,7 @@ import java.util.Map;
 
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,6 +93,10 @@ public class SemanticsService implements MsgService {
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
+    private static final String SOURCE = "source";
+    private static final String DOMAIN_ID = "domainId";
+    private static final String PROTOCOL = "eiffel";
+    private static final String DOT = ".";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
@@ -260,5 +265,39 @@ public class SemanticsService implements MsgService {
             validationResult = new ValidationResult(false, e.getLocalizedMessage());
         }
         return validationResult;
+    }
+
+    @Override
+    public String getDomainId(JsonObject eiffelMessage) {
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META) && eiffelMessage.getAsJsonObject()
+                .getAsJsonObject(META).has(SOURCE) && eiffelMessage.getAsJsonObject()
+                .getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
+            return eiffelMessage.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE)
+                    .get(DOMAIN_ID).getAsString();
+        }
+        return null;
+    }
+
+    @Override
+    public String generateRoutingKey(JsonObject eiffelMessage, String tag, String domain, String userDomainSuffix) {
+        String family = getFamily(eiffelMessage);
+        String type = getType(eiffelMessage);
+        if (StringUtils.isNotEmpty(family) && StringUtils.isNotEmpty(type)) {
+            String domainId = domain != null ? domain : getDomainId(eiffelMessage);
+            if(domainId != null) {
+                if (StringUtils.isNotEmpty(userDomainSuffix)) {
+                    domainId = domainId + DOT + userDomainSuffix;
+                }
+                return PROTOCOL + DOT + family + DOT + type + DOT +  (StringUtils.isNotEmpty(tag) ? tag : "notag") + DOT + domainId;
+            }
+            log.error("Missing domainId in the eiffel message " + eiffelMessage);
+        }
+        return null;
+    }
+
+    @Override
+    public String getEventType(JsonObject arg0) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

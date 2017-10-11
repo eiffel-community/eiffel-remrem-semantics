@@ -346,4 +346,44 @@ public class ServiceTest {
         }
         assertEquals("finished", type);
     }
+
+    @Test
+    public void testGetDomainId() {
+        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
+        JsonObject input;
+        String domainId = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            domainId = service.getDomainId(input);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals("domainID", domainId);
+    }
+
+    @Test
+    public void testGetRoutingKey() {
+        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
+        JsonObject input;
+        String routingKey = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            routingKey = service.generateRoutingKey(input, null, null, null);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals("eiffel.activity.finished.notag.domainID", routingKey);
+    }
 }
