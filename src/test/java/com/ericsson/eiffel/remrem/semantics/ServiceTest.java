@@ -348,6 +348,26 @@ public class ServiceTest {
     }
 
     @Test
+    public void testGetEventType() {
+        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+        String path = url.getPath().replace("%20"," ");
+        File file = new File(path);
+        JsonObject input;
+        String eventType = null;
+        try {
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            eventType = service.getEventType(input);
+        } catch (JsonIOException e) {
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        assertEquals("EiffelActivityFinishedEvent", eventType);
+    }
+
+    @Test
     public void testGetDomainId() {
         URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
         String path = url.getPath().replace("%20"," ");

@@ -17,8 +17,8 @@ package com.ericsson.eiffel.remrem.semantics;
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 
 public enum RoutingKeyTypes {    
-    
-	EiffelActivityCanceledEvent(EiffelConstants.ACTIVITY, "canceled"),
+
+    EiffelActivityCanceledEvent(EiffelConstants.ACTIVITY, "canceled"),
     EiffelActivityFinishedEvent(EiffelConstants.ACTIVITY,"finished"),
     EiffelActivityStartedEvent(EiffelConstants.ACTIVITY,"started"),
     EiffelActivityTriggeredEvent(EiffelConstants.ACTIVITY,"triggered"),
@@ -33,24 +33,26 @@ public enum RoutingKeyTypes {
     EiffelIssueVerifiedEvent(EiffelConstants.TEST,"issueverified"),
     EiffelSourceChangeCreatedEvent(EiffelConstants.CM,"scmchange"),
     EiffelSourceChangeSubmittedEvent(EiffelConstants.CM,"scmproposedchange"),
+    EiffelTestCaseCanceledEvent(EiffelConstants.TEST,"casecanceled"),
+    EiffelTestCaseTriggeredEvent(EiffelConstants.TEST,"casetriggered"),
     EiffelTestCaseFinishedEvent(EiffelConstants.TEST,"casefinished"),
     EiffelTestCaseStartedEvent(EiffelConstants.TEST,"casestarted"),
     EiffelTestSuiteFinishedEvent(EiffelConstants.TEST,"suitefinished"),
     EiffelTestSuiteStartedEvent(EiffelConstants.TEST,"suitestarted"),
     EiffelTestExecutionRecipeCollectionCreatedEvent(EiffelConstants.TEST,"execution");
-           
+
     private final String family;   // family
-     private final String type; // type
-    
+    private final String type; // type
+
     RoutingKeyTypes(String family, String type) {
         this.family = family;
         this.type = type;
     }
-    
+
     public String getFamily() {
         return family;
     }
-    
+
     public String getType() {
         return type;
     }

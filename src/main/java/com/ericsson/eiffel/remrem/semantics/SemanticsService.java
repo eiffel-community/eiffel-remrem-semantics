@@ -229,6 +229,16 @@ public class SemanticsService implements MsgService {
     }
 
     @Override
+    public String getEventType(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(META) && json.getAsJsonObject()
+                .getAsJsonObject(META).has(TYPE)) {
+            return json.getAsJsonObject().getAsJsonObject(META)
+                    .get(TYPE).getAsString();
+        }
+        return null;
+    }
+
+    @Override
     public String getFamily(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
@@ -294,12 +304,6 @@ public class SemanticsService implements MsgService {
             log.error("Routing key is in the format <family>.<type>.<tag>.<domain>");
             log.error("domainId is not provided in either input message or configuration");
         }
-        return null;
-    }
-
-    @Override
-    public String getEventType(JsonObject arg0) {
-        // TODO Auto-generated method stub
         return null;
     }
 }
