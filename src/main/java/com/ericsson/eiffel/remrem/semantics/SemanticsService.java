@@ -22,25 +22,28 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_TRIG
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_PUBLISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_SUBMITTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import javax.inject.Named;
 
@@ -59,22 +62,23 @@ import com.ericsson.eiffel.semantics.events.EiffelActivityTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.Event;
+import com.ericsson.eiffel.semantics.events.Gav;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -95,7 +99,7 @@ public class SemanticsService implements MsgService{
     private static final String TYPE = "type";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
-
+    public static Gav remremSemanticsGAV;
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes=SemanticsService.eventType();
     
@@ -105,7 +109,26 @@ public class SemanticsService implements MsgService{
         }
     }
     
-    public static Map<EiffelEventType, Class<? extends Event>> eventType()
+	static {
+		generateRemremSemanticsGav();
+	}
+
+	protected static void generateRemremSemanticsGav() {
+		try {
+			remremSemanticsGAV = new Gav();
+			String classPath = SemanticsService.class.getResource("SemanticsService.class").toString();
+			String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
+			Manifest manifest = new Manifest(new URL(manifestPath).openStream());
+			Attributes attributes = manifest.getMainAttributes();
+			remremSemanticsGAV.setGroupId(attributes.getValue("groupId"));
+			remremSemanticsGAV.setArtifactId(attributes.getValue("artifactId"));
+			remremSemanticsGAV.setVersion(attributes.getValue("semanticsVersion"));
+		} catch (Exception e) {
+			log.error("Unable to read MANIFEST of Semantics from build.gradle " + e.getMessage());
+		}
+	}
+    
+	public static Map<EiffelEventType, Class<? extends Event>> eventType()
     {
         eventTypes = new HashMap<>();
         eventTypes.put(ARTIFACT_PUBLISHED, EiffelArtifactPublishedEvent.class);
@@ -133,7 +156,11 @@ public class SemanticsService implements MsgService{
        return eventTypes; 
     }
     @Override
-    public String generateMsg(String msgType, JsonObject bodyJson){
+    public String generateMsg(String msgType, JsonObject bodyJson){    	
+    	if(remremSemanticsGAV.getGroupId() == null &&
+    			SemanticsService.class.getResource("SemanticsService.class").toString().contains("!")){
+        	return createErrorResponse("GAV info is missing", "Required Serializer gav information is missing in MANIFEST.MF");
+        }
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         if (eiffelType == null) {
             log.error("Unknown message type requested: " + msgType);
@@ -155,11 +182,14 @@ public class SemanticsService implements MsgService{
         }
         return result;
     }
+    
+        
     private static Event eventCreation(String msgType, Class<? extends Event> eventType, JsonObject msgNodes,
             JsonObject eventNodes) {
     	eventNodes.add("meta", msgNodes.get("meta"));
         Event event = createEvent(eventNodes, eventType);
         event.setMeta(event.generateMeta(event.getMeta()));
+        event.getMeta().setSource(event.generateSerializerGav(event.getMeta().getSource()));
         return event;
     }
     
