@@ -53,6 +53,8 @@ jar {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
         attributes('isEndpointVersion': 'true')
+        attributes('groupId': 'com.github.Ericsson')
+        attributes('artifactId': baseName)
     }
     from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 	{
