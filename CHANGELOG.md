@@ -1,3 +1,9 @@
+## 0.2.8
+- Event names in Eiffel2.0 check and update the eventtype if we haven't passed
+
+## 0.2.7
+- Event names in Eiffel2.0 should adhere to documentation of eiffel in Github
+
 ## 0.2.6
 - Added links validation to events based on the Bordeaux edition of protocol
 

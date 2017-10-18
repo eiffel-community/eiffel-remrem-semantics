@@ -132,6 +132,7 @@ public class SemanticsService implements MsgService{
         eventTypes.put(ARTIFACT_REUSED, EiffelArtifactReusedEvent.class);
        return eventTypes; 
     }
+
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson){
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
@@ -143,6 +144,16 @@ public class SemanticsService implements MsgService{
 
         JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
         JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
+
+        //Compare the input JSON EventType with query parameter(-t) and also check type exist or not,
+        //if input JSON EventType is missing adding query parameter as Type. 
+        String inputEventType = getInputEventType(bodyJson);
+        if(inputEventType ==  null || inputEventType.isEmpty()){
+            bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE, msgType);
+        }else if(!(inputEventType.equals(msgType))){
+            log.error("check the input json message type : " + inputEventType);
+            return createErrorResponse(msgType,supportedEventTypes);
+        }
 
         Event event = eventCreation(msgType, eventType, msgNodes, eventNodes);
 
@@ -194,6 +205,17 @@ public class SemanticsService implements MsgService{
                 .getAsJsonObject(META).has(ID)) {
             return json.getAsJsonObject().getAsJsonObject(META)
                     .get(ID).getAsString();
+        }
+        return null;
+    }
+
+    /*
+     * json Input json which we have passed from CLI or Service
+     * return eventType will return from inputJson file
+     */
+    public String getInputEventType(JsonObject json) {
+        if (json.isJsonObject() && json.get(MSG_PARAMS).getAsJsonObject().has(META) && json.get(MSG_PARAMS).getAsJsonObject().getAsJsonObject(META).has(TYPE)){
+            return json.get(MSG_PARAMS).getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString();
         }
         return null;
     }

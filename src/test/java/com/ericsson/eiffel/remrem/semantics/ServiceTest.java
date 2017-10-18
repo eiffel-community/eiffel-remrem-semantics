@@ -59,6 +59,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+
 public class ServiceTest {
 
     private String ACTIVITY_FINISHED = "EiffelActivityFinishedEvent";
@@ -268,7 +269,8 @@ public class ServiceTest {
         }
     }
     
-    @Test public void testInvalidMessage() {
+    @Test
+    public void testInvalidMessage() {
         try {
         	URL url = getClass().getClassLoader().getResource("input/ActivityFinishedInvalid.json");
             String path = url.getPath().replace("%20"," ");
@@ -278,7 +280,7 @@ public class ServiceTest {
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
-            Assert.assertTrue(msg.contains("missing required properties ([\\\"type"));
+            Assert.assertTrue(msg.contains("missing required properties ([\\\"groupId"));
         } catch(FileNotFoundException e) {
             Assert.assertFalse(false);
         }
