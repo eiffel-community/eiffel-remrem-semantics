@@ -17,6 +17,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ericsson.eiffel.remrem.semantics.RoutingKeyTypes;
+import com.ericsson.eiffel.remrem.semantics.SemanticsService;
 
 public class Event {
 	public transient Meta meta;
@@ -52,5 +53,23 @@ public class Event {
 
 	public void setMeta(Meta meta) {
 		this.meta = meta;
+	}
+	
+	/**
+	 * @return void
+	 */
+	public void generateSerializerGav() {
+		if (SemanticsService.getSemanticsGAV().get("groupId") != null) {
+			if (this.getMeta().getSource() == null) {
+				this.getMeta().setSource(new Source());
+				this.getMeta().getSource().setSerializer(new Serializer());
+			} else if (this.getMeta().getSource().getSerializer() == null) {
+				this.getMeta().getSource().setSerializer(new Serializer());
+			}
+			this.getMeta().getSource().getSerializer().setGroupId(SemanticsService.getSemanticsGAV().get("groupId"));
+			this.getMeta().getSource().getSerializer()
+					.setArtifactId(SemanticsService.getSemanticsGAV().get("artifactId"));
+			this.getMeta().getSource().getSerializer().setVersion(SemanticsService.getSemanticsGAV().get("version"));
+		}
 	}
 }
