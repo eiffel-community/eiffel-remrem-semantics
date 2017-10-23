@@ -306,6 +306,7 @@ public class SemanticsService implements MsgService {
         String type = getType(eiffelMessage);
         if (StringUtils.isNotEmpty(family) && StringUtils.isNotEmpty(type)) {
             String domainId = getDomainId(eiffelMessage);
+            //If domainId from input message is null then configured domain will be considered
             domainId  = StringUtils.isNotEmpty(domainId) ? domainId : domain;
             if(StringUtils.isNotEmpty(domainId)) {
                 if (StringUtils.isNotEmpty(userDomainSuffix)) {
