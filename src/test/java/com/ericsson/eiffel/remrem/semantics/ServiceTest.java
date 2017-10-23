@@ -306,46 +306,6 @@ public class ServiceTest {
         Assert.assertNotNull(msg);
         Assert.assertTrue(msg.isValid());
     }
-    
-    @Test
-    public void testGetFamily() {
-    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20"," ");
-        File file = new File(path);
-        JsonObject input;
-        String family = null;
-        try {
-            input = parser.parse(new FileReader(file)).getAsJsonObject();
-            family = service.getFamily(input);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assertEquals("activity", family);
-    }
-
-    @Test
-    public void testGetType() {
-    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20"," ");
-        File file = new File(path);
-        JsonObject input;
-        String type = null;
-        try {
-            input = parser.parse(new FileReader(file)).getAsJsonObject();
-            type = service.getType(input);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assertEquals("finished", type);
-    }
 
     @Test
     public void testGetEventType() {
@@ -368,27 +328,7 @@ public class ServiceTest {
     }
 
     @Test
-    public void testGetDomainId() {
-        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20"," ");
-        File file = new File(path);
-        JsonObject input;
-        String domainId = null;
-        try {
-            input = parser.parse(new FileReader(file)).getAsJsonObject();
-            domainId = service.getDomainId(input);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        assertEquals("domainID", domainId);
-    }
-
-    @Test
-    public void testGetRoutingKey() {
+    public void testGenerateRoutingKey() {
         URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
         String path = url.getPath().replace("%20"," ");
         File file = new File(path);

@@ -238,8 +238,12 @@ public class SemanticsService implements MsgService {
         return null;
     }
 
-    @Override
-    public String getFamily(JsonObject eiffelMessage) {
+    /**
+     * Returns Family Routing Key Word from the messaging library based on the eiffel message eventType.
+     * @param JsonObject eiffelMessage
+     * @return family routing key word in String format.
+    */
+    private String getFamily(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
             return Event
@@ -248,8 +252,12 @@ public class SemanticsService implements MsgService {
         return null;
     }
 
-    @Override
-    public String getType(JsonObject eiffelMessage) {
+    /**
+     * Returns Type Routing Key Word from the messaging library based on the eiffel message eventType.
+     * @param JsonObject eiffelMessage
+     * @return type routing key word in String format.
+    */
+    private String getType(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
             return Event
@@ -277,8 +285,12 @@ public class SemanticsService implements MsgService {
         return validationResult;
     }
 
-    @Override
-    public String getDomainId(JsonObject eiffelMessage) {
+    /**
+     * Returns the domain Id from json formatted eiffel message.
+     * @param eiffelMessage eiffel message in json format
+     * @return the domainId from eiffelMessage if domainId not available then returns the null value
+    */
+    private String getDomainId(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META) && eiffelMessage.getAsJsonObject()
                 .getAsJsonObject(META).has(SOURCE) && eiffelMessage.getAsJsonObject()
                 .getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
