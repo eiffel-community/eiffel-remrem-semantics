@@ -1,3 +1,6 @@
+## 0.2.9
+- Implemented functionality to accept case insensitive eventType while generating events
+
 ## 0.2.8
 - Event names in Eiffel2.0 check and update the eventtype if we haven't passed
 
