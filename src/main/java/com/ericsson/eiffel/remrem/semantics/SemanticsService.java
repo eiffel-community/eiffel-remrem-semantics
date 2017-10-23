@@ -149,13 +149,13 @@ public class SemanticsService implements MsgService{
         //if input JSON EventType is missing adding query parameter as Type. 
         String inputEventType = getInputEventType(bodyJson);
         if(inputEventType ==  null || inputEventType.isEmpty()){
-            bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE, msgType);
-        }else if(!(inputEventType.equals(msgType))){
+            bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE, eiffelType.getEventName());
+        }else if(!(inputEventType.equals(eiffelType.getEventName()))){
             log.error("check the input json message type : " + inputEventType);
-            return createErrorResponse(msgType,supportedEventTypes);
+            return createErrorResponse(eiffelType.getEventName(),"Mismatch of eventype in request query parameter with property 'type' in the input json message");
         }
 
-        Event event = eventCreation(msgType, eventType, msgNodes, eventNodes);
+        Event event = eventCreation(eventType, msgNodes, eventNodes);
 
        String result = gson.toJson(event);
         try {
@@ -166,9 +166,9 @@ public class SemanticsService implements MsgService{
         }
         return result;
     }
-    private static Event eventCreation(String msgType, Class<? extends Event> eventType, JsonObject msgNodes,
+    private static Event eventCreation(Class<? extends Event> eventType, JsonObject msgNodes,
             JsonObject eventNodes) {
-    	eventNodes.add("meta", msgNodes.get("meta"));
+        eventNodes.add("meta", msgNodes.get("meta"));
         Event event = createEvent(eventNodes, eventType);
         event.setMeta(event.generateMeta(event.getMeta()));
         return event;
