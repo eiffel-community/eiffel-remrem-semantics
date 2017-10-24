@@ -314,7 +314,7 @@ public class SemanticsService implements MsgService {
                 }
                 return PROTOCOL + DOT + family + DOT + type + DOT +  (StringUtils.isNotEmpty(tag) ? tag : "notag") + DOT + domainId;
             }
-            log.error("Routing key is in the format <family>.<type>.<tag>.<domain>");
+            log.error("Routing key is in the format <protocol>.<family>.<type>.<tag>.<domain>");
             log.error("domainId is not provided in either input message or configuration");
         }
         return null;
