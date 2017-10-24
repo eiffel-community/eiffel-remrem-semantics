@@ -99,6 +99,7 @@ public class SemanticsService implements MsgService {
     private static final String DOT = ".";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
+    private Event event = new Event();
 
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
@@ -246,8 +247,7 @@ public class SemanticsService implements MsgService {
     private String getFamily(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return Event
-                    .getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+            return event.getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
         }
         return null;
     }
@@ -260,8 +260,7 @@ public class SemanticsService implements MsgService {
     private String getType(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return Event
-                    .getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+            return event.getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
         }
         return null;
     }
