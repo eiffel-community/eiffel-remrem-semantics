@@ -304,17 +304,20 @@ public class SemanticsService implements MsgService {
         String family = getFamily(eiffelMessage);
         String type = getType(eiffelMessage);
         if (StringUtils.isNotEmpty(family) && StringUtils.isNotEmpty(type)) {
+            if (StringUtils.isNotBlank(tag) && (tag.contains(".") || StringUtils.deleteWhitespace(tag).length() > 16)) {
+                log.error("tag must not contain any dots and must not exceed 16 characters");
+                return null;
+            }
             String domainId = getDomainId(eiffelMessage);
             //If domainId from input message is null then configured domain will be considered
-            domainId  = StringUtils.isNotEmpty(domainId) ? domainId : domain;
-            if(StringUtils.isNotEmpty(domainId)) {
-                if (StringUtils.isNotEmpty(userDomainSuffix)) {
+            domainId  = StringUtils.defaultIfBlank(domainId, domain);
+            if(StringUtils.isNotBlank(domainId)) {
+                if (StringUtils.isNotBlank(userDomainSuffix)) {
                     domainId = domainId + DOT + userDomainSuffix;
                 }
-                return PROTOCOL + DOT + family + DOT + type + DOT +  (StringUtils.isNotEmpty(tag) ? tag : "notag") + DOT + domainId;
+                return StringUtils.deleteWhitespace(PROTOCOL + DOT + family + DOT + type + DOT +  StringUtils.defaultIfBlank(tag, "notag") + DOT + domainId);
             }
-            log.error("Routing key is in the format <protocol>.<family>.<type>.<tag>.<domain>");
-            log.error("domainId is not provided in either input message or configuration");
+            log.error("domain needed for Routing key generation in the format <protocol>.<family>.<type>.<tag>.<domain> is not provided in either input message or configuration");
         }
         return null;
     }
