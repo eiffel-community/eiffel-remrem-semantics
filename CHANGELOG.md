@@ -1,3 +1,6 @@
+## 0.3.0
+- Implemented functionality to override input semantics gav with MANIFEST.MF file gav
+
 ## 0.2.9
 - Implemented functionality to accept case insensitive eventType while generating events
 

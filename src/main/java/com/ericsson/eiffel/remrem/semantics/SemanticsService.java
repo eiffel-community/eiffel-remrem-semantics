@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
 import org.slf4j.Logger;
@@ -49,6 +50,7 @@ import org.slf4j.LoggerFactory;
 import com.ericsson.eiffel.remrem.protocol.MsgService;
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
 import com.ericsson.eiffel.remrem.semantics.factory.EiffelOutputValidatorFactory;
+import com.ericsson.eiffel.remrem.semantics.util.ManifestHandler;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidationException;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
 import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
@@ -74,6 +76,9 @@ import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.Event;
+import com.ericsson.eiffel.semantics.events.Gav;
+import com.ericsson.eiffel.semantics.events.Serializer;
+import com.ericsson.eiffel.semantics.events.Source;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -94,7 +99,8 @@ public class SemanticsService implements MsgService {
     private static final String TYPE = "type";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
-
+    public static Gav semanticsGAV;
+    private boolean semanticsGavFlag = false;
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
 
@@ -103,6 +109,16 @@ public class SemanticsService implements MsgService {
             supportedEventTypes.add(msg.getEventName());
         }
     }
+    
+    @PostConstruct
+	public void readManifest() {
+		ManifestHandler manifastHandler = new ManifestHandler();
+		semanticsGAV = manifastHandler.readGavfromManifest();
+		if (semanticsGAV == null || semanticsGAV.getArtifactId() == null || semanticsGAV.getGroupId() == null
+				|| semanticsGAV.getVersion() == null) {
+			semanticsGavFlag = true;
+		}
+	}
 
     public static Map<EiffelEventType, Class<? extends Event>> eventType() {
         eventTypes = new HashMap<>();
@@ -133,6 +149,10 @@ public class SemanticsService implements MsgService {
 
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
+		if (semanticsGavFlag) {
+			return createErrorResponse("Gav info of eiffel-remrem-semantics is missing",
+					"Required Serializer gav information of eiffel-remrem-semantics is missing in MANIFEST.MF");
+		}
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         if (eiffelType == null) {
             log.error("Unknown message type requested: " + msgType);
@@ -172,6 +192,7 @@ public class SemanticsService implements MsgService {
         eventNodes.add("meta", msgNodes.get("meta"));
         Event event = createEvent(eventNodes, eventType);
         event.setMeta(event.generateMeta(event.getMeta()));
+        event.getMeta().setSource(setSerializerGav(event.getMeta().getSource()));
         return event;
     }
 
@@ -261,4 +282,23 @@ public class SemanticsService implements MsgService {
         }
         return validationResult;
     }
+    
+    /**
+	 * This method is used to override given input semantics gav or to set if not exist 
+	 * @param source
+	 * @return updated source instance with semantics gav information
+	 */
+	public static Source setSerializerGav(Source source) {
+		if (source == null) {
+			source = new Source();
+			source.setSerializer(new Serializer());
+		} else if (source.getSerializer() == null) {
+			source.setSerializer(new Serializer());
+		}
+		source.getSerializer().setGroupId(semanticsGAV.getGroupId());
+		source.getSerializer().setArtifactId(semanticsGAV.getArtifactId());
+		source.getSerializer().setVersion(semanticsGAV.getVersion());
+		return source;
+	}
+	
 }

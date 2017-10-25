@@ -48,11 +48,13 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.9'
+    version =  '0.3.0'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
         attributes('isEndpointVersion': 'true')
+        attributes('groupId': 'com.github.Ericsson')
+        attributes('artifactId': baseName)
     }
     from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
 	{
@@ -64,7 +66,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.2.8'
+    version =  '0.3.0'
     classifier = ''
 }
 
