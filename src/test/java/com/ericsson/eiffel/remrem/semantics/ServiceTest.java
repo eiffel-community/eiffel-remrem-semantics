@@ -20,18 +20,23 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.jar.Attributes;
+import java.util.jar.Manifest;
+
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
+import com.ericsson.eiffel.remrem.semantics.util.ManifestHandler;
 import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityStartedEvent;
@@ -54,6 +59,7 @@ import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
+import com.ericsson.eiffel.semantics.events.Gav;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -157,12 +163,35 @@ public class ServiceTest {
     
     @InjectMocks
     EiffelTestExecutionRecipeCollectionCreatedEvent terEvent = new EiffelTestExecutionRecipeCollectionCreatedEvent();
+    
+    ManifestHandler manifestHandler;
+    static Gav manifestGav = null;
+    
+	@BeforeClass
+	public static void readManifestGav() {
+		manifestGav = new Gav();
+		URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
+		String manifestPath = url.getPath().replace("%20", " ");
+		try {
+			Manifest manifest = new Manifest(new FileInputStream(manifestPath));
+			Attributes attributes1 = manifest.getMainAttributes();
+			manifestGav.setGroupId(attributes1.getValue("groupId"));
+			manifestGav.setArtifactId(attributes1.getValue("artifactId"));
+			manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
       
     @Before
     public void setUp() throws Exception {
         Attributes attributes = mock(Attributes.class);
+        manifestHandler = mock(ManifestHandler.class);
         MockitoAnnotations.initMocks(this);        
-        when(attributes.getValue(anyString())).thenReturn("0.2.3");        
+        when(attributes.getValue(anyString())).thenReturn("0.2.3");
+        SemanticsService.semanticsGAV = manifestGav;
     }
 
     private void testGenerateMsg(String msgType, String fileName) {
@@ -280,7 +309,7 @@ public class ServiceTest {
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
-            Assert.assertTrue(msg.contains("missing required properties ([\\\"groupId"));
+            Assert.assertTrue(msg.contains("missing required properties ([\\\"conclusion"));
         } catch(FileNotFoundException e) {
             Assert.assertFalse(false);
         }
@@ -346,4 +375,25 @@ public class ServiceTest {
         }
         assertEquals("eiffel.activity.finished.notag.domainID", routingKey);
     }
+    
+    @Test
+	public void testGetRemremSemanticsGav() {
+		when(manifestHandler.readGavfromManifest()).thenReturn(manifestGav);
+		Gav gav = manifestHandler.readGavfromManifest();
+		Assert.assertEquals(gav.getGroupId(), "com.github.Ericsson");
+		Assert.assertEquals(gav.getArtifactId(), "eiffel-remrem-semantics");
+		Assert.assertEquals(gav.getVersion(), "0.3.1");
+	}
+    
+	@Test(expected = FileNotFoundException.class)
+	public void testInvalidPathRemremSemanticsGav() throws Exception {
+		URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
+		String manifestPath = url.getPath() + "/InvalidPath";
+		Manifest manifest = new Manifest(new FileInputStream(manifestPath));
+		Attributes attributes1 = manifest.getMainAttributes();
+		manifestGav.setGroupId(attributes1.getValue("groupId"));
+		manifestGav.setArtifactId(attributes1.getValue("artifactId"));
+		manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
+
+	}
 }
