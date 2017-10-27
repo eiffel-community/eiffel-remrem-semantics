@@ -1,5 +1,8 @@
-## 0.3.0
+## 0.3.1
 - Implemented functionality to override input semantics gav with MANIFEST.MF file gav
+
+## 0.3.0
+- Implemented routing key for eiffel messages in REMReM semantics.
 
 ## 0.2.9
 - Implemented functionality to accept case insensitive eventType while generating events

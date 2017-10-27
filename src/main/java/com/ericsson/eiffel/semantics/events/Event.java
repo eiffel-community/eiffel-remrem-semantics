@@ -28,7 +28,7 @@ public class Event {
 		return meta;
 	}
 
-	public static String getFamilyRoutingKey(String eventType) {
+	public String getFamilyRoutingKey(String eventType) {
 		try {
 			return RoutingKeyTypes.valueOf(eventType).getFamily();
 		} catch (Exception e) {
@@ -37,7 +37,7 @@ public class Event {
 		return null;
 	}
 
-	public static String getTypeRoutingKey(String eventType) {
+	public String getTypeRoutingKey(String eventType) {
 		try {
 			return RoutingKeyTypes.valueOf(eventType).getType();
 		} catch (Exception e) {

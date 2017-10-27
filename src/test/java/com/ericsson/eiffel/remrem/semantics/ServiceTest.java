@@ -332,17 +332,17 @@ public class ServiceTest {
         Assert.assertNotNull(msg);
         Assert.assertTrue(msg.isValid());
     }
-    
+
     @Test
-    public void testGetFamily() {
-    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+    public void testGetEventType() {
+        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
         String path = url.getPath().replace("%20"," ");
         File file = new File(path);
         JsonObject input;
-        String family = null;
+        String eventType = null;
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
-            family = service.getFamily(input);
+            eventType = service.getEventType(input);
         } catch (JsonIOException e) {
             e.printStackTrace();
         } catch (JsonSyntaxException e) {
@@ -350,19 +350,19 @@ public class ServiceTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        assertEquals("activity", family);
+        assertEquals("EiffelActivityFinishedEvent", eventType);
     }
 
     @Test
-    public void testGetType() {
-    	URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
+    public void testGenerateRoutingKey() {
+        URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
         String path = url.getPath().replace("%20"," ");
         File file = new File(path);
         JsonObject input;
-        String type = null;
+        String routingKey = null;
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
-            type = service.getType(input);
+            routingKey = service.generateRoutingKey(input, null, null, null);
         } catch (JsonIOException e) {
             e.printStackTrace();
         } catch (JsonSyntaxException e) {
@@ -370,7 +370,7 @@ public class ServiceTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        assertEquals("finished", type);
+        assertEquals("eiffel.activity.finished.notag.domainID", routingKey);
     }
     
 	@Test

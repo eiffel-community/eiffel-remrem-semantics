@@ -44,6 +44,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,10 +98,18 @@ public class SemanticsService implements MsgService {
     private static final String ID = "id";
     private static final String META = "meta";
     private static final String TYPE = "type";
+    private static final String SOURCE = "source";
+    private static final String DOMAIN_ID = "domainId";
+    private static final String PROTOCOL = "eiffel";
+    private static final String DOT = ".";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
+
     public static Gav semanticsGAV;
     private boolean semanticsGavFlag = false;
+
+    private Event event = new Event();
+
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
 
@@ -245,21 +254,37 @@ public class SemanticsService implements MsgService {
     }
 
     @Override
-    public String getFamily(JsonObject eiffelMessage) {
-        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
-                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return Event
-                    .getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+    public String getEventType(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(META) && json.getAsJsonObject()
+                .getAsJsonObject(META).has(TYPE)) {
+            return json.getAsJsonObject().getAsJsonObject(META)
+                    .get(TYPE).getAsString();
         }
         return null;
     }
 
-    @Override
-    public String getType(JsonObject eiffelMessage) {
+    /**
+     * Returns Family Routing Key Word from the messaging library based on the eiffel message eventType.
+     * @param JsonObject eiffelMessage
+     * @return family routing key word in String format.
+    */
+    private String getFamily(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return Event
-                    .getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+            return event.getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+        }
+        return null;
+    }
+
+    /**
+     * Returns Type Routing Key Word from the messaging library based on the eiffel message eventType.
+     * @param JsonObject eiffelMessage
+     * @return type routing key word in String format.
+    */
+    private String getType(JsonObject eiffelMessage) {
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
+                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
+            return event.getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
         }
         return null;
     }
@@ -301,4 +326,43 @@ public class SemanticsService implements MsgService {
 		return source;
 	}
 	
+
+
+    /**
+     * Returns the domain Id from json formatted eiffel message.
+     * @param eiffelMessage eiffel message in json format
+     * @return the domainId from eiffelMessage if domainId not available then returns the null value
+    */
+    private String getDomainId(JsonObject eiffelMessage) {
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META) && eiffelMessage.getAsJsonObject()
+                .getAsJsonObject(META).has(SOURCE) && eiffelMessage.getAsJsonObject()
+                .getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
+            return eiffelMessage.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE)
+                    .get(DOMAIN_ID).getAsString();
+        }
+        return null;
+    }
+
+    @Override
+    public String generateRoutingKey(JsonObject eiffelMessage, String tag, String domain, String userDomainSuffix) {
+        String family = getFamily(eiffelMessage);
+        String type = getType(eiffelMessage);
+        if (StringUtils.isNotEmpty(family) && StringUtils.isNotEmpty(type)) {
+            if (StringUtils.isNotBlank(tag) && (tag.contains(".") || StringUtils.deleteWhitespace(tag).length() > 16)) {
+                log.error("tag must not contain any dots and must not exceed 16 characters");
+                return null;
+            }
+            String domainId = getDomainId(eiffelMessage);
+            //If domainId from input message is null then configured domain will be considered
+            domainId  = StringUtils.defaultIfBlank(domainId, domain);
+            if(StringUtils.isNotBlank(domainId)) {
+                if (StringUtils.isNotBlank(userDomainSuffix)) {
+                    domainId = domainId + DOT + userDomainSuffix;
+                }
+                return StringUtils.deleteWhitespace(PROTOCOL + DOT + family + DOT + type + DOT +  StringUtils.defaultIfBlank(tag, "notag") + DOT + domainId);
+            }
+            log.error("domain needed for Routing key generation in the format <protocol>.<family>.<type>.<tag>.<domain> is not provided in either input message or configuration");
+        }
+        return null;
+    }
 }
