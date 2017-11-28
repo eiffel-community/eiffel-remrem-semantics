@@ -39,7 +39,15 @@ public enum EiffelEventType {
     TESTSUITE_FINISHED("EiffelTestSuiteFinishedEvent"),
     TESTSUITE_STARTED("EiffelTestSuiteStartedEvent"),
     ISSUE_VERIFIED("EiffelIssueVerifiedEvent"),
-    ARTIFACT_REUSED("EiffelArtifactReusedEvent");
+    ARTIFACT_REUSED("EiffelArtifactReusedEvent"),
+    SERVICE_STOPPED("EiffelServiceStoppedEvent"),
+    SERVICE_STARTED("EiffelServiceStartedEvent"),
+    SERVICE_RETURNED("EiffelServiceReturnedEvent"),
+    SERVICE_DISCONTINUED("EiffelServiceDiscontinuedEvent"),
+    SERVICE_DEPLOYED("EiffelServiceDeployedEvent"),
+    SERVICE_ALLOCATED("EiffelServiceAllocatedEvent"),
+    ARTIFACT_DEPLOYED("EiffelArtifactDeployedEvent"),
+    ANNOUNCEMENT_ACKNOWLEDGED("EiffelAnnouncementAcknowledgedEvent");
     
     private String eventType;
 

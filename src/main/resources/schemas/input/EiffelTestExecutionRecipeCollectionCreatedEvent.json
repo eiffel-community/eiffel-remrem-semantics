@@ -12,7 +12,8 @@
       ],
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
         "type": {
           "type": "string",
@@ -23,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "1.0.0"
+            "2.0.0"
           ],
-          "default": "1.0.0"
+          "default": "2.0.0"
         },
         "time": {
           "type": "integer",
@@ -178,8 +179,37 @@
                       "additionalProperties": false
                     },
                     "constraints": {
-                      "type": "object",
-                      "javaType": "com.ericsson.eiffel.semantics.events.Constraint"
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "javaType": "com.ericsson.eiffel.semantics.events.Constraint",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "object"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "array"
+                              },
+                              {
+                                "type": "number"
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "value"
+                        ],
+                        "additionalProperties": false
+                      }
                     }
                   },
                   "required": [

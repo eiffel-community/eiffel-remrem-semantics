@@ -1,20 +1,24 @@
 {
   "msgParams": {
     "meta": {
+      "type": "EiffelServiceDeployedEvent",
+      "version": "1.0.0",
       "tags": [
         "tag1",
         "tag2"
       ],
       "source": {
+        "domainId": "domainID",
         "host": "host",
         "name": "name",
         "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
         "serializer": {
+          "groupId": "G",
           "artifactId": "A",
           "version": "V"
         }
       },
-      "security": {
+     "security": {
         "sdm": {
           "authorIdentity": "test",
           "encryptedDigest": "sample"
@@ -24,22 +28,28 @@
   },
   "eventParams": {
     "data": {
-      "outcome": {
-        "description": "Compilation timed out."
-      },
-      "persistentLogs": [{
-          "name": "firstLog",
-          "uri": "http:\/\/myHost.com\/firstLog"
+      "servicename": "Sample",
+	  "instancename":"testuser",
+	  "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
+	  "owner":"TEST USER",
+	  "deploymentType":"MANUAL",
+      "customData": [{
+          "key": "firstLog",
+          "value": 1234
         },
         {
-          "name": "otherLog",
-          "uri": "isbn:0-486-27557-4"
+          "key": "otherLog",
+          "value": 1234
         }
       ]
     },
     "links": [{
-      "type": "ACTIVITY_EXECUTION",
+      "type": "ENVIRONMENT",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "ACTIVITY_EXECUTION",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     }]
   }
 }

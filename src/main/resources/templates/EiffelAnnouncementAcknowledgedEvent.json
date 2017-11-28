@@ -1,0 +1,43 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelAnnouncementAcknowledgedEvent",
+      "version": "1.0.0"
+      "tags": [],
+      "source": {
+        "domainId":
+        "host":
+        "name":
+        "uri":
+        "serializer": {
+          "groupId":  <required>
+          "artifactId":  <required>
+          "version":  <required>
+        }
+      },
+      "security":{
+        "sdm": {
+            "authorIdentity":  <required>
+            "encryptedDigest":  <required>
+        }
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "acknowledgement":<required>
+      "user":
+      "uri":
+      "customData": [
+        {
+          "key": 
+          "value":
+        }
+      ]
+    },
+    "links": [{
+      "type":
+      "target":
+    }]
+  }
+}

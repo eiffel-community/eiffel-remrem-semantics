@@ -1,0 +1,44 @@
+{
+    "meta": {
+        "id": "8caf73d5-7335-4ed6-a5a3-c1b1337716e1",
+        "type": "EiffelArtifactDeployedEvent",
+        "version": "1.0.0",
+        "time": 1512111567118,
+        "tags": ["tag1", "tag2"],
+        "source": {
+            "domainId": "domainID",
+            "host": "host",
+            "name": "name",
+            "serializer": {
+                "groupId": "com.github.Ericsson",
+                "artifactId": "eiffel-remrem-semantics",
+                "version": "0.3.1"
+            },
+            "uri": "http://java.sun.com/j2se/1.3/"
+        },
+        "security": {
+            "sdm": {
+                "authorIdentity": "test",
+                "encryptedDigest": "sample"
+            }
+        }
+    },
+    "data": {
+        "location": "Sample",
+        "uri": "http://java.sun.com/j2se/1.3/",
+        "customData": [{
+            "key": "firstLog",
+            "value": 1234.0
+        }, {
+            "key": "otherLog",
+            "value": 1234.0
+        }]
+    },
+    "links": [{
+        "type": "CAUSE",
+        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+    }, {
+        "type": "ACTIVITY_EXECUTION",
+        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    }]
+}

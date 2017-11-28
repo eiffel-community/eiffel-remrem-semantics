@@ -28,6 +28,14 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIG
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_ALLOCATED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DEPLOYED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DISCONTINUED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_RETURNED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STARTED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STOPPED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_ACKNOWLEDGED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_DEPLOYED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_SUBMITTED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINISHED;
@@ -58,8 +66,10 @@ import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityTriggeredEvent;
+import com.ericsson.eiffel.semantics.events.EiffelAnnouncementAcknowledgedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactDeployedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
@@ -68,6 +78,12 @@ import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionC
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceAllocatedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceDeployedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceDiscontinuedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceReturnedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelServiceStoppedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
@@ -115,16 +131,16 @@ public class SemanticsService implements MsgService {
             supportedEventTypes.add(msg.getEventName());
         }
     }
-    
+
     @PostConstruct
-	public void readManifest() {
-		ManifestHandler manifastHandler = new ManifestHandler();
-		semanticsGAV = manifastHandler.readGavfromManifest();
-		if (semanticsGAV == null || semanticsGAV.getArtifactId() == null || semanticsGAV.getGroupId() == null
-				|| semanticsGAV.getVersion() == null) {
-			semanticsGavFlag = true;
-		}
-	}
+    public void readManifest() {
+        ManifestHandler manifastHandler = new ManifestHandler();
+        semanticsGAV = manifastHandler.readGavfromManifest();
+        if (semanticsGAV == null || semanticsGAV.getArtifactId() == null || semanticsGAV.getGroupId() == null
+                || semanticsGAV.getVersion() == null) {
+            semanticsGavFlag = true;
+        }
+    }
 
     public static Map<EiffelEventType, Class<? extends Event>> eventType() {
         eventTypes = new HashMap<>();
@@ -150,15 +166,24 @@ public class SemanticsService implements MsgService {
         eventTypes.put(TESTSUITE_STARTED, EiffelTestSuiteStartedEvent.class);
         eventTypes.put(ISSUE_VERIFIED, EiffelIssueVerifiedEvent.class);
         eventTypes.put(ARTIFACT_REUSED, EiffelArtifactReusedEvent.class);
+        eventTypes.put(SERVICE_STOPPED, EiffelServiceStoppedEvent.class);
+        eventTypes.put(SERVICE_STARTED, EiffelServiceStartedEvent.class);
+        eventTypes.put(SERVICE_RETURNED, EiffelServiceReturnedEvent.class);
+        eventTypes.put(SERVICE_DISCONTINUED, EiffelServiceDiscontinuedEvent.class);
+        eventTypes.put(SERVICE_DEPLOYED, EiffelServiceDeployedEvent.class);
+        eventTypes.put(SERVICE_ALLOCATED, EiffelServiceAllocatedEvent.class);
+        eventTypes.put(ARTIFACT_DEPLOYED, EiffelArtifactDeployedEvent.class);
+        eventTypes.put(ANNOUNCEMENT_ACKNOWLEDGED, EiffelAnnouncementAcknowledgedEvent.class);
+
         return eventTypes;
     }
 
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
-    	if (semanticsGavFlag) {
-			return createErrorResponse("GAV info of eiffel-remrem-semantics is missing",
-					"Required Serializer GAV information of eiffel-remrem-semantics is missing in MANIFEST.MF");
-		}
+        if (semanticsGavFlag) {
+            return createErrorResponse("GAV info of eiffel-remrem-semantics is missing",
+                    "Required Serializer GAV information of eiffel-remrem-semantics is missing in MANIFEST.MF");
+        }
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         if (eiffelType == null) {
             log.error("Unknown message type requested: " + msgType);
@@ -252,36 +277,43 @@ public class SemanticsService implements MsgService {
 
     @Override
     public String getEventType(JsonObject json) {
-        if (json.isJsonObject() && json.getAsJsonObject().has(META) && json.getAsJsonObject()
-                .getAsJsonObject(META).has(TYPE)) {
-            return json.getAsJsonObject().getAsJsonObject(META)
-                    .get(TYPE).getAsString();
+        if (json.isJsonObject() && json.getAsJsonObject().has(META)
+                && json.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
+            return json.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString();
         }
         return null;
     }
 
     /**
-     * Returns Family Routing Key Word from the messaging library based on the eiffel message eventType.
-     * @param JsonObject eiffelMessage
+     * Returns Family Routing Key Word from the messaging library based on the
+     * eiffel message eventType.
+     * 
+     * @param JsonObject
+     *            eiffelMessage
      * @return family routing key word in String format.
-    */
+     */
     private String getFamily(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return event.getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+            return event
+                    .getFamilyRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
         }
         return null;
     }
 
     /**
-     * Returns Type Routing Key Word from the messaging library based on the eiffel message eventType.
-     * @param JsonObject eiffelMessage
+     * Returns Type Routing Key Word from the messaging library based on the
+     * eiffel message eventType.
+     * 
+     * @param JsonObject
+     *            eiffelMessage
      * @return type routing key word in String format.
-    */
+     */
     private String getType(JsonObject eiffelMessage) {
         if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
                 && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return event.getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
+            return event
+                    .getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
         }
         return null;
     }
@@ -307,15 +339,18 @@ public class SemanticsService implements MsgService {
 
     /**
      * Returns the domain Id from json formatted eiffel message.
-     * @param eiffelMessage eiffel message in json format
-     * @return the domainId from eiffelMessage if domainId not available then returns the null value
-    */
+     * 
+     * @param eiffelMessage
+     *            eiffel message in json format
+     * @return the domainId from eiffelMessage if domainId not available then
+     *         returns the null value
+     */
     private String getDomainId(JsonObject eiffelMessage) {
-        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META) && eiffelMessage.getAsJsonObject()
-                .getAsJsonObject(META).has(SOURCE) && eiffelMessage.getAsJsonObject()
-                .getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
-            return eiffelMessage.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE)
-                    .get(DOMAIN_ID).getAsString();
+        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
+                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(SOURCE)
+                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
+            return eiffelMessage.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE).get(DOMAIN_ID)
+                    .getAsString();
         }
         return null;
     }
@@ -330,34 +365,37 @@ public class SemanticsService implements MsgService {
                 return null;
             }
             String domainId = getDomainId(eiffelMessage);
-            //If domainId from input message is null then configured domain will be considered
-            domainId  = StringUtils.defaultIfBlank(domainId, domain);
-            if(StringUtils.isNotBlank(domainId)) {
+            // If domainId from input message is null then configured domain
+            // will be considered
+            domainId = StringUtils.defaultIfBlank(domainId, domain);
+            if (StringUtils.isNotBlank(domainId)) {
                 if (StringUtils.isNotBlank(userDomainSuffix)) {
                     domainId = domainId + DOT + userDomainSuffix;
                 }
-                return StringUtils.deleteWhitespace(PROTOCOL + DOT + family + DOT + type + DOT +  StringUtils.defaultIfBlank(tag, "notag") + DOT + domainId);
+                return StringUtils.deleteWhitespace(PROTOCOL + DOT + family + DOT + type + DOT
+                        + StringUtils.defaultIfBlank(tag, "notag") + DOT + domainId);
             }
-            log.error("domain needed for Routing key generation in the format <protocol>.<family>.<type>.<tag>.<domain> is not provided in either input message or configuration");
+            log.error(
+                    "domain needed for Routing key generation in the format <protocol>.<family>.<type>.<tag>.<domain> is not provided in either input message or configuration");
         }
         return null;
     }
-    
+
     /**
-	 * This method is used to override given input meta.source.serializer GAV
-	 * with semantics GAV or if not exist, generates semantics GAV and set to
-	 * meta.source.serializer
-	 * 
-	 * @param source
-	 * @return updated source instance with semantics gav information
-	 */
-	public static Source setSerializerGav(Source source) {
-		source = source == null ? new Source() : source;
-		Serializer serializer = source.getSerializer()==null? new Serializer():source.getSerializer();
-		serializer.setGroupId(semanticsGAV.getGroupId());
-		serializer.setArtifactId(semanticsGAV.getArtifactId());
-		serializer.setVersion(semanticsGAV.getVersion());
-		source.setSerializer(serializer);
-		return source;
-	}
+     * This method is used to override given input meta.source.serializer GAV
+     * with semantics GAV or if not exist, generates semantics GAV and set to
+     * meta.source.serializer
+     * 
+     * @param source
+     * @return updated source instance with semantics gav information
+     */
+    public static Source setSerializerGav(Source source) {
+        source = source == null ? new Source() : source;
+        Serializer serializer = source.getSerializer() == null ? new Serializer() : source.getSerializer();
+        serializer.setGroupId(semanticsGAV.getGroupId());
+        serializer.setArtifactId(semanticsGAV.getArtifactId());
+        serializer.setVersion(semanticsGAV.getVersion());
+        source.setSerializer(serializer);
+        return source;
+    }
 }
