@@ -14,6 +14,8 @@
 */
 package com.ericsson.eiffel.semantics.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -37,7 +39,7 @@ public class Recipe {
     private TestCase testCase;
     @SerializedName("constraints")
     @Expose
-    private Constraint constraints;
+    private List<Constraint> constraints = new ArrayList<Constraint>();
 
     /**
      * 
@@ -75,11 +77,11 @@ public class Recipe {
         this.testCase = testCase;
     }
 
-    public Constraint getConstraints() {
+    public List<Constraint> getConstraints() {
         return constraints;
     }
 
-    public void setConstraints(Constraint constraints) {
+    public void setConstraints(List<Constraint> constraints) {
         this.constraints = constraints;
     }
 

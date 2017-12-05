@@ -42,18 +42,19 @@ public final class EiffelConstants {
     public static String OBJECTTYPE = "object";
     public static String INPUT_EIFFEL_SCHEMAS = "src\\main\\resources\\schemas\\input";
     public static String EIFFEL = "eiffel";
+    public static String OPERATIONS_REPO_NAME = "eiffel-operations-extension";
     public static String USER_DIR = System.getProperty("user.dir");
     public static String SCHEMA_LOCATION = "\\schemas";
     public static String JSON_MIME_TYPE = ".json";
     public static String USER_HOME = "user.home";
     public static String ACTIVITY = "activity";
     public static String ARTIFACT = "artifact";
+    public static String SERVICE = "service";
     public static String CM = "cm";
     public static String INFO = "info";
     public static String CONFIGURATION = "configuration";
     public static String FLOWCONTEXT = "flowcontext";
     public static String TEST = "test";
-    public static String REMOTE_REFERENCES = "refs/remotes/origin/";
     public static String JAVA_INTERFACES = "javaInterfaces";
     public static String DEPENDENCY = "dependency";
     public static String BATCH = "batch";
@@ -62,4 +63,5 @@ public final class EiffelConstants {
     public static String STRING = "string";
     public static boolean MULTIPLE_ALLOWED = true;
     public static boolean MULTIPLE_NOT_ALLOWED = false;
+    public static final String MASTER = "master";
 }

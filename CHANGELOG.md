@@ -1,3 +1,6 @@
+## 0.3.2
+- Implemented functionality to support 2.0 eiffel-operations events
+
 ## 0.3.1
 - Implemented functionality to override input semantics gav with MANIFEST.MF file gav
 

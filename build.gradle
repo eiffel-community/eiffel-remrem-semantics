@@ -48,7 +48,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.3.1'
+    version =  '0.3.2'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -66,7 +66,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.3.1'
+    version =  '0.3.2'
     classifier = ''
 }
 
@@ -124,17 +124,30 @@ task compileSourceCode (type: JavaCompile) {
 	destinationDir = sourceSets.main.output.classesDir
 }
 
-//runJava task to clone schemas from github and modify the schema's for generate pojo's
+//runJava task to clone schemas from github and then modify schema's to generate pojo's
 task runJava(type:JavaExec){
-	doFirst{
-	// remote repository URL to clone
-	def remoteURL='https://github.com/Ericsson/eiffel.git'
-	//specific branch name to clone
-	def branch='master'
-	main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
-	classpath sourceSets.main.runtimeClasspath
-	args=	[remoteURL,branch]
-	}
+    doFirst{
+        
+        // Remote Eiffel repository URL to clone
+
+        def eiffelRepoURL = 'https://github.com/Ericsson/eiffel.git'
+
+        //specific branch name to clone
+
+        def eiffelRepoBranch = 'master'
+
+        // Remote Continuous Operations repository URL
+
+        def eiffelOperationsExtensionRepoUrl = 'https://github.com/Ericsson/eiffel-operations-extension.git'
+
+        //branch name to perform clone
+
+        def operationsRepoBranch = 'master'
+
+        main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
+        classpath sourceSets.main.runtimeClasspath
+        args=	[eiffelRepoURL, eiffelRepoBranch, eiffelOperationsExtensionRepoUrl, operationsRepoBranch]
+    }
 }
 
 //please set 'runJava.enabled= true' to execute the :runJava task if needed only.
