@@ -134,19 +134,19 @@ task runJava(type:JavaExec){
 
         //specific branch name to clone
 
-        def eiffelBranch='master'
+        def eiffelRepoBranch = 'master'
 
         // Remote Continuous Operations repository URL
 
-        def eiffelOperationsExtension = 'https://github.com/Ericsson/eiffel-operations-extension.git'
+        def eiffelOperationsExtensionRepoUrl = 'https://github.com/Ericsson/eiffel-operations-extension.git'
 
         //branch name to perform clone
 
-        def operationsBranch = 'master'
+        def operationsRepoBranch = 'master'
 
         main 'com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas'
         classpath sourceSets.main.runtimeClasspath
-        args=	[eiffelRepoURL, eiffelBranch, eiffelOperationsExtension, operationsBranch]
+        args=	[eiffelRepoURL, eiffelRepoBranch, eiffelOperationsExtensionRepoUrl, operationsRepoBranch]
     }
 }
 
