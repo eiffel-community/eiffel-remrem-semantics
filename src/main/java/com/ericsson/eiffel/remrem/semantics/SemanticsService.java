@@ -288,14 +288,7 @@ public class SemanticsService implements MsgService {
     
     @Override
     public Collection<String> getSupportedEventTypes() {
-    	Map<EiffelEventType, Class<? extends Event>> semanticsEventTypes = eventType(); 
-    	List<String> names = new ArrayList<>();
-    	
-    	for(EiffelEventType type : semanticsEventTypes.keySet()) {
-    		names.add(type.getEventName());
-    	}
-    	
-    	return names;
+    	return supportedEventTypes;
     }
 
     /**
