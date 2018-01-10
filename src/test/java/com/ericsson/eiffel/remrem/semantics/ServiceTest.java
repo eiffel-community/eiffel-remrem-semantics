@@ -24,6 +24,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
@@ -37,6 +40,8 @@ import org.mockito.MockitoAnnotations;
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
 import com.ericsson.eiffel.remrem.semantics.util.ManifestHandler;
 import com.ericsson.eiffel.semantics.events.Gav;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -65,8 +70,6 @@ public class ServiceTest {
             manifestGav.setGroupId(attributes1.getValue("groupId"));
             manifestGav.setArtifactId(attributes1.getValue("artifactId"));
             manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,11 +151,7 @@ public class ServiceTest {
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
             msg = service.validateMsg(ACTIVITY_FINISHED, input);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         Assert.assertNotNull(msg);
@@ -169,11 +168,7 @@ public class ServiceTest {
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
             eventType = service.getEventType(input);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         assertEquals("EiffelActivityFinishedEvent", eventType);
@@ -189,11 +184,7 @@ public class ServiceTest {
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
             routingKey = service.generateRoutingKey(input, null, null, null);
-        } catch (JsonIOException e) {
-            e.printStackTrace();
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         assertEquals("eiffel.activity.finished.notag.domainID", routingKey);
@@ -218,5 +209,29 @@ public class ServiceTest {
         manifestGav.setArtifactId(attributes1.getValue("artifactId"));
         manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
 
+    }
+    
+    @Test
+    public void testGetSupportedEventTypes() {
+    	URL url = getClass().getClassLoader().getResource("output/EventTypes.json");
+        String path = url.getPath().replace("%20", " ");
+        File file = new File(path);
+        JsonObject input = null;
+        boolean checkValue = false;        
+        try {
+        	Collection<String> types = service.getSupportedEventTypes();
+            input = parser.parse(new FileReader(file)).getAsJsonObject();
+            JsonArray eventTypes = input.getAsJsonArray("eventTypes");            
+            List<String> matchingCollection = new ArrayList<>();
+            if (eventTypes != null) {
+            	for (JsonElement event : eventTypes) {
+            		matchingCollection.add(event.getAsString());
+            	}
+            }
+            checkValue = types.containsAll(matchingCollection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }     
+        assertEquals(true,checkValue);
     }
 }
