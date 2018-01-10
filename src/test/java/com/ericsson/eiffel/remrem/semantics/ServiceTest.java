@@ -219,7 +219,7 @@ public class ServiceTest {
         JsonObject input = null;
         boolean checkValue = false;        
         try {
-        	Collection<String> types = service.getSupportedEventTypes();
+            Collection<String> types = service.getSupportedEventTypes();
             input = parser.parse(new FileReader(file)).getAsJsonObject();
             JsonArray eventTypes = input.getAsJsonArray("eventTypes");            
             List<String> matchingCollection = new ArrayList<>();
