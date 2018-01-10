@@ -213,7 +213,7 @@ public class ServiceTest {
     
     @Test
     public void testGetSupportedEventTypes() {
-    	URL url = getClass().getClassLoader().getResource("output/EventTypes.json");
+    	URL url = getClass().getClassLoader().getResource("EventTypes.json");
         String path = url.getPath().replace("%20", " ");
         File file = new File(path);
         JsonObject input = null;
