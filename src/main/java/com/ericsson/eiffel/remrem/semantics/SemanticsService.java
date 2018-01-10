@@ -46,7 +46,9 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIE
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -282,6 +284,11 @@ public class SemanticsService implements MsgService {
             return json.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString();
         }
         return null;
+    }
+    
+    @Override
+    public Collection<String> getSupportedEventTypes() {
+    	return supportedEventTypes;
     }
 
     /**

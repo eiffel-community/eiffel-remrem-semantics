@@ -48,7 +48,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.3.2'
+    version =  '0.3.3'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -95,7 +95,7 @@ repositories {
 install.dependsOn shadowJar
 
 dependencies {
-    compile 'com.github.Ericsson:eiffel-remrem-protocol-interface:0.0.5'
+    compile 'com.github.Ericsson:eiffel-remrem-protocol-interface:0.0.6'
     compile('com.github.fge:json-schema-validator:2.2.6')
     {
     // we need to exclude jackson-databind here and add a
