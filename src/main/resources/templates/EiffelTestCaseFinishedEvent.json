@@ -1,56 +1,60 @@
 {
-  "msgParams": {
-    "meta": {
-      "type":  <required>
-      "version":  <required>
-      "tags": [],
-      "source": {
-        "domainId":
-        "host":
-        "name":
-        "uri":
-        "serializer": {
-          "groupId":  <required>
-          "artifactId":  <required>
-          "version":  <required>
+  "msgParams":{
+    "meta":{
+      "type":"EiffelTestCaseFinishedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       },
       "security":{
-        "sdm": {
-            "authorIdentity":  <required>
-            "encryptedDigest":  <required>
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
         }
       }
     }
   },
-  "eventParams": {
-    "data": {
-      "outcome": {
-        "verdict":
-        "conclusion":
-        "description":
-        "metrics":[{
-            "name":  <required>
-            "value":  <required>
-            }]
+  "eventParams":{
+    "data":{
+      "outcome":{
+        "verdict":"",
+        "conclusion":"",
+        "description":"",
+        "metrics":[
+          {
+            "name":"<required>",
+            "value":"<required>"
+          }
+        ]
       },
-      "persistentLogs": [
+      "persistentLogs":[
         {
-          "name":  <required>
-          "uri":  <required>
+          "name":"<required>",
+          "uri":"<required>"
         }
       ],
-      "customData": [
+      "customData":[
         {
-          "key":  <required>
-          "value":  <required>
+          "key":"<required>",
+          "value":"<required>"
         }
       ]
     },
-    "links": [
+    "links":[
       {
-        "type":  <required>
-        "target":  <required>
+        "type":"<required>",
+        "target":"<required>"
       }
     ]
   }

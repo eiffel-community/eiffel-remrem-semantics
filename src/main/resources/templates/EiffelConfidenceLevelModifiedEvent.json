@@ -1,53 +1,55 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": <required>
-      "version": <required>
-      "tags": [],
-      "source": {
-        "domainId":
-        "host":
-        "name":
-        "uri":
-        "serializer": {
-          "groupId": <required>
-          "artifactId": <required>
-          "version": <required>
+  "msgParams":{
+    "meta":{
+      "type":"EiffelConfidenceLevelModifiedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       },
       "security":{
-        "sdm": {
-            "authorIdentity": <required>
-            "encryptedDigest": <required>
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
         }
       }
     }
   },
-  "eventParams": {
-    "data": {
-      "name": <required>
-      "value": <required>
-      "issuer": {
-        "name":
-        "email":
-        "id":
-        "group":
+  "eventParams":{
+    "data":{
+      "name":"<required>",
+      "value":"<required>",
+      "issuer":{
+        "name":"",
+        "email":"",
+        "id":"",
+        "group":""
       },
-      "customData": [
+      "customData":[
         {
-          "key": <required>
-          "value": <required>
+          "key":"<required>",
+          "value":"<required>"
         },
         {
-          "key": <required>
-          "value": <required>
+          "key":"<required>",
+          "value":"<required>"
         }
       ]
     },
-    "links": [
+    "links":[
       {
-        "type": <required>
-        "target": <required>
+        "type":"<required>",
+        "target":"<required>"
       }
     ]
   }

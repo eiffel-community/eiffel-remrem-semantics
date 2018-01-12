@@ -1,69 +1,71 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": <required>
-      "version": <required>
-      "tags": [],
-      "source": {
-        "domainId":
-        "host":
-        "name":
-        "uri":
-        "serializer": {
-          "groupId": <required>
-          "artifactId": <required>
-          "version": <required>
+  "msgParams":{
+    "meta":{
+      "type":"EiffelArtifactCreatedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"\<required\>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       },
       "security":{
-        "sdm": {
-            "authorIdentity": <required>
-            "encryptedDigest": <required>
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
         }
       }
     }
   },
-  "eventParams": {
-    "data": {
-      "gav": {
-        "groupId": <required>
-        "artifactId": <required>
-        "version": <required>
+  "eventParams":{
+    "data":{
+      "gav":{
+        "groupId":"<required>",
+        "artifactId":"<required>",
+        "version":"<required>"
       },
-      "fileInformation": [
+      "fileInformation":[
         {
-          "classifier": <required>
-          "extension": <required>
+          "classifier":"<required>",
+          "extension":"<required>"
         }
       ],
-      "buildCommand":
-      "requiresImplementation":
-      "name":
-      "dependsOn": [
+      "buildCommand":"",
+      "requiresImplementation":"",
+      "name":"",
+      "dependsOn":[
         {
-          "groupId": <required>
-          "artifactId": <required>
-          "version": <required>
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       ],
-      "implement": [
+      "implement":[
         {
-          "groupId": <required>
-          "artifactId": <required>
-          "version": <required>
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       ],
-      "customData": [
+      "customData":[
         {
-          "key": <required>
-          "value": <required>
+          "key":"<required>",
+          "value":"<required>"
         }
       ]
     },
-    "links": [
+    "links":[
       {
-        "type": <required>
-        "target": <required>
+        "type":"<required>",
+        "target":"<required>"
       }
     ]
   }
