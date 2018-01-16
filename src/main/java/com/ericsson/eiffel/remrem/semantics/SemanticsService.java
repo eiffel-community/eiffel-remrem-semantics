@@ -46,7 +46,6 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIE
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -296,7 +295,7 @@ public class SemanticsService implements MsgService {
     }
     
     @Override
-    public JsonElement getEventTemplate(String eventType) throws FileNotFoundException {
+    public JsonElement getEventTemplate(String eventType) {
         String fileName = eventType+".json";
         File file = null;
         File folder = null;
@@ -310,7 +309,11 @@ public class SemanticsService implements MsgService {
         JsonElement json = null;
         JsonParser parser = new JsonParser();
         if(file != null)
-            json = parser.parse(new FileReader(file));
+            try {
+                json = parser.parse(new FileReader(file));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         return json;
     }
 
