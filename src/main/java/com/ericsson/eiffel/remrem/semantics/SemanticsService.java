@@ -45,16 +45,11 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -106,10 +101,8 @@ import com.ericsson.eiffel.semantics.events.Serializer;
 import com.ericsson.eiffel.semantics.events.Source;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService {
