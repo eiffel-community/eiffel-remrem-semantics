@@ -47,6 +47,9 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUS
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -102,8 +105,10 @@ import com.ericsson.eiffel.semantics.events.Serializer;
 import com.ericsson.eiffel.semantics.events.Source;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService {
@@ -295,25 +300,16 @@ public class SemanticsService implements MsgService {
     }
     
     @Override
-    public JsonElement getEventTemplate(String eventType) {
-        String fileName = eventType+".json";
-        File file = null;
-        File folder = null;
-        URL url = getClass().getClassLoader().getResource("templates");
-        folder = new File(url.getPath());
-        for(File fl : folder.listFiles()) {
-            if(fl.getName().equalsIgnoreCase(fileName)) {
-                file = fl;
-            }
-        }      
+    public JsonElement getEventTemplate(String eventType) {    
+        String path = "templates/"+eventType.toLowerCase()+".json";
+        InputStream fileStream = getClass().getClassLoader().getResourceAsStream(path);     
         JsonElement json = null;
         JsonParser parser = new JsonParser();
-        if(file != null)
-            try {
-                json = parser.parse(new FileReader(file));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            json = parser.parse(new InputStreamReader(fileStream));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return json;
     }
 

@@ -1,0 +1,57 @@
+{
+  "msgParams":{
+    "meta":{
+      "type":"EiffelTestSuiteStartedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
+        }
+      },
+      "security":{
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
+        }
+      }
+    }
+  },
+  "eventParams":{
+    "data":{
+      "name":"",
+      "categories":[
+
+      ],
+      "types":[
+
+      ],
+      "liveLogs":[
+        {
+          "name":"<required>",
+          "uri":"<required>"
+        }
+      ],
+      "customData":[
+        {
+          "key":"<required>",
+          "value":"<required>"
+        }
+      ]
+    },
+    "links":[
+      {
+        "type":"<required>",
+        "target":"<required>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "msgParams":{
+    "meta":{
+      "type":"EiffelActivityCanceledEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
+        }
+      },
+      "security":{
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
+        }
+      }
+    }
+  },
+  "eventParams":{
+    "data":{
+      "reason":"",
+      "customData":[
+        {
+          "key":"<required>",
+          "value":"<required>"
+        }
+      ]
+    },
+    "links":[
+      {
+        "type":"<required>",
+        "target":"<required>"
+      }
+    ]
+  }
+}

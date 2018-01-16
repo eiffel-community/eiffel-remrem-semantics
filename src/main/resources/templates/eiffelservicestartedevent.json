@@ -1,0 +1,41 @@
+{
+  "msgParams":{
+    "meta":{
+      "type":"EiffelServiceStartedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
+        }
+      }
+    }
+  },
+  "eventParams":{
+    "data":{
+      "serviceinstance":"<required>",
+      "pid":"",
+      "uri":"",
+      "customData":[
+        {
+          "key":"<required>",
+          "value":"<required>"
+        }
+      ]
+    },
+    "links":[
+      {
+        "type":"<required>",
+        "target":"<required>"
+      }
+    ]
+  }
+}
