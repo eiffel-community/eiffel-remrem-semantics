@@ -299,6 +299,15 @@ public class SemanticsService implements MsgService {
     	return supportedEventTypes;
     }
     
+    /**
+     * Gets the path to an event template file that must be in lowercase
+     * and read through a resource stream. Stream is parsed into a
+     * JsonElement.
+     * 
+     * @param String eventType
+     * 
+     * @return json element containing an event template
+     */
     @Override
     public JsonElement getEventTemplate(String eventType) {    
         String path = "templates/"+eventType.toLowerCase()+".json";

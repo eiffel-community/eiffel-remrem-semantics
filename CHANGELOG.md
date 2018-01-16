@@ -1,3 +1,6 @@
+## 0.3.5
+- Changed the way template files are read and parsed in getEventTemplate method.
+
 ## 0.3.4
 - Implemented method to get template from specified event type.
 
