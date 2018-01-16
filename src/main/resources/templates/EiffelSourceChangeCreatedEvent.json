@@ -1,87 +1,91 @@
 {
-  "msgParams": {
-    "meta": {
-      "type":  <required>
-      "version":  <required>
-      "tags": [],
-      "source": {
-        "domainId":
-        "host":
-        "name":
-        "uri": 
-        "serializer": {
-          "groupId":  <required>
-          "artifactId":  <required>
-          "version":  <required>
+  "msgParams":{
+    "meta":{
+      "type":"EiffelSourceChangeCreatedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       },
       "security":{
-        "sdm": {
-            "authorIdentity":  <required>
-            "encryptedDigest":  <required>
-        } 
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
+        }
       }
     }
   },
-  "eventParams": {
-    "data": {
-    "author":{
-        "name":
-        "email":
-        "id":
-        "group":
-    },
-    "change":{
-        "insertions":
-        "deletions":
-        "files":
-        "tracker":
-        "details":
-        "id":
-    },
-      "issues": [
+  "eventParams":{
+    "data":{
+      "author":{
+        "name":"",
+        "email":"",
+        "id":"",
+        "group":""
+      },
+      "change":{
+        "insertions":"",
+        "deletions":"",
+        "files":"",
+        "tracker":"",
+        "details":"",
+        "id":""
+      },
+      "issues":[
         {
-          "type":  <required>
-          "tracker":  <required>
-          "id":  <required>
-          "uri":  <required>
-          "transition":  <required>
+          "type":"<required>",
+          "tracker":"<required>",
+          "id":"<required>",
+          "uri":"<required>",
+          "transition":"<required>"
         }
       ],
-      "gitIdentifier": {
-        "commitId":  <required>
-        "branch":
-        "repoName": 
-        "repoUri":  <required>
+      "gitIdentifier":{
+        "commitId":"<required>",
+        "branch":"",
+        "repoName":"",
+        "repoUri":"<required>"
       },
-      "svnIdentifier": {
-        "revision":  <required>
-        "directory":  <required>
-        "repoName":
-        "repoUri":  <required>
+      "svnIdentifier":{
+        "revision":"<required>",
+        "directory":"<required>",
+        "repoName":"",
+        "repoUri":"<required>"
       },
-      "ccCompositeIdentifier": {
-        "vobs": [ <required> ],
-        "branch":  <required>
-        "configSpec":  <required>
+      "ccCompositeIdentifier":{
+        "vobs":[
+          "<required>"
+        ],
+        "branch":"<required>",
+        "configSpec":"<required>"
       },
-      "hgIdentifier": {
-        "commitId":  <required>
-        "branch":
-        "repoName":
-        "repoUri":  <required>
+      "hgIdentifier":{
+        "commitId":"<required>",
+        "branch":"",
+        "repoName":"",
+        "repoUri":"<required>"
       },
-      "customData": [
+      "customData":[
         {
-          "key":  <required>
-          "value":  <required>
+          "key":"<required>",
+          "value":"<required>"
         }
       ]
     },
-    "links": [
+    "links":[
       {
-        "type":  <required>
-        "target":  <required>
+        "type":"<required>",
+        "target":"<required>"
       }
     ]
   }

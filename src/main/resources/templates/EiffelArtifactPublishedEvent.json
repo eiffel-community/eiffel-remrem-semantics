@@ -1,46 +1,49 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": <required>
-      "version": <required>
-      "tags": [],
-      "source": {
-        "domainId":
-        "host":
-        "name":
-        "uri": 
-        "serializer": {
-          "groupId": <required>
-          "artifactId": <required>
-          "version": <required>
+  "msgParams":{
+    "meta":{
+      "type":"EiffelArtifactPublishedEvent",
+      "version":"1.0.0",
+      "tags":[
+
+      ],
+      "source":{
+        "domainId":"",
+        "host":"",
+        "name":"",
+        "uri":"",
+        "serializer":{
+          "groupId":"<required>",
+          "artifactId":"<required>",
+          "version":"<required>"
         }
       },
       "security":{
-        "sdm": {
-            "authorIdentity": <required>
-            "encryptedDigest": <required>
+        "sdm":{
+          "authorIdentity":"<required>",
+          "encryptedDigest":"<required>"
         }
       }
     }
   },
-  "eventParams": {
-    "data": {
-      "locations": [
+  "eventParams":{
+    "data":{
+      "locations":[
         {
-          "type": <required>
-          "uri": <required>
+          "type":"<required>",
+          "uri":"<required>"
         }
       ],
-       "customData": [{
-          "key": <required>
-          "value": <required>
+      "customData":[
+        {
+          "key":"<required>",
+          "value":"<required>"
         }
       ]
     },
-    "links": [
+    "links":[
       {
-        "type":  <required>
-        "target":  <required>
+        "type":"<required>",
+        "target":"<required>"
       }
     ]
   }

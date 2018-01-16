@@ -1,3 +1,9 @@
+## 0.3.4
+- Implemented method to get template from specified event type.
+
+## 0.3.3
+- Implemented method to get supported event types.
+
 ## 0.3.2
 - Implemented functionality to support 2.0 eiffel-operations events
 
