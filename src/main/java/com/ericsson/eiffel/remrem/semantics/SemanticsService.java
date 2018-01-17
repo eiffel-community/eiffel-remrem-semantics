@@ -45,13 +45,13 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
-import java.io.File;
-import java.io.FileReader;
-import java.net.URL;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -295,26 +295,26 @@ public class SemanticsService implements MsgService {
     	return supportedEventTypes;
     }
     
+    /**
+     * Gets the path to an event template file that must be in lowercase
+     * and read through a resource stream. Stream is parsed into a
+     * JsonElement.
+     * 
+     * @param String eventType
+     * 
+     * @return json element containing an event template
+     */
     @Override
-    public JsonElement getEventTemplate(String eventType) {
-        String fileName = eventType+".json";
-        File file = null;
-        File folder = null;
-        URL url = getClass().getClassLoader().getResource("templates");
-        folder = new File(url.getPath());
-        for(File fl : folder.listFiles()) {
-            if(fl.getName().equalsIgnoreCase(fileName)) {
-                file = fl;
-            }
-        }      
+    public JsonElement getEventTemplate(String eventType) {    
+        String path = "templates/"+eventType.toLowerCase()+".json";
+        InputStream fileStream = getClass().getClassLoader().getResourceAsStream(path);     
         JsonElement json = null;
         JsonParser parser = new JsonParser();
-        if(file != null)
-            try {
-                json = parser.parse(new FileReader(file));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            json = parser.parse(new InputStreamReader(fileStream));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return json;
     }
 
