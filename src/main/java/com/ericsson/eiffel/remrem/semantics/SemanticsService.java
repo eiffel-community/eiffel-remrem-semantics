@@ -45,8 +45,14 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STA
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
 
+<<<<<<< HEAD
 import java.io.InputStream;
 import java.io.InputStreamReader;
+=======
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
+>>>>>>> a6eabea239b326b925606dc8dfcbc7ecec8570de
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
