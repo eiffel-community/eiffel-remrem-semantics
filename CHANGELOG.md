@@ -1,3 +1,4 @@
+
 ## 0.3.5
 - Changed the way template files are read and parsed in getEventTemplate method.
 
