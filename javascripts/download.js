@@ -33,9 +33,11 @@
     // To download the template of specific event.
     function downloadTemplate(eventName) {
         var version = document.getElementById('version').value;
-        if(parseFloat(version) >= parseFloat(3.5)) {
-        	eventName = eventName.toLowerCase();
-        }
+        var array = version.split('.')
+        //Check if version is equal or higher than 0.3.5
+        if(parseInt(array[0]) > 0 || parseInt(array[1]) > 3 || (parseInt(array[1]) == 3 && parseInt(array[2]) >= 5)) {
+			eventName = eventName.toLowerCase();
+		}
         var URL = "https://raw.githubusercontent.com/Ericsson/eiffel-remrem-semantics/"
                 + version
                 + "/src/main/resources/templates/"
