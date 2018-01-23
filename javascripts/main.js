@@ -28,9 +28,11 @@ function buildHtmlTable(selector) {
 
 function checkVersion() {
   var toLowerCase = false;
-  var version = document.getElementById('version').value;
-  var array = version.split('.')
+  var e = document.getElementById("version");
+  var version = e.options[e.selectedIndex].text;
+  var array = version.split('.');
   //Check if version is equal or higher than 0.3.5
+  console.log(version);
   if(parseInt(array[0]) > 0 || parseInt(array[1]) > 3 || (parseInt(array[1]) == 3 && parseInt(array[2]) >= 5)) {
     toLowerCase = true;
   }
