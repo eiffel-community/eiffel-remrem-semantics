@@ -18,7 +18,7 @@ function buildHtmlTable(selector) {
       if (cellValue == null) cellValue = "";
       if (colIndex == 3) {
     	  if(Boolean(toLowerCase)) cellValue = cellValue.toLowerCase();
-    	  cellValue = '<a href="#" onClick="downloadTemplate("'+cellValue+'"); return false;">'+cellValue+'</a>';
+    	  cellValue = '<a href="#" onClick="downloadTemplate(\''+cellValue+'\'); return false;">'+cellValue+'</a>';
       } 
       row$.append($('<td/>').html(cellValue));
     }
