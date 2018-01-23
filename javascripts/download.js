@@ -8,6 +8,7 @@
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var myArr = JSON.parse(xmlhttp.responseText);
             populateRelease(myArr);
+            buildHtmlTable('#eventTypesTable');
         }
     }
     xmlhttp.open("get","https://api.github.com/repos/Ericsson/eiffel-remrem-semantics/releases",true);
