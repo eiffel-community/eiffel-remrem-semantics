@@ -1,92 +1,81 @@
 {
-  "msgParams":{
-    "meta":{
-      "type":"EiffelSourceChangeCreatedEvent",
-      "version":"1.0.0",
-      "tags":[
+  "msgParams": {
+    "meta": {
+      "type": "EiffelSourceChangeCreatedEvent",
+      "version": "1.0.0",
+      "tags": [
 
       ],
-      "source":{
-        "domainId":"",
-        "host":"",
-        "name":"",
-        "uri":"",
-        "serializer":{
-          "groupId":"<required>",
-          "artifactId":"<required>",
-          "version":"<required>"
-        }
-      },
-      "security":{
-        "sdm":{
-          "authorIdentity":"<required>",
-          "encryptedDigest":"<required>"
+      "source": {
+        "domainId": "",
+        "host": "",
+        "name": "",
+        "uri": "",
+        "security": {
+          "sdm": {
+            "authorIdentity": "required if sdm present",
+            "encryptedDigest": "required if sdm present"
+          }
         }
       }
-    }
-  },
-  "eventParams":{
-    "data":{
-      "author":{
-        "name":"",
-        "email":"",
-        "id":"",
-        "group":""
-      },
-      "change":{
-        "insertions":"",
-        "deletions":"",
-        "files":"",
-        "tracker":"",
-        "details":"",
-        "id":""
-      },
-      "issues":[
-        {
-          "type":"<required>",
-          "tracker":"<required>",
-          "id":"<required>",
-          "uri":"<required>",
-          "transition":"<required>"
-        }
-      ],
-      "gitIdentifier":{
-        "commitId":"<required>",
-        "branch":"",
-        "repoName":"",
-        "repoUri":"<required>"
-      },
-      "svnIdentifier":{
-        "revision":"<required>",
-        "directory":"<required>",
-        "repoName":"",
-        "repoUri":"<required>"
-      },
-      "ccCompositeIdentifier":{
-        "vobs":[
-          "<required>"
-        ],
-        "branch":"<required>",
-        "configSpec":"<required>"
-      },
-      "hgIdentifier":{
-        "commitId":"<required>",
-        "branch":"",
-        "repoName":"",
-        "repoUri":"<required>"
-      },
-      "customData":[
-        {
-          "key":"<required>",
-          "value":"<required>"
-        }
-      ]
     },
-    "links":[
-      {
-        "type":"<required>",
-        "target":"<required>"
-      }
-    ]
+    "eventParams": {
+      "data": {
+        "author": {
+          "name": "",
+          "email": "",
+          "id": "",
+          "group": ""
+        },
+        "change": {
+          "insertions": " not required, if present must be in Integer format ",
+          "deletions": " not required, if present must be in Integer format ",
+          "files": "",
+          "tracker": "",
+          "details": "",
+          "id": ""
+        },
+        "issues": [{
+          "type": "required if issues present, can be anyone of BUG,IMPROVEMENT,FEATURE,WORK_ITEM,REQUIREMENT,OTHER",
+          "tracker": "required if issues present",
+          "id": "required if issues present",
+          "uri": "required if issues present",
+          "transition": "required if issues present,can be anyone of RESOLVED,PARTIAL,REMOVED"
+        }],
+        "gitIdentifier": {
+          "commitId": "required",
+          "branch": "",
+          "repoName": "",
+          "repoUri": "required"
+        },
+        "svnIdentifier": {
+          "revision": "required, must be in Integer format",
+          "directory": "required",
+          "repoName": "",
+          "repoUri": "required"
+        },
+        "ccCompositeIdentifier": {
+          "vobs": [
+            "required if ccCompositeIdentifier present "
+          ],
+          "branch": "required",
+          "configSpec": "required"
+        },
+        "hgIdentifier": {
+          "commitId": "required",
+          "branch": "",
+          "repoName": "",
+          "repoUri": "required"
+        },
+        "customData": [{
+          "key": "required if customData present",
+          "value": "required if customData present"
+        }]
+      },
+      "links": [{
+        "type": "required",
+        "target": "required"
+      }]
+    }
   }
 }

@@ -3,54 +3,42 @@
     "meta":{
       "type":"EiffelTestSuiteStartedEvent",
       "version":"1.0.0",
-      "tags":[
-
-      ],
+      "tags":[ ],
       "source":{
         "domainId":"",
         "host":"",
         "name":"",
         "uri":"",
-        "serializer":{
-          "groupId":"<required>",
-          "artifactId":"<required>",
-          "version":"<required>"
-        }
-      },
-      "security":{
-        "sdm":{
-          "authorIdentity":"<required>",
-          "encryptedDigest":"<required>"
+        "security":{ not required
+        "sdm":{ not required
+          "authorIdentity":"required if sdm present",
+          "encryptedDigest":"required if sdm present"
         }
       }
     }
   },
   "eventParams":{
     "data":{
-      "name":"",
-      "categories":[
-
-      ],
-      "types":[
-
-      ],
-      "liveLogs":[
+      "name":"required",
+      "categories":[ ],
+      "types":["not requrired, if present can be anyone of ACCESSIBILITY,BACKUP_RECOVERY,COMPATIBILITY,CONVERSION,DISASTER_RECOVERY,FUNCTIONAL,INSTALLABILITY,INTEROPERABILITY,LOCALIZATION,MAINTAINABILITY,PERFORMANCE,PORTABILITY,PROCEDURE,RELIABILITY,SECURITY,STABILITY,USABILITY "],
+      "liveLogs":[ not required
         {
-          "name":"<required>",
-          "uri":"<required>"
+          "name":"required if livelogs present",
+          "uri":"required if livelogs present"
         }
       ],
-      "customData":[
+      "customData":[ not required
         {
-          "key":"<required>",
-          "value":"<required>"
+          "key":"required if customData present",
+          "value":"required if customData present"
         }
       ]
     },
     "links":[
       {
-        "type":"<required>",
-        "target":"<required>"
+        "type":"required",
+        "target":"required"
       }
     ]
   }

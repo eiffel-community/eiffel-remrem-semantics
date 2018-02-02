@@ -1,3 +1,7 @@
+
+## 0.3.6
+- Updated semantics templates and removed unnecessary validation exception message to find out the issue quickly
+
 ## 0.3.5
 - Changed the way template files are read and parsed in getEventTemplate method.
 

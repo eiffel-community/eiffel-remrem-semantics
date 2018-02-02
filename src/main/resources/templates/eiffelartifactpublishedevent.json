@@ -1,50 +1,39 @@
 {
-  "msgParams":{
-    "meta":{
-      "type":"EiffelArtifactPublishedEvent",
-      "version":"1.0.0",
-      "tags":[
+  "msgParams": {
+    "meta": {
+      "type": "EiffelArtifactPublishedEvent",
+      "version": "1.0.0",
+      "tags": [
 
       ],
-      "source":{
-        "domainId":"",
-        "host":"",
-        "name":"",
-        "uri":"",
-        "serializer":{
-          "groupId":"<required>",
-          "artifactId":"<required>",
-          "version":"<required>"
-        }
-      },
-      "security":{
-        "sdm":{
-          "authorIdentity":"<required>",
-          "encryptedDigest":"<required>"
+      "source": {
+        "domainId": "",
+        "host": "",
+        "name": "",
+        "uri": "",
+        "security": {
+          "sdm": {
+            "authorIdentity": "required if sdm present",
+            "encryptedDigest": "required if sdm present"
+          }
         }
       }
-    }
-  },
-  "eventParams":{
-    "data":{
-      "locations":[
-        {
-          "type":"<required>",
-          "uri":"<required>"
-        }
-      ],
-      "customData":[
-        {
-          "key":"<required>",
-          "value":"<required>"
-        }
-      ]
     },
-    "links":[
-      {
-        "type":"<required>",
-        "target":"<required>"
-      }
-    ]
+    "eventParams": {
+      "data": {
+        "locations": [{
+          "type": "required ,can be anyone of ARTIFACTORY,NEXUS,PLAIN,OTHER",
+          "uri": "required"
+        }],
+        "customData": [{
+          "key": "required if customData present",
+          "value": "required if customData present"
+        }]
+      },
+      "links": [{
+        "type": "required",
+        "target": "required"
+      }]
+    }
   }
 }

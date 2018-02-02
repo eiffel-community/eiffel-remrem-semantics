@@ -21,19 +21,23 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.ericsson.eiffel.remrem.semantics.LinkType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jackson.JsonLoader;
+import com.github.fge.jsonschema.core.report.LogLevel;
+import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.google.gson.JsonParser;
 
 public class EiffelValidator {
     public static final Logger log = LoggerFactory.getLogger(EiffelValidator.class);
@@ -72,9 +76,8 @@ public class EiffelValidator {
         try {
             ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()));
             if (!report.isSuccess()) {
-                log.warn(report.toString());
                 log.warn(jsonObjectInput.toString());
-                throw new EiffelValidationException(report.toString());
+                throw new EiffelValidationException(getErrorsList(report));
             }
             log.debug("VALIDATED. Schema used: {}", schemaResourceName);
         } catch (Exception e) {
@@ -84,6 +87,26 @@ public class EiffelValidator {
         }
     }
 
+    /**
+     *
+     * @param report json validation report
+     * @return error message
+     */
+    private String getErrorsList(ProcessingReport report) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser parser = new JsonParser();
+        String message = "";
+        for (ProcessingMessage processingMessage : report) {
+            if(LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
+                JsonElement element=parser.parse(processingMessage.asJson().toString());
+                element.getAsJsonObject().remove("schema");
+                element.getAsJsonObject().remove("level");
+                message = gson.toJson(element);
+                log.debug(message);
+            }
+        }
+        return message;
+    }
     /**
      * This method is used to validate links in an event
      * @param JsonArray of links in an event

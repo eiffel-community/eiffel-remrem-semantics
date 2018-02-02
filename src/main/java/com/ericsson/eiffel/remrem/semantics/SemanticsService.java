@@ -311,9 +311,9 @@ public class SemanticsService implements MsgService {
         try {
             json = parser.parse(new InputStreamReader(fileStream));
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
+            return json;
         }
-
         return json;
     }
 

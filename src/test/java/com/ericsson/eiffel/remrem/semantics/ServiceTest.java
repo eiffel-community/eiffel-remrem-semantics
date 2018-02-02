@@ -137,7 +137,7 @@ public class ServiceTest {
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
-            Assert.assertTrue(msg.contains("missing required properties ([\\\"conclusion"));
+            Assert.assertTrue(msg.contains("object has missing required properties"));
         } catch (FileNotFoundException e) {
             Assert.assertFalse(false);
         }
