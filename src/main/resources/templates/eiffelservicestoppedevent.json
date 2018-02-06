@@ -1,37 +1,37 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": "EiffelServiceStoppedEvent",
-      "version": "1.0.0",
-      "tags": [
+    "msgParams": {
+        "meta": {
+            "type": "EiffelServiceStoppedEvent",
+            "version": "1.0.0",
+            "tags": [
 
-      ],
-      "source": {
-        "domainId": "",
-        "host": "",
-        "name": "",
-        "uri": "",
-        "security": {
-          "sdm": {
-            "authorIdentity": "required if sdm present",
-            "encryptedDigest": "required if sdm present"
-          }
+            ],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
         }
-      }
     },
     "eventParams": {
-      "data": {
-        "serviceinstance": "required",
-        "uri": "",
-        "customData": [{
-          "key": "required if customData present",
-          "value": "required if customData present"
+        "data": {
+            "serviceinstance": "required",
+            "uri": "",
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
+            }]
+        },
+        "links": [{
+            "type": "required",
+            "target": "required"
         }]
-      },
-      "links": [{
-        "type": "required",
-        "target": "required"
-      }]
     }
-  }
 }

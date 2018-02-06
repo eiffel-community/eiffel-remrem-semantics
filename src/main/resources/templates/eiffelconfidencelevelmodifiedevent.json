@@ -1,43 +1,43 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": "EiffelConfidenceLevelModifiedEvent",
-      "version": "1.0.0",
-      "tags": [
+    "msgParams": {
+        "meta": {
+            "type": "EiffelConfidenceLevelModifiedEvent",
+            "version": "1.0.0",
+            "tags": [
 
-      ],
-      "source": {
-        "domainId": "",
-        "host": "",
-        "name": "",
-        "uri": "",
-        "security": {
-          "sdm": {
-            "authorIdentity": "required if sdm present",
-            "encryptedDigest": "required if sdm present"
-          }
+            ],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
         }
-      }
     },
     "eventParams": {
-      "data": {
-        "name": "required",
-        "value": "required, can be any one of SUCCESS,FAILURE,INCONCLUSIVE",
-        "issuer": {
-          "name": "",
-          "email": "",
-          "id": "",
-          "group": ""
+        "data": {
+            "name": "required",
+            "value": "required, can be any one of SUCCESS,FAILURE,INCONCLUSIVE",
+            "issuer": {
+                "name": "",
+                "email": "",
+                "id": "",
+                "group": ""
+            },
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
+            }]
         },
-        "customData": [{
-          "key": "required if customData present",
-          "value": "required if customData present"
+        "links": [{
+            "type": "required if links present",
+            "target": "required if links present"
         }]
-      },
-      "links": [{
-        "type": "required if links present",
-        "target": "required if links present"
-      }]
     }
-  }
 }

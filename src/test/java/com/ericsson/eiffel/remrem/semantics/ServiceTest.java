@@ -248,4 +248,21 @@ public class ServiceTest {
         JsonElement template = service.getEventTemplate("EiffelNotAnEvent");
         assertNull(template);
     }
+
+    @Test
+    public void testValidateTemplates() {
+        try {
+            File file = new File("src/main/resources/templates");
+            if (file.exists()) {
+                for (File inputFile : file.listFiles()) {
+                    System.out.println(inputFile.getName());
+                    parser.parse(new FileReader(inputFile)).getAsJsonObject();
+                }
+            }
+        } catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
+            System.out.println("Exception occured while validating templates");
+            e.printStackTrace();
+            Assert.assertFalse(true);
+        }
+    }
 }
