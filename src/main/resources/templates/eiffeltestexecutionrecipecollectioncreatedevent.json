@@ -1,59 +1,59 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": "EiffelTestExecutionRecipeCollectionCreatedEvent",
-      "version": "2.0.0",
-      "tags": [],
-      "source": {
-        "domainId": "",
-        "host": "",
-        "name": "",
-        "uri": "",
-        "security": {
-          "sdm": {
-            "authorIdentity": "required if sdm present",
-            "encryptedDigest": "required if sdm present"
-          }
+    "msgParams": {
+        "meta": {
+            "type": "EiffelTestExecutionRecipeCollectionCreatedEvent",
+            "version": "2.0.0",
+            "tags": [],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
         }
-      }
     },
     "eventParams": {
-      "data": {
-        "selectionStrategy": {
-          "tracker": "",
-          "id": "required",
-          "uri": ""
-        },
-        "batchesUri": "",
-        "batches": [{
-          "name": "",
-          "priority": "required, if batches present and must be in Integer format",
-          "recipes": [{
-            "id": "required if recipes present",
-            "testCase": {
-              "tracker": "",
-              "id": "required if recipes present",
-              "uri": ""
+        "data": {
+            "selectionStrategy": {
+                "tracker": "",
+                "id": "required",
+                "uri": ""
             },
-            "constraints": [{
-              "key": "required if constraints present",
-              "value": "required if constraints present"
+            "batchesUri": "",
+            "batches": [{
+                "name": "",
+                "priority": "required, if batches present and must be in Integer format",
+                "recipes": [{
+                    "id": "required if recipes present",
+                    "testCase": {
+                        "tracker": "",
+                        "id": "required if recipes present",
+                        "uri": ""
+                    },
+                    "constraints": [{
+                        "key": "required if constraints present",
+                        "value": "required if constraints present"
+                    }]
+                }],
+                "dependencies": [{
+                    "dependent": "required if dependencies present",
+                    "dependency": "required if dependencies present"
+                }]
+            }],
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
             }]
-          }],
-          "dependencies": [{
-            "dependent": "required if dependencies present",
-            "dependency": "required if dependencies present"
-          }]
-        }],
-        "customData": [{
-          "key": "required if customData present",
-          "value": "required if customData present"
+        },
+        "links": [{
+            "type": "required",
+            "target": "required"
         }]
-      },
-      "links": [{
-        "type": "required",
-        "target": "required"
-      }]
     }
-  }
 }

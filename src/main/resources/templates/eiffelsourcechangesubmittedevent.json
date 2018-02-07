@@ -1,64 +1,64 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": "EiffelSourceChangeSubmittedEvent",
-      "version": "1.0.0",
-      "tags": [],
-      "source": {
-        "domainId": "",
-        "host": "",
-        "name": "",
-        "uri": "",
-        "security": {
-          "sdm": {
-            "authorIdentity": "required if sdm present",
-            "encryptedDigest": "required if sdm present"
-          }
+    "msgParams": {
+        "meta": {
+            "type": "EiffelSourceChangeSubmittedEvent",
+            "version": "1.0.0",
+            "tags": [],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
         }
-      }
     },
     "eventParams": {
-      "data": {
-        "submitter": {
-          "name": "",
-          "email": "",
-          "id": "",
-          "group": ""
+        "data": {
+            "submitter": {
+                "name": "",
+                "email": "",
+                "id": "",
+                "group": ""
+            },
+            "gitIdentifier": {
+                "commitId": "required ",
+                "repoUri": "required",
+                "branch": "",
+                "repoName": ""
+            },
+            "svnIdentifier": {
+                "revision": "required, must be in Integer format",
+                "directory": "required",
+                "repoName": "",
+                "repoUri": "required"
+            },
+            "ccCompositeIdentifier": {
+                "vobs": [
+                    "required if ccCompositeIdentifier present "
+                ],
+                "branch": "required",
+                "configSpec": "required"
+            },
+            "hgIdentifier": {
+                "commitId": "required",
+                "branch": "",
+                "repoName": "",
+                "repoUri": "required"
+            },
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
+            }]
         },
-        "gitIdentifier": {
-          "commitId": "required ",
-          "repoUri": "required",
-          "branch": "",
-          "repoName": ""
-        },
-        "svnIdentifier": {
-          "revision": "required, must be in Integer format",
-          "directory": "required",
-          "repoName": "",
-          "repoUri": "required"
-        },
-        "ccCompositeIdentifier": {
-          "vobs": [
-            "required if ccCompositeIdentifier present "
-          ],
-          "branch": "required",
-          "configSpec": "required"
-        },
-        "hgIdentifier": {
-          "commitId": "required",
-          "branch": "",
-          "repoName": "",
-          "repoUri": "required"
-        },
-        "customData": [{
-          "key": "required if customData present",
-          "value": "required if customData present"
+        "links": [{
+            "type": "required",
+            "target": "required"
         }]
-      },
-      "links": [{
-        "type": "required",
-        "target": "required"
-      }]
     }
-  }
 }

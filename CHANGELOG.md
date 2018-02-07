@@ -1,4 +1,7 @@
 
+## 0.3.7
+- Updated templates to resolve json parsing issues
+
 ## 0.3.6
 - Updated semantics templates and removed unnecessary validation exception message to find out the issue quickly
 
