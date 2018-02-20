@@ -1,4 +1,7 @@
 
+## 0.3.8
+- added logback dependency
+
 ## 0.3.7
 - Updated templates to resolve json parsing issues
 
