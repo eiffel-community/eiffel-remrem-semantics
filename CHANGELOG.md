@@ -1,3 +1,5 @@
+## 0.3.8
+- Generated event epoch time is in UTC format only 
 
 ## 0.3.8
 - added logback dependency
