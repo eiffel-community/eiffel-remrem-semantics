@@ -1,5 +1,5 @@
 /*
- Copyright 2017 Ericsson AB.
+ Copyright 2018 Ericsson AB.
  For a full list of individual contributors, please see the commit history.
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.3.7'
+    version =  '0.3.8'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -66,7 +66,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.3.7'
+    version =  '0.3.8'
     classifier = ''
 }
 
@@ -82,9 +82,6 @@ targetCompatibility = 1.8
 
 repositories {
     maven { url "https://jitpack.io" }
-    maven {
-        url "https://eiffel.lmera.ericsson.se/nexus/service/local/repositories/releases/content"
-    }
     mavenCentral()
     jcenter()
     flatDir {
@@ -108,6 +105,7 @@ dependencies {
     compile 'org.mockito:mockito-core:1.10.19'
     compile 'javax.inject:javax.inject:1'
     compile 'org.slf4j:slf4j-api:1.7.18'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
     compile group: 'com.google.code.gson', name: 'gson', version: '1.7.2'
     testCompile 'junit:junit:4.12'
     compile 'org.apache.commons:commons-lang3:3.5'
