@@ -42,6 +42,28 @@ ol, ul {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #373737;
+  margin-bottom: 20px;
+  text-align: left;
+}
+th {
+  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial,
+  sans-serif;
+  padding: 10px;
+  text-align: left;
+}
+td {
+  padding: 10px;
+  border: 1px solid #373737;
+}
+td:nth-child(1) {
+    width:5%;
+}
+td:nth-child(4) {
+    width:40%;
+}
+td:nth-child(5) {
+    width:10%;
 }
 
 /*******************************************************************************
