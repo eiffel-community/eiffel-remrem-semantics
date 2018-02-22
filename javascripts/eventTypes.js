@@ -177,14 +177,6 @@ var eventTypes = [
     },
     {
       "number":23,
-      "family":"info",
-      "type":"announcementack",
-      "name":"EiffelAnnouncementAcknowledgedEvent",
-      "abbreviation":"AnnA",
-      "comments":"Available from 0.3.2"
-    },
-    {
-      "number":24,
       "family":"artifact",
       "type":"deployed",
       "name":"EiffelArtifactDeployedEvent",
@@ -192,7 +184,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":25,
+      "number":24,
       "family":"service",
       "type":"allocated",
       "name":"EiffelServiceAllocatedEvent",
@@ -200,7 +192,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":26,
+      "number":25,
       "family":"service",
       "type":"deployed",
       "name":"EiffelServiceDeployedEvent",
@@ -208,7 +200,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":27,
+      "number":26,
       "family":"service",
       "type":"discontinued",
       "name":"EiffelServiceDiscontinuedEvent",
@@ -216,7 +208,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":28,
+      "number":27,
       "family":"service",
       "type":"returned",
       "name":"EiffelServiceReturnedEvent",
@@ -232,7 +224,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":30,
+      "number":29,
       "family":"service",
       "type":"stopped",
       "name":"EiffelServiceStoppedEvent",
@@ -240,7 +232,7 @@ var eventTypes = [
       "comments":"Available from 0.3.2"
     },
     {
-      "number":31,
+      "number":30,
       "family":"alert",
       "type":"raised",
       "name":"EiffelAlterRaisedEvent",
@@ -248,7 +240,7 @@ var eventTypes = [
       "comments":""
     },
     {
-      "number":32,
+      "number":31,
       "family":"alert",
       "type":"acknowledged",
       "name":"EiffelAlertAcknowledgedEvent",
@@ -256,7 +248,7 @@ var eventTypes = [
       "comments":""
     },
     {
-      "number":33,
+      "number":32,
       "family":"alert",
       "type":"ceased",
       "name":"EiffelAlertCeasedEvent",
