@@ -48,8 +48,8 @@
             }]
         },
         "links": [{
-            "type": "required",
-            "target": "required"
+            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION,COMPOSITION,ENVIRONMENT",
+            "target": "required if links present"
         }]
     }
 }

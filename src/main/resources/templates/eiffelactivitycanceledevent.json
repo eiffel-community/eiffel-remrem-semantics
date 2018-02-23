@@ -27,7 +27,7 @@
             }]
         },
         "links": [{
-            "type": " required ",
+            "type": " required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT  are optional",
             "target": " required "
         }]
     }

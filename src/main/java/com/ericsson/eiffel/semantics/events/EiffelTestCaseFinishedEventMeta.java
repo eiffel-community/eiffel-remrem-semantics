@@ -4,7 +4,7 @@
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
- 
+
     http://www.apache.org/licenses/LICENSE-2.0
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,7 +47,7 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelTestCaseFinishedEventMeta.Version version = EiffelTestCaseFinishedEventMeta.Version.fromValue("1.0.1");
+    private EiffelTestCaseFinishedEventMeta.Version version = EiffelTestCaseFinishedEventMeta.Version.fromValue("1.1.0");
     /**
      * 
      * (Required)
@@ -201,8 +201,8 @@ public class EiffelTestCaseFinishedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("1.0.1")
-        _1_0_1("1.0.1");
+        @SerializedName("1.1.0")
+        _1_1_0("1.1.0");
         private final String value;
         private final static Map<String, EiffelTestCaseFinishedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestCaseFinishedEventMeta.Version>();
 

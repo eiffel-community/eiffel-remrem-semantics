@@ -29,8 +29,8 @@
             }]
         },
         "links": [{
-            "type": "required",
-            "target": "required"
+            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,MODIFIED_ANNOUNCEMENT",
+            "target": "required if links present"
         }]
     }
 }

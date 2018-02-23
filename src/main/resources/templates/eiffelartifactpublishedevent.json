@@ -32,7 +32,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required ARTIFACT and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
             "target": "required"
         }]
     }

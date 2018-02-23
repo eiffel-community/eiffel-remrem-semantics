@@ -42,7 +42,11 @@ public enum LinkType {
     MODIFIED_ANNOUNCEMENT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
     SUB_CONFIDENCE_LEVEL(EiffelConstants.MULTIPLE_ALLOWED),
     REUSED_ARTIFACT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
-    VERIFICATION_BASIS(EiffelConstants.MULTIPLE_ALLOWED);
+    VERIFICATION_BASIS(EiffelConstants.MULTIPLE_ALLOWED),
+    ALERT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
+    MODIFIED_ALERT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
+    ARTIFACT_DEPLOYED(EiffelConstants.MULTIPLE_ALLOWED),
+    SERVICE(EiffelConstants.MULTIPLE_NOT_ALLOWED);
 
     private final boolean multipleAllowed;   
 

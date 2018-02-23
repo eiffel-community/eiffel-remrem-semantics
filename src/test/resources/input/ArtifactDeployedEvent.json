@@ -28,7 +28,6 @@
   },
   "eventParams": {
     "data": {
-      "location": "Sample",
 	  "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
       "customData": [{
           "key": "firstLog",
@@ -45,7 +44,7 @@
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
-      "type": "ACTIVITY_EXECUTION",
+      "type": "ARTIFACT",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     }]
   }

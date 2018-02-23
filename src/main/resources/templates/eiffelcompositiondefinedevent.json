@@ -28,7 +28,7 @@
             }]
         },
         "links": [{
-            "type": "required if links present",
+            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION,ELEMENT",
             "target": "required if links present"
         }]
     }

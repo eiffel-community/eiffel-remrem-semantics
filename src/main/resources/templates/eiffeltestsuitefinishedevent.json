@@ -37,7 +37,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required TEST_SUITE_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
             "target": "required"
         }]
     }

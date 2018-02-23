@@ -48,11 +48,6 @@ public class EiffelServiceDeployedEventData {
     @SerializedName("deploymentType")
     @Expose
     private String deploymentType;
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("uri")
     @Expose
     private String uri;
@@ -122,20 +117,10 @@ public class EiffelServiceDeployedEventData {
         this.deploymentType = deploymentType;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public String getUri() {
         return uri;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setUri(String uri) {
         this.uri = uri;
     }

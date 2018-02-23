@@ -30,7 +30,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required SERVICE and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
             "target": "required"
         }]
     }

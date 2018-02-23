@@ -40,14 +40,16 @@ public enum RoutingKeyTypes {
     EiffelTestSuiteFinishedEvent(EiffelConstants.TEST,"suitefinished"),
     EiffelTestSuiteStartedEvent(EiffelConstants.TEST,"suitestarted"),
     EiffelTestExecutionRecipeCollectionCreatedEvent(EiffelConstants.TEST,"execution"),
-    EiffelAnnouncementAcknowledgedEvent(EiffelConstants.INFO,"announcementack"),
+    EiffelAlertAcknowledgedEvent(EiffelConstants.ALERT,"alertack"),
     EiffelArtifactDeployedEvent(EiffelConstants.ARTIFACT,"deployed"),
     EiffelServiceAllocatedEvent(EiffelConstants.SERVICE,"allocated"),
     EiffelServiceDeployedEvent(EiffelConstants.SERVICE,"deployed"),
     EiffelServiceDiscontinuedEvent(EiffelConstants.SERVICE,"discontinued"),
     EiffelServiceReturnedEvent(EiffelConstants.SERVICE,"returned"),
     EiffelServiceStartedEvent(EiffelConstants.SERVICE,"started"),
-    EiffelServiceStoppedEvent(EiffelConstants.SERVICE,"stopped");
+    EiffelServiceStoppedEvent(EiffelConstants.SERVICE,"stopped"),
+    EiffelAlertRaisedEvent(EiffelConstants.ALERT,"raised"),
+    EiffelAlertCeasedEvent(EiffelConstants.ALERT,"ceased");
     
 
     private final String family;   // family

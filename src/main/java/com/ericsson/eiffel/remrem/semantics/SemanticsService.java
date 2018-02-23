@@ -14,36 +14,7 @@
 */
 package com.ericsson.eiffel.remrem.semantics;
 
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_CANCELED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_TRIGGERED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_PUBLISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_ALLOCATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DEPLOYED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DISCONTINUED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_RETURNED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STOPPED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_ACKNOWLEDGED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_DEPLOYED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_SUBMITTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.*;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -69,18 +40,19 @@ import com.ericsson.eiffel.semantics.events.EiffelActivityCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelActivityTriggeredEvent;
-import com.ericsson.eiffel.semantics.events.EiffelAnnouncementAcknowledgedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelAlertAcknowledgedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelAlertCeasedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelAlertRaisedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelAnnouncementPublishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactDeployedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelArtifactPublishedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelCompositionDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelConfidenceLevelModifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
 import com.ericsson.eiffel.semantics.events.EiffelEnvironmentDefinedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelFlowContextDefinedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelServiceAllocatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelServiceDeployedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelServiceDiscontinuedEvent;
@@ -89,12 +61,13 @@ import com.ericsson.eiffel.semantics.events.EiffelServiceStartedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelServiceStoppedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseCanceledEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestCaseStartedEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestCaseTriggeredEvent;
+import com.ericsson.eiffel.semantics.events.EiffelTestExecutionRecipeCollectionCreatedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteFinishedEvent;
 import com.ericsson.eiffel.semantics.events.EiffelTestSuiteStartedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEvent;
-import com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEvent;
 import com.ericsson.eiffel.semantics.events.Event;
 import com.ericsson.eiffel.semantics.events.Gav;
 import com.ericsson.eiffel.semantics.events.Serializer;
@@ -103,6 +76,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 @Named("eiffel-semantics")
 public class SemanticsService implements MsgService {
@@ -177,50 +151,55 @@ public class SemanticsService implements MsgService {
         eventTypes.put(SERVICE_DEPLOYED, EiffelServiceDeployedEvent.class);
         eventTypes.put(SERVICE_ALLOCATED, EiffelServiceAllocatedEvent.class);
         eventTypes.put(ARTIFACT_DEPLOYED, EiffelArtifactDeployedEvent.class);
-        eventTypes.put(ANNOUNCEMENT_ACKNOWLEDGED, EiffelAnnouncementAcknowledgedEvent.class);
+        eventTypes.put(ALERT_ACKNOWLEDGED, EiffelAlertAcknowledgedEvent.class);
+        eventTypes.put(ALERT_CEASED, EiffelAlertCeasedEvent.class);
+        eventTypes.put(ALERT_RAISED, EiffelAlertRaisedEvent.class);
 
         return eventTypes;
     }
 
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
-        if (semanticsGavFlag) {
-            return createErrorResponse("GAV info of eiffel-remrem-semantics is missing",
-                    "Required Serializer GAV information of eiffel-remrem-semantics is missing in MANIFEST.MF");
-        }
-        EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
-        if (eiffelType == null) {
-            log.error("Unknown message type requested: " + msgType);
-            return createErrorResponse(msgType, supportedEventTypes);
-        }
-        Class<? extends Event> eventType = eventTypes.get(eiffelType);
-
-        JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
-        JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
-
-        // Compare the input JSON EventType with query parameter(-t) and also
-        // check type exist or not,
-        // if input JSON EventType is missing adding query parameter as Type.
-        String inputEventType = getInputEventType(bodyJson);
-        if (inputEventType == null || inputEventType.isEmpty()) {
-            bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE,
-                    eiffelType.getEventName());
-        } else if (!(inputEventType.equals(eiffelType.getEventName()))) {
-            log.error("check the input json message type : " + inputEventType);
-            return createErrorResponse(eiffelType.getEventName(),
-                    "Mismatch of eventype in request query parameter with property 'type' in the input json message");
-        }
-
-        Event event = eventCreation(eventType, msgNodes, eventNodes);
-
-        String result = gson.toJson(event);
         try {
+            if (semanticsGavFlag) {
+                return createErrorResponse("GAV info of eiffel-remrem-semantics is missing",
+                        "Required Serializer GAV information of eiffel-remrem-semantics is missing in MANIFEST.MF");
+            }
+            EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
+            if (eiffelType == null) {
+                log.error("Unknown message type requested: " + msgType);
+                return createErrorResponse(msgType, supportedEventTypes);
+            }
+            Class<? extends Event> eventType = eventTypes.get(eiffelType);
+
+            JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
+            JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
+
+            // Compare the input JSON EventType with query parameter(-t) and also
+            // check type exist or not,
+            // if input JSON EventType is missing adding query parameter as Type.
+            String inputEventType = getInputEventType(bodyJson);
+            if (inputEventType == null || inputEventType.isEmpty()) {
+                bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE, eiffelType.getEventName());
+            } else if (!(inputEventType.equals(eiffelType.getEventName()))) {
+                log.error("check the input json message type : " + inputEventType);
+                return createErrorResponse(eiffelType.getEventName(),
+                        "Mismatch of eventype in request query parameter with property 'type' in the input json message");
+            }
+
+            Event event = eventCreation(eventType, msgNodes, eventNodes);
+
+            String result = gson.toJson(event);
             outputValidate(eiffelType, result);
+            return result;
         } catch (EiffelValidationException e) {
             log.error("Could not validate message. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
             return createErrorResponse(e.getMessage(), e.getCause().toString());
+        } catch (JsonSyntaxException e) {
+            log.error("Json Syntax exception occured. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
+            return createErrorResponse("Json Syntax exception occured while processing input schema", e.getCause().toString());
         }
-        return result;
+
     }
 
     private static Event eventCreation(Class<? extends Event> eventType, JsonObject msgNodes, JsonObject eventNodes) {

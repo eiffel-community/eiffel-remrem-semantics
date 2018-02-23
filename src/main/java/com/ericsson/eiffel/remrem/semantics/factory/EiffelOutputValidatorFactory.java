@@ -14,45 +14,14 @@
 */
 package com.ericsson.eiffel.remrem.semantics.factory;
 
+import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.*;
+
+import java.util.EnumMap;
+
 import com.ericsson.eiffel.remrem.semantics.EiffelEventType;
 import com.ericsson.eiffel.remrem.semantics.config.LinksConfiguration;
 import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
 import com.ericsson.eiffel.remrem.semantics.validator.OutputValidator;
-
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_CANCELED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ACTIVITY_TRIGGERED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_PUBLISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_PUBLISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_REUSED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.COMPOSITION_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.CONFIDENCELEVEL_MODIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ENVIRONMENT_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.EXECUTION_RECIPE_COLLECTION_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.FLOWCONTEXT_DEFINED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ISSUE_VERIFIED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_CREATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SOURCECHANGE_SUBMITTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_CANCELED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_STARTED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIGGERED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
-
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ANNOUNCEMENT_ACKNOWLEDGED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.ARTIFACT_DEPLOYED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_ALLOCATED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DEPLOYED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_DISCONTINUED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STOPPED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_RETURNED;
-import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.SERVICE_STARTED;
-
-
-import java.util.EnumMap;
 
 public class EiffelOutputValidatorFactory {
 
@@ -192,9 +161,9 @@ public class EiffelOutputValidatorFactory {
                         linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
                         linksConfiguration.getAllLinkTypes()));
 
-        eventType = ANNOUNCEMENT_ACKNOWLEDGED.getEventName();
-        validators.put(ANNOUNCEMENT_ACKNOWLEDGED,
-                new OutputValidator("schemas/input/EiffelAnnouncementAcknowledgedEvent.json", eventType,
+        eventType = ALERT_ACKNOWLEDGED.getEventName();
+        validators.put(ALERT_ACKNOWLEDGED,
+                new OutputValidator("schemas/input/EiffelAlertAcknowledgedEvent.json", eventType,
                         linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
                         linksConfiguration.getAllLinkTypes()));
 
@@ -239,6 +208,18 @@ public class EiffelOutputValidatorFactory {
                 new OutputValidator("schemas/input/EiffelServiceStoppedEvent.json", eventType,
                         linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
                         linksConfiguration.getAllLinkTypes()));
+
+        eventType = ALERT_CEASED.getEventName();
+        validators.put(ALERT_CEASED,
+                new OutputValidator("schemas/input/EiffelAlertCeasedEvent.json", eventType,
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
+        eventType = ALERT_RAISED.getEventName();
+        validators.put(ALERT_RAISED,
+                new OutputValidator("schemas/input/EiffelAlertRaisedEvent.json", eventType,
+                        linksConfiguration.getRequiredLinkTypes(eventType), linksConfiguration.getOptionalLinkTypes(eventType),
+                        linksConfiguration.getAllLinkTypes()));
+        
 
     }
 

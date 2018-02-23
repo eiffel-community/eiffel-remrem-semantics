@@ -2,7 +2,7 @@
   "meta": {
     "id": "c98b50be-6bd2-4ed6-9326-03a547612a49",
     "type": "EiffelTestSuiteStartedEvent",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "time": 1499153316968,
     "tags": ["tag1", "tag2"],
     "source": {
