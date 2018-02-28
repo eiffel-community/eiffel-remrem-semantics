@@ -2,7 +2,7 @@
   "meta": {
     "id": "cd249d3b-d666-4b53-af2d-ae8b1f14434d",
     "type": "EiffelIssueVerifiedEvent",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "time": 1499076743471,
     "tags": ["tag1", "tag2"],
     "source": {

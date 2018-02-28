@@ -33,7 +33,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required CONTEXT and CAUSE,ARTIFACT_DEPLOYED,FLOW_CONTEXT,SERVICE",
             "target": "required"
         }]
     }

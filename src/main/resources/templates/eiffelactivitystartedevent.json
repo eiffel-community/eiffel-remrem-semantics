@@ -33,7 +33,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_ACTIVITY_EXECUTION are optional",
             "target": "required"
         }]
     }

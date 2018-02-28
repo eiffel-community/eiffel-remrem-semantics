@@ -1,10 +1,10 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
- 
+
     http://www.apache.org/licenses/LICENSE-2.0
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,7 +47,7 @@ public class EiffelArtifactCreatedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelArtifactCreatedEventMeta.Version version = EiffelArtifactCreatedEventMeta.Version.fromValue("1.0.0");
+    private EiffelArtifactCreatedEventMeta.Version version = EiffelArtifactCreatedEventMeta.Version.fromValue("1.1.0");
     /**
      * 
      * (Required)
@@ -201,8 +201,8 @@ public class EiffelArtifactCreatedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("1.0.0")
-        _1_0_0("1.0.0");
+        @SerializedName("1.1.0")
+        _1_1_0("1.1.0");
         private final String value;
         private final static Map<String, EiffelArtifactCreatedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelArtifactCreatedEventMeta.Version>();
 

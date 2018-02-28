@@ -2,7 +2,7 @@
   "meta": {
     "id": "e618024c-5b05-4895-ba9d-ce9b27594ed6",
     "type": "EiffelTestCaseFinishedEvent",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "time": 1499153404810,
     "tags": ["tag1", "tag2"],
     "source": {

@@ -1,0 +1,44 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelAlertRaisedEvent",
+      "version": "1.0.0",
+      "tags": [],
+      "source": {
+        "domainId": "",
+        "host": "",
+        "name": "",
+        "uri": "",
+        "serializer": {
+          "groupId": "",
+          "artifactId": "",
+          "version": ""
+        }
+      } ,
+      "security": {
+        "sdm": {
+          "authorIdentity": "required if sdm present",
+          "encryptedDigest": "required if sdm present"
+        }
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "heading": "",
+	  "body":"",
+	  "uri": "",
+	  "entity":"",
+	  "severity":"",
+      "customData": [{
+          "key": "required if customData present",
+          "value": "required if customData present"
+        }
+      ]
+    },
+    "links": [{
+      "type": "required if links present can be anyOf MODIFIED_ALERT,CAUSE,CONTEXT,FLOW_CONTEXT",
+      "target": "required"
+    }]
+  }
+}

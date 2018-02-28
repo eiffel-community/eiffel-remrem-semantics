@@ -36,7 +36,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required IUT and CAUSE,CONTEXT,FLOW_CONTEXT,ENVIRONMENT,VERIFICATION_BASIS are optional",
             "target": "required"
         }]
     }

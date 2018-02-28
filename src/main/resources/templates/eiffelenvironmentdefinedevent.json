@@ -36,7 +36,7 @@
             "uri": ""
         },
         "links": [{
-            "type": "required if links present",
+            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION",
             "target": "required if links present"
         }]
     }

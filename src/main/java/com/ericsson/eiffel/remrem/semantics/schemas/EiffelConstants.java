@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ public final class EiffelConstants {
     public static String ACTIVITY = "activity";
     public static String ARTIFACT = "artifact";
     public static String SERVICE = "service";
+    public static String ALERT = "alert";
     public static String CM = "cm";
     public static String INFO = "info";
     public static String CONFIGURATION = "configuration";

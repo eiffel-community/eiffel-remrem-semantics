@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-
 package com.ericsson.eiffel.semantics.events;
 
 import com.google.gson.annotations.Expose;

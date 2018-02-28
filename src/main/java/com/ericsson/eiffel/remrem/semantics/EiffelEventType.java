@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -47,7 +47,9 @@ public enum EiffelEventType {
     SERVICE_DEPLOYED("EiffelServiceDeployedEvent"),
     SERVICE_ALLOCATED("EiffelServiceAllocatedEvent"),
     ARTIFACT_DEPLOYED("EiffelArtifactDeployedEvent"),
-    ANNOUNCEMENT_ACKNOWLEDGED("EiffelAnnouncementAcknowledgedEvent");
+    ALERT_ACKNOWLEDGED("EiffelAlertAcknowledgedEvent"),
+    ALERT_CEASED("EiffelAlertCeasedEvent"),
+    ALERT_RAISED("EiffelAlertRaisedEvent");
     
     private String eventType;
 
