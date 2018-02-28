@@ -237,7 +237,7 @@ var eventTypes = [
       "type":"raised",
       "name":"EiffelAlterRaisedEvent",
       "abbreviation":"AlerR",
-      "comments":""
+      "comments":"Available from 0.3.9"
     },
     {
       "number":31,
@@ -245,7 +245,7 @@ var eventTypes = [
       "type":"acknowledged",
       "name":"EiffelAlertAcknowledgedEvent",
       "abbreviation":"AlerA",
-      "comments":""
+      "comments":"Available from 0.3.9"
     },
     {
       "number":32,
@@ -253,6 +253,6 @@ var eventTypes = [
       "type":"ceased",
       "name":"EiffelAlertCeasedEvent",
       "abbreviation":"AlerC",
-      "comments":""
+      "comments":"Available from 0.3.9"
     }
 ]
