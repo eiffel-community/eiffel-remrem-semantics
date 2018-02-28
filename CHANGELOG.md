@@ -1,3 +1,6 @@
+## 0.4.0
+- removed unnecessary validation dependency's
+
 ## 0.3.9
 - Generated event epoch time is in UTC format only 
 
