@@ -1,0 +1,40 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelAlertCeasedEvent",
+      "version": "1.0.0",
+      "tags": [],
+      "source": {
+        "domainId": "",
+        "host": "",
+        "name": "",
+        "uri": "",
+        "serializer": {
+          "groupId": "",
+          "artifactId": "",
+          "version": ""
+        }
+      } ,
+      "security": {
+        "sdm": {
+          "authorIdentity": "required if sdm present",
+          "encryptedDigest": "required if sdm present"
+        }
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "entity": "",
+	  "customData": [{
+          "key": "required if customData present",
+          "value": "required if customData present"
+        }
+      ]
+    },
+    "links": [{
+      "type": "required ALERT and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
+      "target": "required"
+    }]
+  }
+}

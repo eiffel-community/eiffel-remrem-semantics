@@ -50,8 +50,9 @@ public class PrepareLocalEiffelSchemas {
         if (!localEiffelRepoPath.exists()) {
             try {
                 // cloning github repository by using URL and branch name into local
-                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch(branch).setDirectory(localEiffelRepoPath)
+                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch("master").setDirectory(localEiffelRepoPath)
                         .call();
+                localGitRepo.checkout().setName(branch).call();
             } catch (Exception e) {
                 e.printStackTrace();
             }

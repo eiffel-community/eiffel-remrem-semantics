@@ -28,7 +28,7 @@
             }]
         },
         "links": [{
-            "type": "required",
+            "type": "required COMPOSITION,REUSED_ARTIFACT and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
             "target": "required"
         }]
     }

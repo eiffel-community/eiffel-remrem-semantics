@@ -36,8 +36,8 @@
             }]
         },
         "links": [{
-            "type": "required if links present",
-            "target": "required if links present"
+            "type": "required SUBJECT and CAUSE,CONTEXT,FLOW_CONTEXT,SUB_CONFIDENCE_LEVEL are optional",
+            "target": "required"
         }]
     }
 }

@@ -1,12 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "javaType": "com.ericsson.eiffel.semantics.events.EiffelAnnouncementAcknowledgedEvent",
+  "javaType": "com.ericsson.eiffel.semantics.events.EiffelAlertCeasedEvent",
   "extendsJavaClass": "com.ericsson.eiffel.semantics.events.Event",
   "properties": {
     "meta": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.EiffelAnnouncementAcknowledgedEventMeta",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelAlertCeasedEventMeta",
       "javaInterfaces": [
         "com.ericsson.eiffel.semantics.events.Meta"
       ],
@@ -18,7 +18,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "EiffelAnnouncementAcknowledgedEvent"
+            "EiffelAlertCeasedEvent"
           ]
         },
         "version": {
@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {
@@ -117,15 +114,9 @@
     },
     "data": {
       "type": "object",
-      "javaType": "com.ericsson.eiffel.semantics.events.EiffelAnnouncementAcknowledgedEventData",
+      "javaType": "com.ericsson.eiffel.semantics.events.EiffelAlertCeasedEventData",
       "properties": {
-        "acknowledgement": {
-          "type": "string"
-        },
-        "user": {
-          "type": "string"
-        },
-        "uri": {
+        "entity": {
           "type": "string"
         },
         "customData": {
@@ -162,9 +153,6 @@
           }
         }
       },
-      "required": [
-        "acknowledgement"
-      ],
       "additionalProperties": false
     },
     "links": {

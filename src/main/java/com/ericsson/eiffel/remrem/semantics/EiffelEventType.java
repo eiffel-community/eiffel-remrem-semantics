@@ -47,7 +47,9 @@ public enum EiffelEventType {
     SERVICE_DEPLOYED("EiffelServiceDeployedEvent"),
     SERVICE_ALLOCATED("EiffelServiceAllocatedEvent"),
     ARTIFACT_DEPLOYED("EiffelArtifactDeployedEvent"),
-    ANNOUNCEMENT_ACKNOWLEDGED("EiffelAnnouncementAcknowledgedEvent");
+    ALERT_ACKNOWLEDGED("EiffelAlertAcknowledgedEvent"),
+    ALERT_CEASED("EiffelAlertCeasedEvent"),
+    ALERT_RAISED("EiffelAlertRaisedEvent");
     
     private String eventType;
 

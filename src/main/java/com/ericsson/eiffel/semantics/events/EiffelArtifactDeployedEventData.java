@@ -21,23 +21,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class EiffelArtifactDeployedEventData {
 
-    @SerializedName("location")
-    @Expose
-    private String location;
     @SerializedName("uri")
     @Expose
     private String uri;
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getUri() {
         return uri;

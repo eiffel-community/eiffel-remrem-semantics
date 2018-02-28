@@ -1,9 +1,9 @@
 {
     "meta": {
-        "id": "d6c07591-5e6a-4e16-954e-ee7cc48131bf",
+        "id": "d6dd3506-b3e5-4db0-a6e9-ef3500164120",
         "type": "EiffelServiceDeployedEvent",
         "version": "1.0.0",
-        "time": 1512111567338,
+        "time": 1519371978730,
         "tags": ["tag1", "tag2"],
         "source": {
             "domainId": "domainID",
@@ -38,7 +38,7 @@
         }]
     },
     "links": [{
-        "type": "CAUSE",
+        "type": "ENVIRONMENT",
         "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     }, {
         "type": "ACTIVITY_EXECUTION",

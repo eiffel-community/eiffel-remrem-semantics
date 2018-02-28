@@ -50,6 +50,7 @@ public final class EiffelConstants {
     public static String ACTIVITY = "activity";
     public static String ARTIFACT = "artifact";
     public static String SERVICE = "service";
+    public static String ALERT = "alert";
     public static String CM = "cm";
     public static String INFO = "info";
     public static String CONFIGURATION = "configuration";

@@ -21,41 +21,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class EiffelServiceStartedEventData {
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @SerializedName("serviceinstance")
-    @Expose
-    private String serviceinstance;
     @SerializedName("pid")
     @Expose
     private String pid;
-    @SerializedName("uri")
-    @Expose
-    private String uri;
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public String getServiceinstance() {
-        return serviceinstance;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setServiceinstance(String serviceinstance) {
-        this.serviceinstance = serviceinstance;
-    }
 
     public String getPid() {
         return pid;
@@ -63,14 +34,6 @@ public class EiffelServiceStartedEventData {
 
     public void setPid(String pid) {
         this.pid = pid;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
     }
 
     public List<CustomData> getCustomData() {

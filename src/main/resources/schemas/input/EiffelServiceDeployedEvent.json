@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {
@@ -171,8 +168,7 @@
       "required": [
         "servicename",
         "instancename",
-        "owner",
-        "uri"
+        "owner"
       ],
       "additionalProperties": false
     },

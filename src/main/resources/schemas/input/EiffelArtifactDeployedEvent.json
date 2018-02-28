@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {
@@ -119,9 +116,6 @@
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelArtifactDeployedEventData",
       "properties": {
-        "location": {
-          "type": "string"
-        },
         "uri": {
           "type": "string"
         },
