@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -48,11 +48,6 @@ public class EiffelServiceDeployedEventData {
     @SerializedName("deploymentType")
     @Expose
     private String deploymentType;
-    /**
-     * 
-     * (Required)
-     * 
-     */
     @SerializedName("uri")
     @Expose
     private String uri;
@@ -122,20 +117,10 @@ public class EiffelServiceDeployedEventData {
         this.deploymentType = deploymentType;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public String getUri() {
         return uri;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
     public void setUri(String uri) {
         this.uri = uri;
     }

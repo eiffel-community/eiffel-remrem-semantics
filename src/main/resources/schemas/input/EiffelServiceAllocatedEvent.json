@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {

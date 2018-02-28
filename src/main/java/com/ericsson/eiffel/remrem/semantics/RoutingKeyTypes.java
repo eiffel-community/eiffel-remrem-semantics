@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -40,14 +40,16 @@ public enum RoutingKeyTypes {
     EiffelTestSuiteFinishedEvent(EiffelConstants.TEST,"suitefinished"),
     EiffelTestSuiteStartedEvent(EiffelConstants.TEST,"suitestarted"),
     EiffelTestExecutionRecipeCollectionCreatedEvent(EiffelConstants.TEST,"execution"),
-    EiffelAnnouncementAcknowledgedEvent(EiffelConstants.INFO,"announcementack"),
+    EiffelAlertAcknowledgedEvent(EiffelConstants.ALERT,"alertack"),
     EiffelArtifactDeployedEvent(EiffelConstants.ARTIFACT,"deployed"),
     EiffelServiceAllocatedEvent(EiffelConstants.SERVICE,"allocated"),
     EiffelServiceDeployedEvent(EiffelConstants.SERVICE,"deployed"),
     EiffelServiceDiscontinuedEvent(EiffelConstants.SERVICE,"discontinued"),
     EiffelServiceReturnedEvent(EiffelConstants.SERVICE,"returned"),
     EiffelServiceStartedEvent(EiffelConstants.SERVICE,"started"),
-    EiffelServiceStoppedEvent(EiffelConstants.SERVICE,"stopped");
+    EiffelServiceStoppedEvent(EiffelConstants.SERVICE,"stopped"),
+    EiffelAlertRaisedEvent(EiffelConstants.ALERT,"raised"),
+    EiffelAlertCeasedEvent(EiffelConstants.ALERT,"ceased");
     
 
     private final String family;   // family

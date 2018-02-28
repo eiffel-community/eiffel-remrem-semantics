@@ -46,7 +46,7 @@
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
-      "type": "ACTIVITY_EXECUTION",
+      "type": "FLOW_CONTEXT",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     }]
   }

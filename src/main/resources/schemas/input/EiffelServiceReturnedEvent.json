@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {
@@ -119,12 +116,6 @@
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelServiceReturnedEventData",
       "properties": {
-        "serviceinstance": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        },
         "customData": {
           "type": "array",
           "items": {
@@ -159,9 +150,6 @@
           }
         }
       },
-      "required": [
-        "serviceinstance"
-      ],
       "additionalProperties": false
     },
     "links": {

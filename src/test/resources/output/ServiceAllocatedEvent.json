@@ -1,9 +1,9 @@
 {
     "meta": {
-        "id": "79245385-7526-40cf-9601-06f619dd08b0",
+        "id": "24513844-6ba9-4f85-ae9c-1faacf1c7962",
         "type": "EiffelServiceAllocatedEvent",
         "version": "1.0.0",
-        "time": 1512111567324,
+        "time": 1519371978645,
         "tags": ["tag1", "tag2"],
         "source": {
             "domainId": "domainID",
@@ -36,7 +36,7 @@
         }]
     },
     "links": [{
-        "type": "CAUSE",
+        "type": "CONTEXT",
         "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     }, {
         "type": "ACTIVITY_EXECUTION",

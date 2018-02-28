@@ -2,7 +2,7 @@
     "meta": {
         "id": "38006533-019e-4676-b0ee-19c3d5507ba5",
         "type": "EiffelTestExecutionRecipeCollectionCreatedEvent",
-        "version": "2.0.0",
+        "version": "2.1.0",
         "time": 1511432368155,
         "tags": ["tag1", "tag2"],
         "source": {

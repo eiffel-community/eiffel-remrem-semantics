@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -21,23 +21,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class EiffelArtifactDeployedEventData {
 
-    @SerializedName("location")
-    @Expose
-    private String location;
     @SerializedName("uri")
     @Expose
     private String uri;
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getUri() {
         return uri;

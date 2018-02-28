@@ -28,8 +28,6 @@
   },
   "eventParams": {
     "data": {
-      "serviceinstance": "Sample",
-	  "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
       "customData": [{
           "key": "firstLog",
           "value": 1234
@@ -45,7 +43,7 @@
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
-      "type": "ACTIVITY_EXECUTION",
+      "type": "SERVICE",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
     }]
   }

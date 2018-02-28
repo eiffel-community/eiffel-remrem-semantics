@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -50,8 +50,9 @@ public class PrepareLocalEiffelSchemas {
         if (!localEiffelRepoPath.exists()) {
             try {
                 // cloning github repository by using URL and branch name into local
-                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch(branch).setDirectory(localEiffelRepoPath)
+                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch("master").setDirectory(localEiffelRepoPath)
                         .call();
+                localGitRepo.checkout().setName(branch).call();
             } catch (Exception e) {
                 e.printStackTrace();
             }

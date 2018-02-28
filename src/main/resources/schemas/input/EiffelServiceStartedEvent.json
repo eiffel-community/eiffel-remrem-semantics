@@ -76,9 +76,6 @@
               "type": "string"
             }
           },
-          "required": [
-            "domainId"
-          ],
           "additionalProperties": false
         },
         "security": {
@@ -119,13 +116,7 @@
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelServiceStartedEventData",
       "properties": {
-        "serviceinstance": {
-          "type": "string"
-        },
         "pid": {
-          "type": "string"
-        },
-        "uri": {
           "type": "string"
         },
         "customData": {
@@ -162,9 +153,6 @@
           }
         }
       },
-      "required": [
-        "serviceinstance"
-      ],
       "additionalProperties": false
     },
     "links": {

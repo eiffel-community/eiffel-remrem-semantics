@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -12,7 +12,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */
-
 package com.ericsson.eiffel.semantics.events;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class EiffelTestExecutionRecipeCollectionCreatedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version version = EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version.fromValue("2.0.0");
+    private EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version version = EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version.fromValue("2.1.0");
     /**
      * 
      * (Required)
@@ -202,8 +201,8 @@ public class EiffelTestExecutionRecipeCollectionCreatedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("2.0.0")
-        _2_0_0("2.0.0");
+        @SerializedName("2.1.0")
+        _2_1_0("2.1.0");
         private final String value;
         private final static Map<String, EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestExecutionRecipeCollectionCreatedEventMeta.Version>();
 

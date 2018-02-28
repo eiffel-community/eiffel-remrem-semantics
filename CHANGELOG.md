@@ -1,3 +1,10 @@
+## 0.3.9
+- Generated event epoch time is in UTC format only 
+
+- Generated eiffel events using Toulouse edition of eiffel and operations-extension schemas
+
+## 0.3.8
+- added logback dependency
 
 ## 0.3.7
 - Updated templates to resolve json parsing issues

@@ -1,5 +1,5 @@
 /*
-    Copyright 2017 Ericsson AB.
+    Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -42,7 +42,11 @@ public enum LinkType {
     MODIFIED_ANNOUNCEMENT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
     SUB_CONFIDENCE_LEVEL(EiffelConstants.MULTIPLE_ALLOWED),
     REUSED_ARTIFACT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
-    VERIFICATION_BASIS(EiffelConstants.MULTIPLE_ALLOWED);
+    VERIFICATION_BASIS(EiffelConstants.MULTIPLE_ALLOWED),
+    ALERT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
+    MODIFIED_ALERT(EiffelConstants.MULTIPLE_NOT_ALLOWED),
+    ARTIFACT_DEPLOYED(EiffelConstants.MULTIPLE_ALLOWED),
+    SERVICE(EiffelConstants.MULTIPLE_NOT_ALLOWED);
 
     private final boolean multipleAllowed;   
 
