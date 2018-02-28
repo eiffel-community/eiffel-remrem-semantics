@@ -235,7 +235,7 @@ var eventTypes = [
       "number":30,
       "family":"alert",
       "type":"raised",
-      "name":"EiffelAlterRaisedEvent",
+      "name":"EiffelAlertRaisedEvent",
       "abbreviation":"AlerR",
       "comments":"Available from 0.3.9"
     },
