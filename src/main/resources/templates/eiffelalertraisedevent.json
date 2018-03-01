@@ -29,7 +29,7 @@
 	  "body":"",
 	  "uri": "",
 	  "entity":"",
-	  "severity":"",
+	  "severity":"required , can be anyone of  MINOR,MAJOR,CRITICAL,BLOCKER,CANCELED",
       "customData": [{
           "key": "required if customData present",
           "value": "required if customData present"

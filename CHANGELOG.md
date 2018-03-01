@@ -1,3 +1,6 @@
+## 0.4.0
+- Removed extra fields from templates and updated version
+
 ## 0.3.9
 - Generated event epoch time is in UTC format only 
 

@@ -22,8 +22,6 @@
     },
     "eventParams": {
         "data": {
-            "serviceinstance": "required",
-            "uri": "",
             "customData": [{
                 "key": "required if customData present",
                 "value": "required if customData present"

@@ -2,7 +2,7 @@
     "msgParams": {
         "meta": {
             "type": "EiffelAnnouncementPublishedEvent",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "tags": [],
             "source": {
                 "domainId": "",
@@ -22,6 +22,7 @@
         "data": {
             "heading": "required",
             "body": "required",
+            "uri" : "",
             "severity": "required, can be anyone of MINOR,MAJOR,CRITICAL,BLOCKER,CLOSED,CANCELED ",
             "customData": [{
                 "key": "required if customData present",

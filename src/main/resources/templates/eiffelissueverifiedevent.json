@@ -2,7 +2,7 @@
     "msgParams": {
         "meta": {
             "type": "EiffelIssueVerifiedEvent",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "tags": [
 
             ],
@@ -22,13 +22,12 @@
     },
     "eventParams": {
         "data": {
-            "reason": "",
             "issues": [{
                 "type": "required if issues present, can be anyone of BUG,IMPROVEMENT,FEATURE,WORK_ITEM,REQUIREMENT,OTHER",
                 "tracker": "required if issues present",
                 "id": "required if issues present",
                 "uri": "required if issues present",
-                "value": "required if issues present"
+                "value": "required if issues present, can be anyone of SUCCESS,FAILURE,INCONCLUSIVE"
             }],
             "customData": [{
                 "key": "required if customData present",
