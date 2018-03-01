@@ -2,7 +2,7 @@
     "msgParams": {
         "meta": {
             "type": "EiffelTestCaseStartedEvent",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "tags": [
 
             ],
@@ -22,11 +22,6 @@
     },
     "eventParams": {
         "data": {
-            "testCase": {
-                "tracker": "",
-                "id": "",
-                "uri": ""
-            },
             "executor": "",
             "liveLogs": [{
                 "name": "required if livelogs present",

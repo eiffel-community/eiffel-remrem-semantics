@@ -28,7 +28,6 @@
   },
   "eventParams": {
     "data": {
-      "reason": "Sample Reason",
       "issues": [{
         "type": "BUG",
         "tracker": "Sample",

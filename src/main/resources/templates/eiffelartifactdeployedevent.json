@@ -22,7 +22,6 @@
     },
     "eventParams": {
         "data": {
-            "location": "",
             "uri": "",
             "customData": [{
                 "key": "required if customData present",

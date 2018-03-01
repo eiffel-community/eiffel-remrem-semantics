@@ -28,11 +28,6 @@
   },
   "eventParams": {
     "data": {
-      "testCase": {
-        "tracker": "test",
-        "id": "123456",
-        "uri": "http:\/\/java.sun.com"
-      },
       "executor": "Test",
       "liveLogs": [{
         "name": "Eiffel",
