@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Eiffel Remrem Semantics : ">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Eiffel Remrem Semantics</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/eventTypes.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <script type="text/javascript" src="javascripts/download.js"></script>
+</head>
+<body>
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/Ericsson/eiffel-remrem-semantics">View on GitHub</a>
+        <h1><a class="project_title" href="index.html#project_title">Eiffel REMReM Semantics</a></h1>
+        <h2 id="project_tagline"></h2>
+        <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/ericsson/eiffel-remrem-semantics/zipball/master">Download this project as a .zip
+                file</a>
+            <a class="tar_download_link" href="https://github.com/ericsson/eiffel-remrem-semantics/tarball/master">Download this project as a tar.gz
+                file</a>
+        </section>
+    </header>
+</div>
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <h2>Routing and Binding key concepts</h2>
+        <p>Eiffel protocol uses RabbitMQ as a message broker. it accepts and forwards messages. You can think about it as a post office: when you put
+            the mail that you want posting in a post box, you can be sure that Mr. Postman will eventually deliver the mail to your recipient. In this
+            analogy, RabbitMQ is a post box, a post office and a postman.</p>
+        <p>Each message in RabbitMQ must be posted to one or more exchanges. A binding is a relationship between an exchange and a queue. This can be
+            simply read as: the queue is interested in messages from this exchange.
+            The routing algorithm behind an exchange is simple - a
+            message goes to the queues whose binding key exactly matches the routing key of the message.</p>
+        <p>An exchange is responsible for the routing of the messages to the different queues. An exchange accepts messages from the producer
+            application and routes them to message queues with help of header attributes, bindings, and routing keys.</p>
+        <p>A binding is a "link" that you set up to bind a queue to an exchange.</p>
+        <p>The routing key is a message attribute. The exchange might look at this key when deciding how to route the message to queues (depending on
+            exchange type).</p>
+        <p>Topic exchanges route messages to queues based on wildcard matches between the routing key and something called the routing pattern
+            specified by the queue binding. Messages are routed to one or many queues based on a matching between a message routing key and this
+            pattern.</p>
+        <p>The routing key must be a list of words, delimited by a period (.), examples are eiffel.activity, eiffel.activity.# and
+            eiffel.activity.started. All of these routing keys will match the event that comes with a tag eiffel.activity.started.notag which in this
+            case identifies event that is produced by eiffel protocol, the event family is activity, the event type is started.
+            The routing patterns may contain an asterisk ("*") to match a word in a specific position
+            of the routing key (e.g. a routing pattern of "eiffel.*.*.b.*" will only match routing keys where the first word is "eiffel" and
+            the fourth word is "b").
+            A pound symbol (“#”) indicates match on zero or more words (e.g. a routing pattern of "eiffel.artifact.#"
+            matches any routing keys beginning with "eiffel.artifact").
+        </p>
+        <p>The consumers indicate which topics they are interested in (like subscribing to a feed for an individual tag). The consumer creates a queue
+            and sets up a binding with a given routing pattern to the exchange. All messages with a routing key that match the routing pattern will be
+            routed to the queue and stay there until the consumer consumes the message.</p>
+        <h2>Eiffel routing convention</h2>
+        <p>
+            The routing key is concatenated from five entities: the event protocol, family, the event type, any custom tag and domain</br>
+            The routing key format for remrem semantics : <br>
+            <strong>eiffel.&lt;family&gt;.&lt;type&gt;.&lt;tag&gt;.&lt;domain&gt;</strong>
+        <ul>
+            <li>&lt;family&gt; is a family name for a group of events, e.g. "activity".</li>
+            <li>&lt;type&gt; represents the event, e.g. "triggered".</li>
+            <li>&lt;tag&gt; is a field which carries no meaning for Eiffel itself, but may be used by users to implement a custom categorization
+                scheme on which message routing may be applied.
+                The tag must NOT contain any dots, as this will deny the receiver the ability to anticipate the word sequence of the binding key, and
+                must not exceed 16 characters in length.
+                Defaults to "notag".
+            </li>
+            <li>&lt;domain&gt; The domain from which the message is sent. The value of the domain will fetch from eiffel event if empty the value is
+                fetch from the remrem publish configuration. domain can be suffixed by a user domain part that the user can specify with -ud option.
+                For more information on domain, see
+                <a href="https://github.com/Ericsson/eiffel/blob/master/eiffel-syntax-and-usage/the-meta-object.md#metasourcedomainid">this link</a>
+            </li>
+        </ul>
+        The routing key for EiffelActivityStartedEvent would be eiffel.activity.started.notag.eiffeltestdomain</br>
+        The routing key for EiffelArtifactCreatedEvent would be eiffel.artifact.created.notag.eiffeltestdomain</br></p>
+        <p>
+            Templates for <a href="https://github.com/Ericsson/eiffel">
+            Eiffel </a>Events to be used with remrem generate are
+            found below. <br> Template can be downloaded and
+            all fields labelled as required are to be
+            mandatorily filled. <br> The Json file can be used with
+            remrem generate as described <a
+                href="http://ericsson.github.io/eiffel-remrem-generate/">here</a>
+        </p>
+    </section>
+</div>
+<!-- FOOTER  -->
+<div
+        id="footer_wrap"
+        class="outer">
+    <footer class="inner">
+        <p class="copyright">
+            Eiffel-remrem-generate maintained by <a
+                href="https://github.com/ericsson">Ericsson</a>
+        </p>
+        <p>
+            Published with <a href="https://pages.github.com">GitHub
+            Pages</a>
+        </p>
+    </footer>
+</div>
+</body>
+</html>
