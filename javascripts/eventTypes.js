@@ -174,5 +174,85 @@ var eventTypes = [
       "name":"EiffelTestSuiteStartedEvent",
       "abbreviation":"TSS",
       "comments":"Available from 0.2.2"
+    },
+    {
+      "number":23,
+      "family":"artifact",
+      "type":"deployed",
+      "name":"EiffelArtifactDeployedEvent",
+      "abbreviation":"ArtD",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":24,
+      "family":"service",
+      "type":"allocated",
+      "name":"EiffelServiceAllocatedEvent",
+      "abbreviation":"ServA",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":25,
+      "family":"service",
+      "type":"deployed",
+      "name":"EiffelServiceDeployedEvent",
+      "abbreviation":"ServDe",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":26,
+      "family":"service",
+      "type":"discontinued",
+      "name":"EiffelServiceDiscontinuedEvent",
+      "abbreviation":"ServDi",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":27,
+      "family":"service",
+      "type":"returned",
+      "name":"EiffelServiceReturnedEvent",
+      "abbreviation":"ServR",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":28,
+      "family":"service",
+      "type":"started",
+      "name":"EiffelServiceStartedEvent",
+      "abbreviation":"ServSta",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":29,
+      "family":"service",
+      "type":"stopped",
+      "name":"EiffelServiceStoppedEvent",
+      "abbreviation":"ServSto",
+      "comments":"Available from 0.3.2"
+    },
+    {
+      "number":30,
+      "family":"alert",
+      "type":"raised",
+      "name":"EiffelAlertRaisedEvent",
+      "abbreviation":"AlerR",
+      "comments":"Available from 0.3.9"
+    },
+    {
+      "number":31,
+      "family":"alert",
+      "type":"acknowledged",
+      "name":"EiffelAlertAcknowledgedEvent",
+      "abbreviation":"AlerA",
+      "comments":"Available from 0.3.9"
+    },
+    {
+      "number":32,
+      "family":"alert",
+      "type":"ceased",
+      "name":"EiffelAlertCeasedEvent",
+      "abbreviation":"AlerC",
+      "comments":"Available from 0.3.9"
     }
 ]
