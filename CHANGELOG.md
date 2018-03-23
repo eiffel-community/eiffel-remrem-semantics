@@ -1,3 +1,6 @@
+## 0.4.1
+- Removed unwanted dependencies
+
 ## 0.4.0
 - Removed extra fields from templates and updated version
 
