@@ -48,7 +48,7 @@ allprojects {
 
 jar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.4.0'
+    version =  '0.4.1'
     manifest {
         attributes('remremVersionKey': 'semanticsVersion')
         attributes('semanticsVersion': version)
@@ -66,7 +66,7 @@ jar {
 
 shadowJar {
     baseName = 'eiffel-remrem-semantics'
-    version =  '0.4.0'
+    version =  '0.4.1'
     classifier = ''
 }
 
@@ -104,13 +104,9 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.3'
     compile 'org.mockito:mockito-core:1.10.19'
     compile 'javax.inject:javax.inject:1'
-    compile 'org.slf4j:slf4j-api:1.7.18'
     compile 'ch.qos.logback:logback-classic:1.1.7'
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.6.2'
     testCompile 'junit:junit:4.12'
     compile 'org.apache.commons:commons-lang3:3.5'
-    compile 'javax.validation:validation-api:1.1.0.CR2'
-    compile 'joda-time:joda-time:2.2'
     compile 'commons-io:commons-io:2.4'
     compile 'org.eclipse.jgit:org.eclipse.jgit.archive:4.5.0.201609210915-r'
 }
