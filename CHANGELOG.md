@@ -1,3 +1,6 @@
+## 0.4.2
+- Removed serializer information from few event templates which are missed in the previous release
+
 ## 0.4.1
 - Removed unwanted dependencies
 

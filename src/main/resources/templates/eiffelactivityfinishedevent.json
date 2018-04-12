@@ -1,41 +1,41 @@
 {
-	"msgParams": {
-		"meta": {
-			"type": "EiffelActivityFinishedEvent",
-			"version": "1.1.0",
-			"tags": [],
-			"source": {
-				"domainId": "",
-				"host": "",
-				"name": "",
-				"uri": ""
-				},
-				"security": {
-					"sdm": {
-						"authorIdentity": "required if sdm present",
-						"encryptedDigest": "required if sdm present"
-					}
-			}
-		}
-	},
-	"eventParams": {
-		"data": {
-			"outcome": {
-				"conclusion": "required, can be one of SUCCESSFUL,UNSUCCESSFUL,FAILED,ABORTED,TIMED_OUT,INCONCLUSIVE",
-				"description": ""
-			},
-			"persistentLogs": [{
-				"name": "required if persistentLogs present",
-				"uri": "required if persistentLogs present"
-			}],
-			"customData": [{
-				"key": "required if customData present",
-				"value": "required if customData present"
-			}]
-		},
-		"links": [{
-			"type": "required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
-			"target": "required"
-		}]
-	}
+    "msgParams": {
+        "meta": {
+            "type": "EiffelActivityFinishedEvent",
+            "version": "1.1.0",
+            "tags": [],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
+        }
+    },
+    "eventParams": {
+        "data": {
+            "outcome": {
+                "conclusion": "required, can be one of SUCCESSFUL,UNSUCCESSFUL,FAILED,ABORTED,TIMED_OUT,INCONCLUSIVE",
+                "description": ""
+            },
+            "persistentLogs": [{
+                "name": "required if persistentLogs present",
+                "uri": "required if persistentLogs present"
+            }],
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
+            }]
+        },
+        "links": [{
+            "type": "required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
+            "target": "required"
+        }]
+    }
 }
