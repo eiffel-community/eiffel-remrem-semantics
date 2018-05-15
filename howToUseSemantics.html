@@ -30,19 +30,27 @@
 <div id="main_content_wrap" class="outer">
     <section id="main_content" class="inner">
         <h2>How to use semantics</h2>
-        <p>To import the project you need to add to pom.xml</p>
-        <div><pre>&lt;dependency&gt;
-   &lt;groupId&gt;com.ericsson.eiffel&lt;/groupId&gt;
-   &lt;artifactId&gt;eiffel-remrem-semantics&lt;/artifactId&gt;
-   &lt;version&gt;x.x.x&lt;/version&gt;
-&lt;/dependency&gt;
-</pre>
+        <p>To import the project user need to add to pom.xml</p>
+        <div><pre>&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;jitpack.io&lt;/id&gt;
+        &lt;url>https://jitpack.io&lt;/url&gt;
+    &lt;/repository>
+&lt;/repositories&gt;</pre>
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;com.github.Ericsson&lt;/groupId&gt;
+    &lt;artifactId&gt;eiffel-remrem-semantics&lt;/artifactId&gt;
+    &lt;version&gt;x.x.x&lt;/version&gt;
+&lt;/dependency&gt;</pre>
         </div>
         <p>Or import the project to build.gradle<br>
-        <div><pre>dependencies {
+        <div><pre>repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}</pre>
+<pre>dependencies {
    compile("com.github.Ericsson:eiffel-remrem-semantics:x.x.x")
-}
-</pre>
+}</pre>
         </div>
         <p>Eiffel REMReM Semantics contains implementation of Eiffel REMReM Protocol Interface. All methods of interface MsgService are implemented by
             SemanticsService class: generateMsg, getEventId, getEventType, getSupportedEventTypes, getEventTemplate, getServiceName, validateMsg,
