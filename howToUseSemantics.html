@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Eiffel REMReM Semantics : ">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Eiffel REMReM Semantics</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/eventTypes.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <script type="text/javascript" src="javascripts/download.js"></script>
+</head>
+<body>
+<!-- HEADER -->
+<div id="header_wrap" class="outer">
+    <header class="inner">
+        <a id="forkme_banner" href="https://github.com/Ericsson/eiffel-remrem-semantics">View on GitHub</a>
+        <h1><a class="project_title" href="index.html#project_title">Eiffel REMReM Semantics</a></h1>
+        <h2 id="project_tagline"></h2>
+        <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/ericsson/eiffel-remrem-semantics/zipball/master">Download this project as a .zip
+                file</a>
+            <a class="tar_download_link" href="https://github.com/ericsson/eiffel-remrem-semantics/tarball/master">Download this project as a tar.gz
+                file</a>
+        </section>
+    </header>
+</div>
+<!-- MAIN CONTENT -->
+<div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+        <h2>How to use semantics</h2>
+        <p>To import the project user need to add to pom.xml</p>
+        <div><pre>&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;jitpack.io&lt;/id&gt;
+        &lt;url>https://jitpack.io&lt;/url&gt;
+    &lt;/repository>
+&lt;/repositories&gt;</pre>
+<pre>&lt;dependency&gt;
+    &lt;groupId&gt;com.github.Ericsson&lt;/groupId&gt;
+    &lt;artifactId&gt;eiffel-remrem-semantics&lt;/artifactId&gt;
+    &lt;version&gt;x.x.x&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+        </div>
+        <p>Or import the project to build.gradle<br>
+        <div><pre>repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}</pre>
+<pre>dependencies {
+   compile("com.github.Ericsson:eiffel-remrem-semantics:x.x.x")
+}</pre>
+        </div>
+        <p>Eiffel REMReM Semantics contains implementation of Eiffel REMReM Protocol Interface. All methods of interface MsgService are implemented by
+            SemanticsService class: generateMsg, getEventId, getEventType, getSupportedEventTypes, getEventTemplate, getServiceName, validateMsg,
+            generateRoutingKey. Also in this class could be implemented more methods depending on the needs of developer.</p>
+        <p>The main task of Eiffel Semantics is to check a correctness of Eiffel message. Project contains JSON schemas for each
+            Eiffel type of event. If you need to create new event type, you need to define the JSON schema for this event.</p>
+        <p>Each of Eiffel data types, for example links, gav, etc have its implementation in schema. If you need to extend event with some
+            custom field, the JSON schema for this field and serializer should be created for it. Also event JSON schema need to be updated.</p>
+        <p>During the verification process input JSON for SemanticsService is updated with the protocol related fields, for example id. </p>
+        <p>All Eiffel events consist of 3 logical JSON objects: meta, data and links.
+            The meta object contains meta-information describing the event: when it was created, where it came from, its type et cetera.
+            The data object contains all fields specific to the event type – the payload of the event – including trace links to non-Eiffel entities.
+            It is described in detail per event type.
+            The links object is an array of trace links to other Eiffel events. </p>
+        <h2>Messages Table</h2>
+        <p>Below is a table of current official Eiffel2.0 events along with their templates.<br>
+        </p>
+        <p>
+            Templates for <a href="https://github.com/Ericsson/eiffel">
+            Eiffel </a>Events to be used with REMReM
+            <a href="https://github.com/Ericsson/eiffel-remrem-generate">Generate</a> are
+            found below. <br> Template can be downloaded and
+            all fields labelled as required are to be
+            mandatorily filled. <br> The JSON file can be used with Eiffel REMReM Generate as described
+            <a href="http://ericsson.github.io/eiffel-remrem-generate/">here</a>
+        </p>
+        <p><font style="color: red;">Note&sup1;: templates are avaialable from eiffel-remrem-semantics-0.2.5 version</font></p>
+        <p><font style="color: red;">Note&sup2;: templates are in full JSON syntax och filenames are in lowercase from eiffel-remrem-semantics-0.3.5
+            version</font>
+        </p>
+        <p>
+            <strong>Choose Eiffel REMReM Semantics version:</strong>
+            <select
+                    style="color: blue;"
+                    id="version">
+            </select>
+        </p>
+        <table id="eventTypesTable" align="center">
+        </table>
+    </section>
+</div>
+<!-- FOOTER  -->
+<div
+        id="footer_wrap"
+        class="outer">
+    <footer class="inner">
+        <p class="copyright">
+            Eiffel REMReM Semantics maintained by <a
+                href="https://github.com/ericsson">Ericsson</a>
+        </p>
+        <p>
+            Published with <a href="https://pages.github.com">GitHub
+            Pages</a>
+        </p>
+    </footer>
+</div>
+</body>
+</html>
