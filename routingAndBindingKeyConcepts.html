@@ -56,12 +56,15 @@
         </p>
         <p>The consumers indicate which topics they are interested in (like subscribing to a feed for an individual tag). The consumer creates a queue
             and sets up a binding with a given routing pattern to the exchange. All messages with a routing key that match the routing pattern will be
-            routed to the queue and stay there until the consumer consumes the message.</p>
+            routed to the queue and stay there until the consumer consumes the message.
+        </p>
+
         <h2>Eiffel routing convention</h2>
         <p>
-            The routing key is concatenated from five entities: the event protocol, family, the event type, any custom tag and domain</br>
-            The routing key format for Eiffel REMReM Semantics : <br>
+            The routing key is concatenated from five entities: the event protocol, family, the event type, any custom tag and domain<br>
+            The routing key format for Eiffel REMReM Semantics: <br>
             <strong>eiffel.&lt;family&gt;.&lt;type&gt;.&lt;tag&gt;.&lt;domain&gt;.&lt;site&gt;.&lt;component&gt;</strong>
+        </p>
         <ul>
             <li>&lt;family&gt; is a family name for a group of events, e.g. "activity".</li>
             <li>&lt;type&gt; represents the event, e.g. "triggered".</li>
@@ -74,22 +77,13 @@
             <li>&lt;domain&gt; The domain from which the message is sent. The value of the domain will fetch from Eiffel event if empty the value is
                 fetch from the remrem publish configuration. domain can be suffixed by a user domain part that the user can specify with -ud option.
                 For more information on domain, see
-                <a href="https://github.com/Ericsson/eiffel/blob/master/eiffel-syntax-and-usage/the-meta-object.md#metasourcedomainid">this link</a>
+                <a href="https://github.com/Ericsson/eiffel/blob/master/eiffel-syntax-and-usage/the-meta-object.md#metasourcedomainid">this link</a>.
             </li>
             <li>&lt;site&gt; The physical site location from which the message is sent. For example sweden.</li>
             <li>&lt;component&gt; The Eiffel component which send the message. For example fem.</li>
         </ul>
-        The routing key for EiffelJobFinishedEvent would be eiffel.job.finished.notag.eiffel001.seki.fem002</br>
-        The routing key for EiffelArtifactCreatedEvent would be eiffel.artifact.created.notag.eiffeltestdomain.sweden.fem002</br></p>
-        <p>
-            Templates for <a href="https://github.com/Ericsson/eiffel">
-            Eiffel </a>Events to be used with Eiffel REMReM Generate are
-            found below. <br> Template can be downloaded and
-            all fields labelled as required are to be
-            mandatorily filled. <br> The JSON file can be used with
-            Eiffel REMReM Generate as described <a
-                href="http://ericsson.github.io/eiffel-remrem-generate/">here</a>
-        </p>
+        <p>The routing key for EiffelJobFinishedEvent would be eiffel.job.finished.notag.eiffel001.seki.fem002</p>
+        <p>The routing key for EiffelArtifactCreatedEvent would be eiffel.artifact.created.notag.eiffeltestdomain.sweden.fem002</p>
     </section>
 </div>
 <!-- FOOTER  -->
@@ -102,8 +96,7 @@
                 href="https://github.com/ericsson">Ericsson</a>
         </p>
         <p>
-            Published with <a href="https://pages.github.com">GitHub
-            Pages</a>
+            Published with <a href="https://pages.github.com">GitHub Pages</a>
         </p>
     </footer>
 </div>
