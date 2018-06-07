@@ -1,3 +1,12 @@
+## 0.4.5
+- Implemented code changes which avoids the generation of duplicate class names.
+
+## 0.4.4
+- Minor changes in mockito dependency availablity.
+
+## 0.4.3
+- Updated dependencies versions
+
 ## 0.4.2
 - Removed serializer information from few event templates which are missed in the previous release
 

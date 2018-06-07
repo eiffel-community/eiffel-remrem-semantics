@@ -32,6 +32,7 @@ public final class EiffelConstants {
     public static String OUTCOME = "outcome";
     public static String DATA = "data";
     public static String META = "meta";
+    public static String ISSUE = "issue";
     public static String EXTENDS_JAVA_CLASS = "extendsJavaClass";
     public static String COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS_EVENT = "com.ericsson.eiffel.semantics.events.Event";
     public static String JAVA_TYPE = "javaType";

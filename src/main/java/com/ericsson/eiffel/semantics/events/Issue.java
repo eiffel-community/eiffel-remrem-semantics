@@ -58,9 +58,9 @@ public class Issue {
      * (Required)
      * 
      */
-    @SerializedName("value")
+    @SerializedName("transition")
     @Expose
-    private Issue.Value value;
+    private Issue.Transition transition;
 
     /**
      * 
@@ -139,8 +139,8 @@ public class Issue {
      * (Required)
      * 
      */
-    public Issue.Value getValue() {
-        return value;
+    public Issue.Transition getTransition() {
+        return transition;
     }
 
     /**
@@ -148,8 +148,49 @@ public class Issue {
      * (Required)
      * 
      */
-    public void setValue(Issue.Value value) {
-        this.value = value;
+    public void setTransition(Issue.Transition transition) {
+        this.transition = transition;
+    }
+
+    public enum Transition {
+
+        @SerializedName("RESOLVED")
+        RESOLVED("RESOLVED"),
+        @SerializedName("PARTIAL")
+        PARTIAL("PARTIAL"),
+        @SerializedName("REMOVED")
+        REMOVED("REMOVED");
+        private final String value;
+        private final static Map<String, Issue.Transition> CONSTANTS = new HashMap<String, Issue.Transition>();
+
+        static {
+            for (Issue.Transition c: values()) {
+                CONSTANTS.put(c.value, c);
+            }
+        }
+
+        private Transition(String value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return this.value;
+        }
+
+        public String value() {
+            return this.value;
+        }
+
+        public static Issue.Transition fromValue(String value) {
+            Issue.Transition constant = CONSTANTS.get(value);
+            if (constant == null) {
+                throw new IllegalArgumentException(value);
+            } else {
+                return constant;
+            }
+        }
+
     }
 
     public enum Type {
@@ -190,47 +231,6 @@ public class Issue {
 
         public static Issue.Type fromValue(String value) {
             Issue.Type constant = CONSTANTS.get(value);
-            if (constant == null) {
-                throw new IllegalArgumentException(value);
-            } else {
-                return constant;
-            }
-        }
-
-    }
-
-    public enum Value {
-
-        @SerializedName("SUCCESS")
-        SUCCESS("SUCCESS"),
-        @SerializedName("FAILURE")
-        FAILURE("FAILURE"),
-        @SerializedName("INCONCLUSIVE")
-        INCONCLUSIVE("INCONCLUSIVE");
-        private final String value;
-        private final static Map<String, Issue.Value> CONSTANTS = new HashMap<String, Issue.Value>();
-
-        static {
-            for (Issue.Value c: values()) {
-                CONSTANTS.put(c.value, c);
-            }
-        }
-
-        private Value(String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return this.value;
-        }
-
-        public String value() {
-            return this.value;
-        }
-
-        public static Issue.Value fromValue(String value) {
-            Issue.Value constant = CONSTANTS.get(value);
             if (constant == null) {
                 throw new IllegalArgumentException(value);
             } else {
