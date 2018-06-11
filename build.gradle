@@ -102,7 +102,7 @@ dependencies {
         exclude module: 'jackson-databind'
     }
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
-    compile 'org.mockito:mockito-core:2.8.47'
+    testCompile 'org.mockito:mockito-core:2.8.47'
     compile 'javax.inject:javax.inject:1'
     compile 'ch.qos.logback:logback-classic:1.2.3'
     testCompile 'junit:junit:4.12'
