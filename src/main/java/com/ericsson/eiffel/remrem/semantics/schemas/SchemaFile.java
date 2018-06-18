@@ -131,6 +131,10 @@ public class SchemaFile {
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
                                                 .concat(this.eventName + "" + newClassName)));
+                            }else if (jsonElementName.equals(EiffelConstants.ISSUE)) {
+                                jsonObject.add(EiffelConstants.JAVA_TYPE,
+                                        parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
+                                                .concat(this.eventName + "" + newClassName)));
                             } else {
                                 jsonObject.add(EiffelConstants.JAVA_TYPE, parser.parse(
                                         EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS.concat(newClassName)));
