@@ -1,3 +1,6 @@
+## 0.4.6
+- Migrated from gradle to maven
+
 ## 0.4.5
 - Implemented code changes which avoids the generation of duplicate class names.
 
