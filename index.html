@@ -36,9 +36,15 @@
             Eiffel protocol. This project contains information about how to form a routing key that will be added to the generated message.</p>
         <h2>Installation</h2>
         <p>This project does not need any installation. It is used as external library that will be included as a dependency to other projects.</p>
-        <p>This project is build by gradle, by executing following commands:</p>
-        <pre>./gradlew build</pre>
-        <p>The produced jar file will be stored in /eiffel-remrem-semantics/build/libs/</p>
+        <p>This project is build by maven, by executing following commands:</p>
+        <pre>mvn clean install</pre>
+        <p>The produced jar file will be stored in /eiffel-remrem-semantics/target/</p>
+        <p>To update the schemas in semantics with latest changes in eiffel and operation repo schemas execute the maven profile <strong>process-schemas</strong> like below</p>
+        <pre> mvn clean install -P process-shcemas</pre>
+        <p>By executing the process-schemas profile you will get the latest schemas from both eiffel repository and eiffel-operations repository.</p>
+        <p>After updating the schemas execute the profile <strong>generate-events</strong> to generate pojo clases by using updated schemas.</p>
+        <pre>mvn clean install -P generate-events</pre>
+        <h3>Note:</h3><p>Execute the above mentioned maven profiles in order what they were declared if there is any change in schemas of eiffel or eiffel-operations repository.</p>
         <h2>Configuration</h2>
         <p>This project does not need any configuration. It is used as external library that will be included as a dependency to other projects.</p>
         <h2>Compatibility</h2>
