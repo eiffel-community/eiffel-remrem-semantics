@@ -119,7 +119,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "javaType": "com.ericsson.eiffel.semantics.events.Issue",
+            "javaType": "com.ericsson.eiffel.semantics.events.EiffelIssueVerifiedEventIssue",
             "properties": {
               "type": {
                 "type": "string",
