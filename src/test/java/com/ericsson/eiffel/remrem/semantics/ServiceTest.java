@@ -103,7 +103,7 @@ public class ServiceTest {
                 }
             }
         } catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
-            System.out.println("Exception occured while geneatring event");
+            System.out.println("Exception occurred while generating event");
             e.printStackTrace();
             Assert.assertFalse(true);
         }

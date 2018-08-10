@@ -196,7 +196,7 @@ public class SemanticsService implements MsgService {
             log.error("Could not validate message. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
             return createErrorResponse(e.getMessage(), e.getCause().toString());
         } catch (JsonSyntaxException e) {
-            log.error("Json Syntax exception occured. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
+            log.error("Json Syntax exception occurred. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
             return createErrorResponse("Json Syntax exception occured while processing input schema", e.getCause().toString());
         }
 
