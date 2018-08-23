@@ -159,7 +159,7 @@ public class PrepareLocalEiffelSchemas {
             try {
                 FileUtils.copyDirectory(operationSchemas, eiffelSchemas);
             } catch (IOException e) {
-                System.out.println("Exception occured while copying schemas from operations repository to eiffel repository");
+                System.out.println("Exception occurred while copying schemas from operations repository to eiffel repository");
                 e.printStackTrace();
             }
         }
