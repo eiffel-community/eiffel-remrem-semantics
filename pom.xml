@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.Ericsson</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>0.4.6</version>
+    <version>0.4.7</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -161,6 +161,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <configuration>
                     <archive>
                         <index>true</index>
@@ -172,7 +177,20 @@
                             <semanticsVersion>${project.version}</semanticsVersion>
                         </manifestEntries>
                     </archive>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
