@@ -1,3 +1,6 @@
+## 0.4.7
+- Updated parent version and added maven assembly plugin to make it fat jar
+
 ## 0.4.6
 - Migrated from gradle to maven
 
