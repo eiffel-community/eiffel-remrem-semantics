@@ -1,3 +1,6 @@
+## 0.4.8
+- Updated parent version
+
 ## 0.4.7
 - Updated parent version and added maven assembly plugin to make it fat jar
 
