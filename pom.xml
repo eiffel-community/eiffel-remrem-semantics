@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.Ericsson</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
     <version>0.4.7</version>
