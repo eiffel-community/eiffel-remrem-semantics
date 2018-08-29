@@ -1,44 +1,38 @@
 {
-  "msgParams": {
-    "meta": {
-      "type": "EiffelAlertRaisedEvent",
-      "version": "1.0.0",
-      "tags": [],
-      "source": {
-        "domainId": "",
-        "host": "",
-        "name": "",
-        "uri": "",
-        "serializer": {
-          "groupId": "",
-          "artifactId": "",
-          "version": ""
+    "msgParams": {
+        "meta": {
+            "type": "EiffelAlertRaisedEvent",
+            "version": "1.0.0",
+            "tags": [],
+            "source": {
+                "domainId": "",
+                "host": "",
+                "name": "",
+                "uri": ""
+            },
+            "security": {
+                "sdm": {
+                    "authorIdentity": "required if sdm present",
+                    "encryptedDigest": "required if sdm present"
+                }
+            }
         }
-      } ,
-      "security": {
-        "sdm": {
-          "authorIdentity": "required if sdm present",
-          "encryptedDigest": "required if sdm present"
-        }
-      }
-    }
-  },
-  "eventParams": {
-    "data": {
-      "heading": "",
-	  "body":"",
-	  "uri": "",
-	  "entity":"",
-	  "severity":"",
-      "customData": [{
-          "key": "required if customData present",
-          "value": "required if customData present"
-        }
-      ]
     },
-    "links": [{
-      "type": "required if links present can be anyOf MODIFIED_ALERT,CAUSE,CONTEXT,FLOW_CONTEXT",
-      "target": "required"
-    }]
-  }
+    "eventParams": {
+        "data": {
+            "heading": "",
+            "body": "",
+            "uri": "",
+            "entity": "",
+            "severity": "required , can be anyone of  MINOR,MAJOR,CRITICAL,BLOCKER,CANCELED",
+            "customData": [{
+                "key": "required if customData present",
+                "value": "required if customData present"
+            }]
+        },
+        "links": [{
+            "type": "required if links present can be anyOf MODIFIED_ALERT,CAUSE,CONTEXT,FLOW_CONTEXT",
+            "target": "required"
+        }]
+    }
 }

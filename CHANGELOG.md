@@ -1,3 +1,30 @@
+## 0.4.8
+- Updated parent version
+
+## 0.4.7
+- Updated parent version and added maven assembly plugin to make it fat jar
+
+## 0.4.6
+- Migrated from gradle to maven
+
+## 0.4.5
+- Implemented code changes which avoids the generation of duplicate class names.
+
+## 0.4.4
+- Minor changes in mockito dependency availablity.
+
+## 0.4.3
+- Updated dependencies versions
+
+## 0.4.2
+- Removed serializer information from few event templates which are missed in the previous release
+
+## 0.4.1
+- Removed unwanted dependencies
+
+## 0.4.0
+- Removed extra fields from templates and updated version
+
 ## 0.3.9
 - Generated event epoch time is in UTC format only 
 

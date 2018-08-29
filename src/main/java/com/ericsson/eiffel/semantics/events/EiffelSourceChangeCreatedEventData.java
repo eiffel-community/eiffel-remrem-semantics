@@ -29,7 +29,7 @@ public class EiffelSourceChangeCreatedEventData {
     private Change change;
     @SerializedName("issues")
     @Expose
-    private List<Issue_> issues = new ArrayList<Issue_>();
+    private List<Issue> issues = new ArrayList<Issue>();
     @SerializedName("gitIdentifier")
     @Expose
     private GitIdentifier gitIdentifier;
@@ -62,11 +62,11 @@ public class EiffelSourceChangeCreatedEventData {
         this.change = change;
     }
 
-    public List<Issue_> getIssues() {
+    public List<Issue> getIssues() {
         return issues;
     }
 
-    public void setIssues(List<Issue_> issues) {
+    public void setIssues(List<Issue> issues) {
         this.issues = issues;
     }
 

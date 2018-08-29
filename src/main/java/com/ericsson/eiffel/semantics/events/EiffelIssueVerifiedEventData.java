@@ -28,7 +28,7 @@ public class EiffelIssueVerifiedEventData {
      */
     @SerializedName("issues")
     @Expose
-    private List<Issue> issues = new ArrayList<Issue>();
+    private List<EiffelIssueVerifiedEventIssue> issues = new ArrayList<EiffelIssueVerifiedEventIssue>();
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
@@ -38,7 +38,7 @@ public class EiffelIssueVerifiedEventData {
      * (Required)
      * 
      */
-    public List<Issue> getIssues() {
+    public List<EiffelIssueVerifiedEventIssue> getIssues() {
         return issues;
     }
 
@@ -47,7 +47,7 @@ public class EiffelIssueVerifiedEventData {
      * (Required)
      * 
      */
-    public void setIssues(List<Issue> issues) {
+    public void setIssues(List<EiffelIssueVerifiedEventIssue> issues) {
         this.issues = issues;
     }
 
