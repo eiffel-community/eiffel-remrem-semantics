@@ -1,3 +1,6 @@
+## 0.4.9
+- Updated eiffel-remrem-protocol-interface version
+
 ## 0.4.8
 - Updated parent version
 
