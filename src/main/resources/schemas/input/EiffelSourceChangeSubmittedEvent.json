@@ -114,6 +114,9 @@
     "data": {
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelSourceChangeSubmittedEventData",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Data"
+      ],
       "properties": {
         "submitter": {
           "type": "object",

@@ -122,15 +122,17 @@ public class SchemaFile {
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
                                                 .concat(this.eventName + "" + newClassName)));
-                                JsonArray list = new JsonArray();
-                                list.add("com.ericsson.eiffel.semantics.events.Meta");
-                                jsonObject.add(EiffelConstants.JAVA_INTERFACES, list);
+                                addPackageDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Meta");
                             } else if (jsonElementName.equals(EiffelConstants.DATA)
                                     || jsonElementName.equals(EiffelConstants.OUTCOME)) {
                                 // Data and Outcome is different at event level
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
                                                 .concat(this.eventName + "" + newClassName)));
+                                if (jsonElementName.equals(EiffelConstants.DATA)) {
+                                    addPackageDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Data");
+                                }
+
                             }else if (jsonElementName.equals(EiffelConstants.ISSUE)) {
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
@@ -170,6 +172,19 @@ public class SchemaFile {
             jsonObject.add(EiffelConstants.ANYOF, array);
 
         }
+    }
+
+    /**
+     * This method is used for add package declaration to generated pojo class
+     * @param jsonObject
+     * @param interfaceNames array of String interfaceNames with package ex: "com.ericsson.eiffel.semantics.events.Meta", "com.ericsson.eiffel.semantics.events.Data"
+     */
+    private void addPackageDeclaration(JsonObject jsonObject, String...interfaceNames) {
+        JsonArray list = new JsonArray();
+        for(String interfaceName : interfaceNames) {
+            list.add(interfaceName);
+        }
+        jsonObject.add(EiffelConstants.JAVA_INTERFACES, list);
     }
 
     /**

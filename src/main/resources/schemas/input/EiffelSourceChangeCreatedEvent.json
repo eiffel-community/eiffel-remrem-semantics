@@ -114,6 +114,9 @@
     "data": {
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelSourceChangeCreatedEventData",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Data"
+      ],
       "properties": {
         "author": {
           "type": "object",

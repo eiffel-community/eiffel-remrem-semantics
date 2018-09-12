@@ -115,6 +115,9 @@
     "data": {
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelServiceAllocatedEventData",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Data"
+      ],
       "properties": {
         "serviceinstance": {
           "type": "string"

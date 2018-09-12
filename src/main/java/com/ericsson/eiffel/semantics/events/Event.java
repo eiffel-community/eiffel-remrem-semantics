@@ -16,6 +16,7 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,7 @@ import com.ericsson.eiffel.remrem.semantics.RoutingKeyTypes;
  * This is the super class for all Eiffel event classes
  *
  */
-public class Event {
+public abstract class Event {
     public transient Meta meta;
     public static final Logger log = LoggerFactory.getLogger(Event.class);
 
@@ -50,7 +51,7 @@ public class Event {
      *            Eiffel eventType
      * @return family based on eventType (or) error will be thrown if unknown eventType requested.
      */
-    public String getFamilyRoutingKey(String eventType) {
+    public static String getFamilyRoutingKey(String eventType) {
         try {
             return RoutingKeyTypes.valueOf(eventType).getFamily();
         } catch (Exception e) {
@@ -66,7 +67,7 @@ public class Event {
      *            Eiffel eventType
      * @return type based on eventType (or) error will be thrown if unknown eventType requested.
      */
-    public String getTypeRoutingKey(String eventType) {
+    public static String getTypeRoutingKey(String eventType) {
         try {
             return RoutingKeyTypes.valueOf(eventType).getType();
         } catch (Exception e) {
@@ -79,6 +80,8 @@ public class Event {
         return meta;
     }
 
+    public abstract List<Link> getLinks();
+    
     public void setMeta(Meta meta) {
         this.meta = meta;
     }

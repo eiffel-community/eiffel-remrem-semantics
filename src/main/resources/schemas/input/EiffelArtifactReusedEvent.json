@@ -114,6 +114,9 @@
     "data": {
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelArtifactReusedEventData",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Data"
+      ],
       "properties": {
         "customData": {
           "type": "array",

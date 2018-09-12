@@ -114,6 +114,9 @@
     "data": {
       "type": "object",
       "javaType": "com.ericsson.eiffel.semantics.events.EiffelActivityStartedEventData",
+      "javaInterfaces": [
+        "com.ericsson.eiffel.semantics.events.Data"
+      ],
       "properties": {
         "executionUri": {
           "type": "string"
