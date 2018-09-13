@@ -40,7 +40,7 @@
         <pre>mvn clean install</pre>
         <p>The produced jar file will be stored in /eiffel-remrem-semantics/target/</p>
         <p>To update the schemas in semantics with latest changes in eiffel and operation repo schemas execute the maven profile <strong>process-schemas</strong> like below</p>
-        <pre> mvn clean install -P process-shcemas</pre>
+        <pre> mvn clean install -P process-schemas</pre>
         <p>By executing the process-schemas profile you will get the latest schemas from both eiffel repository and eiffel-operations repository.</p>
         <p>After updating the schemas execute the profile <strong>generate-events</strong> to generate pojo clases by using updated schemas.</p>
         <pre>mvn clean install -P generate-events</pre>
