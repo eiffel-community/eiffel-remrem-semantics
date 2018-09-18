@@ -18,74 +18,74 @@ import java.util.List;
 
 public interface Meta {
 
-    /**
-     * set event id
-     * 
-     * @param id
-     */
-    public void setId(String id);
+	/**
+	 * set event id
+	 * 
+	 * @param id
+	 */
+	public void setId(String id);
 
-    /**
-     * set time when event generate/create
-     * 
-     * @param time
-     */
-    public void setTime(Long time);
+	/**
+	 * set time when event generate/create
+	 * 
+	 * @param time
+	 */
+	public void setTime(Long time);
 
-    /**
-     * set source information to event
-     * 
-     * @param source
-     */
-    public void setSource(Source source);
+	/**
+	 * set source information to event
+	 * 
+	 * @param source
+	 */
+	public void setSource(Source source);
 
-    /**
-     * Get the EventId
-     * 
-     * @return string of UUID
-     */
-    public String getId();
+	/**
+	 * Get the EventId
+	 * 
+	 * @return string of UUID
+	 */
+	public String getId();
 
-    /**
-     * Get the type/name of the event
-     * 
-     * @return
-     */
-    public Object getType();
+	/**
+	 * Get the type/name of the event
+	 * 
+	 * @return
+	 */
+	public Object getType();
 
-    /**
-     * Get the version of the event Eiffel semantics follow the Semantic
-     * Versioning 2.0.0 for version declaration
-     * 
-     * @return
-     */
-    public Object getVersion();
+	/**
+	 * Get the version of the event Eiffel semantics follow the Semantic Versioning
+	 * 2.0.0 for version declaration
+	 * 
+	 * @return
+	 */
+	public Object getVersion();
 
-    /**
-     * get the event generated time in long format
-     * 
-     * @return
-     */
-    public Long getTime();
+	/**
+	 * get the event generated time in long format
+	 * 
+	 * @return
+	 */
+	public Long getTime();
 
-    /**
-     * get the tags
-     * 
-     * @return
-     */
-    public List<String> getTags();
+	/**
+	 * get the tags
+	 * 
+	 * @return
+	 */
+	public List<String> getTags();
 
-    /**
-     * get the source of event
-     * 
-     * @return
-     */
-    public Source getSource();
+	/**
+	 * get the source of event
+	 * 
+	 * @return
+	 */
+	public Source getSource();
 
-    /**
-     * get the security
-     * 
-     * @return
-     */
-    public Security getSecurity();
+	/**
+	 * get the security
+	 * 
+	 * @return
+	 */
+	public Security getSecurity();
 }

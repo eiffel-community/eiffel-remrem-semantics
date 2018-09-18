@@ -1,4 +1,17 @@
-
+/*******************************************************************************
+ * Copyright 2018 Ericsson AB.
+ * For a full list of individual contributors, please see the commit history.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 package com.ericsson.eiffel.semantics.events;
 
 import com.google.gson.annotations.Expose;
@@ -6,49 +19,49 @@ import com.google.gson.annotations.SerializedName;
 
 public class Submitter {
 
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("id")
-    @Expose
-    private String id;
-    @SerializedName("group")
-    @Expose
-    private String group;
+	@SerializedName("name")
+	@Expose
+	private String name;
+	@SerializedName("email")
+	@Expose
+	private String email;
+	@SerializedName("id")
+	@Expose
+	private String id;
+	@SerializedName("group")
+	@Expose
+	private String group;
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getGroup() {
-        return group;
-    }
+	public String getGroup() {
+		return group;
+	}
 
-    public void setGroup(String group) {
-        this.group = group;
-    }
+	public void setGroup(String group) {
+		this.group = group;
+	}
 
 }
