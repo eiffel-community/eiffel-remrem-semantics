@@ -122,7 +122,7 @@ public class SchemaFile {
                                 jsonObject.add(EiffelConstants.JAVA_TYPE,
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
                                                 .concat(this.eventName + "" + newClassName)));
-                                addPackageDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Meta");
+                                addInterfaceDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Meta");
                             } else if (jsonElementName.equals(EiffelConstants.DATA)
                                     || jsonElementName.equals(EiffelConstants.OUTCOME)) {
                                 // Data and Outcome is different at event level
@@ -130,7 +130,7 @@ public class SchemaFile {
                                         parser.parse(EiffelConstants.COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS
                                                 .concat(this.eventName + "" + newClassName)));
                                 if (jsonElementName.equals(EiffelConstants.DATA)) {
-                                    addPackageDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Data");
+                                    addInterfaceDeclaration(jsonObject, "com.ericsson.eiffel.semantics.events.Data");
                                 }
 
                             }else if (jsonElementName.equals(EiffelConstants.ISSUE)) {
@@ -179,7 +179,7 @@ public class SchemaFile {
      * @param jsonObject
      * @param interfaceNames array of String interfaceNames with package ex: "com.ericsson.eiffel.semantics.events.Meta", "com.ericsson.eiffel.semantics.events.Data"
      */
-    private void addPackageDeclaration(JsonObject jsonObject, String...interfaceNames) {
+    private void addInterfaceDeclaration(JsonObject jsonObject, String...interfaceNames) {
         JsonArray list = new JsonArray();
         for(String interfaceName : interfaceNames) {
             list.add(interfaceName);
