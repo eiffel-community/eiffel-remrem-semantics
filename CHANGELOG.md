@@ -1,3 +1,6 @@
+## 0.5.0
+- Updated eiffel-remrem-protocol-interface version and REMReM Parent version
+
 ## 0.4.9
 - Updated eiffel-remrem-protocol-interface version
 
