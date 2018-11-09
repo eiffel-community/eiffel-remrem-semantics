@@ -14,6 +14,7 @@
 */
 package com.ericsson.eiffel.remrem.semantics.validator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -153,11 +154,8 @@ public class EiffelValidator {
                 linksSet.remove(optionalLinkType);
             }
             if (!linksSet.isEmpty()) {
-                linksSet.retainAll(allLinkTypes);
-                if (!linksSet.isEmpty()) {
-                    throw new EiffelValidationException(
-                            StringUtils.join(linksSet, ',') + " link types are not allowed for event " + eventType);
-                }
+                throw new EiffelValidationException(
+                        StringUtils.join(linksSet, ',') + " link types are invalid for the event " + eventType);
             }
         } catch (Exception e) {
             String message = "Cannot validate given JSON string";
