@@ -1,3 +1,6 @@
+## 0.5.2
+- Uplifted eiffel-remrem-parent version from 0.0.5 to 0.0.6
+
 ## 0.5.1
 - Added changes to allow valid eiffel link types only while generating eiffel events
 
