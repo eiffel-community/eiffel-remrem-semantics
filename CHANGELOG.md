@@ -1,3 +1,6 @@
+## 0.5.1
+- Added changes to allow valid eiffel link types only while generating eiffel events
+
 ## 0.5.0
 - Updated eiffel-remrem-protocol-interface version and REMReM Parent version
 
