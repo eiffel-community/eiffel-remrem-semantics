@@ -1,3 +1,7 @@
+## 0.5.2
+- Upgraded eiffel-remrem-parent version from 0.0.6 to 0.0.7.
+- Upgraded eiffel-remrem-protocol-interface version from 0.0.12 to 0.0.13.
+
 ## 0.5.1
 - Added changes to allow valid eiffel link types only while generating eiffel events
 - Uplifted eiffel-remrem-parent version from 0.0.5 to 0.0.6
