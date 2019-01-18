@@ -1,3 +1,7 @@
+## 0.5.3
+- Upgraded eiffel-remrem-parent version from 0.0.7 to 0.0.8.
+- Upgraded eiffel-remrem-protocol-interface version from 0.0.13 to 0.0.14.
+
 ## 0.5.2
 - Upgraded eiffel-remrem-parent version from 0.0.6 to 0.0.7.
 - Upgraded eiffel-remrem-protocol-interface version from 0.0.12 to 0.0.13.
