@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.Ericsson</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>0.0.7</version>
+        <version>0.0.8</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>0.5.2</version>
+    <version>0.5.3</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.github.Ericsson</groupId>
             <artifactId>eiffel-remrem-protocol-interface</artifactId>
-            <version>0.0.13</version>
+            <version>0.0.14</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
