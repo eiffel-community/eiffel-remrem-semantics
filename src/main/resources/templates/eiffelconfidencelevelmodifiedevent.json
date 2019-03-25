@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelConfidenceLevelModifiedEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -36,8 +28,12 @@
             }]
         },
         "links": [{
-            "type": "required SUBJECT and CAUSE,CONTEXT,FLOW_CONTEXT,SUB_CONFIDENCE_LEVEL are optional",
-            "target": "required"
+            "type": "SUBJECT",
+            "target": "required - UUID of  EiffelCompositionDefinedEvent, EiffelArtifactCreatedEvent, EiffelSourceChangeCreatedEvent, EiffelSourceChangeSubmittedEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or SUB_CONFIDENCE_LEVEL - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

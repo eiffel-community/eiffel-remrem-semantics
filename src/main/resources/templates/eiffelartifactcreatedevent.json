@@ -2,54 +2,36 @@
     "msgParams": {
         "meta": {
             "type": "EiffelArtifactCreatedEvent",
-            "version": "1.1.0",
-            "tags": [],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
     "eventParams": {
         "data": {
-            "gav": {
-                "groupId": "required",
-                "artifactId": "required",
-                "version": "required"
-            },
+            "identity": "required",
             "fileInformation": [{
-                "classifier": "required if fileInformation present",
-                "extension": "required if fileInformation present"
+                "name": "required if fileInformation present",
+                "tags": [""]
             }],
             "buildCommand": "",
             "requiresImplementation": "not required, if present can be anyone of NONE,ANY,EXACTLY_ONE,AT_LEAST_ONE",
+            "dependsOn": [""],
+            "implements": [""],
             "name": "",
-            "dependsOn": [{
-                "groupId": "required if dependsOn present",
-                "artifactId": "required if dependsOn present",
-                "version": "required if dependsOn present"
-            }],
-            "implements": [{
-                "groupId": "required if implements present",
-                "artifactId": "required if implements present",
-                "version": "required if implements present"
-            }],
             "customData": [{
                 "key": "required if customData present",
                 "value": "required if customData present"
             }]
         },
         "links": [{
-            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION,COMPOSITION,ENVIRONMENT",
-            "target": "required if links present"
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or PREVIOUS_VERSION or COMPOSITION or ENVIRONMENT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

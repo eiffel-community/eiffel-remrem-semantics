@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelArtifactReusedEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -28,8 +20,16 @@
             }]
         },
         "links": [{
-            "type": "required COMPOSITION,REUSED_ARTIFACT and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
-            "target": "required"
+            "type": "COMPOSITION",
+            "target": "required - UUID of EiffelCompositionDefinedEvent"
+            },
+            {
+            "type": "REUSED_ARTIFACT",
+            "target": "required - UUID of EiffelArtifactCreatedEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }
