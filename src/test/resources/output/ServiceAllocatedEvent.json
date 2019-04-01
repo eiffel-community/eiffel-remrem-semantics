@@ -1,45 +1,50 @@
 {
-    "meta": {
-        "id": "24513844-6ba9-4f85-ae9c-1faacf1c7962",
-        "type": "EiffelServiceAllocatedEvent",
-        "version": "1.0.0",
-        "time": 1519371978645,
-        "tags": ["tag1", "tag2"],
-        "source": {
-            "domainId": "domainID",
-            "host": "host",
-            "name": "name",
-            "serializer": {
-                "groupId": "com.github.Ericsson",
-                "artifactId": "eiffel-remrem-semantics",
-                "version": "0.3.1"
-            },
-            "uri": "http://java.sun.com/j2se/1.3/"
-        },
-        "security": {
-            "sdm": {
-                "authorIdentity": "test",
-                "encryptedDigest": "sample"
-            }
-        }
+  "meta": {
+    "id": "9fc52ad4-03ab-4a11-ae5a-b010dd39270d",
+    "type": "EiffelServiceAllocatedEvent",
+    "version": "2.0.0",
+    "time": 1554395295092,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": "pkg:maven",
+      "uri": "http://java.sun.com/j2se/1.3/"
     },
-    "data": {
-        "serviceinstance": "Sample",
-        "owner": "testuser",
-        "uri": "http://java.sun.com/j2se/1.3/",
-        "customData": [{
-            "key": "firstLog",
-            "value": 1234.0
-        }, {
-            "key": "otherLog",
-            "value": 1234.0
-        }]
+    "security": {
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
+    }
+  },
+  "data": {
+    "serviceinstance": "Sample",
+    "owner": "testuser",
+    "uri": "http://java.sun.com/j2se/1.3/",
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": 1234.0
+      },
+      {
+        "key": "otherLog",
+        "value": 1234.0
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
-    "links": [{
-        "type": "CONTEXT",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-    }, {
-        "type": "ACTIVITY_EXECUTION",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
-    }]
+    {
+      "type": "FLOW_CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    }
+  ]
 }

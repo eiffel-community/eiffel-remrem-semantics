@@ -1,43 +1,48 @@
 {
-    "meta": {
-        "id": "621fca60-b865-4ac8-bb66-85f8b616abbe",
-        "type": "EiffelServiceStartedEvent",
-        "version": "1.0.0",
-        "time": 1519371973920,
-        "tags": ["tag1", "tag2"],
-        "source": {
-            "domainId": "domainID",
-            "host": "host",
-            "name": "name",
-            "serializer": {
-                "groupId": "com.github.Ericsson",
-                "artifactId": "eiffel-remrem-semantics",
-                "version": "0.3.1"
-            },
-            "uri": "http://java.sun.com/j2se/1.3/"
-        },
-        "security": {
-            "sdm": {
-                "authorIdentity": "test",
-                "encryptedDigest": "sample"
-            }
-        }
+  "meta": {
+    "id": "0bc21236-4def-48ab-ba9a-f83b6195482c",
+    "type": "EiffelServiceStartedEvent",
+    "version": "2.0.0",
+    "time": 1554395545414,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": "pkg:maven",
+      "uri": "http://java.sun.com/j2se/1.3/"
     },
-    "data": {
-        "pid": "testuser",
-        "customData": [{
-            "key": "firstLog",
-            "value": 1234.0
-        }, {
-            "key": "otherLog",
-            "value": 1234.0
-        }]
+    "security": {
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
+    }
+  },
+  "data": {
+    "pid": "testuser",
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": 1234.0
+      },
+      {
+        "key": "otherLog",
+        "value": 1234.0
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
-    "links": [{
-        "type": "CONTEXT",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-    }, {
-        "type": "ACTIVITY_EXECUTION",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
-    }]
+    {
+      "type": "SERVICE",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    }
+  ]
 }

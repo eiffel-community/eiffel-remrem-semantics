@@ -59,19 +59,17 @@ public class ServiceTest {
     SemanticsService service = new SemanticsService();
     
     ManifestHandler manifestHandler;
-    static Gav manifestGav = null;
+    static String manifestGav ;
 
     @BeforeClass
     public static void readManifestGav() {
-        manifestGav = new Gav();
+        manifestGav = "";
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath().replace("%20", " ");
         try {
             Manifest manifest = new Manifest(new FileInputStream(manifestPath));
             Attributes attributes1 = manifest.getMainAttributes();
-            manifestGav.setGroupId(attributes1.getValue("groupId"));
-            manifestGav.setArtifactId(attributes1.getValue("artifactId"));
-            manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
+            manifestGav="pkg:maven/"+attributes1.getValue("groupId")+"/"+attributes1.getValue("artifactId")+"@"+attributes1.getValue("semanticsVersion");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,9 +92,7 @@ public class ServiceTest {
                 for (File inputFile : file.listFiles()) {
                     JsonObject object = parser.parse(new FileReader(inputFile)).getAsJsonObject();
                     String msgType=object.get("msgParams").getAsJsonObject().get("meta").getAsJsonObject().get("type").getAsString();
-                    System.out.println(msgType);
                     String msg = service.generateMsg(msgType, object);
-                    System.out.println(msg+"\n");
                     Assert.assertTrue(msg.contains("data"));
                     Assert.assertTrue(msg.contains("meta"));
                     Assert.assertTrue(msg.contains("links"));
@@ -194,11 +190,9 @@ public class ServiceTest {
 
     @Test
     public void testGetRemremSemanticsGav() {
-        when(manifestHandler.readGavfromManifest()).thenReturn(manifestGav);
-        Gav gav = manifestHandler.readGavfromManifest();
-        Assert.assertEquals(gav.getGroupId(), "com.github.Ericsson");
-        Assert.assertEquals(gav.getArtifactId(), "eiffel-remrem-semantics");
-        Assert.assertEquals(gav.getVersion(), "0.3.1");
+        when(manifestHandler.readStringSerializerfromManifest()).thenReturn(manifestGav);
+        String gav = manifestHandler.readStringSerializerfromManifest();
+        assertEquals(manifestGav,gav);
     }
 
     @Test(expected = FileNotFoundException.class)
@@ -206,11 +200,6 @@ public class ServiceTest {
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath() + "/InvalidPath";
         Manifest manifest = new Manifest(new FileInputStream(manifestPath));
-        Attributes attributes1 = manifest.getMainAttributes();
-        manifestGav.setGroupId(attributes1.getValue("groupId"));
-        manifestGav.setArtifactId(attributes1.getValue("artifactId"));
-        manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
-
     }
     
     @Test

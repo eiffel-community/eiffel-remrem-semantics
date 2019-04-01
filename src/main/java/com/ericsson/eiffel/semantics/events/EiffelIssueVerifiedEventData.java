@@ -21,35 +21,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class EiffelIssueVerifiedEventData {
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @SerializedName("issues")
-    @Expose
-    private List<EiffelIssueVerifiedEventIssue> issues = new ArrayList<EiffelIssueVerifiedEventIssue>();
     @SerializedName("customData")
     @Expose
     private List<CustomData> customData = new ArrayList<CustomData>();
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public List<EiffelIssueVerifiedEventIssue> getIssues() {
-        return issues;
-    }
-
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setIssues(List<EiffelIssueVerifiedEventIssue> issues) {
-        this.issues = issues;
-    }
 
     public List<CustomData> getCustomData() {
         return customData;

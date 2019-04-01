@@ -30,7 +30,7 @@ public class Source {
     private String name;
     @SerializedName("serializer")
     @Expose
-    private Serializer serializer;
+    private String serializer;
     @SerializedName("uri")
     @Expose
     private String uri;
@@ -59,11 +59,11 @@ public class Source {
         this.name = name;
     }
 
-    public Serializer getSerializer() {
+    public String getSerializer() {
         return serializer;
     }
 
-    public void setSerializer(Serializer serializer) {
+    public void setSerializer(String serializer) {
         this.serializer = serializer;
     }
 

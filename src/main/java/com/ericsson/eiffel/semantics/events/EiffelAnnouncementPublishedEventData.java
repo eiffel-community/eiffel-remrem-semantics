@@ -127,22 +127,17 @@ public class EiffelAnnouncementPublishedEventData {
     public enum Severity {
 
         @SerializedName("MINOR")
-        MINOR("MINOR"),
-        @SerializedName("MAJOR")
-        MAJOR("MAJOR"),
-        @SerializedName("CRITICAL")
-        CRITICAL("CRITICAL"),
-        @SerializedName("BLOCKER")
-        BLOCKER("BLOCKER"),
-        @SerializedName("CLOSED")
-        CLOSED("CLOSED"),
-        @SerializedName("CANCELED")
+        MINOR("MINOR"), @SerializedName("MAJOR")
+        MAJOR("MAJOR"), @SerializedName("CRITICAL")
+        CRITICAL("CRITICAL"), @SerializedName("BLOCKER")
+        BLOCKER("BLOCKER"), @SerializedName("CLOSED")
+        CLOSED("CLOSED"), @SerializedName("CANCELED")
         CANCELED("CANCELED");
         private final String value;
         private final static Map<String, EiffelAnnouncementPublishedEventData.Severity> CONSTANTS = new HashMap<String, EiffelAnnouncementPublishedEventData.Severity>();
 
         static {
-            for (EiffelAnnouncementPublishedEventData.Severity c: values()) {
+            for (EiffelAnnouncementPublishedEventData.Severity c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

@@ -105,10 +105,10 @@
                             <cleanupDaemonThreads>false</cleanupDaemonThreads>
                             <mainClass>com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas</mainClass>
                             <arguments>
-                                <argument>https://github.com/Ericsson/eiffel.git</argument>
-                                <argument>tags/edition-toulouse</argument>
+                                <argument>https://github.com/eiffel-community/eiffel.git</argument>
+                                <argument>tags/edition-agen</argument>
                                 <argument>https://github.com/Ericsson/eiffel-operations-extension.git</argument>
-                                <argument>tags/Toulouse</argument>
+                                <argument>tags/edition-agen</argument>
                             </arguments>
                         </configuration>
                     </plugin>

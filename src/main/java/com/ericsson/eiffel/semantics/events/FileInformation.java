@@ -14,6 +14,8 @@
 */
 package com.ericsson.eiffel.semantics.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -24,25 +26,20 @@ public class FileInformation {
      * (Required)
      * 
      */
-    @SerializedName("classifier")
+    @SerializedName("name")
     @Expose
-    private String classifier;
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    @SerializedName("extension")
+    private String name;
+    @SerializedName("tags")
     @Expose
-    private String extension;
+    private List<String> tags = new ArrayList<String>();
 
     /**
      * 
      * (Required)
      * 
      */
-    public String getClassifier() {
-        return classifier;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -50,26 +47,16 @@ public class FileInformation {
      * (Required)
      * 
      */
-    public void setClassifier(String classifier) {
-        this.classifier = classifier;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public String getExtension() {
-        return extension;
+    public List<String> getTags() {
+        return tags;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     */
-    public void setExtension(String extension) {
-        this.extension = extension;
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
 }

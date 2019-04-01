@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "1.1.0"
+            "3.0.0"
           ],
-          "default": "1.1.0"
+          "default": "3.0.0"
         },
         "time": {
           "type": "integer",
@@ -52,25 +52,8 @@
               "type": "string"
             },
             "serializer": {
-              "type": "object",
-              "javaType": "com.ericsson.eiffel.semantics.events.Serializer",
-              "properties": {
-                "groupId": {
-                  "type": "string"
-                },
-                "artifactId": {
-                  "type": "string"
-                },
-                "version": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "groupId",
-                "artifactId",
-                "version"
-              ],
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^pkg:"
             },
             "uri": {
               "type": "string"

@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "id": "ce17bc05-c1c7-427d-b5f4-b85bd127883e",
+    "type": "EiffelIssueDefinedEvent",
+    "version": "3.0.0",
+    "time": 1554406078675,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": "pkg://maven",
+      "uri": "http://java.sun.com/j2se/1.3/"
+    }
+  },
+  "data": {
+    "type": "OTHER",
+    "tracker": "string",
+    "id": "string",
+    "uri": "string",
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
+  },
+  "links": [
+    
+  ]
+}

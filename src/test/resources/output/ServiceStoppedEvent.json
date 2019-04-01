@@ -1,42 +1,47 @@
 {
-	"meta": {
-		"id": "798a6ef2-dc06-4279-b071-3dce7362df26",
-		"type": "EiffelServiceStoppedEvent",
-		"version": "1.0.0",
-		"time": 1519391706877,
-		"tags": ["tag1", "tag2"],
-		"source": {
-			"domainId": "domainID",
-			"host": "host",
-			"name": "name",
-			"serializer": {
-				"groupId": "com.github.Ericsson",
-				"artifactId": "eiffel-remrem-semantics",
-				"version": "0.3.1"
-			},
-			"uri": "http://java.sun.com/j2se/1.3/"
-		},
-		"security": {
-			"sdm": {
-				"authorIdentity": "test",
-				"encryptedDigest": "sample"
-			}
-		}
-	},
-	"data": {
-		"customData": [{
-			"key": "firstLog",
-			"value": 1234.0
-		}, {
-			"key": "otherLog",
-			"value": 1234.0
-		}]
-	},
-	"links": [{
-		"type": "CONTEXT",
-		"target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-	}, {
-		"type": "SERVICE",
-		"target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
-	}]
+  "meta": {
+    "id": "39f8d376-adee-4401-9acf-518f9a4fb85c",
+    "type": "EiffelServiceStoppedEvent",
+    "version": "2.0.0",
+    "time": 1554395709339,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": "pkg:maven",
+      "uri": "http://java.sun.com/j2se/1.3/"
+    },
+    "security": {
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
+    }
+  },
+  "data": {
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": 1234.0
+      },
+      {
+        "key": "otherLog",
+        "value": 1234.0
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+    },
+    {
+      "type": "SERVICE",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    }
+  ]
 }

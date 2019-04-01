@@ -1,26 +1,25 @@
 {
   "meta": {
-    "id": "d4f889d4-e528-4198-9b88-37d20f80ce86",
+    "id": "e9c87fe4-e159-4119-9fd2-ec779e6476e6",
     "type": "EiffelSourceChangeCreatedEvent",
-    "version": "1.1.0",
-    "time": 1499076743021,
-    "tags": ["tag1", "tag2"],
+    "version": "4.0.0",
+    "time": 1554390385814,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
     "source": {
       "domainId": "domainID",
       "host": "host",
       "name": "name",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      },
+      "serializer": "pkg:maven",
       "uri": "http://java.sun.com/j2se/1.3/"
     },
     "security": {
-      "sdm": {
-        "authorIdentity": "test",
-        "encryptedDigest": "sample"
-      }
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
     }
   },
   "data": {
@@ -38,13 +37,6 @@
       "tracker": "new tracker",
       "id": "xyz123"
     },
-    "issues": [{
-      "type": "IMPROVEMENT",
-      "tracker": "EventTracker",
-      "id": "123468",
-      "uri": "http://myHost.com",
-      "transition": "RESOLVED"
-    }],
     "gitIdentifier": {
       "commitId": "1234",
       "branch": "branch",
@@ -58,7 +50,10 @@
       "repoUri": "http://myHost.com"
     },
     "ccCompositeIdentifier": {
-      "vobs": ["a", "b"],
+      "vobs": [
+        "a",
+        "b"
+      ],
       "branch": "sub",
       "configSpec": "eventConfig"
     },
@@ -68,20 +63,25 @@
       "repoName": "semantics",
       "repoUri": "http://myHost.com"
     },
-    "customData": [{
-      "key": "firstLog",
-      "value": "http://myHost.com/firstLog"
-    }, {
-      "key": "otherLog",
-      "value": "http://myHost.com/firstLog33"
-    }]
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
   },
-  "links": [{
+  "links": [
+    {
       "type": "BASE",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
     {
       "type": "PREVIOUS_VERSION",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
-    }]
+    }
+  ]
 }
