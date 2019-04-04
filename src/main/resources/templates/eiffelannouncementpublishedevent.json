@@ -2,19 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelAnnouncementPublishedEvent",
-            "version": "1.1.0",
-            "tags": [],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -30,8 +24,8 @@
             }]
         },
         "links": [{
-            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,MODIFIED_ANNOUNCEMENT",
-            "target": "required if links present"
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or MODIFIED_ANNOUNCEMENT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

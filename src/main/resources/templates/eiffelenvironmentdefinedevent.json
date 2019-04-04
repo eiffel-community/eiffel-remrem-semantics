@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelEnvironmentDefinedEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -36,8 +28,8 @@
             "uri": ""
         },
         "links": [{
-            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION",
-            "target": "required if links present"
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or PREVIOUS_VERSION - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

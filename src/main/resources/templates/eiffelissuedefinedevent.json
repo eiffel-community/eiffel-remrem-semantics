@@ -1,8 +1,8 @@
 {
     "msgParams": {
         "meta": {
-            "type": "EiffelAlertAcknowledgedEvent",
-            "version": "2.0.0",
+            "type": "EiffelIssueDefinedEvent",
+            "version": "3.0.0",
             "tags": [""],
             "source": {
                 "domainId": "",
@@ -14,19 +14,18 @@
     },
     "eventParams": {
         "data": {
-            "acknowledgement": "required",
-            "entitiy": "",
+            "type" : "required, can be anyone of BUG,IMPROVEMENT,FEATURE,WORK_ITEM,REQUIREMENT,OTHER",
+            "tracker":"required",
+            "id":"required",
+            "uri": "required",
+            "title": "", 
             "customData": [{
-                "key": "required if customData present",
+                "key": " required if customData present",
                 "value": "required if customData present"
             }]
         },
         "links": [{
-            "type": "ALERT",
-            "target": "required - UUID if type is present"
-            },
-            {
-            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional ",
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
             "target": "required - UUID if type is present"
         }]
     }

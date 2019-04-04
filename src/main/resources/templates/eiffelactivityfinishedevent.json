@@ -2,26 +2,20 @@
     "msgParams": {
         "meta": {
             "type": "EiffelActivityFinishedEvent",
-            "version": "1.1.0",
-            "tags": [],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
     "eventParams": {
         "data": {
             "outcome": {
-                "conclusion": "required, can be one of SUCCESSFUL,UNSUCCESSFUL,FAILED,ABORTED,TIMED_OUT,INCONCLUSIVE",
+                "conclusion": "required if outcome present, can be one of SUCCESSFUL,UNSUCCESSFUL,FAILED,ABORTED,TIMED_OUT,INCONCLUSIVE",
                 "description": ""
             },
             "persistentLogs": [{
@@ -34,8 +28,12 @@
             }]
         },
         "links": [{
-            "type": "required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
-            "target": "required"
+            "type": "ACTIVITY_EXECUTION",
+            "target": "required - UUID of EiffelActivityTriggeredEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

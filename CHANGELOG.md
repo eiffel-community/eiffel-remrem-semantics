@@ -1,3 +1,6 @@
+## 2.0.0
+- Changed templates of all events in Agen format.
+
 ## 1.0.1
 - Changed Link from http://ericsson.github.io to https://eiffel-community.github.io.
 - Upgraded eiffel-remrem-protocol-interface version from 1.0.0 to 1.0.1.
