@@ -22,8 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ericsson.eiffel.remrem.semantics.SemanticsService;
-import com.ericsson.eiffel.semantics.events.Gav;
-import com.ericsson.eiffel.semantics.events.PurlTypeSerializer;
 
 public class ManifestHandler {
 	public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);

@@ -130,8 +130,8 @@ public class SemanticsService implements MsgService {
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
     private Event event = new Event();
-    public static String semanticsGAV;
-    private boolean semanticsGavFlag = false;
+    public static String purlSerializer;
+    private boolean purlSerializerFlag = false;
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
 
@@ -144,9 +144,9 @@ public class SemanticsService implements MsgService {
     @PostConstruct
     public void readManifest() {
         ManifestHandler manifastHandler = new ManifestHandler();
-        semanticsGAV = manifastHandler.readStringSerializerfromManifest();
-        if (semanticsGAV != null && !semanticsGAV.isEmpty()) {
-            semanticsGavFlag = true;
+        purlSerializer = manifastHandler.readStringSerializerfromManifest();
+        if (purlSerializer != null && !purlSerializer.isEmpty()) {
+            purlSerializerFlag = true;
         }
     }
 
@@ -192,9 +192,9 @@ public class SemanticsService implements MsgService {
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
         try {
-            if (semanticsGavFlag) {
-                return createErrorResponse("GAV info of eiffel-remrem-semantics is missing",
-                        "Required Serializer GAV information of eiffel-remrem-semantics is missing in MANIFEST.MF");
+            if (purlSerializerFlag) {
+                return createErrorResponse("Serializer info of eiffel-remrem-semantics is missing",
+                        "Required Serializer  information of eiffel-remrem-semantics is missing in MANIFEST.MF");
             }
             EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
             if (eiffelType == null) {
@@ -435,7 +435,7 @@ public class SemanticsService implements MsgService {
      */
     public static Source setSerializerGav(Source source) {
         source = source == null ? new Source() : source;
-        String serializer = source.getSerializer() == null ? semanticsGAV : source.getSerializer();
+        String serializer = source.getSerializer() == null ? purlSerializer : source.getSerializer();
         source.setSerializer(serializer);
         return source;
     }

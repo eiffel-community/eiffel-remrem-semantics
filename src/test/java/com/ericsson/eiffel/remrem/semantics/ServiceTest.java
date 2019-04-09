@@ -17,7 +17,7 @@ package com.ericsson.eiffel.remrem.semantics;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +41,6 @@ import org.mockito.MockitoAnnotations;
 
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
 import com.ericsson.eiffel.remrem.semantics.util.ManifestHandler;
-import com.ericsson.eiffel.semantics.events.Gav;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
@@ -81,7 +80,7 @@ public class ServiceTest {
         manifestHandler = mock(ManifestHandler.class);
         MockitoAnnotations.initMocks(this);
         when(attributes.getValue(anyString())).thenReturn("0.2.3");
-        SemanticsService.semanticsGAV = manifestGav;
+        SemanticsService.purlSerializer = manifestGav;
     }
 
     @Test
