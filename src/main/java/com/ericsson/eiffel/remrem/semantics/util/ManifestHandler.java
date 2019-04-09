@@ -32,15 +32,13 @@ public class ManifestHandler {
 	 * @return Stirng  which is in PURL format by using MANIFEST.MF file
 	 *         
 	 */
-	public String readStringSerializerfromManifest() {
-	    String purlSemantics = "";
+	public String readSemanticsSerializerFromManifest() {
 		try {
 			String classPath = SemanticsService.class.getResource("SemanticsService.class").toString();
 			String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
 			Manifest manifest = new Manifest(new URL(manifestPath).openStream());
 			Attributes attributes = manifest.getMainAttributes();
-			purlSemantics = "pkg:maven/"+attributes.getValue("groupId")+"/"+attributes.getValue("artifactId")+"@"+attributes.getValue("semanticsVersion");
-			return purlSemantics;
+			return "pkg:maven/"+attributes.getValue("groupId")+"/"+attributes.getValue("artifactId")+"@"+attributes.getValue("semanticsVersion");			
 		} catch (Exception e) {
 			log.error("Unable to read eiffel-remrem-semantics gav information from MANIFEST.MF " + e.getMessage());
 		}

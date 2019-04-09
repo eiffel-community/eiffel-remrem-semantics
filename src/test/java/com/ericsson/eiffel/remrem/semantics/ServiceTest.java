@@ -58,17 +58,17 @@ public class ServiceTest {
     SemanticsService service = new SemanticsService();
     
     ManifestHandler manifestHandler;
-    static String manifestGav ;
+    static String semanticsSerializer ;
 
     @BeforeClass
     public static void readManifestGav() {
-        manifestGav = "";
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath().replace("%20", " ");
         try {
             Manifest manifest = new Manifest(new FileInputStream(manifestPath));
             Attributes attributes1 = manifest.getMainAttributes();
-            manifestGav="pkg:maven/"+attributes1.getValue("groupId")+"/"+attributes1.getValue("artifactId")+"@"+attributes1.getValue("semanticsVersion");
+            semanticsSerializer = "pkg:maven/" + attributes1.getValue("groupId") + "/"
+                    + attributes1.getValue("artifactId") + "@" + attributes1.getValue("semanticsVersion");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class ServiceTest {
         manifestHandler = mock(ManifestHandler.class);
         MockitoAnnotations.initMocks(this);
         when(attributes.getValue(anyString())).thenReturn("0.2.3");
-        SemanticsService.purlSerializer = manifestGav;
+        SemanticsService.purlSerializer = semanticsSerializer;
     }
 
     @Test
@@ -189,16 +189,16 @@ public class ServiceTest {
 
     @Test
     public void testGetRemremSemanticsGav() {
-        when(manifestHandler.readStringSerializerfromManifest()).thenReturn(manifestGav);
-        String gav = manifestHandler.readStringSerializerfromManifest();
-        assertEquals(manifestGav,gav);
+        when(manifestHandler.readSemanticsSerializerFromManifest()).thenReturn(semanticsSerializer);
+        String serializer = manifestHandler.readSemanticsSerializerFromManifest();
+        assertEquals(semanticsSerializer, serializer);
     }
 
     @Test(expected = FileNotFoundException.class)
     public void testInvalidPathRemremSemanticsGav() throws Exception {
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath() + "/InvalidPath";
-        Manifest manifest = new Manifest(new FileInputStream(manifestPath));
+        new Manifest(new FileInputStream(manifestPath));
     }
     
     @Test

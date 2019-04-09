@@ -144,7 +144,7 @@ public class SemanticsService implements MsgService {
     @PostConstruct
     public void readManifest() {
         ManifestHandler manifastHandler = new ManifestHandler();
-        purlSerializer = manifastHandler.readStringSerializerfromManifest();
+        purlSerializer = manifastHandler.readSemanticsSerializerFromManifest();
         if (purlSerializer != null && !purlSerializer.isEmpty()) {
             purlSerializerFlag = true;
         }
@@ -213,10 +213,12 @@ public class SemanticsService implements MsgService {
             // Type.
             String inputEventType = getInputEventType(bodyJson);
             if (inputEventType == null || inputEventType.isEmpty()) {
-                bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE,eiffelType.getEventName());
+                bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE,
+                        eiffelType.getEventName());
             } else if (!(inputEventType.equals(eiffelType.getEventName()))) {
                 log.error("check the input json message type : " + inputEventType);
-                return createErrorResponse(eiffelType.getEventName(),"Mismatch of eventype in request query parameter with property 'type' in the input json message");
+                return createErrorResponse(eiffelType.getEventName(),
+                        "Mismatch of eventype in request query parameter with property 'type' in the input json message");
             }
 
             Event event = eventCreation(eventType, msgNodes, eventNodes);
@@ -228,8 +230,10 @@ public class SemanticsService implements MsgService {
             log.error("Could not validate message. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
             return createErrorResponse(e.getMessage(), e.getCause().toString());
         } catch (JsonSyntaxException e) {
-            log.error("Json Syntax exception occurred. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
-            return createErrorResponse("Json Syntax exception occured while processing input schema",e.getCause().toString());
+            log.error(
+                    "Json Syntax exception occurred. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
+            return createErrorResponse("Json Syntax exception occured while processing input schema",
+                    e.getCause().toString());
         }
 
     }
