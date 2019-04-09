@@ -1,48 +1,52 @@
 {
   "meta": {
-    "id": "e3ce725b-9376-4e5e-9f13-c04d82e8f35e",
+    "id": "2dd2d13f-e3e5-4fac-80e3-ef4537985009",
     "type": "EiffelActivityTriggeredEvent",
-    "version": "1.1.0",
-    "time": 1499153257788,
-    "tags": ["tag1", "tag2"],
+    "version": "3.0.0",
+    "time": 1554389013770,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
     "source": {
       "domainId": "domainID",
       "host": "host",
       "name": "name",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      },
+      "serializer": "pkg:maven",
       "uri": "http://java.sun.com/j2se/1.3/"
-    },
-    "security": {
-      "sdm": {
-        "authorIdentity": "test",
-        "encryptedDigest": "sample"
-      }
     }
   },
   "data": {
     "name": "ActivityTrigger",
-    "categories": ["First", "second"],
-    "triggers": [{
-      "type": "MANUAL",
-      "description": "Sample"
-    }, {
-      "type": "MANUAL",
-      "description": "Sample"
-    }],
-    "customData": [{
-      "key": "firstLog",
-      "value": "http://myHost.com/firstLog"
-    }, {
-      "key": "otherLog",
-      "value": "http://myHost.com/firstLog33"
-    }]
+    "categories": [
+      "First",
+      "second"
+    ],
+    "triggers": [
+      {
+        "type": "MANUAL",
+        "description": "Sample"
+      },
+      {
+        "type": "MANUAL",
+        "description": "Sample"
+      }
+    ],
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
   },
-  "links": [{
+  "links": [
+    {
       "type": "CAUSE",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-    }]
+    }
+  ]
 }

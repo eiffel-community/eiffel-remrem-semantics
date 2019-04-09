@@ -1,40 +1,43 @@
 {
   "meta": {
-    "id": "949e33e0-29e5-424d-b7bc-89e1cdfb0269",
+    "id": "9019c5d4-4647-479e-bb5e-0a0c597c115e",
     "type": "EiffelCompositionDefinedEvent",
-    "version": "1.1.0",
-    "time": 1499076742389,
-    "tags": ["tag1", "tag2"],
+    "version": "3.0.0",
+    "time": 1554389919067,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
     "source": {
       "domainId": "domainID",
       "host": "host",
       "name": "name",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      },
+      "serializer": "pkg:maven",
       "uri": "http://java.sun.com/j2se/1.3/"
     },
     "security": {
-      "sdm": {
-        "authorIdentity": "test",
-        "encryptedDigest": "sample"
-      }
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
     }
   },
   "data": {
     "name": "CompositionDefinedEvent",
     "version": "1.0.0",
-    "customData": [{
-      "key": "firstLog",
-      "value": "http://myHost.com/firstLog"
-    }, {
-      "key": "otherLog",
-      "value": "http://myHost.com/firstLog33"
-    }]
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
   },
-  "links": [{
+  "links": [
+    {
       "type": "ELEMENT",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
@@ -53,5 +56,6 @@
     {
       "type": "PREVIOUS_VERSION",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee5"
-    }]
+    }
+  ]
 }

@@ -14,21 +14,60 @@
 */
 package com.ericsson.eiffel.semantics.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Security {
 
-    @SerializedName("sdm")
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @SerializedName("authorIdentity")
     @Expose
-    private Sdm sdm;
+    private String authorIdentity;
+    @SerializedName("integrityProtection")
+    @Expose
+    private IntegrityProtection integrityProtection;
+    @SerializedName("sequenceProtection")
+    @Expose
+    private List<SequenceProtection> sequenceProtection = new ArrayList<SequenceProtection>();
 
-    public Sdm getSdm() {
-        return sdm;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    public String getAuthorIdentity() {
+        return authorIdentity;
     }
 
-    public void setSdm(Sdm sdm) {
-        this.sdm = sdm;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    public void setAuthorIdentity(String authorIdentity) {
+        this.authorIdentity = authorIdentity;
+    }
+
+    public IntegrityProtection getIntegrityProtection() {
+        return integrityProtection;
+    }
+
+    public void setIntegrityProtection(IntegrityProtection integrityProtection) {
+        this.integrityProtection = integrityProtection;
+    }
+
+    public List<SequenceProtection> getSequenceProtection() {
+        return sequenceProtection;
+    }
+
+    public void setSequenceProtection(List<SequenceProtection> sequenceProtection) {
+        this.sequenceProtection = sequenceProtection;
     }
 
 }

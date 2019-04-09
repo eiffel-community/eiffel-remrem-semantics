@@ -1,4 +1,5 @@
 /*
+
     Copyright 2018 Ericsson AB.
     For a full list of individual contributors, please see the commit history.
     Licensed under the Apache License, Version 2.0 (the "License");

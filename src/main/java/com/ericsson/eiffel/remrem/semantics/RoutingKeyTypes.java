@@ -49,7 +49,8 @@ public enum RoutingKeyTypes {
     EiffelServiceStartedEvent(EiffelConstants.SERVICE,"started"),
     EiffelServiceStoppedEvent(EiffelConstants.SERVICE,"stopped"),
     EiffelAlertRaisedEvent(EiffelConstants.ALERT,"raised"),
-    EiffelAlertCeasedEvent(EiffelConstants.ALERT,"ceased");
+    EiffelAlertCeasedEvent(EiffelConstants.ALERT,"ceased"),
+    EiffelIssueDefinedEvent(EiffelConstants.TEST,"issuedefined");
     
 
     private final String family;   // family

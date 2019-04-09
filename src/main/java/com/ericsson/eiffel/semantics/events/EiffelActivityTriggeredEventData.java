@@ -97,18 +97,15 @@ public class EiffelActivityTriggeredEventData {
     public enum ExecutionType {
 
         @SerializedName("MANUAL")
-        MANUAL("MANUAL"),
-        @SerializedName("SEMI_AUTOMATED")
-        SEMI_AUTOMATED("SEMI_AUTOMATED"),
-        @SerializedName("AUTOMATED")
-        AUTOMATED("AUTOMATED"),
-        @SerializedName("OTHER")
+        MANUAL("MANUAL"), @SerializedName("SEMI_AUTOMATED")
+        SEMI_AUTOMATED("SEMI_AUTOMATED"), @SerializedName("AUTOMATED")
+        AUTOMATED("AUTOMATED"), @SerializedName("OTHER")
         OTHER("OTHER");
         private final String value;
         private final static Map<String, EiffelActivityTriggeredEventData.ExecutionType> CONSTANTS = new HashMap<String, EiffelActivityTriggeredEventData.ExecutionType>();
 
         static {
-            for (EiffelActivityTriggeredEventData.ExecutionType c: values()) {
+            for (EiffelActivityTriggeredEventData.ExecutionType c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

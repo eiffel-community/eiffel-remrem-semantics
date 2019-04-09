@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "1.0.0"
+            "2.0.0"
           ],
-          "default": "1.0.0"
+          "default": "2.0.0"
         },
         "time": {
           "type": "integer",
@@ -52,25 +52,8 @@
               "type": "string"
             },
             "serializer": {
-              "type": "object",
-              "javaType": "com.ericsson.eiffel.semantics.events.Serializer",
-              "properties": {
-                "groupId": {
-                  "type": "string"
-                },
-                "artifactId": {
-                  "type": "string"
-                },
-                "version": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "groupId",
-                "artifactId",
-                "version"
-              ],
-              "additionalProperties": false
+              "type": "string",
+              "pattern": "^pkg:"
             },
             "uri": {
               "type": "string"
@@ -82,25 +65,68 @@
           "type": "object",
           "javaType": "com.ericsson.eiffel.semantics.events.Security",
           "properties": {
-            "sdm": {
+            "authorIdentity": {
+              "type": "string"
+            },
+            "integrityProtection": {
               "type": "object",
-              "javaType": "com.ericsson.eiffel.semantics.events.Sdm",
+              "javaType": "com.ericsson.eiffel.semantics.events.IntegrityProtection",
               "properties": {
-                "authorIdentity": {
+                "signature": {
                   "type": "string"
                 },
-                "encryptedDigest": {
+                "alg": {
+                  "type": "string",
+                  "enum": [
+                    "HS256",
+                    "HS384",
+                    "HS512",
+                    "RS256",
+                    "RS384",
+                    "RS512",
+                    "ES256",
+                    "ES384",
+                    "ES512",
+                    "PS256",
+                    "PS384",
+                    "PS512"
+                  ]
+                },
+                "publicKey": {
                   "type": "string"
                 }
               },
               "required": [
-                "authorIdentity",
-                "encryptedDigest"
+                "signature",
+                "alg"
               ],
               "additionalProperties": false
+            },
+            "sequenceProtection": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "javaType": "com.ericsson.eiffel.semantics.events.SequenceProtection",
+                "properties": {
+                  "sequenceName": {
+                    "type": "string"
+                  },
+                  "position": {
+                    "type": "integer"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "sequenceName",
+                  "position"
+                ]
+              }
             }
           },
-          "additionalProperties": false
+          "additionalProperties": false,
+          "required": [
+            "authorIdentity"
+          ]
         }
       },
       "required": [

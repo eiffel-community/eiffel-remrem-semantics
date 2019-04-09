@@ -4,7 +4,6 @@
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
     http://www.apache.org/licenses/LICENSE-2.0
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -155,22 +154,17 @@ public class EiffelIssueVerifiedEventIssue {
     public enum Type {
 
         @SerializedName("BUG")
-        BUG("BUG"),
-        @SerializedName("IMPROVEMENT")
-        IMPROVEMENT("IMPROVEMENT"),
-        @SerializedName("FEATURE")
-        FEATURE("FEATURE"),
-        @SerializedName("WORK_ITEM")
-        WORK_ITEM("WORK_ITEM"),
-        @SerializedName("REQUIREMENT")
-        REQUIREMENT("REQUIREMENT"),
-        @SerializedName("OTHER")
+        BUG("BUG"), @SerializedName("IMPROVEMENT")
+        IMPROVEMENT("IMPROVEMENT"), @SerializedName("FEATURE")
+        FEATURE("FEATURE"), @SerializedName("WORK_ITEM")
+        WORK_ITEM("WORK_ITEM"), @SerializedName("REQUIREMENT")
+        REQUIREMENT("REQUIREMENT"), @SerializedName("OTHER")
         OTHER("OTHER");
         private final String value;
         private final static Map<String, EiffelIssueVerifiedEventIssue.Type> CONSTANTS = new HashMap<String, EiffelIssueVerifiedEventIssue.Type>();
 
         static {
-            for (EiffelIssueVerifiedEventIssue.Type c: values()) {
+            for (EiffelIssueVerifiedEventIssue.Type c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -202,16 +196,14 @@ public class EiffelIssueVerifiedEventIssue {
     public enum Value {
 
         @SerializedName("SUCCESS")
-        SUCCESS("SUCCESS"),
-        @SerializedName("FAILURE")
-        FAILURE("FAILURE"),
-        @SerializedName("INCONCLUSIVE")
+        SUCCESS("SUCCESS"), @SerializedName("FAILURE")
+        FAILURE("FAILURE"), @SerializedName("INCONCLUSIVE")
         INCONCLUSIVE("INCONCLUSIVE");
         private final String value;
         private final static Map<String, EiffelIssueVerifiedEventIssue.Value> CONSTANTS = new HashMap<String, EiffelIssueVerifiedEventIssue.Value>();
 
         static {
-            for (EiffelIssueVerifiedEventIssue.Value c: values()) {
+            for (EiffelIssueVerifiedEventIssue.Value c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

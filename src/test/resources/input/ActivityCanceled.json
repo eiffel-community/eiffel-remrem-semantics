@@ -2,7 +2,7 @@
   "msgParams": {
     "meta": {
       "type": "EiffelActivityCanceledEvent",
-      "version": "1.1.0",
+      "version": "3.0.0",
       "tags": [
         "tag1",
         "tag2"
@@ -12,17 +12,11 @@
         "host": "host",
         "name": "name",
         "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
-        "serializer": {
-          "groupId": "G",
-          "artifactId": "A",
-          "version": "V"
-        }
+        "serializer":"pkg:maven"
       },
       "security": {
-        "sdm": {
           "authorIdentity": "test",
           "encryptedDigest": "sample"
-        }
       }
     }
   },
