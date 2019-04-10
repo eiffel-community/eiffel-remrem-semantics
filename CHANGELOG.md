@@ -1,3 +1,6 @@
+## 2.0.1
+- Parent group changed from Ericsson to eiffel-community.
+
 ## 2.0.0
 - Changed templates of all events in Agen format.
 
