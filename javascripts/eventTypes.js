@@ -254,5 +254,13 @@ var eventTypes = [
       "name":"EiffelAlertCeasedEvent",
       "abbreviation":"AlerC",
       "comments":"Available from 0.3.9"
+    },
+    {
+      "number":33,
+      "family":"test",
+      "type":"issuedefined",
+      "name":"EiffelIssueDefinedEvent",
+      "abbreviation":"IssD",
+      "comments":"Available from 2.0.0"
     }
 ]
