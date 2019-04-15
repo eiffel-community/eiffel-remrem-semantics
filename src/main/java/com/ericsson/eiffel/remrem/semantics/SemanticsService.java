@@ -145,7 +145,7 @@ public class SemanticsService implements MsgService {
     public void readManifest() {
         ManifestHandler manifastHandler = new ManifestHandler();
         purlSerializer = manifastHandler.readSemanticsSerializerFromManifest();
-        if (purlSerializer != null && !purlSerializer.isEmpty()) {
+        if (purlSerializer == null || purlSerializer.isEmpty()) {
             purlSerializerFlag = true;
         }
     }
@@ -192,7 +192,7 @@ public class SemanticsService implements MsgService {
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
         try {
-            if (!purlSerializerFlag) {
+            if (purlSerializerFlag) {
                 return createErrorResponse("Serializer info of eiffel-remrem-semantics is missing",
                         "Required Serializer  information of eiffel-remrem-semantics is missing in MANIFEST.MF");
             }

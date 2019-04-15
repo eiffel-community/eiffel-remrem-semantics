@@ -1,8 +1,8 @@
 comment: This Manifest file is used for testing purpose
 Manifest-Version: 1.0
-groupId: com.github.Ericsson
+groupId: com.github.eiffel-community
 remremVersionKey: semanticsVersion
 artifactId: eiffel-remrem-semantics
 isEndpointVersion: true
-semanticsVersion: 0.3.1
+semanticsVersion: 2.0.2
 
