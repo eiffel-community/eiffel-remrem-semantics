@@ -192,7 +192,7 @@ public class SemanticsService implements MsgService {
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson) {
         try {
-            if (purlSerializerFlag) {
+            if (!purlSerializerFlag) {
                 return createErrorResponse("Serializer info of eiffel-remrem-semantics is missing",
                         "Required Serializer  information of eiffel-remrem-semantics is missing in MANIFEST.MF");
             }

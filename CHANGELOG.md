@@ -1,3 +1,6 @@
+## 2.0.2
+- Fixed issues when generating events because of false check for semantics purl or not.
+
 ## 2.0.1
 - Parent group changed from Ericsson to eiffel-community.
 
