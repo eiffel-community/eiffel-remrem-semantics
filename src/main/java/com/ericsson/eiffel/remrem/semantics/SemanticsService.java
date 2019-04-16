@@ -145,7 +145,7 @@ public class SemanticsService implements MsgService {
     public void readManifest() {
         ManifestHandler manifastHandler = new ManifestHandler();
         purlSerializer = manifastHandler.readSemanticsSerializerFromManifest();
-        if (purlSerializer != null && !purlSerializer.isEmpty()) {
+        if (purlSerializer == null || purlSerializer.isEmpty()) {
             purlSerializerFlag = true;
         }
     }

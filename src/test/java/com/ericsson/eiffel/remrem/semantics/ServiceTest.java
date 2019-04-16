@@ -79,7 +79,7 @@ public class ServiceTest {
         Attributes attributes = mock(Attributes.class);
         manifestHandler = mock(ManifestHandler.class);
         MockitoAnnotations.initMocks(this);
-        when(attributes.getValue(anyString())).thenReturn("0.2.3");
+        when(attributes.getValue(anyString())).thenReturn("2.0.2");
         SemanticsService.purlSerializer = semanticsSerializer;
     }
 
