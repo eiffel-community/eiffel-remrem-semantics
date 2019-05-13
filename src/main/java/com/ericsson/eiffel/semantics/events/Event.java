@@ -14,6 +14,8 @@
 */
 package com.ericsson.eiffel.semantics.events;
 
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.UUID;
@@ -39,6 +41,7 @@ public class Event {
     public Meta generateMeta(Meta meta) {
         // The event epoch time is generated in UTC format
         meta.setTime(LocalDateTime.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli());
+        meta.setTime(Instant.now(Clock.systemUTC()).toEpochMilli());
         meta.setId(UUID.randomUUID().toString());
         return meta;
     }

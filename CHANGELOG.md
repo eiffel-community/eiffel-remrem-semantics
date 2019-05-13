@@ -1,3 +1,6 @@
+## 2.0.3
+- Updated event epoch UTC time to system UTC for generating meta data.
+
 ## 2.0.2
 - Fixed issues when generating events because of false check for semantics purl or not.
 
