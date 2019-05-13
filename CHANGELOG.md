@@ -1,3 +1,6 @@
+## 0.5.1
+- Updated event epoch UTC time to system UTC for generating meta data.
+
 ## 0.5.0
 - Updated eiffel-remrem-protocol-interface version and REMReM Parent version
 
