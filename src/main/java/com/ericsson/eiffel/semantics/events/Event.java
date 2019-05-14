@@ -40,7 +40,6 @@ public class Event {
      */
     public Meta generateMeta(Meta meta) {
         // The event epoch time is generated in UTC format
-        meta.setTime(LocalDateTime.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli());
         meta.setTime(Instant.now(Clock.systemUTC()).toEpochMilli());
         meta.setId(UUID.randomUUID().toString());
         return meta;
