@@ -2,21 +2,17 @@
   "msgParams": {
     "meta": {
       "type": "EiffelActivityTriggeredEvent",
-      "version": "3.0.0",
-      "tags": [
-        "tag1",
-        "tag2"
-      ],
+      "version": "4.0.0",
+      "tags": ["product_development","product_feature1"],
       "source": {
-        "domainId": "domainID",
-        "host": "host",
-        "name": "name",
-        "uri": "http:\/\/java.sun.com\/j2se\/1.3\/",
-        "serializer":"pkg:maven"
+        "domainId": "eiffeltest",
+        "host": "localhost",
+        "name": "LOCALHOST",
+        "uri": "https://localhost:8080/jenkins/job",
+        "serializer":"pkg:maven/com.github.eiffel-community/eiffel-remrem-semantics@2.0.2"
       },
-      "sdm": {
-          "authorIdentity": "test",
-          "encryptedDigest": "sample"
+      "security":{
+          "authorIdentity": "test"
           }
     }
   },
@@ -30,26 +26,26 @@
       ],
       "triggers": [{
           "type": "MANUAL",
-          "description": "Sample"
+          "description": "Started by user anonymous"
         },
         {
-          "type": "MANUAL",
-          "description": "Sample"
+          "type": "SOURCE_CHANGE",
+          "description": "Change"
         }
       ],
       "customData": [{
-          "key": "firstLog",
-          "value": "http:\/\/myHost.com\/firstLog"
+          "key": "EIFFERVERSION",
+          "value": "eiffel2.0"
         },
         {
-          "key": "otherLog",
-          "value": "http:\/\/myHost.com\/firstLog33"
+          "key": "FLOWCONTEXT",
+          "value": "master"
         }
       ]
     },
     "links": [{
       "type": "CAUSE",
-      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
+      "target": "e269b37d-17a1-4a10-aafb-c108735ee51f"
     }]
   }
 }

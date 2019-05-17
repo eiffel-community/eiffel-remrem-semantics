@@ -46,7 +46,7 @@ public class EiffelActivityStartedEventMeta implements Meta {
      */
     @SerializedName("version")
     @Expose
-    private EiffelActivityStartedEventMeta.Version version = EiffelActivityStartedEventMeta.Version.fromValue("3.0.0");
+    private EiffelActivityStartedEventMeta.Version version = EiffelActivityStartedEventMeta.Version.fromValue("4.0.0");
     /**
      * 
      * (Required)
@@ -169,7 +169,7 @@ public class EiffelActivityStartedEventMeta implements Meta {
         private final static Map<String, EiffelActivityStartedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelActivityStartedEventMeta.Type>();
 
         static {
-            for (EiffelActivityStartedEventMeta.Type c : values()) {
+            for (EiffelActivityStartedEventMeta.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -200,13 +200,13 @@ public class EiffelActivityStartedEventMeta implements Meta {
 
     public enum Version {
 
-        @SerializedName("3.0.0")
-        _3_0_0("3.0.0");
+        @SerializedName("4.0.0")
+        _4_0_0("4.0.0");
         private final String value;
         private final static Map<String, EiffelActivityStartedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelActivityStartedEventMeta.Version>();
 
         static {
-            for (EiffelActivityStartedEventMeta.Version c : values()) {
+            for (EiffelActivityStartedEventMeta.Version c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
