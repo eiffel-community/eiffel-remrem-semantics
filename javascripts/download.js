@@ -34,7 +34,7 @@
     // To download the template of specific event.
     function downloadTemplate(eventName) {
         var version = document.getElementById('version').value;
-        var URL = "https://raw.githubusercontent.com/Ericsson/eiffel-remrem-semantics/"
+        var URL = "https://raw.githubusercontent.com/eiffel-community/eiffel-remrem-semantics/"
                 + version
                 + "/src/main/resources/templates/"
                 + eventName
