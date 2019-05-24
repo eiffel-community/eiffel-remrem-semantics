@@ -1,3 +1,6 @@
+## 2.0.4
+- Updated couple of events in templates
+
 ## 2.0.3
 - Updated generate event time to system UTC.
 - Updated edition-agen to edition-agen-1 to fetch latest security updates.

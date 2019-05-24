@@ -1,36 +1,45 @@
 {
-    "msgParams": {
-        "meta": {
-            "type": "EiffelActivityStartedEvent",
-            "version": "3.0.0",
-            "tags": [""],
-            "source": {
-                "domainId": "",
-                "host": "",
-                "name": "",
-                "uri": ""
-            }
-        }
-    },
-    "eventParams": {
-        "data": {
-            "executionUri": "",
-            "liveLogs": [{
-                "name": "required if livelogs present",
-                "uri": "required if livelogs present"
-            }],
-            "customData": [{
-                "key": "required if customData present",
-                "value": "required if customData present"
-            }]
-        },
-        "links": [{
-            "type": "ACTIVITY_EXECUTION",
-            "target": "required - UUID of EiffelActivityTriggeredEvent"
-            },
-            {
-            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or PREVIOUS_ACTIVITY_EXECUTION - optional",
-            "target": "required - UUID if type is present"
-        }]
+  "msgParams": {
+    "meta": {
+      "type": "EiffelActivityStartedEvent",
+      "version": "4.0.0",
+      "tags": [
+        "product_development",
+        "product_feature1"
+      ],
+      "source": {
+        "domainId": "eiffeltest",
+        "host": "localhost",
+        "name": "LOCALHOST",
+        "uri": "https://localhost:8080/jenkins"
+      }
     }
+  },
+  "eventParams": {
+    "data": {
+      "executionUri": "http://localhost:8080/job/dsd",
+      "liveLogs": [
+        {
+          "name": "console",
+          "uri": "http://localhost:8085/job/dsd/9/console"
+        }
+      ],
+      "customData": [
+        {
+          "key": "EIFFELVERSION",
+          "value": "eiffel2.0"
+        }
+      ]
+    },
+    "links": [
+      {
+        "type": "ACTIVITY_EXECUTION",
+        "target": "e269b37d-17a1-4a10-aafb-c108735ee51f"
+      },
+      {
+        "type": "CAUSE",
+        "target": "e269b37d-17a1-4a10-aafb-c108735ee51f"
+      }
+    ]
+  }
 }
