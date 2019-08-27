@@ -1,43 +1,48 @@
 {
-    "meta": {
-        "id": "0a09d07d-d701-4380-93be-d54f2d0bc080",
-        "type": "EiffelArtifactDeployedEvent",
-        "version": "1.0.0",
-        "time": 1519371977865,
-        "tags": ["tag1", "tag2"],
-        "source": {
-            "domainId": "domainID",
-            "host": "host",
-            "name": "name",
-            "serializer": {
-                "groupId": "com.github.Ericsson",
-                "artifactId": "eiffel-remrem-semantics",
-                "version": "0.3.1"
-            },
-            "uri": "http://java.sun.com/j2se/1.3/"
-        },
-        "security": {
-            "sdm": {
-                "authorIdentity": "test",
-                "encryptedDigest": "sample"
-            }
-        }
+  "meta": {
+    "id": "6d958e1b-a8ff-46ea-ad19-b0b005dfd63e",
+    "type": "EiffelArtifactDeployedEvent",
+    "version": "2.0.0",
+    "time": 1554407862492,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "source": {
+      "domainId": "domainID",
+      "host": "host",
+      "name": "name",
+      "serializer": "pkg:maven",
+      "uri": "http://java.sun.com/j2se/1.3/"
     },
-    "data": {
-        "uri": "http://java.sun.com/j2se/1.3/",
-        "customData": [{
-            "key": "firstLog",
-            "value": 1234.0
-        }, {
-            "key": "otherLog",
-            "value": 1234.0
-        }]
+    "security": {
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
+    }
+  },
+  "data": {
+    "uri": "http://java.sun.com/j2se/1.3/",
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": 1234.0
+      },
+      {
+        "key": "otherLog",
+        "value": 1234.0
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "CONTEXT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
-    "links": [{
-        "type": "CONTEXT",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-    }, {
-        "type": "ACTIVITY_EXECUTION",
-        "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
-    }]
+    {
+      "type": "ARTIFACT",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    }
+  ]
 }

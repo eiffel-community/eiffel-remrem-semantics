@@ -22,31 +22,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.ericsson.eiffel.remrem.semantics.SemanticsService;
-import com.ericsson.eiffel.semantics.events.Gav;
 
 public class ManifestHandler {
 	public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
 
 	/**
-	 * This method is used to read semantics GAV from MANIFEST.MF file
+	 * This method is used to form serializer Stirng by using MANIFEST.MF file
 	 * 
-	 * @return Gav instance which contains semantics gav read from MANIFEST.MF
-	 *         file
+	 * @return Stirng  which is in PURL format by using MANIFEST.MF file
+	 *         
 	 */
-	public Gav readGavfromManifest() {
+	public String readSemanticsSerializerFromManifest() {
 		try {
-			Gav semanticsGAV = new Gav();
 			String classPath = SemanticsService.class.getResource("SemanticsService.class").toString();
 			String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF";
 			Manifest manifest = new Manifest(new URL(manifestPath).openStream());
 			Attributes attributes = manifest.getMainAttributes();
-			semanticsGAV.setGroupId(attributes.getValue("groupId"));
-			semanticsGAV.setArtifactId(attributes.getValue("artifactId"));
-			semanticsGAV.setVersion(attributes.getValue("semanticsVersion"));
-			return semanticsGAV;
+			return "pkg:maven/"+attributes.getValue("groupId")+"/"+attributes.getValue("artifactId")+"@"+attributes.getValue("semanticsVersion");			
 		} catch (Exception e) {
 			log.error("Unable to read eiffel-remrem-semantics gav information from MANIFEST.MF " + e.getMessage());
 		}
 		return null;
 	}
+	
 }

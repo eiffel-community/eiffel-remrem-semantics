@@ -1,26 +1,25 @@
 {
   "meta": {
-    "id": "e618024c-5b05-4895-ba9d-ce9b27594ed6",
+    "id": "60dd20c5-4d3c-4577-aa60-2586205e7e9c",
     "type": "EiffelTestCaseFinishedEvent",
-    "version": "1.1.0",
-    "time": 1499153404810,
-    "tags": ["tag1", "tag2"],
+    "version": "3.0.0",
+    "time": 1554390578208,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
     "source": {
       "domainId": "domainID",
       "host": "host",
       "name": "name",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      },
+      "serializer": "pkg:maven",
       "uri": "http://java.sun.com/j2se/1.3/"
     },
     "security": {
-      "sdm": {
-        "authorIdentity": "test",
-        "encryptedDigest": "sample"
-      }
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
     }
   },
   "data": {
@@ -28,25 +27,34 @@
       "verdict": "PASSED",
       "conclusion": "SUCCESSFUL",
       "description": "Sample description",
-      "metrics": [{
-        "name": "test",
-        "value": "test1"
-      }]
+      "metrics": [
+        {
+          "name": "test",
+          "value": "test1"
+        }
+      ]
     },
-    "persistentLogs": [{
-      "name": "Eiffel",
-      "uri": "http://java.sun.com"
-    }],
-    "customData": [{
-      "key": "firstLog",
-      "value": "http://myHost.com/firstLog"
-    }, {
-      "key": "otherLog",
-      "value": "http://myHost.com/firstLog33"
-    }]
+    "persistentLogs": [
+      {
+        "name": "Eiffel",
+        "uri": "http://java.sun.com"
+      }
+    ],
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
   },
-  "links": [{
+  "links": [
+    {
       "type": "TEST_CASE_EXECUTION",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
-    }]
+    }
+  ]
 }

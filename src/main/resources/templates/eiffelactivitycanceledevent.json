@@ -2,33 +2,31 @@
     "msgParams": {
         "meta": {
             "type": "EiffelActivityCanceledEvent",
-            "version": "1.1.0",
-            "tags": [],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-                },
-                "security": {
-                    "sdm": {
-                        "authorIdentity": " required if sdm present ",
-                        "encryptedDigest": " required if sdm present "
-                    }
-                }
             }
+        }
     },
     "eventParams": {
         "data": {
             "reason": "",
             "customData": [{
-                "key": " required if customData present ",
-                "value": " required if customData present "
+                "key": "required if customData present",
+                "value": "required if customData present"
             }]
         },
         "links": [{
-            "type": " required ACTIVITY_EXECUTION and CAUSE,CONTEXT,FLOW_CONTEXT  are optional",
-            "target": " required "
+            "type": "ACTIVITY_EXECUTION",
+            "target": "required - UUID of EiffelActivityTriggeredEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

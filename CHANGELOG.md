@@ -1,3 +1,35 @@
+## 2.0.5
+- Uplifted eiffel-remrem-parent version from 2.0.0 to 2.0.1.
+- Uplifted eiffel-remrem-protocol-interface version from 2.0.0 to 2.0.1.
+
+## 2.0.4
+- Updated couple of events in templates
+
+## 2.0.3
+- Updated generate event time to system UTC.
+- Updated edition-agen to edition-agen-1 to fetch latest security updates.
+
+## 2.0.2
+- Fixed issues when generating events because of false check for semantics purl or not.
+
+## 2.0.1
+- Parent group changed from Ericsson to eiffel-community.
+
+## 2.0.0
+- Changed templates of all events in Agen format.
+
+## 1.0.1
+- Changed Link from http://ericsson.github.io to https://eiffel-community.github.io.
+- Upgraded eiffel-remrem-protocol-interface version from 1.0.0 to 1.0.1.
+
+## 1.0.0
+- Upgraded eiffel-remrem-parent version from 0.0.8 to 1.0.0.
+- Upgraded eiffel-remrem-protocol-interface version from 0.0.14 to 1.0.0.
+
+## 0.5.3
+- Upgraded eiffel-remrem-parent version from 0.0.7 to 0.0.8.
+- Upgraded eiffel-remrem-protocol-interface version from 0.0.13 to 0.0.14.
+
 ## 0.5.2
 - Upgraded eiffel-remrem-parent version from 0.0.6 to 0.0.7.
 - Upgraded eiffel-remrem-protocol-interface version from 0.0.12 to 0.0.13.

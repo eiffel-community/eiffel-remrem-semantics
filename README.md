@@ -23,7 +23,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/eiffel-community/eiffel-remrem-semantics/badge.svg?branch=master)](https://coveralls.io/github/eiffel-community/eiffel-remrem-semantics?branch=master)
 [![](https://jitpack.io/v/eiffel-community/eiffel-remrem-semantics.svg)](https://jitpack.io/#eiffel-community/eiffel-remrem-semantics)
 
-Eiffel semantics is designed to implement new Eiffel messaging standard. Further documentation is provided at the following link: [http://eiffel-community.github.io/eiffel-remrem-semantics/](http://eiffel-community.github.io/eiffel-remrem-semantics/).
+Eiffel semantics is designed to implement new Eiffel messaging standard. Further documentation is provided at the following link: [https://eiffel-community.github.io/eiffel-remrem-semantics/](https://eiffel-community.github.io/eiffel-remrem-semantics/).
 
 # About this repository
 The contents of this repository are licensed under the [Apache License 2.0](./LICENSE).

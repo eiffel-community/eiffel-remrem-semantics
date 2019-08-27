@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelServiceDiscontinuedEvent",
-            "version": "1.0.0",
-            "tags": [
-
-            ],
+            "version": "2.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -28,8 +20,12 @@
             }]
         },
         "links": [{
-            "type": "required SERVICE and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
-            "target": "required"
+            "type": "SERVICE",
+            "target": "required - UUID if type is present"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

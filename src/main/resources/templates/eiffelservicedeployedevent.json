@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelServiceDeployedEvent",
-            "version": "1.0.0",
-            "tags": [
-
-            ],
+            "version": "2.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -33,8 +25,12 @@
             }]
         },
         "links": [{
-            "type": "required CONTEXT and CAUSE,ARTIFACT_DEPLOYED,FLOW_CONTEXT,SERVICE are optional",
-            "target": "required"
+            "type": "CONTEXT",
+            "target": "required - UUID if type is present"
+            },
+            {
+            "type": "CAUSE or ARTIFACT_DEPLOYED or FLOW_CONTEXT or SERVICE - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

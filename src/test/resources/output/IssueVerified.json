@@ -1,45 +1,41 @@
 {
   "meta": {
-    "id": "cd249d3b-d666-4b53-af2d-ae8b1f14434d",
+    "id": "d70dd74b-bb5f-4f70-94c7-8fdb2df91701",
     "type": "EiffelIssueVerifiedEvent",
-    "version": "1.1.0",
-    "time": 1499076743471,
-    "tags": ["tag1", "tag2"],
+    "version": "4.0.0",
+    "time": 1554390164502,
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
     "source": {
       "domainId": "domainID",
       "host": "host",
       "name": "name",
-      "serializer": {
-        "groupId": "G",
-        "artifactId": "A",
-        "version": "V"
-      },
+      "serializer": "pkg:maven",
       "uri": "http://java.sun.com/j2se/1.3/"
     },
     "security": {
-      "sdm": {
-        "authorIdentity": "test",
-        "encryptedDigest": "sample"
-      }
+      "authorIdentity": "test",
+      "sequenceProtection": [
+        
+      ]
     }
   },
   "data": {
-    "issues": [{
-      "type": "BUG",
-      "tracker": "Sample",
-      "id": "zyx123",
-      "uri": "http://myHost.com/firstLog",
-      "value": "SUCCESS"
-    }],
-    "customData": [{
-      "key": "firstLog",
-      "value": "http://myHost.com/firstLog"
-    }, {
-      "key": "otherLog",
-      "value": "http://myHost.com/firstLog33"
-    }]
+    "customData": [
+      {
+        "key": "firstLog",
+        "value": "http://myHost.com/firstLog"
+      },
+      {
+        "key": "otherLog",
+        "value": "http://myHost.com/firstLog33"
+      }
+    ]
   },
-  "links": [{
+  "links": [
+    {
       "type": "VERIFICATION_BASIS",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee1"
     },
@@ -54,5 +50,6 @@
     {
       "type": "ENVIRONMENT",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee4"
-    }]
+    }
+  ]
 }

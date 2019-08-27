@@ -14,6 +14,8 @@
 */
 package com.ericsson.eiffel.semantics.events;
 
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.UUID;
@@ -37,8 +39,8 @@ public class Event {
      * @return event meta class reference with generated eventId and time values
      */
     public Meta generateMeta(Meta meta) {
-        //The event epoch time is generated in UTC format
-        meta.setTime(LocalDateTime.now().atZone(ZoneOffset.UTC).toInstant().toEpochMilli());
+        // The event epoch time is generated in UTC format
+        meta.setTime(Instant.now(Clock.systemUTC()).toEpochMilli());
         meta.setId(UUID.randomUUID().toString());
         return meta;
     }
@@ -48,7 +50,8 @@ public class Event {
      * 
      * @param eventType
      *            Eiffel eventType
-     * @return family based on eventType (or) error will be thrown if unknown eventType requested.
+     * @return family based on eventType (or) error will be thrown if unknown
+     *         eventType requested.
      */
     public String getFamilyRoutingKey(String eventType) {
         try {
@@ -64,7 +67,8 @@ public class Event {
      * 
      * @param eventType
      *            Eiffel eventType
-     * @return type based on eventType (or) error will be thrown if unknown eventType requested.
+     * @return type based on eventType (or) error will be thrown if unknown
+     *         eventType requested.
      */
     public String getTypeRoutingKey(String eventType) {
         try {

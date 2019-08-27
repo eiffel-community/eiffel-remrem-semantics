@@ -2,19 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelSourceChangeSubmittedEvent",
-            "version": "1.1.0",
-            "tags": [],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -27,29 +21,29 @@
                 "group": ""
             },
             "gitIdentifier": {
-                "commitId": "required ",
-                "repoUri": "required",
+                "commitId": "required if gitIdentifier present",
+                "repoUri": "required if gitIdentifier present",
                 "branch": "",
                 "repoName": ""
             },
             "svnIdentifier": {
-                "revision": "required, must be in Integer format",
-                "directory": "required",
+                "revision": "required if svnIdentifier present, must be in Integer format",
+                "directory": "required if svnIdentifier present",
                 "repoName": "",
-                "repoUri": "required"
+                "repoUri": "required if svnIdentifier present"
             },
             "ccCompositeIdentifier": {
                 "vobs": [
-                    "required if ccCompositeIdentifier present "
+                    "required if ccCompositeIdentifier present"
                 ],
-                "branch": "required",
-                "configSpec": "required"
+                "branch": "required if ccCompositeIdentifier present",
+                "configSpec": "required if ccCompositeIdentifier present"
             },
             "hgIdentifier": {
-                "commitId": "required",
+                "commitId": "required if hgIdentifier present",
                 "branch": "",
                 "repoName": "",
-                "repoUri": "required"
+                "repoUri": "required if hgIdentifier present"
             },
             "customData": [{
                 "key": "required if customData present",
@@ -57,8 +51,8 @@
             }]
         },
         "links": [{
-            "type": "required if links present, can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION,CHANGE",
-            "target": "required if links present"
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or PREVIOUS_VERSION or CHANGE - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

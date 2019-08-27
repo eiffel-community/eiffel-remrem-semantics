@@ -28,9 +28,9 @@ public class EiffelArtifactCreatedEventData {
      * (Required)
      * 
      */
-    @SerializedName("gav")
+    @SerializedName("identity")
     @Expose
-    private Gav gav;
+    private String identity;
     @SerializedName("fileInformation")
     @Expose
     private List<FileInformation> fileInformation = new ArrayList<FileInformation>();
@@ -42,10 +42,10 @@ public class EiffelArtifactCreatedEventData {
     private EiffelArtifactCreatedEventData.RequiresImplementation requiresImplementation;
     @SerializedName("dependsOn")
     @Expose
-    private List<DependsOn> dependsOn = new ArrayList<DependsOn>();
+    private List<String> dependsOn = new ArrayList<String>();
     @SerializedName("implements")
     @Expose
-    private List<Implement> _implements = new ArrayList<Implement>();
+    private List<String> _implements = new ArrayList<String>();
     @SerializedName("name")
     @Expose
     private String name;
@@ -58,8 +58,8 @@ public class EiffelArtifactCreatedEventData {
      * (Required)
      * 
      */
-    public Gav getGav() {
-        return gav;
+    public String getIdentity() {
+        return identity;
     }
 
     /**
@@ -67,8 +67,8 @@ public class EiffelArtifactCreatedEventData {
      * (Required)
      * 
      */
-    public void setGav(Gav gav) {
-        this.gav = gav;
+    public void setIdentity(String identity) {
+        this.identity = identity;
     }
 
     public List<FileInformation> getFileInformation() {
@@ -91,23 +91,24 @@ public class EiffelArtifactCreatedEventData {
         return requiresImplementation;
     }
 
-    public void setRequiresImplementation(EiffelArtifactCreatedEventData.RequiresImplementation requiresImplementation) {
+    public void setRequiresImplementation(
+            EiffelArtifactCreatedEventData.RequiresImplementation requiresImplementation) {
         this.requiresImplementation = requiresImplementation;
     }
 
-    public List<DependsOn> getDependsOn() {
+    public List<String> getDependsOn() {
         return dependsOn;
     }
 
-    public void setDependsOn(List<DependsOn> dependsOn) {
+    public void setDependsOn(List<String> dependsOn) {
         this.dependsOn = dependsOn;
     }
 
-    public List<Implement> getImplements() {
+    public List<String> getImplements() {
         return _implements;
     }
 
-    public void setImplements(List<Implement> _implements) {
+    public void setImplements(List<String> _implements) {
         this._implements = _implements;
     }
 
@@ -130,18 +131,15 @@ public class EiffelArtifactCreatedEventData {
     public enum RequiresImplementation {
 
         @SerializedName("NONE")
-        NONE("NONE"),
-        @SerializedName("ANY")
-        ANY("ANY"),
-        @SerializedName("EXACTLY_ONE")
-        EXACTLY_ONE("EXACTLY_ONE"),
-        @SerializedName("AT_LEAST_ONE")
+        NONE("NONE"), @SerializedName("ANY")
+        ANY("ANY"), @SerializedName("EXACTLY_ONE")
+        EXACTLY_ONE("EXACTLY_ONE"), @SerializedName("AT_LEAST_ONE")
         AT_LEAST_ONE("AT_LEAST_ONE");
         private final String value;
         private final static Map<String, EiffelArtifactCreatedEventData.RequiresImplementation> CONSTANTS = new HashMap<String, EiffelArtifactCreatedEventData.RequiresImplementation>();
 
         static {
-            for (EiffelArtifactCreatedEventData.RequiresImplementation c: values()) {
+            for (EiffelArtifactCreatedEventData.RequiresImplementation c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

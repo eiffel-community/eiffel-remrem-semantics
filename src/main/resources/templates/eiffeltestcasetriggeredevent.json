@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelTestCaseTriggeredEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -24,13 +16,13 @@
         "data": {
             "testCase": {
                 "tracker": "",
-                "id": "required",
+                "id": "required if testCase present",
                 "uri": "",
                 "version": ""
             },
             "recipeId": "",
             "triggers": [{
-                "type": "<required if triggers present,can be anyone of MANUAL,EIFFEL_EVENT,SOURCE_CHANGE,TIMER,OTHER",
+                "type": "required if triggers present,can be anyone of MANUAL,EIFFEL_EVENT,SOURCE_CHANGE,TIMER,OTHER",
                 "description": ""
             }],
             "executionType": "not required, if present can be anyone of MANUAL,SEMI_AUTOMATED,AUTOMATED,OTHER",
@@ -44,8 +36,12 @@
             }]
         },
         "links": [{
-            "type": "required IUT and CAUSE,CONTEXT,FLOW_CONTEXT are optional ",
-            "target": "required"
+            "type": "IUT",
+            "target": "required - UUID of EiffelArtifactCreatedEvent, EiffelCompositionDefinedEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

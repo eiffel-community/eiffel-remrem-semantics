@@ -21,8 +21,7 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelTestSuiteFinishedEventMeta implements Meta
-{
+public class EiffelTestSuiteFinishedEventMeta implements Meta {
 
     /**
      * 
@@ -47,7 +46,8 @@ public class EiffelTestSuiteFinishedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelTestSuiteFinishedEventMeta.Version version = EiffelTestSuiteFinishedEventMeta.Version.fromValue("1.1.0");
+    private EiffelTestSuiteFinishedEventMeta.Version version = EiffelTestSuiteFinishedEventMeta.Version
+            .fromValue("3.0.0");
     /**
      * 
      * (Required)
@@ -170,7 +170,7 @@ public class EiffelTestSuiteFinishedEventMeta implements Meta
         private final static Map<String, EiffelTestSuiteFinishedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelTestSuiteFinishedEventMeta.Type>();
 
         static {
-            for (EiffelTestSuiteFinishedEventMeta.Type c: values()) {
+            for (EiffelTestSuiteFinishedEventMeta.Type c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -201,13 +201,13 @@ public class EiffelTestSuiteFinishedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("1.1.0")
-        _1_1_0("1.1.0");
+        @SerializedName("3.0.0")
+        _3_0_0("3.0.0");
         private final String value;
         private final static Map<String, EiffelTestSuiteFinishedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestSuiteFinishedEventMeta.Version>();
 
         static {
-            for (EiffelTestSuiteFinishedEventMeta.Version c: values()) {
+            for (EiffelTestSuiteFinishedEventMeta.Version c : values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

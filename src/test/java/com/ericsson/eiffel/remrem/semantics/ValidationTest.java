@@ -40,11 +40,9 @@ public class ValidationTest {
                 for (File inputFile : file.listFiles()) {
                     JsonObject object = parser.parse(new FileReader(inputFile)).getAsJsonObject();
                     String msgType = object.get("meta").getAsJsonObject().get("type").getAsString();
-                    System.out.println(msgType);
                     EiffelValidator validator = EiffelOutputValidatorFactory
                             .getEiffelValidator(EiffelEventType.fromString(msgType));
                     validator.validate(object);
-                    System.out.println("Output message validated successfully \n");
                 }
             }
         } catch (Exception e) {

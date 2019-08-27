@@ -2,28 +2,20 @@
     "msgParams": {
         "meta": {
             "type": "EiffelArtifactPublishedEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "3.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
     "eventParams": {
         "data": {
             "locations": [{
-                "type": "required ,can be anyone of ARTIFACTORY,NEXUS,PLAIN,OTHER",
+                "type": "required if locations present,can be anyone of ARTIFACTORY,NEXUS,PLAIN,OTHER",
                 "uri": "required"
             }],
             "customData": [{
@@ -32,8 +24,12 @@
             }]
         },
         "links": [{
-            "type": "required ARTIFACT and CAUSE,CONTEXT,FLOW_CONTEXT are optional",
-            "target": "required"
+            "type": "ARTIFACT",
+            "target": "required - UUID of EiffelArtifactCreatedEvent"
+            },
+            {
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }

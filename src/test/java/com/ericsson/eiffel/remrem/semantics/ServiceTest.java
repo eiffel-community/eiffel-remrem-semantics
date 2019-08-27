@@ -17,7 +17,7 @@ package com.ericsson.eiffel.remrem.semantics;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +41,6 @@ import org.mockito.MockitoAnnotations;
 
 import com.ericsson.eiffel.remrem.protocol.ValidationResult;
 import com.ericsson.eiffel.remrem.semantics.util.ManifestHandler;
-import com.ericsson.eiffel.semantics.events.Gav;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonIOException;
@@ -59,19 +58,17 @@ public class ServiceTest {
     SemanticsService service = new SemanticsService();
     
     ManifestHandler manifestHandler;
-    static Gav manifestGav = null;
+    static String semanticsSerializer ;
 
     @BeforeClass
     public static void readManifestGav() {
-        manifestGav = new Gav();
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath().replace("%20", " ");
         try {
             Manifest manifest = new Manifest(new FileInputStream(manifestPath));
             Attributes attributes1 = manifest.getMainAttributes();
-            manifestGav.setGroupId(attributes1.getValue("groupId"));
-            manifestGav.setArtifactId(attributes1.getValue("artifactId"));
-            manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
+            semanticsSerializer = "pkg:maven/" + attributes1.getValue("groupId") + "/"
+                    + attributes1.getValue("artifactId") + "@" + attributes1.getValue("semanticsVersion");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,8 +79,8 @@ public class ServiceTest {
         Attributes attributes = mock(Attributes.class);
         manifestHandler = mock(ManifestHandler.class);
         MockitoAnnotations.initMocks(this);
-        when(attributes.getValue(anyString())).thenReturn("0.2.3");
-        SemanticsService.semanticsGAV = manifestGav;
+        when(attributes.getValue(anyString())).thenReturn("2.0.2");
+        SemanticsService.purlSerializer = semanticsSerializer;
     }
 
     @Test
@@ -94,9 +91,7 @@ public class ServiceTest {
                 for (File inputFile : file.listFiles()) {
                     JsonObject object = parser.parse(new FileReader(inputFile)).getAsJsonObject();
                     String msgType=object.get("msgParams").getAsJsonObject().get("meta").getAsJsonObject().get("type").getAsString();
-                    System.out.println(msgType);
                     String msg = service.generateMsg(msgType, object);
-                    System.out.println(msg+"\n");
                     Assert.assertTrue(msg.contains("data"));
                     Assert.assertTrue(msg.contains("meta"));
                     Assert.assertTrue(msg.contains("links"));
@@ -194,23 +189,16 @@ public class ServiceTest {
 
     @Test
     public void testGetRemremSemanticsGav() {
-        when(manifestHandler.readGavfromManifest()).thenReturn(manifestGav);
-        Gav gav = manifestHandler.readGavfromManifest();
-        Assert.assertEquals(gav.getGroupId(), "com.github.Ericsson");
-        Assert.assertEquals(gav.getArtifactId(), "eiffel-remrem-semantics");
-        Assert.assertEquals(gav.getVersion(), "0.3.1");
+        when(manifestHandler.readSemanticsSerializerFromManifest()).thenReturn(semanticsSerializer);
+        String serializer = manifestHandler.readSemanticsSerializerFromManifest();
+        assertEquals(semanticsSerializer, serializer);
     }
 
     @Test(expected = FileNotFoundException.class)
     public void testInvalidPathRemremSemanticsGav() throws Exception {
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
         String manifestPath = url.getPath() + "/InvalidPath";
-        Manifest manifest = new Manifest(new FileInputStream(manifestPath));
-        Attributes attributes1 = manifest.getMainAttributes();
-        manifestGav.setGroupId(attributes1.getValue("groupId"));
-        manifestGav.setArtifactId(attributes1.getValue("artifactId"));
-        manifestGav.setVersion(attributes1.getValue("semanticsVersion"));
-
+        new Manifest(new FileInputStream(manifestPath));
     }
     
     @Test

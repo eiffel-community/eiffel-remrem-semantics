@@ -27,9 +27,6 @@ public class EiffelSourceChangeCreatedEventData {
     @SerializedName("change")
     @Expose
     private Change change;
-    @SerializedName("issues")
-    @Expose
-    private List<Issue> issues = new ArrayList<Issue>();
     @SerializedName("gitIdentifier")
     @Expose
     private GitIdentifier gitIdentifier;
@@ -60,14 +57,6 @@ public class EiffelSourceChangeCreatedEventData {
 
     public void setChange(Change change) {
         this.change = change;
-    }
-
-    public List<Issue> getIssues() {
-        return issues;
-    }
-
-    public void setIssues(List<Issue> issues) {
-        this.issues = issues;
     }
 
     public GitIdentifier getGitIdentifier() {

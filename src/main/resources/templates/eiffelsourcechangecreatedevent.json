@@ -2,21 +2,13 @@
     "msgParams": {
         "meta": {
             "type": "EiffelSourceChangeCreatedEvent",
-            "version": "1.1.0",
-            "tags": [
-
-            ],
+            "version": "4.0.0",
+            "tags": [""],
             "source": {
                 "domainId": "",
                 "host": "",
                 "name": "",
                 "uri": ""
-            },
-            "security": {
-                "sdm": {
-                    "authorIdentity": "required if sdm present",
-                    "encryptedDigest": "required if sdm present"
-                }
             }
         }
     },
@@ -29,44 +21,37 @@
                 "group": ""
             },
             "change": {
-                "insertions": " not required, if present must be in Integer format ",
-                "deletions": " not required, if present must be in Integer format ",
+                "insertions": "not required, if present must be in Integer format",
+                "deletions": "not required, if present must be in Integer format",
                 "files": "",
                 "tracker": "",
                 "details": "",
                 "id": ""
             },
-            "issues": [{
-                "type": "required if issues present, can be anyone of BUG,IMPROVEMENT,FEATURE,WORK_ITEM,REQUIREMENT,OTHER",
-                "tracker": "required if issues present",
-                "id": "required if issues present",
-                "uri": "required if issues present",
-                "transition": "required if issues present,can be anyone of RESOLVED,PARTIAL,REMOVED"
-            }],
             "gitIdentifier": {
-                "commitId": "required",
+                "commitId": "required if gitIdentifier present",
                 "branch": "",
                 "repoName": "",
-                "repoUri": "required"
+                "repoUri": "required if gitIdentifier present"
             },
             "svnIdentifier": {
-                "revision": "required, must be in Integer format",
-                "directory": "required",
+                "revision": "required if svnIdentifier present, must be in Integer format",
+                "directory": "required if svnIdentifier present",
                 "repoName": "",
-                "repoUri": "required"
+                "repoUri": "required if svnIdentifier present"
             },
             "ccCompositeIdentifier": {
                 "vobs": [
-                    "required if ccCompositeIdentifier present "
+                    "required if ccCompositeIdentifier present"
                 ],
-                "branch": "required",
-                "configSpec": "required"
+                "branch": "required if ccCompositeIdentifier present",
+                "configSpec": "required if ccCompositeIdentifier present"
             },
             "hgIdentifier": {
-                "commitId": "required",
+                "commitId": "required if hgIdentifier present",
                 "branch": "",
                 "repoName": "",
-                "repoUri": "required"
+                "repoUri": "required if hgIdentifier present"
             },
             "customData": [{
                 "key": "required if customData present",
@@ -74,8 +59,8 @@
             }]
         },
         "links": [{
-            "type": "required if links present,can be anyOf CAUSE,CONTEXT,FLOW_CONTEXT,PREVIOUS_VERSION,BASE",
-            "target": "required if links present"
+            "type": "CAUSE or CONTEXT or FLOW_CONTEXT or PREVIOUS_VERSION or BASE or PARTIALLY_RESOLVED_ISSUE or RESOLVED_ISSUE or DERESOLVED_ISSUE - optional",
+            "target": "required - UUID if type is present"
         }]
     }
 }
