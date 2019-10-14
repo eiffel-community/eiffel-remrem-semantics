@@ -11,7 +11,7 @@
             buildHtmlTable('#eventTypesTable');
         }
     }
-    xmlhttp.open("get","https://api.github.com/repos/Ericsson/eiffel-remrem-semantics/releases",true);
+    xmlhttp.open("get","https://api.github.com/repos/eiffel-community/eiffel-remrem-semantics/releases",true);
     xmlhttp.send();
 
     //To populate the semantics jipack released versions with templates.
