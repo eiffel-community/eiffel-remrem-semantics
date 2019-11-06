@@ -20,7 +20,7 @@
                 "uri": "",
                 "version": ""
             },
-            "recipeId": "",
+            "recipeId": "UUID of EiffelTestExecutionRecipeCollectionCreatedEvent - optional",
             "triggers": [{
                 "type": "required if triggers present,can be anyone of MANUAL,EIFFEL_EVENT,SOURCE_CHANGE,TIMER,OTHER",
                 "description": ""
