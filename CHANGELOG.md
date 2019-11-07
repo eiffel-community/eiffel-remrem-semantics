@@ -1,3 +1,6 @@
+## 2.0.7
+- Added the link types FAILED_ISSUE,INCONCLUSIVE_ISSUE and SUCCESSFUL_ISSUE in IssueVerified event.
+
 ## 2.0.6
 - Uplifted eiffel-remrem-parent version from 2.0.1 to 2.0.2.
 - Uplifted eiffel-remrem-protocol-interface version from 2.0.1 to 2.0.2.
