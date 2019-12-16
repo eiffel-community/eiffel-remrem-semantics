@@ -203,8 +203,18 @@ public class SemanticsService implements MsgService {
             }
             Class<? extends Event> eventType = eventTypes.get(eiffelType);
 
-            JsonObject msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
-            JsonObject eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
+            JsonObject msgNodes = null;
+            JsonObject eventNodes = null;
+            if (bodyJson.get(MSG_PARAMS) != null && bodyJson.get(EVENT_PARAMS) != null
+                    && bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META) != null) {
+                msgNodes = bodyJson.get(MSG_PARAMS).getAsJsonObject();
+                eventNodes = bodyJson.get(EVENT_PARAMS).getAsJsonObject();
+            } else {
+                String Message = "Missing fields found in body JSON";
+                String Cause = "eventParams or msgParams or msgParams.meta are missed";
+                log.error(Message + "\nCause: " + Cause);
+                return createErrorResponse(Message, Cause);
+            }
 
             // Compare the input JSON EventType with query parameter(-t) and
             // also
@@ -226,6 +236,7 @@ public class SemanticsService implements MsgService {
             String result = gson.toJson(event);
             outputValidate(eiffelType, result);
             return result;
+
         } catch (EiffelValidationException e) {
             log.error("Could not validate message. Reason:" + e.getMessage() + "\nCause: " + e.getCause().toString());
             return createErrorResponse(e.getMessage(), e.getCause().toString());
@@ -235,7 +246,6 @@ public class SemanticsService implements MsgService {
             return createErrorResponse("Json Syntax exception occured while processing input schema",
                     e.getCause().toString());
         }
-
     }
 
     private static Event eventCreation(Class<? extends Event> eventType, JsonObject msgNodes, JsonObject eventNodes) {
