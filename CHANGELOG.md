@@ -1,3 +1,6 @@
+## 2.0.8
+- Handled NullPointerException in SemanticService for missing fields.
+
 ## 2.0.7
 - Added the link types FAILED_ISSUE,INCONCLUSIVE_ISSUE and SUCCESSFUL_ISSUE in IssueVerified event.
 
