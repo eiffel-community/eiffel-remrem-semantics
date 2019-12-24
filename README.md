@@ -23,8 +23,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/eiffel-community/eiffel-remrem-semantics/badge.svg?branch=master)](https://coveralls.io/github/eiffel-community/eiffel-remrem-semantics?branch=master)
 [![](https://jitpack.io/v/eiffel-community/eiffel-remrem-semantics.svg)](https://jitpack.io/#eiffel-community/eiffel-remrem-semantics)
 
-Eiffel semantics is designed to implement new Eiffel messaging standard. Further documentation is provided at the following link: [https://eiffel-community.github.io/eiffel-remrem-semantics/](https://eiffel-community.github.io/eiffel-remrem-semantics/).
-
+Eiffel semantics is designed to implement the Eiffel messaging standard.
 # About this repository
 The contents of this repository are licensed under the [Apache License 2.0](./LICENSE).
 
@@ -34,3 +33,11 @@ To get involved, please see [Code of Conduct](./CODE_OF_CONDUCT.md) and [contrib
 This repository forms part of the Eiffel Community. Eiffel is a protocol for technology agnostic machine-to-machine communication in continuous integration and delivery pipelines, aimed at securing scalability, flexibility and traceability. Eiffel is based on the concept of decentralized real time messaging, both to drive the continuous integration and delivery system and to document it.
 
 Visit [Eiffel Community](https://eiffel-community.github.io) to get started and get involved.
+
+## Documentation
+
+1. [**Introduction**](wiki/index.md)
+2. [**Installation**](wiki/installation.md)
+3. [**Compatibility**](wiki/compatibility.md)
+4. [**Usage**](wiki/usage.md)
+5. [**Templates**](wiki/templates.md)
