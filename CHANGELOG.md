@@ -1,3 +1,10 @@
+## 2.0.10
+- Uplifted eiffel-remrem-parent version from 2.0.2 to 2.0.3.
+- Uplifted eiffel-remrem-protocol-interface version from 2.0.2 to 2.0.3.
+
+## 2.0.9
+- Moved REMReM Semantics documentation from gh-pages to master branch.
+
 ## 2.0.8
 - Handled NullPointerException in SemanticService for missing fields.
 
