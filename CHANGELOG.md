@@ -1,3 +1,6 @@
+## 2.0.12
+- Added link types PARTIALLY_RESOLVED_ISSUE, RESOLVED_ISSUE and DERESOLVED_ISSUE in EiffelSourceChangeCreatedEvent.
+
 ## 2.0.11
 - Uplifted eiffel-remrem-parent version from 2.0.3 to 2.0.4
 - Uplifted eiffel-remrem-protocol-interface version from 2.0.3 to 2.0.4.

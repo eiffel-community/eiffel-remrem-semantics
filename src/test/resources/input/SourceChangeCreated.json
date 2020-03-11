@@ -86,6 +86,10 @@
     {
       "type": "PREVIOUS_VERSION",
       "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee2"
+    },
+    {
+      "type": "RESOLVED_ISSUE",
+      "target": "aaaaaaaa-bbbb-5ccc-8ddd-eeeeeeeeeee3"
     }]
   }
 }
