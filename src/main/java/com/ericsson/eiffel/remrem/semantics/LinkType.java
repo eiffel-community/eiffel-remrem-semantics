@@ -49,7 +49,10 @@ public enum LinkType {
     SERVICE(EiffelConstants.MULTIPLE_NOT_ALLOWED),
     SUCCESSFUL_ISSUE(EiffelConstants.MULTIPLE_NOT_ALLOWED),
     FAILED_ISSUE(EiffelConstants.MULTIPLE_NOT_ALLOWED),
-    INCONCLUSIVE_ISSUE(EiffelConstants.MULTIPLE_NOT_ALLOWED);
+    INCONCLUSIVE_ISSUE(EiffelConstants.MULTIPLE_NOT_ALLOWED),
+    PARTIALLY_RESOLVED_ISSUE(EiffelConstants.MULTIPLE_ALLOWED),
+    RESOLVED_ISSUE(EiffelConstants.MULTIPLE_ALLOWED),
+    DERESOLVED_ISSUE(EiffelConstants.MULTIPLE_ALLOWED);
     
 
     private final boolean multipleAllowed;   
