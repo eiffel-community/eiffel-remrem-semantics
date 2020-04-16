@@ -1,3 +1,6 @@
+## 2.0.13
+- Removed the validation of REMReM should not accept both a CAUSE and a CONTEXT link types in the same event.
+
 ## 2.0.12
 - Added link types PARTIALLY_RESOLVED_ISSUE, RESOLVED_ISSUE and DERESOLVED_ISSUE in EiffelSourceChangeCreatedEvent.
 

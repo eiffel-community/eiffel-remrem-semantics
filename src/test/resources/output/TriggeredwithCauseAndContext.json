@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "id": "2dd2d13f-e3e5-4fac-80e3-ef4537985009",
+    "type": "EiffelActivityTriggeredEvent",
+    "version": "4.0.0",
+    "time": 1554389013770,
+    "tags": ["product_development","product_feature1"],
+    "source": {
+      "domainId": "eiffeltest",
+      "host": "localhost",
+      "name": "LOCALHOST",
+      "serializer": "pkg:maven/com.github.eiffel-community/eiffel-remrem-semantics@2.0.2",
+      "uri": "https://localhost:8080/jenkins/job"
+    }
+  },
+  "data": {
+    "name": "ActivityTrigger",
+    "categories": [
+      "First",
+      "second"
+    ],
+    "triggers": [
+      {
+        "type": "MANUAL",
+        "description": "Started by user anonymous"
+      },
+      {
+        "type": "SOURCE_CHANGE",
+        "description": "Change"
+      }
+    ],
+    "customData": [
+      {
+        "key": "EIFFERVERSION",
+        "value": "eiffel2.0"
+      },
+      {
+        "key": "FLOWCONTEXT",
+        "value": "master"
+      }
+    ]
+  },
+  "links": [
+    {
+      "type": "CAUSE",
+      "target": "e269b37d-17a1-4a10-aafb-c108735ee51f"
+    },    {
+      "type": "CONTEXT",
+      "target": "e269b37d-17a1-4a10-aafb-c108735ee52e"
+    }
+  ]
+}

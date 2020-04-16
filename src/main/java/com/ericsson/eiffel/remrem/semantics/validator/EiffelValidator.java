@@ -116,8 +116,6 @@ public class EiffelValidator {
     public void customValidation(JsonObject jsonObjectInput) throws EiffelValidationException {
         // Links validation
         Map<String, Integer> linksCountMapForEvent = new HashMap<String, Integer>();
-        String CAUSE_LINK = "CAUSE";
-        String CONTEXT_LINK = "CONTEXT";
         try {
             JsonArray links = jsonObjectInput.get("links").getAsJsonArray();
             for (JsonElement link : links) {
@@ -140,10 +138,6 @@ public class EiffelValidator {
                             "Multiple trace links are not allowed for link type " + requiredLinkType);
                 }
                 linksSet.remove(requiredLinkType);
-            }
-            if (linksCountMapForEvent.containsKey(CAUSE_LINK) && linksCountMapForEvent.containsKey(CONTEXT_LINK)) {
-                throw new EiffelValidationException(
-                        "Link types " + CAUSE_LINK + " and " + CONTEXT_LINK + " should not be in one event");
             }
             for (String optionalLinkType : optionalLinkTypes) {
                 Integer count = linksCountMapForEvent.get(optionalLinkType);
