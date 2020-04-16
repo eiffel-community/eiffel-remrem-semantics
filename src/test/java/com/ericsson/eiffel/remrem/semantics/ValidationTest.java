@@ -63,5 +63,21 @@ public class ValidationTest {
         
     }
 
-    
+    @Test
+    public void TestEventwithCauseAndContextLinkTypes() throws Exception {
+        try {
+            File file = new File("output/TriggeredwithCauseAndContext.json");
+            if (file.exists()) {
+                JsonObject object = parser.parse(new FileReader(file)).getAsJsonObject();
+                String msgType = object.get("meta").getAsJsonObject().get("type").getAsString();
+                EiffelValidator validator = EiffelOutputValidatorFactory
+                        .getEiffelValidator(EiffelEventType.fromString(msgType));
+                validator.validate(object);
+                validator.customValidation(object);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.assertFalse(true);
+        }
+    }
 }
