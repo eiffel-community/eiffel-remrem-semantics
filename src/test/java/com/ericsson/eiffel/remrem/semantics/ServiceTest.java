@@ -147,7 +147,7 @@ public class ServiceTest {
         ValidationResult msg = null;
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
-            msg = service.validateMsg(ACTIVITY_FINISHED, input);
+            msg = service.validateMsg(ACTIVITY_FINISHED, input, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -203,7 +203,7 @@ public class ServiceTest {
     
     @Test
     public void testGetSupportedEventTypes() {
-    	URL url = getClass().getClassLoader().getResource("EventTypes.json");
+        URL url = getClass().getClassLoader().getResource("EventTypes.json");
         String path = url.getPath().replace("%20", " ");
         File file = new File(path);
         JsonObject input = null;
@@ -214,9 +214,9 @@ public class ServiceTest {
             JsonArray eventTypes = input.getAsJsonArray("eventTypes");            
             List<String> matchingCollection = new ArrayList<>();
             if (eventTypes != null) {
-            	for (JsonElement event : eventTypes) {
-            		matchingCollection.add(event.getAsString());
-            	}
+                for (JsonElement event : eventTypes) {
+                    matchingCollection.add(event.getAsString());
+                }
             }
             checkValue = types.containsAll(matchingCollection);
         } catch (Exception e) {
@@ -251,6 +251,39 @@ public class ServiceTest {
             System.out.println("Exception occured while validating templates");
             e.printStackTrace();
             Assert.assertFalse(true);
+        }
+    }
+    
+    @Test
+    public void testInvalid_lv_Message_Success() {
+        try {
+            URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
+            String path = url.getPath().replace("%20", " ");
+            File file = new File(path);
+            JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+            String msg = service.generateMsg("EiffelArtifactCreatedEvent", input, true);
+            Assert.assertTrue(msg.contains("remremGenerateFailures"));
+            Assert.assertTrue(msg.contains("data"));
+            Assert.assertTrue(msg.contains("meta"));
+            Assert.assertTrue(msg.contains("links"));
+        } catch (FileNotFoundException e) {
+            Assert.assertFalse(false);
+        }
+    }
+    @Test
+    public void testInvalid_lv_Message_fail() {
+        try {
+            URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
+            String path = url.getPath().replace("%20", " ");
+            File file = new File(path);
+            JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+            String msg = service.generateMsg("EiffelArtifactCreatedEvent", input);
+            Assert.assertTrue(msg.contains("message"));
+            Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
+            Assert.assertTrue(msg.contains("cause"));
+            Assert.assertTrue(msg.contains("ECMA 262 regex"));
+        } catch (FileNotFoundException e) {
+            Assert.assertFalse(false);
         }
     }
 }

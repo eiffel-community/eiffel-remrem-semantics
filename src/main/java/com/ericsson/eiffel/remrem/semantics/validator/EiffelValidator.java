@@ -20,6 +20,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.bind.ValidationException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,16 +37,29 @@ import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
 
 public class EiffelValidator {
+    
+    private static final String REGEX_PATH = "\\/\\d*";
+    private static final String CUSTOM_DATA = "customData";
+    private static final String SLASH = "/";
+    private static final String DOT = ".";
+    private static final String REMREM_GENERATE_FAILURES = "remremGenerateFailures";
+    private static final String PATH2 = "path";
+    private static final String MESSAGE2 = "message";
+    private static final String TYPE2 = "type";
+    private static final String REQUIRED = "required";
+    private static final String POINTER = "pointer";
+    private static final String INSTANCE = "instance";
+    private static final String KEYWORD = "keyword";
     public static final Logger log = LoggerFactory.getLogger(EiffelValidator.class);
-
+    private static final String DATA = "data";
     private JsonSchema validationSchema;
     private String schemaResourceName;
     private String eventType;
@@ -72,20 +89,112 @@ public class EiffelValidator {
             throw new IllegalArgumentException(message, e);
         }
     }
-
-    public void validate(JsonObject jsonObjectInput) throws EiffelValidationException {
+    public JsonObject validate(JsonObject jsonObjectInput) throws EiffelValidationException {
+        return validate(jsonObjectInput, false);
+    }
+    
+    public JsonObject validate(JsonObject jsonObjectInput, Boolean lenientValidation) throws EiffelValidationException {
+        JsonArray remremGenerateFailures = new JsonArray();
         try {
-            ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()));
-            if (!report.isSuccess()) {
+            final ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()),
+                    true);
+            if (!report.isSuccess() && lenientValidation) {
+                log.debug("Trying to revalidate the json for optional fields");
                 log.warn(jsonObjectInput.toString());
+                String revalidatedJson = removeErrorProperties(report, jsonObjectInput, remremGenerateFailures);
+                ProcessingReport report2 = validationSchema.validate(JsonLoader.fromString(revalidatedJson), true);
+                if (!report2.isSuccess()) {
+                    throw new EiffelValidationException(getErrorsList(report2));
+                }
+                return addRemremGenerateFailuresToCustomData(new JsonParser().parse(revalidatedJson).getAsJsonObject(), remremGenerateFailures);
+            }
+            else if(!report.isSuccess()){
                 throw new EiffelValidationException(getErrorsList(report));
             }
             log.debug("VALIDATED. Schema used: {}", schemaResourceName);
+            return jsonObjectInput;
         } catch (Exception e) {
-            String message = "Cannot validate given JSON string";
+            final String message = "Cannot validate given JSON string";
             log.debug(message, e);
             throw new EiffelValidationException(message, e);
         }
+    }
+    /**
+     * removeErrorProperties for removing the validation failures from Eiffel event and list the validation failures
+     * @param report
+     * @param jsonObjectInput
+     * @param remremGenerateFailures
+     * @return
+     * @throws ValidationException
+     */
+    private String removeErrorProperties(ProcessingReport report, JsonObject jsonObjectInput, JsonArray remremGenerateFailures) throws EiffelValidationException {
+        JsonParser parser = new JsonParser();
+        DocumentContext doc = JsonPath.parse(jsonObjectInput.toString());
+        for (ProcessingMessage processingMessage : report) {
+            if (LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
+                JsonElement element = parser.parse(processingMessage.asJson().toString());
+                if (element.getAsJsonObject().get(KEYWORD).getAsString().equals(REQUIRED)) {
+                    throw new EiffelValidationException(getErrorsList(report));
+                }
+                String errorPath = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER)
+                        .getAsString();
+                JsonObject addValidationFailurs = addValidationFailurs(element, processingMessage.getMessage());
+                remremGenerateFailures.add(addValidationFailurs);
+                doc.delete(getPath(errorPath));
+            }
+        }
+        return doc.jsonString();
+    }
+    
+    /**
+     * getPath for create the DocumentContext path from validation failure path
+     * example 
+     * 1) meta/tags/0 --> $.meta.tags[0]
+     * 2) links/0/target --> $.links[0]
+     * 3) /data/outcome/conclusion --> $.data.outcome.conclusion
+     * @param errorPath
+     * @return path
+     */
+    private String getPath(String errorPath) {
+        final Pattern pattern = Pattern.compile(REGEX_PATH, Pattern.MULTILINE);
+        final Matcher matcher = pattern.matcher(errorPath);
+        while (matcher.find()) {
+            if(matcher.group(0).length()>1) {
+                errorPath = errorPath.substring(0, errorPath.indexOf(matcher.group(0))+matcher.group(0).length());
+                errorPath = errorPath.replaceAll(matcher.group(0), "["+matcher.group(0).substring(1)+"]");
+            }
+        }
+        return "$" + errorPath.replace(SLASH, DOT);
+    }
+    private JsonObject addValidationFailurs(JsonElement element, String message) {
+        log.debug("Adding the error field information to the array");
+        String type = element.getAsJsonObject().get(KEYWORD).getAsString();
+        String path = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER).getAsString();
+        JsonObject object = new JsonObject();
+        object.addProperty(TYPE2, type);
+        object.addProperty(MESSAGE2, message);
+        object.addProperty(PATH2, path);
+        return object;
+    }
+    private JsonObject addRemremGenerateFailuresToCustomData(JsonObject inputJson, JsonArray remremGenerateFailures) {
+        JsonArray customData = getCustomData(inputJson);
+        JsonObject object = new JsonObject();
+        object.add(REMREM_GENERATE_FAILURES, remremGenerateFailures);
+        customData.add(object);
+        return inputJson;
+    }
+    
+    /**
+     * for get the customData json array from Gen2 Eiffel message.
+     * @param json
+     * @return
+     */
+    public JsonArray getCustomData(JsonObject json) {
+        if (json.isJsonObject() && json.getAsJsonObject().has(DATA)
+                && json.getAsJsonObject().getAsJsonObject(DATA).has(CUSTOM_DATA)) {
+            return json.getAsJsonObject().getAsJsonObject(DATA).get(CUSTOM_DATA).getAsJsonArray();
+        }
+        return null;
     }
 
     /**
@@ -93,20 +202,14 @@ public class EiffelValidator {
      * @param report json validation report
      * @return error message
      */
-    private String getErrorsList(ProcessingReport report) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser parser = new JsonParser();
-        String message = "";
-        for (ProcessingMessage processingMessage : report) {
-            if(LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
-                JsonElement element=parser.parse(processingMessage.asJson().toString());
-                element.getAsJsonObject().remove("schema");
-                element.getAsJsonObject().remove("level");
-                message = gson.toJson(element);
-                log.debug(message);
+    private String getErrorsList(final ProcessingReport report) {
+        List<String> messages = new ArrayList<String>();
+        for (final ProcessingMessage processingMessage : report) {
+            if (LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
+                messages.add(processingMessage.getMessage().toString());
             }
         }
-        return message;
+        return messages.toString();
     }
     /**
      * This method is used to validate links in an event
