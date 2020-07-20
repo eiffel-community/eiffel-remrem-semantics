@@ -1,5 +1,5 @@
-## 2.0.14
-- REMReM Generate defination for supported Eiffel protocols updated for support Lenient Validation.
+## 2.1.0
+- Updated REMReM Generate to support lenient validation for Eiffel Protocol.
 
 ## 2.0.13
 - Removed the validation of REMReM should not accept both a CAUSE and a CONTEXT link types in the same event.

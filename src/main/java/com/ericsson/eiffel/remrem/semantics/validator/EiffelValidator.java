@@ -24,7 +24,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.bind.ValidationException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,21 +94,19 @@ public class EiffelValidator {
     
     public JsonObject validate(JsonObject jsonObjectInput, Boolean lenientValidation) throws EiffelValidationException {
         JsonArray remremGenerateFailures = new JsonArray();
+        log.debug("VALIDATING Schema used: {}", schemaResourceName);
         try {
             final ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()),
                     true);
             if (!report.isSuccess() && lenientValidation) {
-                log.debug("Trying to revalidate the json for optional fields");
-                log.warn(jsonObjectInput.toString());
+                log.info("Trying to revalidate the Eiffel message with only mandatory Eiffel message fields.");
                 String revalidatedJson = removeErrorProperties(report, jsonObjectInput, remremGenerateFailures);
                 ProcessingReport report2 = validationSchema.validate(JsonLoader.fromString(revalidatedJson), true);
-                if (!report2.isSuccess()) {
-                    throw new EiffelValidationException(getErrorsList(report2));
-                }
+                handleErrorReport(jsonObjectInput, report2);
+                log.debug("VALIDATED. Schema used: {}", schemaResourceName);
                 return addRemremGenerateFailuresToCustomData(new JsonParser().parse(revalidatedJson).getAsJsonObject(), remremGenerateFailures);
-            }
-            else if(!report.isSuccess()){
-                throw new EiffelValidationException(getErrorsList(report));
+            } else {
+                handleErrorReport(jsonObjectInput, report);
             }
             log.debug("VALIDATED. Schema used: {}", schemaResourceName);
             return jsonObjectInput;
@@ -117,6 +114,13 @@ public class EiffelValidator {
             final String message = "Cannot validate given JSON string";
             log.debug(message, e);
             throw new EiffelValidationException(message, e);
+        }
+    }
+    private void handleErrorReport(JsonObject jsonObjectInput, ProcessingReport report) throws EiffelValidationException {
+        if (!report.isSuccess()) {
+            log.error("Eiffel message validation failed");
+            log.error(jsonObjectInput.toString());
+            throw new EiffelValidationException(getErrorsList(report));
         }
     }
     /**
@@ -185,9 +189,9 @@ public class EiffelValidator {
     }
     
     /**
-     * for get the customData json array from Gen2 Eiffel message.
-     * @param json
-     * @return
+     * Gets the customData array from an Eiffel message
+     * @param Eiffel message
+     * @return customData array
      */
     public JsonArray getCustomData(JsonObject json) {
         if (json.isJsonObject() && json.getAsJsonObject().has(DATA)

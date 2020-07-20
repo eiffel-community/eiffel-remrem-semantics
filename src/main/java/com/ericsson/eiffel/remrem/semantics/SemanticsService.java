@@ -185,7 +185,6 @@ public class SemanticsService implements MsgService {
         eventTypes.put(ALERT_CEASED, EiffelAlertCeasedEvent.class);
         eventTypes.put(ALERT_RAISED, EiffelAlertRaisedEvent.class);
         eventTypes.put(ISSUE_DEFINED, EiffelIssueDefinedEvent.class);
-
         return eventTypes;
     }
 
@@ -193,7 +192,7 @@ public class SemanticsService implements MsgService {
     public String generateMsg(String msgType, JsonObject bodyJson) {
         return generateMsg(msgType, bodyJson, false);
     }
-    
+
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson, Boolean lenientValidation) {
         try {
@@ -207,7 +206,6 @@ public class SemanticsService implements MsgService {
                 return createErrorResponse(msgType, supportedEventTypes);
             }
             Class<? extends Event> eventType = eventTypes.get(eiffelType);
-
             JsonObject msgNodes = null;
             JsonObject eventNodes = null;
             if (bodyJson.get(MSG_PARAMS) != null && bodyJson.get(EVENT_PARAMS) != null
@@ -235,9 +233,7 @@ public class SemanticsService implements MsgService {
                 return createErrorResponse(eiffelType.getEventName(),
                         "Mismatch of eventype in request query parameter with property 'type' in the input json message");
             }
-
             Event event = eventCreation(eventType, msgNodes, eventNodes);
-
             String result = gson.toJson(event);
             JsonObject outputValidate = outputValidate(eiffelType, result, lenientValidation);
             return gson.toJson(outputValidate);
@@ -290,6 +286,11 @@ public class SemanticsService implements MsgService {
     }
 
     @Override
+    public ValidationResult validateMsg(String msgType, JsonObject jsonvalidateMessage) {
+        return validateMsg(msgType, jsonvalidateMessage, false);
+    }
+
+    @Override
     public ValidationResult validateMsg(String msgType, JsonObject jsonvalidateMessage, Boolean lenientValidation) {
         ValidationResult validationResult = null;
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
@@ -302,6 +303,7 @@ public class SemanticsService implements MsgService {
         }
         return validationResult;
     }
+
     @Override
     public String getEventId(JsonObject json) {
         if (json.isJsonObject() && json.getAsJsonObject().has(META)
@@ -331,7 +333,7 @@ public class SemanticsService implements MsgService {
         }
         return null;
     }
-    
+
     @Override
     public Collection<String> getSupportedEventTypes() {
         return supportedEventTypes;
@@ -399,8 +401,6 @@ public class SemanticsService implements MsgService {
     public String getServiceName() {
         return EIFFELSEMANTICS;
     }
-
-    
 
     /**
      * Returns the domain Id from json formatted eiffel message.
