@@ -142,7 +142,7 @@ public class EiffelValidator {
                 }
                 String errorPath = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER)
                         .getAsString();
-                JsonObject addValidationFailurs = addValidationFailurs(element, processingMessage.getMessage());
+                JsonObject addValidationFailurs = addValidationFailures(element, processingMessage.getMessage());
                 remremGenerateFailures.add(addValidationFailurs);
                 doc.delete(getPath(errorPath));
             }
@@ -170,7 +170,7 @@ public class EiffelValidator {
         }
         return "$" + errorPath.replace(SLASH, DOT);
     }
-    private JsonObject addValidationFailurs(JsonElement element, String message) {
+    private JsonObject addValidationFailures(JsonElement element, String message) {
         log.debug("Adding the error field information to the array");
         String type = element.getAsJsonObject().get(KEYWORD).getAsString();
         String path = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER).getAsString();
