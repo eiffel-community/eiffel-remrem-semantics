@@ -51,8 +51,8 @@ public class EiffelValidator {
     private static final String DOT = ".";
     private static final String REMREM_GENERATE_FAILURES = "remremGenerateFailures";
     private static final String PATH2 = "path";
-    private static final String MESSAGE2 = "message";
-    private static final String TYPE2 = "type";
+    private static final String MESSAGE = "message";
+    private static final String TYPE = "type";
     private static final String REQUIRED = "required";
     private static final String POINTER = "pointer";
     private static final String INSTANCE = "instance";
@@ -137,7 +137,7 @@ public class EiffelValidator {
         for (ProcessingMessage processingMessage : report) {
             if (LogLevel.ERROR.equals(processingMessage.getLogLevel())) {
                 JsonElement element = parser.parse(processingMessage.asJson().toString());
-                if (element.getAsJsonObject().get(KEYWORD).getAsString().equals(REQUIRED)) {
+                if (element.getAsJsonObject().get(KEYWORD).getAsString().equals(REQUIRED) || element.getAsJsonObject().get(KEYWORD).getAsString().equals(TYPE)) {
                     throw new EiffelValidationException(getErrorsList(report));
                 }
                 String errorPath = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER)
@@ -175,15 +175,16 @@ public class EiffelValidator {
         String type = element.getAsJsonObject().get(KEYWORD).getAsString();
         String path = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER).getAsString();
         JsonObject object = new JsonObject();
-        object.addProperty(TYPE2, type);
-        object.addProperty(MESSAGE2, message);
+        object.addProperty(TYPE, type);
+        object.addProperty(MESSAGE, message);
         object.addProperty(PATH2, path);
         return object;
     }
     private JsonObject addRemremGenerateFailuresToCustomData(JsonObject inputJson, JsonArray remremGenerateFailures) {
         JsonArray customData = getCustomData(inputJson);
         JsonObject object = new JsonObject();
-        object.add(REMREM_GENERATE_FAILURES, remremGenerateFailures);
+        object.addProperty("key", REMREM_GENERATE_FAILURES);
+        object.add("value", remremGenerateFailures);
         customData.add(object);
         return inputJson;
     }
