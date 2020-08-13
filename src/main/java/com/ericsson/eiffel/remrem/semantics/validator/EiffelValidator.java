@@ -44,13 +44,13 @@ import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 public class EiffelValidator {
-    
+
     private static final String REGEX_PATH = "\\/\\d*";
     private static final String CUSTOM_DATA = "customData";
     private static final String SLASH = "/";
     private static final String DOT = ".";
     private static final String REMREM_GENERATE_FAILURES = "remremGenerateFailures";
-    private static final String PATH2 = "path";
+    private static final String PATH = "path";
     private static final String MESSAGE = "message";
     private static final String TYPE = "type";
     private static final String REQUIRED = "required";
@@ -88,10 +88,11 @@ public class EiffelValidator {
             throw new IllegalArgumentException(message, e);
         }
     }
+
     public JsonObject validate(JsonObject jsonObjectInput) throws EiffelValidationException {
         return validate(jsonObjectInput, false);
     }
-    
+
     public JsonObject validate(JsonObject jsonObjectInput, Boolean lenientValidation) throws EiffelValidationException {
         JsonArray remremGenerateFailures = new JsonArray();
         log.debug("VALIDATING Schema used: {}", schemaResourceName);
@@ -116,13 +117,13 @@ public class EiffelValidator {
             throw new EiffelValidationException(message, e);
         }
     }
+
     private void handleErrorReport(JsonObject jsonObjectInput, ProcessingReport report) throws EiffelValidationException {
         if (!report.isSuccess()) {
-            log.error("Eiffel message validation failed");
-            log.error(jsonObjectInput.toString());
             throw new EiffelValidationException(getErrorsList(report));
         }
     }
+
     /**
      * removeErrorProperties for removing the validation failures from Eiffel event and list the validation failures
      * @param report
@@ -149,7 +150,7 @@ public class EiffelValidator {
         }
         return doc.jsonString();
     }
-    
+
     /**
      * getPath for create the DocumentContext path from validation failure path
      * example 
@@ -170,6 +171,7 @@ public class EiffelValidator {
         }
         return "$" + errorPath.replace(SLASH, DOT);
     }
+
     private JsonObject addValidationFailures(JsonElement element, String message) {
         log.debug("Adding the error field information to the array");
         String type = element.getAsJsonObject().get(KEYWORD).getAsString();
@@ -177,18 +179,21 @@ public class EiffelValidator {
         JsonObject object = new JsonObject();
         object.addProperty(TYPE, type);
         object.addProperty(MESSAGE, message);
-        object.addProperty(PATH2, path);
+        object.addProperty(PATH, path);
         return object;
     }
+
     private JsonObject addRemremGenerateFailuresToCustomData(JsonObject inputJson, JsonArray remremGenerateFailures) {
-        JsonArray customData = getCustomData(inputJson);
-        JsonObject object = new JsonObject();
-        object.addProperty("key", REMREM_GENERATE_FAILURES);
-        object.add("value", remremGenerateFailures);
-        customData.add(object);
+        if (remremGenerateFailures.size() > 0) {
+            JsonArray customData = getCustomData(inputJson);
+            JsonObject object = new JsonObject();
+            object.addProperty("key", REMREM_GENERATE_FAILURES);
+            object.add("value", remremGenerateFailures);
+            customData.add(object);
+        }
         return inputJson;
     }
-    
+
     /**
      * Gets the customData array from an Eiffel message
      * @param Eiffel message
@@ -216,6 +221,7 @@ public class EiffelValidator {
         }
         return messages.toString();
     }
+
     /**
      * This method is used to validate links in an event
      * @param JsonArray of links in an event
