@@ -25,7 +25,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -61,9 +64,9 @@ public class ServiceTest {
     static String semanticsSerializer ;
 
     @BeforeClass
-    public static void readManifestGav() {
+    public static void readManifestGav() throws UnsupportedEncodingException {
         URL url = ServiceTest.class.getClassLoader().getResource("MANIFEST.MF");
-        String manifestPath = url.getPath().replace("%20", " ");
+        String manifestPath = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
         try {
             Manifest manifest = new Manifest(new FileInputStream(manifestPath));
             Attributes attributes1 = manifest.getMainAttributes();
@@ -106,26 +109,21 @@ public class ServiceTest {
     
 
     @Test
-    public void testUnknownMessage() {
-        try {
+    public void testUnknownMessage() throws UnsupportedEncodingException, JsonIOException, JsonSyntaxException, FileNotFoundException {
             URL url = getClass().getClassLoader().getResource("input/ArtifactPublished.json");
-            String path = url.getPath().replace("%20", " ");
+            String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
             File file = new File(path);
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg("unknownmessage", input);
             Assert.assertTrue(msg.contains("message"));
             Assert.assertTrue(msg.contains("Unknown event type requested"));
             Assert.assertTrue(msg.contains("SUPPORTED_EVENT_TYPES"));
-        } catch (FileNotFoundException e) {
-            Assert.assertFalse(false);
-        }
     }
 
     @Test
-    public void testInvalidMessage() {
-        try {
+    public void testInvalidMessage() throws UnsupportedEncodingException, JsonIOException, JsonSyntaxException, FileNotFoundException {
             URL url = getClass().getClassLoader().getResource("invalid/ActivityFinishedInvalid.json");
-            String path = url.getPath().replace("%20", " ");
+            String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
             File file = new File(path);
             JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
             String msg = service.generateMsg(ACTIVITY_FINISHED, input);
@@ -133,21 +131,18 @@ public class ServiceTest {
             Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
             Assert.assertTrue(msg.contains("cause"));
             Assert.assertTrue(msg.contains("object has missing required properties"));
-        } catch (FileNotFoundException e) {
-            Assert.assertFalse(false);
-        }
     }
 
     @Test
-    public void validateMessage() {
+    public void validateMessage() throws UnsupportedEncodingException {
         URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20", " ");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
         File file = new File(path);
         JsonObject input;
         ValidationResult msg = null;
         try {
             input = parser.parse(new FileReader(file)).getAsJsonObject();
-            msg = service.validateMsg(ACTIVITY_FINISHED, input);
+            msg = service.validateMsg(ACTIVITY_FINISHED, input, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -156,9 +151,9 @@ public class ServiceTest {
     }
 
     @Test
-    public void testGetEventType() {
+    public void testGetEventType() throws UnsupportedEncodingException {
         URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20", " ");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
         File file = new File(path);
         JsonObject input;
         String eventType = null;
@@ -172,9 +167,9 @@ public class ServiceTest {
     }
 
     @Test
-    public void testGenerateRoutingKey() {
+    public void testGenerateRoutingKey() throws UnsupportedEncodingException {
         URL url = getClass().getClassLoader().getResource("output/ActivityFinished.json");
-        String path = url.getPath().replace("%20", " ");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
         File file = new File(path);
         JsonObject input;
         String routingKey = null;
@@ -202,9 +197,9 @@ public class ServiceTest {
     }
     
     @Test
-    public void testGetSupportedEventTypes() {
-    	URL url = getClass().getClassLoader().getResource("EventTypes.json");
-        String path = url.getPath().replace("%20", " ");
+    public void testGetSupportedEventTypes() throws UnsupportedEncodingException {
+        URL url = getClass().getClassLoader().getResource("EventTypes.json");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
         File file = new File(path);
         JsonObject input = null;
         boolean checkValue = false;        
@@ -214,9 +209,9 @@ public class ServiceTest {
             JsonArray eventTypes = input.getAsJsonArray("eventTypes");            
             List<String> matchingCollection = new ArrayList<>();
             if (eventTypes != null) {
-            	for (JsonElement event : eventTypes) {
-            		matchingCollection.add(event.getAsString());
-            	}
+                for (JsonElement event : eventTypes) {
+                    matchingCollection.add(event.getAsString());
+                }
             }
             checkValue = types.containsAll(matchingCollection);
         } catch (Exception e) {
@@ -252,5 +247,30 @@ public class ServiceTest {
             e.printStackTrace();
             Assert.assertFalse(true);
         }
+    }
+    
+    @Test
+    public void testInvalid_lv_Message_Success() throws JsonIOException, JsonSyntaxException, FileNotFoundException, UnsupportedEncodingException {
+            URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
+            String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
+            File file = new File(path);
+            JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+            String msg = service.generateMsg("EiffelArtifactCreatedEvent", input, true);
+            Assert.assertTrue(msg.contains("remremGenerateFailures"));
+            Assert.assertTrue(msg.contains("data"));
+            Assert.assertTrue(msg.contains("meta"));
+            Assert.assertTrue(msg.contains("links"));
+    }
+    @Test
+    public void testInvalid_lv_Message_fail() throws JsonIOException, JsonSyntaxException, FileNotFoundException, UnsupportedEncodingException {
+            URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
+            String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
+            File file = new File(path);
+            JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+            String msg = service.generateMsg("EiffelArtifactCreatedEvent", input);
+            Assert.assertTrue(msg.contains("message"));
+            Assert.assertTrue(msg.contains("Cannot validate given JSON string"));
+            Assert.assertTrue(msg.contains("cause"));
+            Assert.assertTrue(msg.contains("ECMA 262 regex"));
     }
 }
