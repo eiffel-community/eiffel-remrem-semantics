@@ -17,11 +17,12 @@
 
 <img src="./images/logo.png" alt="Eiffel RemRem" width="350"/>
 
-# Eiffel RemRem Semantics
-
+[![Sandbox badge](https://img.shields.io/badge/Stage-Sandbox-yellow)](https://github.com/eiffel-community/community/blob/master/PROJECT_LIFECYCLE.md#stage-sandbox)
 [![Build Status](https://travis-ci.org/eiffel-community/eiffel-remrem-semantics.svg?branch=master)](https://travis-ci.org/eiffel-community/eiffel-remrem-semantics)
 [![Coverage Status](https://coveralls.io/repos/github/eiffel-community/eiffel-remrem-semantics/badge.svg?branch=master)](https://coveralls.io/github/eiffel-community/eiffel-remrem-semantics?branch=master)
 [![](https://jitpack.io/v/eiffel-community/eiffel-remrem-semantics.svg)](https://jitpack.io/#eiffel-community/eiffel-remrem-semantics)
+
+# Eiffel RemRem Semantics
 
 Eiffel semantics is designed to implement the Eiffel messaging standard.
 # About this repository
