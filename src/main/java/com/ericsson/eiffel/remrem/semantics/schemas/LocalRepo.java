@@ -16,6 +16,10 @@ package com.ericsson.eiffel.remrem.semantics.schemas;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
@@ -29,10 +33,10 @@ import org.apache.commons.io.FileUtils;
  */
 public class LocalRepo {
 	private ArrayList<File> jsonEventSchemas;
-	private File localSchemasPath;
+	private Path localSchemasPath;
 	private ArrayList<String> jsonEventNames;
 
-	public LocalRepo(File localSchemasPath) {
+	public LocalRepo(Path localSchemasPath) {
 		this.localSchemasPath = localSchemasPath;
 	}
 
@@ -41,16 +45,15 @@ public class LocalRepo {
 	 * Repo
 	 */
 
-	public void readSchemas() {
+	public void readSchemas() throws IOException {
 		try {
-			FileUtils.cleanDirectory(new File(EiffelConstants.USER_DIR + File.separator + EiffelConstants.INPUT_EIFFEL_SCHEMAS));
+			FileUtils.cleanDirectory(EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS).toFile());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		jsonEventNames = new ArrayList<String>();
 		jsonEventSchemas = new ArrayList<File>();
-		String filePath = localSchemasPath + EiffelConstants.SCHEMA_LOCATION;
-		loadEiffelSchemas(filePath, "");
+		loadEiffelSchemas(localSchemasPath.resolve(EiffelConstants.SCHEMA_LOCATION), Paths.get(""));
 	}
 
 	/**
@@ -65,15 +68,15 @@ public class LocalRepo {
 	 *            event name.
 	 * 
 	 */
-	private void loadEiffelSchemas(String jsonFilePath, String directoryName) {
-		File file = new File(jsonFilePath);
-		File[] files = file.listFiles();
-		for (File jsonFile : files) {
-			if (jsonFile.isDirectory()) {
-				loadEiffelSchemas(jsonFile.getAbsolutePath(), jsonFile.getName());
-			} else {
-				jsonEventNames.add(directoryName);
-				jsonEventSchemas.add(jsonFile);
+	private void loadEiffelSchemas(Path jsonFilePath, Path directoryName) throws IOException {
+		try (DirectoryStream<Path> dirStream = Files.newDirectoryStream(jsonFilePath)) {
+			for (Path jsonFile : dirStream) {
+				if (Files.isDirectory(jsonFile)) {
+					loadEiffelSchemas(jsonFile.toAbsolutePath(), jsonFile.getFileName());
+				} else {
+					jsonEventNames.add(directoryName.toString());
+					jsonEventSchemas.add(jsonFile.toFile());
+				}
 			}
 		}
 	}

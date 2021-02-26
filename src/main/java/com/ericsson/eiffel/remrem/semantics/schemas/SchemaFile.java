@@ -17,6 +17,7 @@ package com.ericsson.eiffel.remrem.semantics.schemas;
 import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -236,16 +237,15 @@ public class SchemaFile {
      *            an input parameter to this method
      */
     public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
-        String currentWorkingDir = EiffelConstants.USER_DIR;
         FileWriter writer = null;
-        String copyFilePath = currentWorkingDir + File.separator + EiffelConstants.INPUT_EIFFEL_SCHEMAS;
-        String newFileName = copyFilePath + File.separator + jsonFileName + EiffelConstants.JSON_MIME_TYPE;
+        Path newFileName = EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS)
+                .resolve(jsonFileName + EiffelConstants.JSON_MIME_TYPE);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(jsonObject.toString());
         String prettyJsonString = gson.toJson(je);
         try {
-            writer = new FileWriter(newFileName);
+            writer = new FileWriter(newFileName.toFile());
             writer.write(prettyJsonString);
         } catch (Exception e) {
             e.printStackTrace();
