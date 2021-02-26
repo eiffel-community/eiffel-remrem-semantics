@@ -14,15 +14,16 @@
 */
 package com.ericsson.eiffel.remrem.semantics.schemas;
 
-import java.io.File;
+import com.vdurmont.semver4j.Semver;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.StreamSupport;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * This class is used to Iterate over the Eiffel schemas that are cloned from
@@ -32,9 +33,8 @@ import org.apache.commons.io.FileUtils;
  *
  */
 public class LocalRepo {
-	private ArrayList<File> jsonEventSchemas;
+	private final Map<String, Path> jsonEventSchemas = new HashMap<>();
 	private Path localSchemasPath;
-	private ArrayList<String> jsonEventNames;
 
 	public LocalRepo(Path localSchemasPath) {
 		this.localSchemasPath = localSchemasPath;
@@ -51,9 +51,7 @@ public class LocalRepo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		jsonEventNames = new ArrayList<String>();
-		jsonEventSchemas = new ArrayList<File>();
-		loadEiffelSchemas(localSchemasPath.resolve(EiffelConstants.SCHEMA_LOCATION), Paths.get(""));
+		loadEiffelSchemas(localSchemasPath.resolve(EiffelConstants.SCHEMA_LOCATION));
 	}
 
 	/**
@@ -63,32 +61,26 @@ public class LocalRepo {
 	 * @param jsonFilePath
 	 *            - This parameter is used to pass Location of the Schemas
 	 *            Directory
-	 * @param directoryName
-	 *            - This parameter is used to rename the File with corresponding
-	 *            event name.
-	 * 
 	 */
-	private void loadEiffelSchemas(Path jsonFilePath, Path directoryName) throws IOException {
-		try (DirectoryStream<Path> dirStream = Files.newDirectoryStream(jsonFilePath)) {
-			for (Path jsonFile : dirStream) {
-				if (Files.isDirectory(jsonFile)) {
-					loadEiffelSchemas(jsonFile.toAbsolutePath(), jsonFile.getFileName());
-				} else {
-					jsonEventNames.add(directoryName.toString());
-					jsonEventSchemas.add(jsonFile.toFile());
+	private void loadEiffelSchemas(final Path jsonFilePath) throws IOException {
+		try (DirectoryStream<Path> schemaDirStream =
+					 Files.newDirectoryStream(jsonFilePath, Files::isDirectory)) {
+			for (Path eventDir : schemaDirStream) {
+				try (DirectoryStream<Path> eventDirStream =
+							 Files.newDirectoryStream(eventDir, file -> file.toString().endsWith(".json"))) {
+					// Turn the filenames into versions and find the greatest version
+					Semver latestSchemaVersion = StreamSupport.stream(eventDirStream.spliterator(), false)
+							.map(path -> new Semver(FilenameUtils.removeExtension(path.getFileName().toString())))
+							.max(Semver::compareTo)
+							.get();
+					jsonEventSchemas.put(eventDir.getFileName().toString(),
+							eventDir.resolve(latestSchemaVersion.toString() + ".json"));
 				}
 			}
 		}
 	}
 
-	public ArrayList<File> getJsonEventSchemas() {
+	public Map<String, Path> getJsonEventSchemas() {
 		return jsonEventSchemas;
 	}
-
-	public ArrayList<String> getJsonEventNames() {
-		return jsonEventNames;
-	}
-	
-	
-
 }

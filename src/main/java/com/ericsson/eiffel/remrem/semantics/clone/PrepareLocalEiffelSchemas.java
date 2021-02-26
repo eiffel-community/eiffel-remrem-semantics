@@ -14,7 +14,6 @@
 */
 package com.ericsson.eiffel.remrem.semantics.clone;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.Authenticator;
 import java.net.InetSocketAddress;
@@ -25,10 +24,10 @@ import java.net.SocketAddress;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
@@ -194,18 +193,12 @@ public class PrepareLocalEiffelSchemas {
         final LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
         localRepo.readSchemas();
 
-        final ArrayList<String> jsonEventNames = localRepo.getJsonEventNames();
-        final ArrayList<File> jsonEventSchemas = localRepo.getJsonEventSchemas();
-
-        // Schema changes 
+        // Schema changes
         final SchemaFile schemaFile = new SchemaFile();
 
-        // Iterate the Each jsonSchema file to Add and Modify the necessary properties 
-        if (jsonEventNames != null && jsonEventSchemas != null) {
-            for (int i = 0; i < jsonEventNames.size(); i++) {
-                schemaFile.modify(jsonEventSchemas.get(i), jsonEventNames.get(i));
-            }
+        // Iterate over available input schemas and create new and patched files
+        for (Map.Entry<String, Path> event : localRepo.getJsonEventSchemas().entrySet()) {
+             schemaFile.modify(event.getValue().toFile(), event.getKey());
         }
-
     }
 }
