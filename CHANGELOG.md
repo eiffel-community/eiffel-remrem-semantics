@@ -1,3 +1,6 @@
+## 2.1.1
+- Uplifted eiffel-remrem-parent version from 2.0.4 to 2.0.5.
+
 ## 2.1.0
 - Updated REMReM Generate to support lenient validation for Eiffel Semantics protocol.
 
