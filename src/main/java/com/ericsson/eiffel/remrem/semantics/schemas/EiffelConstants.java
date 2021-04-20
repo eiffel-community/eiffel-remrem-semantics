@@ -14,6 +14,9 @@
 */
 package com.ericsson.eiffel.remrem.semantics.schemas;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
  * This is a constants class used in other classes
  * 
@@ -41,13 +44,13 @@ public final class EiffelConstants {
     public static String COM_ERICSSON_EIFFEL_SEMANTICS_EVENTS = "com.ericsson.eiffel.semantics.events.";
     public static String TYPE = "type";
     public static String OBJECTTYPE = "object";
-    public static String INPUT_EIFFEL_SCHEMAS = "src\\main\\resources\\schemas\\input";
+    public static Path INPUT_EIFFEL_SCHEMAS = Paths.get("src", "main", "resources", "schemas", "input");
     public static String EIFFEL = "eiffel";
     public static String OPERATIONS_REPO_NAME = "eiffel-operations-extension";
-    public static String USER_DIR = System.getProperty("user.dir");
-    public static String SCHEMA_LOCATION = "\\schemas";
+    public static Path USER_DIR = Paths.get(System.getProperty("user.dir"));
+    public static Path SCHEMA_LOCATION = Paths.get("schemas");
     public static String JSON_MIME_TYPE = ".json";
-    public static String USER_HOME = "user.home";
+    public static Path USER_HOME = Paths.get(System.getProperty("user.home"));
     public static String ACTIVITY = "activity";
     public static String ARTIFACT = "artifact";
     public static String SERVICE = "service";

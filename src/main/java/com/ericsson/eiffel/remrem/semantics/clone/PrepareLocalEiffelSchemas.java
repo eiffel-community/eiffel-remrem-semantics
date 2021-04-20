@@ -14,7 +14,6 @@
 */
 package com.ericsson.eiffel.remrem.semantics.clone;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.Authenticator;
 import java.net.InetSocketAddress;
@@ -23,10 +22,12 @@ import java.net.Proxy;
 import java.net.ProxySelector;
 import java.net.SocketAddress;
 import java.net.URI;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
@@ -64,17 +65,17 @@ public class PrepareLocalEiffelSchemas {
      * @param localEiffelRepoPath
      *            destination path to clone the repo.
      */
-    private void cloneEiffelRepo(final String repoURL, final String branch, final File localEiffelRepoPath) {
+    private void cloneEiffelRepo(final String repoURL, final String branch, final Path localEiffelRepoPath) {
         Git localGitRepo = null;
         
         // checking for repository exists or not in the localEiffelRepoPath
         try {
-            if (!localEiffelRepoPath.exists()) {
+            if (Files.notExists(localEiffelRepoPath)) {
                 // cloning github repository by using URL and branch name into local
-                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch("master").setDirectory(localEiffelRepoPath).call();
+                localGitRepo = Git.cloneRepository().setURI(repoURL).setBranch("master").setDirectory(localEiffelRepoPath.toFile()).call();
             } else {
                 // If required repository already exists
-                localGitRepo = Git.open(localEiffelRepoPath);
+                localGitRepo = Git.open(localEiffelRepoPath.toFile());
 
                 // Reset to normal if uncommitted changes are present
                 localGitRepo.reset().call();
@@ -152,12 +153,12 @@ public class PrepareLocalEiffelSchemas {
      * @param eiffelRepoPath
      *            local eiffel repository url
      */
-    private void copyOperationSchemas(final String operationsRepoPath, final String eiffelRepoPath) {
-        final File operationSchemas = new File(operationsRepoPath + File.separator + EiffelConstants.SCHEMA_LOCATION);
-        final File eiffelSchemas = new File(eiffelRepoPath + File.separator + EiffelConstants.SCHEMA_LOCATION);
-        if (operationSchemas.isDirectory()) {
+    private void copyOperationSchemas(final Path operationsRepoPath, final Path eiffelRepoPath) {
+        final Path operationSchemas = operationsRepoPath.resolve(EiffelConstants.SCHEMA_LOCATION);
+        final Path eiffelSchemas = eiffelRepoPath.resolve(EiffelConstants.SCHEMA_LOCATION);
+        if (Files.isDirectory(operationSchemas)) {
             try {
-                FileUtils.copyDirectory(operationSchemas, eiffelSchemas);
+                FileUtils.copyDirectory(operationSchemas.toFile(), eiffelSchemas.toFile());
             } catch (IOException e) {
                 System.out.println("Exception occurred while copying schemas from operations repository to eiffel repository");
                 e.printStackTrace();
@@ -176,9 +177,8 @@ public class PrepareLocalEiffelSchemas {
         final String operationRepoUrl = args[2];
         final String operationRepoBranch = args[3];
 
-        final File localEiffelRepoPath = new File(System.getProperty(EiffelConstants.USER_HOME) + File.separator + EiffelConstants.EIFFEL);
-        final File localOperationsRepoPath = new File(
-                System.getProperty(EiffelConstants.USER_HOME) + File.separator + EiffelConstants.OPERATIONS_REPO_NAME);
+        final Path localEiffelRepoPath = EiffelConstants.USER_HOME.resolve(EiffelConstants.EIFFEL);
+        final Path localOperationsRepoPath = EiffelConstants.USER_HOME.resolve(EiffelConstants.OPERATIONS_REPO_NAME);
 
         // Clone Eiffel Repo from GitHub 
         prepareLocalSchema.cloneEiffelRepo(eiffelRepoUrl, eiffelRepoBranch, localEiffelRepoPath);
@@ -187,24 +187,18 @@ public class PrepareLocalEiffelSchemas {
         prepareLocalSchema.cloneEiffelRepo(operationRepoUrl, operationRepoBranch, localOperationsRepoPath);
 
         //Copy operations repo Schemas to location where Eiffel repo schemas available
-        prepareLocalSchema.copyOperationSchemas(localOperationsRepoPath.getAbsolutePath(), localEiffelRepoPath.getAbsolutePath());
+        prepareLocalSchema.copyOperationSchemas(localOperationsRepoPath.toAbsolutePath(), localEiffelRepoPath.toAbsolutePath());
 
         // Read and Load JsonSchemas from Cloned Directory 
         final LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
         localRepo.readSchemas();
 
-        final ArrayList<String> jsonEventNames = localRepo.getJsonEventNames();
-        final ArrayList<File> jsonEventSchemas = localRepo.getJsonEventSchemas();
-
-        // Schema changes 
+        // Schema changes
         final SchemaFile schemaFile = new SchemaFile();
 
-        // Iterate the Each jsonSchema file to Add and Modify the necessary properties 
-        if (jsonEventNames != null && jsonEventSchemas != null) {
-            for (int i = 0; i < jsonEventNames.size(); i++) {
-                schemaFile.modify(jsonEventSchemas.get(i), jsonEventNames.get(i));
-            }
+        // Iterate over available input schemas and create new and patched files
+        for (Map.Entry<String, Path> event : localRepo.getJsonEventSchemas().entrySet()) {
+             schemaFile.modify(event.getValue().toFile(), event.getKey());
         }
-
     }
 }
