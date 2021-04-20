@@ -62,17 +62,22 @@ public class EiffelActivityFinishedEventOutcome {
     public enum Conclusion {
 
         @SerializedName("SUCCESSFUL")
-        SUCCESSFUL("SUCCESSFUL"), @SerializedName("UNSUCCESSFUL")
-        UNSUCCESSFUL("UNSUCCESSFUL"), @SerializedName("FAILED")
-        FAILED("FAILED"), @SerializedName("ABORTED")
-        ABORTED("ABORTED"), @SerializedName("TIMED_OUT")
-        TIMED_OUT("TIMED_OUT"), @SerializedName("INCONCLUSIVE")
+        SUCCESSFUL("SUCCESSFUL"),
+        @SerializedName("UNSUCCESSFUL")
+        UNSUCCESSFUL("UNSUCCESSFUL"),
+        @SerializedName("FAILED")
+        FAILED("FAILED"),
+        @SerializedName("ABORTED")
+        ABORTED("ABORTED"),
+        @SerializedName("TIMED_OUT")
+        TIMED_OUT("TIMED_OUT"),
+        @SerializedName("INCONCLUSIVE")
         INCONCLUSIVE("INCONCLUSIVE");
         private final String value;
         private final static Map<String, EiffelActivityFinishedEventOutcome.Conclusion> CONSTANTS = new HashMap<String, EiffelActivityFinishedEventOutcome.Conclusion>();
 
         static {
-            for (EiffelActivityFinishedEventOutcome.Conclusion c : values()) {
+            for (EiffelActivityFinishedEventOutcome.Conclusion c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

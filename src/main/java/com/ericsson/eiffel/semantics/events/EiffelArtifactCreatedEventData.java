@@ -91,8 +91,7 @@ public class EiffelArtifactCreatedEventData {
         return requiresImplementation;
     }
 
-    public void setRequiresImplementation(
-            EiffelArtifactCreatedEventData.RequiresImplementation requiresImplementation) {
+    public void setRequiresImplementation(EiffelArtifactCreatedEventData.RequiresImplementation requiresImplementation) {
         this.requiresImplementation = requiresImplementation;
     }
 
@@ -131,15 +130,18 @@ public class EiffelArtifactCreatedEventData {
     public enum RequiresImplementation {
 
         @SerializedName("NONE")
-        NONE("NONE"), @SerializedName("ANY")
-        ANY("ANY"), @SerializedName("EXACTLY_ONE")
-        EXACTLY_ONE("EXACTLY_ONE"), @SerializedName("AT_LEAST_ONE")
+        NONE("NONE"),
+        @SerializedName("ANY")
+        ANY("ANY"),
+        @SerializedName("EXACTLY_ONE")
+        EXACTLY_ONE("EXACTLY_ONE"),
+        @SerializedName("AT_LEAST_ONE")
         AT_LEAST_ONE("AT_LEAST_ONE");
         private final String value;
         private final static Map<String, EiffelArtifactCreatedEventData.RequiresImplementation> CONSTANTS = new HashMap<String, EiffelArtifactCreatedEventData.RequiresImplementation>();
 
         static {
-            for (EiffelArtifactCreatedEventData.RequiresImplementation c : values()) {
+            for (EiffelArtifactCreatedEventData.RequiresImplementation c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

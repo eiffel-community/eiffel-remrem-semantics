@@ -21,7 +21,8 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelTestCaseStartedEventMeta implements Meta {
+public class EiffelTestCaseStartedEventMeta implements Meta
+{
 
     /**
      * 
@@ -169,7 +170,7 @@ public class EiffelTestCaseStartedEventMeta implements Meta {
         private final static Map<String, EiffelTestCaseStartedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelTestCaseStartedEventMeta.Type>();
 
         static {
-            for (EiffelTestCaseStartedEventMeta.Type c : values()) {
+            for (EiffelTestCaseStartedEventMeta.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -206,7 +207,7 @@ public class EiffelTestCaseStartedEventMeta implements Meta {
         private final static Map<String, EiffelTestCaseStartedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestCaseStartedEventMeta.Version>();
 
         static {
-            for (EiffelTestCaseStartedEventMeta.Version c : values()) {
+            for (EiffelTestCaseStartedEventMeta.Version c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

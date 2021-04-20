@@ -19,7 +19,9 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelIssueDefinedEvent extends Event {
+public class EiffelIssueDefinedEvent
+    extends Event
+{
 
     @SerializedName("meta")
     @Expose
