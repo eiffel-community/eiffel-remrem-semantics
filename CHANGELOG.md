@@ -1,3 +1,6 @@
+## 2.1.2
+- Implemented code changes to add the default domainId value, if its not provided by user.
+
 ## 2.1.1
 - Uplifted eiffel-remrem-parent version from 2.0.4 to 2.0.5.
 - Uplifted eiffel-remrem-protocol-interface version from 2.1.0 to 2.1.1.

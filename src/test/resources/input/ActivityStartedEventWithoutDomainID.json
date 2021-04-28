@@ -1,0 +1,46 @@
+{
+  "msgParams": {
+    "meta": {
+      "type": "EiffelActivityStartedEvent",
+      "version": "4.0.0",
+      "tags": ["product_development","product_feature1"],
+      "source": {
+        "domainId": "",
+        "host": "localhost",
+        "name": "LOCALHOST",
+        "uri": "https://localhost:8080/jenkins/job",
+        "serializer":"pkg:maven/com.github.eiffel-community/eiffel-remrem-semantics@2.0.2"
+      },
+      "security": {
+         "authorIdentity": "abc"
+      }
+    }
+  },
+  "eventParams": {
+    "data": {
+      "executionUri": "http://localhost:8080/job/dsd",
+      "liveLogs": [{
+          "name": "console",
+          "uri": "http://localhost:8085/job/dsd/9/console"
+        }
+      ],
+      "customData": [{
+          "key": "EIFFELVERSION",
+          "value": "eiffel2.0"
+        },
+        {
+          "key": "FLOWCONTEXT",
+          "value": "master"
+        }
+      ]
+    },
+    "links": [{
+      "type": "ACTIVITY_EXECUTION",
+      "target": "e269b37d-17a1-4a10-aafb-c108735ee51f"
+    },
+    {
+      "type": "PREVIOUS_ACTIVITY_EXECUTION",
+      "target": "e269b37d-17a1-4a10-aafb-c108735ee51c"
+    }]
+  }
+}

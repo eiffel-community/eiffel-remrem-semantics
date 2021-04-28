@@ -127,6 +127,7 @@ public class SemanticsService implements MsgService {
     private static final String DOMAIN_ID = "domainId";
     private static final String PROTOCOL = "eiffel";
     private static final String DOT = ".";
+    private static final String DEFAULT_DOMAIN_ID = "domainID";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
     private Event event = new Event();
@@ -218,6 +219,8 @@ public class SemanticsService implements MsgService {
                 log.error(Message + "\nCause: " + Cause);
                 return createErrorResponse(Message, Cause);
             }
+            //set the default domainID if its empty
+            msgNodes = setDomainId(msgNodes);
 
             // Compare the input JSON EventType with query parameter(-t) and
             // also
@@ -459,5 +462,24 @@ public class SemanticsService implements MsgService {
         String serializer = source.getSerializer() == null ? purlSerializer : source.getSerializer();
         source.setSerializer(serializer);
         return source;
+    }
+
+    /**
+     * This method returns the default Default domainId, if its empty
+     *
+     * @param msgNodes contains msgParams of eiffel message in json form
+     * @return msgNodes returns default domainId, if domainId value is empty.
+     */
+    private JsonObject setDomainId(JsonObject msgNodes) {
+        if (msgNodes.isJsonObject() && msgNodes.getAsJsonObject().has(META)
+                && msgNodes.getAsJsonObject().getAsJsonObject(META).has(SOURCE)
+                && msgNodes.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE).has(DOMAIN_ID)) {
+            String domainId = msgNodes.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE).get(DOMAIN_ID)
+                    .getAsString();
+            if(domainId.isEmpty()) {
+                msgNodes.getAsJsonObject().getAsJsonObject(META).getAsJsonObject(SOURCE).addProperty(DOMAIN_ID, DEFAULT_DOMAIN_ID);
+            }
+        }
+        return msgNodes;
     }
 }
