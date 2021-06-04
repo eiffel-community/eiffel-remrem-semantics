@@ -21,7 +21,8 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelEnvironmentDefinedEventMeta implements Meta {
+public class EiffelEnvironmentDefinedEventMeta implements Meta
+{
 
     /**
      * 
@@ -46,8 +47,7 @@ public class EiffelEnvironmentDefinedEventMeta implements Meta {
      */
     @SerializedName("version")
     @Expose
-    private EiffelEnvironmentDefinedEventMeta.Version version = EiffelEnvironmentDefinedEventMeta.Version
-            .fromValue("3.0.0");
+    private EiffelEnvironmentDefinedEventMeta.Version version = EiffelEnvironmentDefinedEventMeta.Version.fromValue("3.0.0");
     /**
      * 
      * (Required)
@@ -170,7 +170,7 @@ public class EiffelEnvironmentDefinedEventMeta implements Meta {
         private final static Map<String, EiffelEnvironmentDefinedEventMeta.Type> CONSTANTS = new HashMap<String, EiffelEnvironmentDefinedEventMeta.Type>();
 
         static {
-            for (EiffelEnvironmentDefinedEventMeta.Type c : values()) {
+            for (EiffelEnvironmentDefinedEventMeta.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -207,7 +207,7 @@ public class EiffelEnvironmentDefinedEventMeta implements Meta {
         private final static Map<String, EiffelEnvironmentDefinedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelEnvironmentDefinedEventMeta.Version>();
 
         static {
-            for (EiffelEnvironmentDefinedEventMeta.Version c : values()) {
+            for (EiffelEnvironmentDefinedEventMeta.Version c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

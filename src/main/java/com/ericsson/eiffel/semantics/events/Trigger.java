@@ -62,16 +62,20 @@ public class Trigger {
     public enum Type {
 
         @SerializedName("MANUAL")
-        MANUAL("MANUAL"), @SerializedName("EIFFEL_EVENT")
-        EIFFEL_EVENT("EIFFEL_EVENT"), @SerializedName("SOURCE_CHANGE")
-        SOURCE_CHANGE("SOURCE_CHANGE"), @SerializedName("TIMER")
-        TIMER("TIMER"), @SerializedName("OTHER")
+        MANUAL("MANUAL"),
+        @SerializedName("EIFFEL_EVENT")
+        EIFFEL_EVENT("EIFFEL_EVENT"),
+        @SerializedName("SOURCE_CHANGE")
+        SOURCE_CHANGE("SOURCE_CHANGE"),
+        @SerializedName("TIMER")
+        TIMER("TIMER"),
+        @SerializedName("OTHER")
         OTHER("OTHER");
         private final String value;
         private final static Map<String, Trigger.Type> CONSTANTS = new HashMap<String, Trigger.Type>();
 
         static {
-            for (Trigger.Type c : values()) {
+            for (Trigger.Type c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

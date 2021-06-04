@@ -88,23 +88,34 @@ public class IntegrityProtection {
     public enum Alg {
 
         @SerializedName("HS256")
-        HS_256("HS256"), @SerializedName("HS384")
-        HS_384("HS384"), @SerializedName("HS512")
-        HS_512("HS512"), @SerializedName("RS256")
-        RS_256("RS256"), @SerializedName("RS384")
-        RS_384("RS384"), @SerializedName("RS512")
-        RS_512("RS512"), @SerializedName("ES256")
-        ES_256("ES256"), @SerializedName("ES384")
-        ES_384("ES384"), @SerializedName("ES512")
-        ES_512("ES512"), @SerializedName("PS256")
-        PS_256("PS256"), @SerializedName("PS384")
-        PS_384("PS384"), @SerializedName("PS512")
+        HS_256("HS256"),
+        @SerializedName("HS384")
+        HS_384("HS384"),
+        @SerializedName("HS512")
+        HS_512("HS512"),
+        @SerializedName("RS256")
+        RS_256("RS256"),
+        @SerializedName("RS384")
+        RS_384("RS384"),
+        @SerializedName("RS512")
+        RS_512("RS512"),
+        @SerializedName("ES256")
+        ES_256("ES256"),
+        @SerializedName("ES384")
+        ES_384("ES384"),
+        @SerializedName("ES512")
+        ES_512("ES512"),
+        @SerializedName("PS256")
+        PS_256("PS256"),
+        @SerializedName("PS384")
+        PS_384("PS384"),
+        @SerializedName("PS512")
         PS_512("PS512");
         private final String value;
         private final static Map<String, IntegrityProtection.Alg> CONSTANTS = new HashMap<String, IntegrityProtection.Alg>();
 
         static {
-            for (IntegrityProtection.Alg c : values()) {
+            for (IntegrityProtection.Alg c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

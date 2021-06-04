@@ -21,7 +21,8 @@ import java.util.Map;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelActivityStartedEventMeta implements Meta {
+public class EiffelActivityStartedEventMeta implements Meta
+{
 
     /**
      * 

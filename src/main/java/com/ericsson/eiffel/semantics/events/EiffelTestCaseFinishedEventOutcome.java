@@ -101,16 +101,20 @@ public class EiffelTestCaseFinishedEventOutcome {
     public enum Conclusion {
 
         @SerializedName("SUCCESSFUL")
-        SUCCESSFUL("SUCCESSFUL"), @SerializedName("FAILED")
-        FAILED("FAILED"), @SerializedName("ABORTED")
-        ABORTED("ABORTED"), @SerializedName("TIMED_OUT")
-        TIMED_OUT("TIMED_OUT"), @SerializedName("INCONCLUSIVE")
+        SUCCESSFUL("SUCCESSFUL"),
+        @SerializedName("FAILED")
+        FAILED("FAILED"),
+        @SerializedName("ABORTED")
+        ABORTED("ABORTED"),
+        @SerializedName("TIMED_OUT")
+        TIMED_OUT("TIMED_OUT"),
+        @SerializedName("INCONCLUSIVE")
         INCONCLUSIVE("INCONCLUSIVE");
         private final String value;
         private final static Map<String, EiffelTestCaseFinishedEventOutcome.Conclusion> CONSTANTS = new HashMap<String, EiffelTestCaseFinishedEventOutcome.Conclusion>();
 
         static {
-            for (EiffelTestCaseFinishedEventOutcome.Conclusion c : values()) {
+            for (EiffelTestCaseFinishedEventOutcome.Conclusion c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }
@@ -142,14 +146,16 @@ public class EiffelTestCaseFinishedEventOutcome {
     public enum Verdict {
 
         @SerializedName("PASSED")
-        PASSED("PASSED"), @SerializedName("FAILED")
-        FAILED("FAILED"), @SerializedName("INCONCLUSIVE")
+        PASSED("PASSED"),
+        @SerializedName("FAILED")
+        FAILED("FAILED"),
+        @SerializedName("INCONCLUSIVE")
         INCONCLUSIVE("INCONCLUSIVE");
         private final String value;
         private final static Map<String, EiffelTestCaseFinishedEventOutcome.Verdict> CONSTANTS = new HashMap<String, EiffelTestCaseFinishedEventOutcome.Verdict>();
 
         static {
-            for (EiffelTestCaseFinishedEventOutcome.Verdict c : values()) {
+            for (EiffelTestCaseFinishedEventOutcome.Verdict c: values()) {
                 CONSTANTS.put(c.value, c);
             }
         }

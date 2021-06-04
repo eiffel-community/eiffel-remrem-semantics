@@ -19,7 +19,9 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class EiffelTestCaseCanceledEvent extends Event {
+public class EiffelTestCaseCanceledEvent
+    extends Event
+{
 
     /**
      * 
