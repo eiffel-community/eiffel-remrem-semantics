@@ -21,6 +21,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Location {
 
+    @SerializedName("name")
+    @Expose
+    private String name;
     /**
      * 
      * (Required)
@@ -37,6 +40,14 @@ public class Location {
     @SerializedName("uri")
     @Expose
     private String uri;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     /**
      * 

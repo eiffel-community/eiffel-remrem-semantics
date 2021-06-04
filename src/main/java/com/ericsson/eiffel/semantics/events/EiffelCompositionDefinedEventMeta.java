@@ -47,7 +47,7 @@ public class EiffelCompositionDefinedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelCompositionDefinedEventMeta.Version version = EiffelCompositionDefinedEventMeta.Version.fromValue("3.0.0");
+    private EiffelCompositionDefinedEventMeta.Version version = EiffelCompositionDefinedEventMeta.Version.fromValue("3.1.0");
     /**
      * 
      * (Required)
@@ -201,8 +201,8 @@ public class EiffelCompositionDefinedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("3.0.0")
-        _3_0_0("3.0.0");
+        @SerializedName("3.1.0")
+        _3_1_0("3.1.0");
         private final String value;
         private final static Map<String, EiffelCompositionDefinedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelCompositionDefinedEventMeta.Version>();
 
