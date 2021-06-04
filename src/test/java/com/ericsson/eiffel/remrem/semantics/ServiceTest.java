@@ -273,4 +273,19 @@ public class ServiceTest {
             Assert.assertTrue(msg.contains("cause"));
             Assert.assertTrue(msg.contains("ECMA 262 regex"));
     }
+
+    @Test
+    public void testActivityStartedEventWithOutDomainId()
+            throws FileNotFoundException, UnsupportedEncodingException {
+        URL url = getClass().getClassLoader()
+                            .getResource("input/ActivityStartedEventWithoutDomainID.json");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
+        File file = new File(path);
+        JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+        String msg = service.generateMsg("EiffelActivityStartedEvent", input);
+        Assert.assertTrue(msg.contains("data"));
+        Assert.assertTrue(msg.contains("meta"));
+        Assert.assertTrue(msg.contains("links"));
+        Assert.assertTrue(msg.contains("domainID"));
+    }
 }
