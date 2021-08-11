@@ -2,7 +2,7 @@
   "meta": {
     "id": "ff2f8aae-692d-4906-a3a3-bd819d4769c3",
     "type": "EiffelArtifactPublishedEvent",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "time": 1554389528061,
     "tags": [
       "tag1",
@@ -26,6 +26,7 @@
     "locations": [
       {
         "type": "ARTIFACTORY",
+        "name": "file1",
         "uri": "https://one.place"
       },
       {

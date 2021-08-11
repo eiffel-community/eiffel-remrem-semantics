@@ -47,7 +47,7 @@ public class EiffelArtifactPublishedEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelArtifactPublishedEventMeta.Version version = EiffelArtifactPublishedEventMeta.Version.fromValue("3.0.0");
+    private EiffelArtifactPublishedEventMeta.Version version = EiffelArtifactPublishedEventMeta.Version.fromValue("3.1.0");
     /**
      * 
      * (Required)
@@ -201,8 +201,8 @@ public class EiffelArtifactPublishedEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("3.0.0")
-        _3_0_0("3.0.0");
+        @SerializedName("3.1.0")
+        _3_1_0("3.1.0");
         private final String value;
         private final static Map<String, EiffelArtifactPublishedEventMeta.Version> CONSTANTS = new HashMap<String, EiffelArtifactPublishedEventMeta.Version>();
 
