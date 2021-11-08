@@ -1,3 +1,7 @@
+##2.2.1
+- Provided implementation for getProtocolEdition() method which returns the edition name
+- Uplifted eiffel-remrem-protocol-interface version from 2.1.1 to 2.1.2.
+
 ## 2.2.0
 - Updated schemas to match the Paris edition of the protocol.
 
