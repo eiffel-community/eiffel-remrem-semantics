@@ -11,6 +11,7 @@
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
+        <license.dir>${basedir}</license.dir>
     </properties>
     <repositories>
         <repository>
@@ -149,6 +150,30 @@
                                 <goals>
                                     <goal>generate</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.mycila.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>1.10.b1</version>
+                        <configuration>
+                            <header>${license.dir}/copyright_header.txt</header>
+                            <properties>
+                                <project>${project.name}</project>
+                                <founder>${project.organization.name}</founder>
+                                <year>${project.inceptionYear}</year>
+                            </properties>
+                            <includes>
+                                <include>src/main/java/</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>

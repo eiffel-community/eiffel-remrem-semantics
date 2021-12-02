@@ -1,5 +1,6 @@
 ## 2.2.0
 - Updated schemas to match the Paris edition of the protocol.
+- After schema update process,implemented code changes to append copyright header to generated POJO classes.
 
 ## 2.1.1
 - Uplifted eiffel-remrem-parent version from 2.0.4 to 2.0.5.
