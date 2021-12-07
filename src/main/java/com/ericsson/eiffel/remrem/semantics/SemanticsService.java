@@ -471,14 +471,14 @@ public class SemanticsService implements MsgService {
 
     @Override
     public String getProtocolEdition() {
-        Enumeration<?> eNum;
+        Enumeration<?> manifestFileName;
         try {
-            eNum = Thread.currentThread()
+            manifestFileName = Thread.currentThread()
                          .getContextClassLoader()
                          .getResources(JarFile.MANIFEST_NAME);
-            while (eNum.hasMoreElements()) {
+            while (manifestFileName.hasMoreElements()) {
                 try {
-                    final URL url = (URL) eNum.nextElement();
+                    final URL url = (URL) manifestFileName.nextElement();
                     final InputStream inputStream = url.openStream();
                     if (inputStream != null) {
                         final Manifest manifest = new Manifest(inputStream);
