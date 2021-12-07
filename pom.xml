@@ -159,11 +159,6 @@
                         <version>1.10.b1</version>
                         <configuration>
                             <header>${license.dir}/copyright_header.txt</header>
-                            <properties>
-                                <project>${project.name}</project>
-                                <founder>${project.organization.name}</founder>
-                                <year>${project.inceptionYear}</year>
-                            </properties>
                             <includes>
                                 <include>src/main/java/</include>
                             </includes>
