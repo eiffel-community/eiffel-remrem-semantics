@@ -21,7 +21,7 @@ import java.time.ZoneOffset;
 import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.ericsson.eiffel.remrem.semantics.RoutingKeyTypes;
+import com.ericsson.eiffel.remrem.semantics.RoutingKeyFamilies;
 
 /**
  * This is the super class for all Eiffel event classes
@@ -55,24 +55,7 @@ public class Event {
      */
     public String getFamilyRoutingKey(String eventType) {
         try {
-            return RoutingKeyTypes.valueOf(eventType).getFamily();
-        } catch (Exception e) {
-            log.error("Unknown event type requested: " + eventType);
-        }
-        return null;
-    }
-
-    /**
-     * This method is used to get type based on the eventType
-     * 
-     * @param eventType
-     *            Eiffel eventType
-     * @return type based on eventType (or) error will be thrown if unknown
-     *         eventType requested.
-     */
-    public String getTypeRoutingKey(String eventType) {
-        try {
-            return RoutingKeyTypes.valueOf(eventType).getType();
+            return RoutingKeyFamilies.valueOf(eventType).getFamily();
         } catch (Exception e) {
             log.error("Unknown event type requested: " + eventType);
         }
