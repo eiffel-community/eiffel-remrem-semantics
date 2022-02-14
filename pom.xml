@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.5</version>
+        <version>2.0.6</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.2.0</version>
+    <version>2.2.1</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -55,6 +55,17 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl-api</artifactId>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>

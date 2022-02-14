@@ -1,3 +1,5 @@
+## 2.2.1
+- Uplifted eiffel-remrem-parent version from 2.0.5 to 2.0.6.
 
 ## 2.2.0
 - Updated schemas to match the Paris edition of the protocol.
