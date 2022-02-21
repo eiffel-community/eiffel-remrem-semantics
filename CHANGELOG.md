@@ -1,6 +1,13 @@
+## 2.2.2
+- After schema update process,implemented code changes to prepend copyright header to generated POJO classes.
+
+## 2.2.1
+- Uplifted eiffel-remrem-parent version from 2.0.5 to 2.0.6.
+
 ## 2.2.0
 - Updated schemas to match the Paris edition of the protocol.
-- After schema update process,implemented code changes to prepend copyright header to generated POJO classes.
+- Provided implementation for getProtocolEdition() method which returns the edition name
+- Uplifted eiffel-remrem-protocol-interface version from 2.1.1 to 2.1.2.
 
 ## 2.1.1
 - Uplifted eiffel-remrem-parent version from 2.0.4 to 2.0.5.
