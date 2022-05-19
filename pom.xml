@@ -7,10 +7,11 @@
         <version>2.0.6</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.2.1</version>
+    <version>2.2.2</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
+        <license.dir>${basedir}</license.dir>
     </properties>
     <repositories>
         <repository>
@@ -82,6 +83,11 @@
             <artifactId>org.eclipse.jgit.archive</artifactId>
             <version>${eclipse.jgit.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
         </dependency>
         <dependency>
         <groupId>com.jayway.jsonpath</groupId>
@@ -160,6 +166,25 @@
                                 <goals>
                                     <goal>generate</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.mycila.maven-license-plugin</groupId>
+                        <artifactId>maven-license-plugin</artifactId>
+                        <version>1.10.b1</version>
+                        <configuration>
+                            <header>${license.dir}/copyright_header.txt</header>
+                            <includes>
+                                <include>src/main/java/</include>
+                            </includes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>
