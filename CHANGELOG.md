@@ -1,6 +1,8 @@
 ## 2.2.2
 - After schema update process,implemented code changes to prepend copyright header to generated POJO classes.
 - Uplifted httpclient dependency version.
+- Uplifted eiffel-remrem-parent version from 2.0.6 to 2.0.7.
+- Removed the jstl-api dependency to resolve the /context_path issue.
 
 ## 2.2.1
 - Uplifted eiffel-remrem-parent version from 2.0.5 to 2.0.6.
