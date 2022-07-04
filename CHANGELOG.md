@@ -1,3 +1,7 @@
+## 2.2.3
+- Uplifted eiffel-remrem-parent version from 2.0.7 to 2.0.8.
+- Uplifted eiffel-remrem-protocol-interface version from 2.1.2 to 2.1.3.
+
 ## 2.2.2
 - After schema update process,implemented code changes to prepend copyright header to generated POJO classes.
 - Uplifted httpclient dependency version.
