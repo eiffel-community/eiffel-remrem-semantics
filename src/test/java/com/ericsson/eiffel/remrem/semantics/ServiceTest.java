@@ -179,7 +179,7 @@ public class ServiceTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        assertEquals("eiffel.activity.finished.notag.domainID", routingKey);
+        assertEquals("eiffel.activity.EiffelActivityFinishedEvent.notag.domainID", routingKey);
     }
 
     @Test

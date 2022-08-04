@@ -56,7 +56,7 @@ public final class EiffelConstants {
     public static String SERVICE = "service";
     public static String ALERT = "alert";
     public static String CM = "cm";
-    public static String INFO = "info";
+    public static String ANNOUNCEMENT = "announcement";
     public static String CONFIGURATION = "configuration";
     public static String FLOWCONTEXT = "flowcontext";
     public static String TEST = "test";
