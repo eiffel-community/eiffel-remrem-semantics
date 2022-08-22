@@ -2,7 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelSourceChangeSubmittedEvent",
-      "version": "3.0.0",
+      "version": "3.2.0",
+      "schemaUri": "https://eiffel/schemas/EiffelSourceChangeSubmittedEvent/3.2.0.json",
       "tags": [
         "tag1",
         "tag2"

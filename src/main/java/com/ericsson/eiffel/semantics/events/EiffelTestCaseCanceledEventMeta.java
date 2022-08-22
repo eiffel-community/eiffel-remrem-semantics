@@ -48,7 +48,7 @@ public class EiffelTestCaseCanceledEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelTestCaseCanceledEventMeta.Version version = EiffelTestCaseCanceledEventMeta.Version.fromValue("3.0.0");
+    private EiffelTestCaseCanceledEventMeta.Version version = EiffelTestCaseCanceledEventMeta.Version.fromValue("3.2.0");
     /**
      * 
      * (Required)
@@ -66,6 +66,9 @@ public class EiffelTestCaseCanceledEventMeta implements Meta
     @SerializedName("security")
     @Expose
     private Security security;
+    @SerializedName("schemaUri")
+    @Expose
+    private String schemaUri;
 
     /**
      * 
@@ -163,6 +166,14 @@ public class EiffelTestCaseCanceledEventMeta implements Meta
         this.security = security;
     }
 
+    public String getSchemaUri() {
+        return schemaUri;
+    }
+
+    public void setSchemaUri(String schemaUri) {
+        this.schemaUri = schemaUri;
+    }
+
     public enum Type {
 
         @SerializedName("EiffelTestCaseCanceledEvent")
@@ -202,8 +213,8 @@ public class EiffelTestCaseCanceledEventMeta implements Meta
 
     public enum Version {
 
-        @SerializedName("3.0.0")
-        _3_0_0("3.0.0");
+        @SerializedName("3.2.0")
+        _3_2_0("3.2.0");
         private final String value;
         private final static Map<String, EiffelTestCaseCanceledEventMeta.Version> CONSTANTS = new HashMap<String, EiffelTestCaseCanceledEventMeta.Version>();
 

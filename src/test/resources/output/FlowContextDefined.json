@@ -2,7 +2,8 @@
   "meta": {
     "id": "3313dcae-4768-42c4-b9a1-29e68604e780",
     "type": "EiffelFlowContextDefinedEvent",
-    "version": "3.0.0",
+    "version": "3.2.0",
+    "schemaUri": "https://eiffel/schemas/EiffelFlowContextDefinedEvent/3.2.0.json",
     "time": 1554390112001,
     "tags": [
       "tag1",

@@ -2,7 +2,8 @@
   "meta": {
     "id": "ea7dd391-e747-4ab7-80c7-e98aaf56074a",
     "type": "EiffelActivityCanceledEvent",
-    "version": "3.0.0",
+    "version": "3.2.0",
+    "schemaUri": "https://eiffel/schemas/EiffelActivityCanceledEvent/3.2.0.json",
     "time": 1554386474338,
     "tags": [
       "tag1",

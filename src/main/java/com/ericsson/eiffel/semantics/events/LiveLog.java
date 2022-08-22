@@ -15,11 +15,16 @@
 
 package com.ericsson.eiffel.semantics.events;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LiveLog {
 
+    @SerializedName("mediaType")
+    @Expose
+    private String mediaType;
     /**
      * 
      * (Required)
@@ -28,6 +33,9 @@ public class LiveLog {
     @SerializedName("name")
     @Expose
     private String name;
+    @SerializedName("tags")
+    @Expose
+    private List<String> tags = new ArrayList<String>();
     /**
      * 
      * (Required)
@@ -36,6 +44,14 @@ public class LiveLog {
     @SerializedName("uri")
     @Expose
     private String uri;
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
 
     /**
      * 
@@ -53,6 +69,14 @@ public class LiveLog {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     /**

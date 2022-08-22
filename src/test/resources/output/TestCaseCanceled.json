@@ -2,7 +2,8 @@
   "meta": {
     "id": "b42aec79-7bb8-488c-826d-5244a92bb725",
     "type": "EiffelTestCaseCanceledEvent",
-    "version": "3.0.0",
+    "version": "3.2.0",
+    "schemaUri": "https://eiffel/schemas/EiffelTestCaseCanceledEvent/3.2.0.json",
     "time": 1554390529854,
     "tags": [
       "tag1",

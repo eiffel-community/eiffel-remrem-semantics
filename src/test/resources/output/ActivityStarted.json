@@ -2,7 +2,8 @@
   "meta": {
     "id": "428ca467-4393-4c61-b22b-eea85fe4574b",
     "type": "EiffelActivityStartedEvent",
-    "version": "4.0.0",
+    "version": "4.3.0",
+    "schemaUri": "https://eiffel/schemas/EiffelActivityStartedEvent/4.3.0.json",
     "time": 1554388939727,
     "tags": ["product_development","product_feature1"],
     "source": {

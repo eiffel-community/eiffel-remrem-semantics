@@ -2,7 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelCompositionDefinedEvent",
-      "version": "3.1.0",
+      "version": "3.3.0",
+      "schemaUri": "https://eiffel/schemas/EiffelCompositionDefinedEvent/3.3.0.json",
       "tags": [
         "tag1",
         "tag2"
