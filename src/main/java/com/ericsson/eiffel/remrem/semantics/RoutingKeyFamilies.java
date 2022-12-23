@@ -55,7 +55,7 @@ public enum RoutingKeyFamilies {
 
     private final String family;   // family
 
-	RoutingKeyFamilies(String family) {
+    RoutingKeyFamilies(String family) {
         this.family = family;
     }
 

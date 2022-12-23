@@ -54,11 +54,17 @@ public class Event {
      *         eventType requested.
      */
     public String getFamilyRoutingKey(String eventType) {
-        try {
-            return RoutingKeyFamilies.valueOf(eventType).getFamily();
-        } catch (Exception e) {
-            log.error("Unknown event type requested: " + eventType);
-        }
+    	
+    	if(eventType != null) {
+    		try {
+    			return RoutingKeyFamilies.valueOf(eventType).getFamily();
+    		} catch (IllegalArgumentException e) {
+    			log.error("Unknown event type requested: " + eventType);
+    		}
+    	}else {
+    		log.error("Null event type requested: " + eventType);
+    	}
+        
         return null;
     }
 
