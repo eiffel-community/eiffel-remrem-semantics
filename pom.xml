@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.11</version>
+        <version>2.0.12</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.2.5</version>
+    <version>2.2.6</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -91,6 +91,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
