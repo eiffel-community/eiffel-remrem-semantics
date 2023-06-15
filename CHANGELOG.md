@@ -1,3 +1,11 @@
+## 2.2.6
+- Mockito framework upgraded to 5.3.1
+
+## 2.2.5
+- Necessary changes to support OpenJDK 17
+
+## 2.2.4
+
 ## 2.2.3
 - Uplifted eiffel-remrem-parent version from 2.0.7 to 2.0.8.
 - Uplifted eiffel-remrem-protocol-interface version from 2.1.2 to 2.1.3.
