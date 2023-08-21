@@ -7,7 +7,7 @@
         <version>2.0.12</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.2.6</version>
+    <version>2.3.0</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.eiffel-community</groupId>
             <artifactId>eiffel-remrem-protocol-interface</artifactId>
-            <version>2.1.3</version>
+            <version>2.2.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
