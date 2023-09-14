@@ -1,3 +1,6 @@
+## 2.3.1
+- The library can access property .meta.schemaUri, added as part of Arica protocol
+
 ## 2.3.0
 - Sepia protocol routing key template adapted
 
