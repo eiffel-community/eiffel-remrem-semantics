@@ -1,3 +1,6 @@
+## 2.3.0
+- Sepia protocol routing key template adapted
+
 ## 2.2.6
 - Mockito framework upgraded to 5.3.1
 
