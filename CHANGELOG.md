@@ -1,5 +1,6 @@
 ## 2.3.1
-- The library can access property .meta.schemaUri, added as part of Arica protocol
+- A new property ``.meta.schemaUri`` has been added to meta-object.
+  The fact caused that VERSIONS OF ALL EVENTS WERE STEPPED UP.
 
 ## 2.3.0
 - Sepia protocol routing key template adapted
