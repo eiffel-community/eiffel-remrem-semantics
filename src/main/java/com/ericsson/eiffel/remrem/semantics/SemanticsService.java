@@ -388,23 +388,6 @@ public class SemanticsService implements MsgService {
         return null;
     }
 
-    /**
-     * Returns Type Routing Key Word from the messaging library based on the
-     * eiffel message eventType.
-     * 
-     * @param JsonObject
-     *            eiffelMessage
-     * @return type routing key word in String format.
-     */
-    private String getType(JsonObject eiffelMessage) {
-        if (eiffelMessage.isJsonObject() && eiffelMessage.getAsJsonObject().has(META)
-                && eiffelMessage.getAsJsonObject().getAsJsonObject(META).has(TYPE)) {
-            return event
-                    .getTypeRoutingKey(eiffelMessage.getAsJsonObject().getAsJsonObject(META).get(TYPE).getAsString());
-        }
-        return null;
-    }
-
     @Override
     public String getServiceName() {
         return EIFFELSEMANTICS;
@@ -430,8 +413,20 @@ public class SemanticsService implements MsgService {
 
     @Override
     public String generateRoutingKey(JsonObject eiffelMessage, String tag, String domain, String userDomainSuffix) {
+        return generateRoutingKey(getEventType(eiffelMessage), tag, domain, userDomainSuffix, eiffelMessage);
+    }
+
+    @Override
+    public String generateRoutingKey(JsonObject eiffelMessage, String tag, String domain, String userDomainSuffix, String type) {
+        if (StringUtils.isNotBlank(type)) {
+            return generateRoutingKey(type, tag, domain, userDomainSuffix, eiffelMessage);
+        } else {
+            return generateRoutingKey(eiffelMessage, tag, domain, userDomainSuffix);
+        }
+    }
+
+    public String generateRoutingKey(String type, String tag, String domain, String userDomainSuffix, JsonObject eiffelMessage) {
         String family = getFamily(eiffelMessage);
-        String type = getType(eiffelMessage);
         if (StringUtils.isNotEmpty(family) && StringUtils.isNotEmpty(type)) {
             if (StringUtils.isNotBlank(tag) && (tag.contains(".") || StringUtils.deleteWhitespace(tag).length() > 16)) {
                 log.error("tag must not contain any dots and must not exceed 16 characters");
