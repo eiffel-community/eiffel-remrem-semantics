@@ -1,5 +1,6 @@
 ## 2.3.1
-- A new property ``.meta.schemaUri`` has been added to meta-object.
+- Switched to Arica. 
+  A new property ``.meta.schemaUri`` has been added to meta-object.
   The fact caused that VERSIONS OF ALL EVENTS WERE STEPPED UP.
 
 ## 2.3.0
