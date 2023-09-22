@@ -17,7 +17,7 @@ package com.ericsson.eiffel.remrem.semantics;
 import com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants;
 
 /**
- * This class contains list of link types and multiple tracability for those link types.
+ * This class contains list of link types and multiple traceability for those link types.
  *
  */
 public enum LinkType {

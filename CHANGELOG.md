@@ -1,3 +1,8 @@
+## 2.2.7
+- Upgrade to Arica protocol.
+  Schema URI added to meta-object. The fact caused that VERSIONS
+  OF ALL EVENTS WERE STEPPED UP.
+
 ## 2.2.6
 - Mockito framework upgraded to 5.3.1
 
