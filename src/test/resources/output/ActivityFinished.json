@@ -2,7 +2,8 @@
   "meta": {
     "id": "0238a8bd-9bdf-4161-aeff-b00eccf92983",
     "type": "EiffelActivityFinishedEvent",
-    "version": "3.0.0",
+    "version": "3.3.0",
+    "schemaUri": "https://eiffel/schemas/EiffelActivityFinishedEvent/3.3.0.json",
     "time": 1554385219068,
     "tags": [
       "tag1",

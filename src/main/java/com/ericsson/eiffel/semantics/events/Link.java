@@ -36,6 +36,9 @@ public class Link {
     @SerializedName("target")
     @Expose
     private String target;
+    @SerializedName("domainId")
+    @Expose
+    private String domainId;
 
     /**
      * 
@@ -71,6 +74,14 @@ public class Link {
      */
     public void setTarget(String target) {
         this.target = target;
+    }
+
+    public String getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(String domainId) {
+        this.domainId = domainId;
     }
 
 }

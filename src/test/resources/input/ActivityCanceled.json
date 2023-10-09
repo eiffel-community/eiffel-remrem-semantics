@@ -2,11 +2,12 @@
   "msgParams": {
     "meta": {
       "type": "EiffelActivityCanceledEvent",
-      "version": "3.0.0",
+      "version": "3.2.0",
       "tags": [
         "tag1",
         "tag2"
       ],
+      "schemaUri": "https://eiffel/schemas/EiffelActivityCanceledEvent/3.2.0.json",
       "source": {
         "domainId": "domainID",
         "host": "host",

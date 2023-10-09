@@ -2,7 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelActivityStartedEvent",
-      "version": "4.0.0",
+      "version": "4.3.0",
+      "schemaUri": "https://eiffel/schemas/EiffelActivityStartedEvent/4.3.0.json",
       "tags": ["product_development","product_feature1"],
       "source": {
         "domainId": "eiffeltest",

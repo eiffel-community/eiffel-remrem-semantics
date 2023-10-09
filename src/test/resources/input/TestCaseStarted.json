@@ -2,7 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelTestCaseStartedEvent",
-      "version": "3.0.0",
+      "version": "3.3.0",
+      "schemaUri": "https://eiffel/schemas/EiffelTestCaseStartedEvent/3.3.0.json",
       "tags": [
         "tag1",
         "tag2"
