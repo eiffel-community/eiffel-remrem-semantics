@@ -2,8 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelTestCaseTriggeredEvent",
-      "version": "3.2.0",
-      "schemaUri": "https://eiffel/schemas/EiffelTestCaseTriggeredEvent/3.2.0.json",
+      "version": "3.5.0",
+      "schemaUri": "https://eiffel/schemas/EiffelTestCaseTriggeredEvent/3.5.0.json",
       "tags": [
         "tag1",
         "tag2"

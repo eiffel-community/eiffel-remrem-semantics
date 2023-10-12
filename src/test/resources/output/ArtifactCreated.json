@@ -2,8 +2,8 @@
   "meta": {
     "id": "96dfcaa6-04db-46ce-a610-dce56398cd1e",
     "type": "EiffelArtifactCreatedEvent",
-    "version": "3.2.0",
-    "schemaUri": "https://eiffel/schemas/EiffelArtifactCreatedEvent/3.2.0.json",
+    "version": "3.3.0",
+    "schemaUri": "https://eiffel/schemas/EiffelArtifactCreatedEvent/3.3.0.json",
     "time": 1554389248372,
     "tags": [
       "tag1",
