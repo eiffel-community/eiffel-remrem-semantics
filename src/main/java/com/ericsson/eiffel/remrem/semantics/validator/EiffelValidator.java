@@ -105,7 +105,7 @@ public class EiffelValidator {
                 ProcessingReport report2 = validationSchema.validate(JsonLoader.fromString(revalidatedJson), true);
                 handleErrorReport(jsonObjectInput, report2);
                 log.debug("VALIDATED. Schema used: {}", schemaResourceName);
-                return addRemremGenerateFailuresToCustomData(new JsonParser().parse(revalidatedJson).getAsJsonObject(), remremGenerateFailures);
+                return addRemremGenerateFailuresToCustomData(JsonParser.parseString(revalidatedJson).getAsJsonObject(), remremGenerateFailures);
             } else {
                 handleErrorReport(jsonObjectInput, report);
             }
@@ -196,7 +196,7 @@ public class EiffelValidator {
 
     /**
      * Gets the customData array from an Eiffel message
-     * @param Eiffel message
+     * @param JsonObject json
      * @return customData array
      */
     public JsonArray getCustomData(JsonObject json) {

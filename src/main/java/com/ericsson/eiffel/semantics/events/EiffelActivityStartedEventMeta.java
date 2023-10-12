@@ -19,9 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class EiffelActivityStartedEventMeta implements Meta
 {
 
@@ -174,6 +176,7 @@ public class EiffelActivityStartedEventMeta implements Meta
         this.schemaUri = schemaUri;
     }
 
+    @Generated("jsonschema2pojo")
     public enum Type {
 
         @SerializedName("EiffelActivityStartedEvent")
@@ -187,7 +190,7 @@ public class EiffelActivityStartedEventMeta implements Meta
             }
         }
 
-        private Type(String value) {
+        Type(String value) {
             this.value = value;
         }
 
@@ -211,6 +214,7 @@ public class EiffelActivityStartedEventMeta implements Meta
 
     }
 
+    @Generated("jsonschema2pojo")
     public enum Version {
 
         @SerializedName("4.3.0")
@@ -224,7 +228,7 @@ public class EiffelActivityStartedEventMeta implements Meta
             }
         }
 
-        private Version(String value) {
+        Version(String value) {
             this.value = value;
         }
 
