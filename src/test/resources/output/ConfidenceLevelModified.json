@@ -2,8 +2,8 @@
   "meta": {
     "id": "45760b6b-781a-454a-8753-49142976ed6b",
     "type": "EiffelConfidenceLevelModifiedEvent",
-    "version": "3.3.0",
-    "schemaUri": "https://eiffel/schemas/EiffelConfidenceLevelModifiedEvent/3.3.0.json",
+    "version": "3.2.0",
+    "schemaUri": "https://eiffel/schemas/EiffelConfidenceLevelModifiedEvent/3.2.0.json",
     "time": 1554389972377,
     "tags": [
       "tag1",

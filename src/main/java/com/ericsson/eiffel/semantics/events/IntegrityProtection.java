@@ -17,11 +17,9 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class IntegrityProtection {
 
     /**
@@ -88,7 +86,6 @@ public class IntegrityProtection {
         this.publicKey = publicKey;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Alg {
 
         @SerializedName("HS256")
@@ -124,7 +121,7 @@ public class IntegrityProtection {
             }
         }
 
-        Alg(String value) {
+        private Alg(String value) {
             this.value = value;
         }
 

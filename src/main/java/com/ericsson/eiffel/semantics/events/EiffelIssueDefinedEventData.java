@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelIssueDefinedEventData {
 
     /**
@@ -153,7 +151,6 @@ public class EiffelIssueDefinedEventData {
         this.customData = customData;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Type {
 
         @SerializedName("BUG")
@@ -177,7 +174,7 @@ public class EiffelIssueDefinedEventData {
             }
         }
 
-        Type(String value) {
+        private Type(String value) {
             this.value = value;
         }
 

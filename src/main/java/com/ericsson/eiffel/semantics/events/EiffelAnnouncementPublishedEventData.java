@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelAnnouncementPublishedEventData {
 
     /**
@@ -127,7 +125,6 @@ public class EiffelAnnouncementPublishedEventData {
         this.customData = customData;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Severity {
 
         @SerializedName("MINOR")
@@ -151,7 +148,7 @@ public class EiffelAnnouncementPublishedEventData {
             }
         }
 
-        Severity(String value) {
+        private Severity(String value) {
             this.value = value;
         }
 

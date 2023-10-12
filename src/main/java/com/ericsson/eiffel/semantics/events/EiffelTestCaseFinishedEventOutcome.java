@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelTestCaseFinishedEventOutcome {
 
     /**
@@ -101,7 +99,6 @@ public class EiffelTestCaseFinishedEventOutcome {
         this.metrics = metrics;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Conclusion {
 
         @SerializedName("SUCCESSFUL")
@@ -123,7 +120,7 @@ public class EiffelTestCaseFinishedEventOutcome {
             }
         }
 
-        Conclusion(String value) {
+        private Conclusion(String value) {
             this.value = value;
         }
 
@@ -147,7 +144,6 @@ public class EiffelTestCaseFinishedEventOutcome {
 
     }
 
-    @Generated("jsonschema2pojo")
     public enum Verdict {
 
         @SerializedName("PASSED")
@@ -165,7 +161,7 @@ public class EiffelTestCaseFinishedEventOutcome {
             }
         }
 
-        Verdict(String value) {
+        private Verdict(String value) {
             this.value = value;
         }
 

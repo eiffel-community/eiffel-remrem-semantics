@@ -17,11 +17,9 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelActivityFinishedEventOutcome {
 
     /**
@@ -62,7 +60,6 @@ public class EiffelActivityFinishedEventOutcome {
         this.description = description;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Conclusion {
 
         @SerializedName("SUCCESSFUL")
@@ -86,7 +83,7 @@ public class EiffelActivityFinishedEventOutcome {
             }
         }
 
-        Conclusion(String value) {
+        private Conclusion(String value) {
             this.value = value;
         }
 

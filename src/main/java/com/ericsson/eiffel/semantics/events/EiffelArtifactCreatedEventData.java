@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelArtifactCreatedEventData {
 
     /**
@@ -130,7 +128,6 @@ public class EiffelArtifactCreatedEventData {
         this.customData = customData;
     }
 
-    @Generated("jsonschema2pojo")
     public enum RequiresImplementation {
 
         @SerializedName("NONE")
@@ -150,7 +147,7 @@ public class EiffelArtifactCreatedEventData {
             }
         }
 
-        RequiresImplementation(String value) {
+        private RequiresImplementation(String value) {
             this.value = value;
         }
 

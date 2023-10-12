@@ -2,8 +2,8 @@
   "msgParams": {
     "meta": {
       "type": "EiffelActivityTriggeredEvent",
-      "version": "4.3.0",
-      "schemaUri": "https://eiffel/schemas/EiffelActivityTriggeredEvent/4.3.0.json",
+      "version": "4.2.0",
+      "schemaUri": "https://eiffel/schemas/EiffelActivityTriggeredEvent/4.2.0.json",
       "tags": ["product_development","product_feature1"],
       "source": {
         "domainId": "eiffeltest",

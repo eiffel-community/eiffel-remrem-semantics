@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "3.4.0"
+            "3.3.0"
           ],
-          "default": "3.4.0"
+          "default": "3.3.0"
         },
         "time": {
           "type": "integer",
@@ -129,7 +129,8 @@
           ]
         },
         "schemaUri": {
-          "type": "string"
+          "type": "string",
+          "additionalProperties": false
         }
       },
       "required": [

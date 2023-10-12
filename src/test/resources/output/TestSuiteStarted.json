@@ -2,8 +2,8 @@
   "meta": {
     "id": "8e00bb04-110c-4e27-b931-3e2a0ec32f9b",
     "type": "EiffelTestSuiteStartedEvent",
-    "version": "3.4.0",
-    "schemaUri": "https://eiffel/schemas/EiffelTestSuiteStartedEvent/3.4.0.json",
+    "version": "3.3.0",
+    "schemaUri": "https://eiffel/schemas/EiffelTestSuiteStartedEvent/3.3.0.json",
     "time": 1554390834560,
     "tags": [
       "tag1",

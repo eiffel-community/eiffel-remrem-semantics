@@ -17,10 +17,8 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public enum Type {
 
     @SerializedName("ACCESSIBILITY")
@@ -66,7 +64,7 @@ public enum Type {
         }
     }
 
-    Type(String value) {
+    private Type(String value) {
         this.value = value;
     }
 

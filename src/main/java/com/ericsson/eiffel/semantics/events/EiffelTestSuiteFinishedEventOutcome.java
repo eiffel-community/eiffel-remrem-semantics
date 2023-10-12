@@ -17,11 +17,9 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelTestSuiteFinishedEventOutcome {
 
     @SerializedName("verdict")
@@ -58,7 +56,6 @@ public class EiffelTestSuiteFinishedEventOutcome {
         this.description = description;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Conclusion {
 
         @SerializedName("SUCCESSFUL")
@@ -80,7 +77,7 @@ public class EiffelTestSuiteFinishedEventOutcome {
             }
         }
 
-        Conclusion(String value) {
+        private Conclusion(String value) {
             this.value = value;
         }
 
@@ -104,7 +101,6 @@ public class EiffelTestSuiteFinishedEventOutcome {
 
     }
 
-    @Generated("jsonschema2pojo")
     public enum Verdict {
 
         @SerializedName("PASSED")
@@ -122,7 +118,7 @@ public class EiffelTestSuiteFinishedEventOutcome {
             }
         }
 
-        Verdict(String value) {
+        private Verdict(String value) {
             this.value = value;
         }
 

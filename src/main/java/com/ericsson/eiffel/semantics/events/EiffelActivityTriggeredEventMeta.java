@@ -19,11 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("jsonschema2pojo")
 public class EiffelActivityTriggeredEventMeta implements Meta
 {
 
@@ -50,7 +48,7 @@ public class EiffelActivityTriggeredEventMeta implements Meta
      */
     @SerializedName("version")
     @Expose
-    private EiffelActivityTriggeredEventMeta.Version version = EiffelActivityTriggeredEventMeta.Version.fromValue("4.3.0");
+    private EiffelActivityTriggeredEventMeta.Version version = EiffelActivityTriggeredEventMeta.Version.fromValue("4.2.0");
     /**
      * 
      * (Required)
@@ -176,7 +174,6 @@ public class EiffelActivityTriggeredEventMeta implements Meta
         this.schemaUri = schemaUri;
     }
 
-    @Generated("jsonschema2pojo")
     public enum Type {
 
         @SerializedName("EiffelActivityTriggeredEvent")
@@ -190,7 +187,7 @@ public class EiffelActivityTriggeredEventMeta implements Meta
             }
         }
 
-        Type(String value) {
+        private Type(String value) {
             this.value = value;
         }
 
@@ -214,11 +211,10 @@ public class EiffelActivityTriggeredEventMeta implements Meta
 
     }
 
-    @Generated("jsonschema2pojo")
     public enum Version {
 
-        @SerializedName("4.3.0")
-        _4_3_0("4.3.0");
+        @SerializedName("4.2.0")
+        _4_2_0("4.2.0");
         private final String value;
         private final static Map<String, EiffelActivityTriggeredEventMeta.Version> CONSTANTS = new HashMap<String, EiffelActivityTriggeredEventMeta.Version>();
 
@@ -228,7 +224,7 @@ public class EiffelActivityTriggeredEventMeta implements Meta
             }
         }
 
-        Version(String value) {
+        private Version(String value) {
             this.value = value;
         }
 

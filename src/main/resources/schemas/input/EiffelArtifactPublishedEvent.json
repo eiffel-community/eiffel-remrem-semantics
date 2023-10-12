@@ -129,7 +129,8 @@
           ]
         },
         "schemaUri": {
-          "type": "string"
+          "type": "string",
+          "additionalProperties": false
         }
       },
       "required": [
