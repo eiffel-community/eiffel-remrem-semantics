@@ -17,9 +17,11 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class Security {
 
     /**

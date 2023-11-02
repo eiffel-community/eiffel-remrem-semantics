@@ -17,9 +17,11 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class FileInformation {
 
     /**
@@ -33,6 +35,9 @@ public class FileInformation {
     @SerializedName("tags")
     @Expose
     private List<String> tags = new ArrayList<String>();
+    @SerializedName("integrityProtection")
+    @Expose
+    private IntegrityProtection integrityProtection;
 
     /**
      * 
@@ -58,6 +63,14 @@ public class FileInformation {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public IntegrityProtection getIntegrityProtection() {
+        return integrityProtection;
+    }
+
+    public void setIntegrityProtection(IntegrityProtection integrityProtection) {
+        this.integrityProtection = integrityProtection;
     }
 
 }
