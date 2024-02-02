@@ -48,12 +48,14 @@ import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTCASE_TRIG
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_FINISHED;
 import static com.ericsson.eiffel.remrem.semantics.EiffelEventType.TESTSUITE_STARTED;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URL;
+import java.util.*;
+import java.util.jar.Attributes;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -127,6 +129,7 @@ public class SemanticsService implements MsgService {
     private static final String DOMAIN_ID = "domainId";
     private static final String PROTOCOL = "eiffel";
     private static final String DOT = ".";
+    private static final String SEMANTICS_EDITION_NAME = "semanticsEditionName";
     private final ArrayList<String> supportedEventTypes = new ArrayList<String>();
     public static final Logger log = LoggerFactory.getLogger(SemanticsService.class);
     private Event event = new Event();
@@ -134,6 +137,7 @@ public class SemanticsService implements MsgService {
     private boolean purlSerializerFlag = false;
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
+    private static String editionName;
 
     public SemanticsService() {
         for (final EiffelEventType msg : EiffelEventType.values()) {
@@ -421,6 +425,12 @@ public class SemanticsService implements MsgService {
     }
 
     @Override
+    public String generateRoutingKey(JsonObject eiffelMessage, String tag,
+             String domain, String userDomainSuffix, String type) {
+        return generateRoutingKey(eiffelMessage, tag, domain, userDomainSuffix);
+    }
+
+    @Override
     public String generateRoutingKey(JsonObject eiffelMessage, String tag, String domain, String userDomainSuffix) {
         String family = getFamily(eiffelMessage);
         String type = getType(eiffelMessage);
@@ -459,5 +469,34 @@ public class SemanticsService implements MsgService {
         String serializer = source.getSerializer() == null ? purlSerializer : source.getSerializer();
         source.setSerializer(serializer);
         return source;
+    }
+
+    @Override
+    public String getProtocolEdition() {
+        Enumeration<?> files;
+        try {
+            files = Thread.currentThread()
+                    .getContextClassLoader()
+                    .getResources(JarFile.MANIFEST_NAME);
+            while (files.hasMoreElements()) {
+                try {
+                    final URL url = (URL) files.nextElement();
+                    final InputStream inputStream = url.openStream();
+                    if (inputStream != null) {
+                        final Manifest manifest = new Manifest(inputStream);
+                        final Attributes mainAttribs = manifest.getMainAttributes();
+                        final String edition = mainAttribs.getValue(SEMANTICS_EDITION_NAME);
+                        if (edition != null) {
+                            editionName = edition;
+                        }
+                    }
+                } catch (Exception e) {
+                    // Silently ignore wrong manifests on classpath?
+                }
+            }
+        } catch (IOException e) {
+            // Silently ignore wrong manifests on classpath?
+        }
+        return editionName;
     }
 }
