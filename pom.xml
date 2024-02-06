@@ -11,6 +11,8 @@
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <repositories>
         <repository>
