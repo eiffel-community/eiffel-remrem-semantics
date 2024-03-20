@@ -1,3 +1,6 @@
+## 2.4.0
+- Switched to Orizaba
+
 ## 2.3.1
 - Switched to Arica. 
   A new property ``.meta.schemaUri`` has been added to meta-object.

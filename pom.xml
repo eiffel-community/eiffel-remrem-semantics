@@ -7,7 +7,7 @@
         <version>2.0.12</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.3.0</version>
+    <version>2.4.0</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -130,7 +130,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.5.0</version>
+                        <version>3.1.0</version>
                         <executions>
                             <execution>
                                 <phase>compile</phase>
@@ -145,7 +145,7 @@
                             <mainClass>com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas</mainClass>
                             <arguments>
                                 <argument>https://github.com/eiffel-community/eiffel.git</argument>
-                                <argument>tags/edition-paris</argument>
+                                <argument>tags/edition-orizaba</argument>
                                 <argument>https://github.com/Ericsson/eiffel-operations-extension.git</argument>
                                 <argument>tags/edition-agen</argument>
                             </arguments>
@@ -163,12 +163,11 @@
                     <plugin>
                         <groupId>org.jsonschema2pojo</groupId>
                         <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                        <version>0.5.1</version>
+                        <version>1.2.1</version>
                         <configuration>
                             <sourceDirectory>${basedir}/src/main/resources/schemas/input</sourceDirectory>
                             <outputDirectory>${basedir}/src/main/java</outputDirectory>
                             <targetPackage>com.ericsson.eiffel.semantics.events</targetPackage>
-                            <useCommonsLang3>ture</useCommonsLang3>
                             <includeHashcodeAndEquals>false</includeHashcodeAndEquals>
                             <includeToString>false</includeToString>
                             <annotationStyle>gson</annotationStyle>

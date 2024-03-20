@@ -19,9 +19,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class EiffelActivityTriggeredEventData {
 
     /**
@@ -95,6 +97,7 @@ public class EiffelActivityTriggeredEventData {
         this.customData = customData;
     }
 
+    @Generated("jsonschema2pojo")
     public enum ExecutionType {
 
         @SerializedName("MANUAL")
@@ -114,7 +117,7 @@ public class EiffelActivityTriggeredEventData {
             }
         }
 
-        private ExecutionType(String value) {
+        ExecutionType(String value) {
             this.value = value;
         }
 

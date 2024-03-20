@@ -17,9 +17,11 @@ package com.ericsson.eiffel.semantics.events;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.processing.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Generated("jsonschema2pojo")
 public class Trigger {
 
     /**
@@ -60,6 +62,7 @@ public class Trigger {
         this.description = description;
     }
 
+    @Generated("jsonschema2pojo")
     public enum Type {
 
         @SerializedName("MANUAL")
@@ -81,7 +84,7 @@ public class Trigger {
             }
         }
 
-        private Type(String value) {
+        Type(String value) {
             this.value = value;
         }
 
