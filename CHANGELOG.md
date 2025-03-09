@@ -1,3 +1,6 @@
+## 2.4.1
+- Ensure Eclipse Temurin is used to build the library
+
 ## 2.4.0
 - Switched to Orizaba
 
