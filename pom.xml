@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.12</version>
+        <version>2.0.14</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
     <version>2.4.1</version>
