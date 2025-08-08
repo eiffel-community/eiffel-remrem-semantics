@@ -23,7 +23,7 @@
   "eventParams": {
     "data": {
       "acknowledgement": "Sample",
-	  "entitiy":"sample",
+	  "entity":"sample",
       "customData": [{
           "key": "firstLog",
           "value": 1234

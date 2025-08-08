@@ -15,7 +15,7 @@
     "eventParams": {
         "data": {
             "acknowledgement": "required",
-            "entitiy": "",
+            "entity": "",
             "customData": [{
                 "key": "required if customData present",
                 "value": "required if customData present"
