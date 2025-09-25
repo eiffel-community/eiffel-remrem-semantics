@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.14</version>
+        <version>2.0.18</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.4.2</version>
+    <version>2.4.3</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.github.eiffel-community</groupId>
             <artifactId>eiffel-remrem-protocol-interface</artifactId>
-            <version>2.2.0</version>
+            <version>2.2.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -47,6 +47,11 @@
             <groupId>com.vdurmont</groupId>
             <artifactId>semver4j</artifactId>
             <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.package-url</groupId>
+            <artifactId>packageurl-java</artifactId>
+            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.hk2.external</groupId>

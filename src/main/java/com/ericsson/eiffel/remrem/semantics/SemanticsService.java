@@ -121,8 +121,8 @@ public class SemanticsService implements MsgService {
     private static final String SUPPORTED_EVENT_TYPES = "SUPPORTED_EVENT_TYPES";
     private static final String RESULT = "result";
     private static final String UNKNOWN_EVENT_TYPE_REQUESTED = "Unknown event type requested";
-    private static final String EVENT_PARAMS = "eventParams";
-    private static final String MSG_PARAMS = "msgParams";
+    public static final String EVENT_PARAMS = "eventParams";
+    public static final String MSG_PARAMS = "msgParams";
     private static final String MESSAGE = "message";
     private static final String CAUSE = "cause";
     private static final String EIFFELSEMANTICS = "eiffelsemantics";
@@ -131,6 +131,7 @@ public class SemanticsService implements MsgService {
     private static final String TYPE = "type";
     private static final String SOURCE = "source";
     private static final String DOMAIN_ID = "domainId";
+    public static final String IDENTITY = "identity";
     private static final String PROTOCOL = "eiffel";
     private static final String DOT = ".";
     private static final String SEMANTICS_EDITION_NAME = "semanticsEditionName";
@@ -142,6 +143,11 @@ public class SemanticsService implements MsgService {
     private static String editionName;
     private static Gson gson = new Gson();
     private static Map<EiffelEventType, Class<? extends Event>> eventTypes = SemanticsService.eventType();
+
+    /**
+     * Name of validation property applicable for generateMsg(String, JsonObject, Map<String, Object>).
+     */
+    public static final String VALIDATE_PURL_FOR_ART_C = "validatePurlForArtC";
 
     public SemanticsService() {
         for (final EiffelEventType msg : EiffelEventType.values()) {
@@ -203,6 +209,24 @@ public class SemanticsService implements MsgService {
 
     @Override
     public String generateMsg(String msgType, JsonObject bodyJson, Boolean lenientValidation) {
+        return generateMsg(msgType, bodyJson, createPropertiesWithLenientValidation(lenientValidation));
+    }
+
+    /**
+     * Takes a partial message in JSON format, validates it and adds mandatory fields before outputting a complete,
+     * valid Eiffel message.
+     *
+     * @param msgType Event type name.
+     * @param bodyJson Event template.
+     * @param validationProperties At the moment the following properties are supported:
+     *     <ul>
+     *     <li>lenientValidation: boolean,</li>
+     *     <li>validatePurlForArtC: boolean.</li>
+     *     </ul>
+     * @return the generated and validate Eiffel messages as json String
+     */
+    @Override
+    public String generateMsg(String msgType, JsonObject bodyJson, HashMap<String, Object> validationProperties) {
         try {
             if (purlSerializerFlag) {
                 return createErrorResponse("Serializer info of eiffel-remrem-semantics is missing",
@@ -228,10 +252,8 @@ public class SemanticsService implements MsgService {
             }
 
             // Compare the input JSON EventType with query parameter(-t) and
-            // also
-            // check type exist or not,
-            // if input JSON EventType is missing adding query parameter as
-            // Type.
+            // also check if type exists.
+            // If input JSON EventType is missing adding query parameter as Type.
             String inputEventType = getInputEventType(bodyJson);
             if (inputEventType == null || inputEventType.isEmpty()) {
                 bodyJson.get(MSG_PARAMS).getAsJsonObject().get(META).getAsJsonObject().addProperty(TYPE,
@@ -243,7 +265,7 @@ public class SemanticsService implements MsgService {
             }
             Event event = eventCreation(eventType, msgNodes, eventNodes);
             String result = gson.toJson(event);
-            JsonObject outputValidate = outputValidate(eiffelType, result, lenientValidation);
+            JsonObject outputValidate = outputValidate(eiffelType, result, validationProperties);
             return gson.toJson(outputValidate);
 
         } catch (EiffelValidationException e) {
@@ -284,13 +306,19 @@ public class SemanticsService implements MsgService {
         return errorResponse.toString();
     }
 
-    private JsonObject outputValidate(EiffelEventType eiffelType, String jsonStringInput, Boolean lenientValidation) throws EiffelValidationException {
+    private JsonObject outputValidate(EiffelEventType eiffelType, String jsonStringInput, HashMap<String, Object> validationProperiets) throws EiffelValidationException {
         EiffelValidator validator = EiffelOutputValidatorFactory.getEiffelValidator(eiffelType);
         JsonObject jsonObject = new JsonParser().parse(jsonStringInput).getAsJsonObject();
-        JsonObject validate = validator.validate(jsonObject, lenientValidation);
+        JsonObject validated = validator.validate(jsonObject, validationProperiets);
         // custom validations on an event which is not covered in schema.
-        validator.customValidation(validate);
-        return validate;
+        validator.customValidation(validated, validationProperiets);
+        return validated;
+    }
+
+    private HashMap<String, Object> createPropertiesWithLenientValidation(boolean lenientValidation) {
+        HashMap<String, Object> validationProperties = new HashMap<>();
+        validationProperties.put(LENIENT_VALIDATION, lenientValidation);
+        return validationProperties;
     }
 
     @Override
@@ -299,12 +327,17 @@ public class SemanticsService implements MsgService {
     }
 
     @Override
-    public ValidationResult validateMsg(String msgType, JsonObject jsonvalidateMessage, Boolean lenientValidation) {
+    public ValidationResult validateMsg(String msgType, JsonObject jsonValidationMessage, Boolean lenientValidation) {
+        return validateMsg(msgType, jsonValidationMessage, createPropertiesWithLenientValidation(lenientValidation));
+    }
+
+    @Override
+    public ValidationResult validateMsg(String msgType, JsonObject jsonvalidateMessage, HashMap<String, Object> validationProperties) {
         ValidationResult validationResult = null;
         EiffelEventType eiffelType = EiffelEventType.fromString(msgType);
         String result = gson.toJson(jsonvalidateMessage);
         try {
-            outputValidate(eiffelType, result, lenientValidation);
+            outputValidate(eiffelType, result, validationProperties);
             validationResult = new ValidationResult(true, "");
         } catch (EiffelValidationException e) {
             validationResult = new ValidationResult(false, e.getLocalizedMessage());
@@ -375,8 +408,7 @@ public class SemanticsService implements MsgService {
      * Returns Family Routing Key Word from the messaging library based on the
      * eiffel message eventType.
      * 
-     * @param JsonObject
-     *            eiffelMessage
+     * @param eiffelMessage the message
      * @return family routing key word in String format.
      */
     private String getFamily(JsonObject eiffelMessage) {
