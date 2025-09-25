@@ -1,3 +1,6 @@
+## 2.4.3
+- Optional validation of PURLs added.
+
 ## 2.4.2
 - Typo fix.
 
