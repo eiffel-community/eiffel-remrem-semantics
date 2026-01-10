@@ -46,11 +46,11 @@ public class LocalRepo {
 	 */
 
 	public void readSchemas() throws IOException {
-		try {
-			FileUtils.cleanDirectory(EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS).toFile());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			FileUtils.cleanDirectory(EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS).toFile());
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		loadEiffelSchemas(localSchemasPath.resolve(EiffelConstants.SCHEMA_LOCATION));
 	}
 

@@ -172,13 +172,16 @@ public class PrepareLocalEiffelSchemas {
         if(proxy != null){
             prepareLocalSchema.setProxy(proxy);
         }
-        final String eiffelRepoUrl = args[0];
-        final String eiffelRepoBranch = args[1];
-        final String operationRepoUrl = args[2];
-        final String operationRepoBranch = args[3];
 
-        final Path localEiffelRepoPath = EiffelConstants.USER_HOME.resolve(EiffelConstants.EIFFEL);
-        final Path localOperationsRepoPath = EiffelConstants.USER_HOME.resolve(EiffelConstants.OPERATIONS_REPO_NAME);
+
+        final Path targetDir = Path.of(args[0]);
+        final String eiffelRepoUrl = args[1];
+        final String eiffelRepoBranch = args[2];
+        final String operationRepoUrl = args[3];
+        final String operationRepoBranch = args[4];
+
+        final Path localEiffelRepoPath = targetDir.resolve(EiffelConstants.EIFFEL);
+        final Path localOperationsRepoPath = targetDir.resolve(EiffelConstants.OPERATIONS_REPO_NAME);
 
         // Clone Eiffel Repo from GitHub 
         prepareLocalSchema.cloneEiffelRepo(eiffelRepoUrl, eiffelRepoBranch, localEiffelRepoPath);
@@ -189,12 +192,13 @@ public class PrepareLocalEiffelSchemas {
         //Copy operations repo Schemas to location where Eiffel repo schemas available
         prepareLocalSchema.copyOperationSchemas(localOperationsRepoPath.toAbsolutePath(), localEiffelRepoPath.toAbsolutePath());
 
-        // Read and Load JsonSchemas from Cloned Directory 
+        LOGGER.info("Starting PrepareLocalEiffelSchemas.main(" + Arrays.toString(args) + ")");
+        // Read and Load JsonSchemas from Cloned Directory
         final LocalRepo localRepo = new LocalRepo(localEiffelRepoPath);
         localRepo.readSchemas();
 
         // Schema changes
-        final SchemaFile schemaFile = new SchemaFile();
+        final SchemaFile schemaFile = new SchemaFile(localEiffelRepoPath);
 
         // Iterate over available input schemas and create new and patched files
         for (Map.Entry<String, Path> event : localRepo.getJsonEventSchemas().entrySet()) {

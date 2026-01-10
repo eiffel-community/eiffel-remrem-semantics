@@ -45,6 +45,11 @@ public class SchemaFile {
     private boolean isEvent;
     private boolean isMeta = false;
     private String eventName = null;
+    private Path localSchemasPath;
+
+    public SchemaFile(Path localSchemasPath) {
+        this.localSchemasPath = localSchemasPath;
+    }
 
     /**
      * This method is used to modify the Eiffel repo json files content
@@ -238,7 +243,7 @@ public class SchemaFile {
      */
     public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
         FileWriter writer = null;
-        Path newFileName = EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS)
+        Path newFileName = localSchemasPath.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS)
                 .resolve(jsonFileName + EiffelConstants.JSON_MIME_TYPE);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();

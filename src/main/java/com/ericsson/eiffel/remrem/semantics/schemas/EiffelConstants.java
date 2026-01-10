@@ -48,6 +48,7 @@ public final class EiffelConstants {
     public static String EIFFEL = "eiffel";
     public static String OPERATIONS_REPO_NAME = "eiffel-operations-extension";
     public static Path USER_DIR = Paths.get(System.getProperty("user.dir"));
+    public static Path TEMP_DIR = Paths.get(System.getProperty("java.io.tmpdir"));
     public static Path SCHEMA_LOCATION = Paths.get("schemas");
     public static String JSON_MIME_TYPE = ".json";
     public static Path USER_HOME = Paths.get(System.getProperty("user.home"));
