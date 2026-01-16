@@ -180,6 +180,12 @@ public class PrepareLocalEiffelSchemas {
         final String operationRepoUrl = args[3];
         final String operationRepoBranch = args[4];
 
+        LOGGER.info("targetDir: {}", targetDir);
+        LOGGER.info("eiffelRepoUrl: {}", eiffelRepoUrl);
+        LOGGER.info("eiffelRepoBranch: {}", eiffelRepoBranch);
+        LOGGER.info("operationRepoUrl: {}", operationRepoUrl);
+        LOGGER.info("operationRepoBranch: {}", operationRepoBranch);
+
         final Path localEiffelRepoPath = targetDir.resolve(EiffelConstants.EIFFEL);
         final Path localOperationsRepoPath = targetDir.resolve(EiffelConstants.OPERATIONS_REPO_NAME);
 

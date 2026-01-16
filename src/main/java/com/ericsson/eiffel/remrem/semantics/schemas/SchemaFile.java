@@ -243,7 +243,7 @@ public class SchemaFile {
      */
     public void createNewInputJsonSchema(String jsonFileName, JsonObject jsonObject) {
         FileWriter writer = null;
-        Path newFileName = localSchemasPath.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS)
+        Path newFileName = EiffelConstants.USER_DIR.resolve(EiffelConstants.INPUT_EIFFEL_SCHEMAS)
                 .resolve(jsonFileName + EiffelConstants.JSON_MIME_TYPE);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();

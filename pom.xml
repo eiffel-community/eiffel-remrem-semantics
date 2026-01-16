@@ -12,7 +12,7 @@
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
         <license.dir>${basedir}</license.dir>
-        <eiffel.protocol.edition>edition-paris</eiffel.protocol.edition>
+        <eiffel.protocol.edition>edition-orizaba</eiffel.protocol.edition>
     </properties>
     <repositories>
         <repository>
