@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "3.0.0"
+            "3.3.0"
           ],
-          "default": "3.0.0"
+          "default": "3.3.0"
         },
         "time": {
           "type": "integer",
@@ -127,6 +127,9 @@
           "required": [
             "authorIdentity"
           ]
+        },
+        "schemaUri": {
+          "type": "string"
         }
       },
       "required": [
@@ -159,6 +162,32 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "integrityProtection": {
+                "type": "object",
+                "javaType": "com.ericsson.eiffel.semantics.events.IntegrityProtection",
+                "properties": {
+                  "alg": {
+                    "type": "string",
+                    "enum": [
+                      "SHA-224",
+                      "SHA-256",
+                      "SHA-384",
+                      "SHA-512",
+                      "SHA-512/224",
+                      "SHA-512/256"
+                    ]
+                  },
+                  "digest": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]+$"
+                  }
+                },
+                "required": [
+                  "alg",
+                  "digest"
+                ],
+                "additionalProperties": false
               }
             },
             "required": [
@@ -247,6 +276,9 @@
           "target": {
             "type": "string",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "domainId": {
+            "type": "string"
           }
         },
         "required": [

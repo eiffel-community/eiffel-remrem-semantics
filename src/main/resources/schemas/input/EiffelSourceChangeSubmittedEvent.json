@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "3.0.0"
+            "3.2.0"
           ],
-          "default": "3.0.0"
+          "default": "3.2.0"
         },
         "time": {
           "type": "integer",
@@ -127,6 +127,9 @@
           "required": [
             "authorIdentity"
           ]
+        },
+        "schemaUri": {
+          "type": "string"
         }
       },
       "required": [
@@ -302,6 +305,9 @@
           "target": {
             "type": "string",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "domainId": {
+            "type": "string"
           }
         },
         "required": [

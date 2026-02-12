@@ -24,9 +24,9 @@
         "version": {
           "type": "string",
           "enum": [
-            "3.0.0"
+            "3.4.0"
           ],
-          "default": "3.0.0"
+          "default": "3.4.0"
         },
         "time": {
           "type": "integer",
@@ -127,6 +127,9 @@
           "required": [
             "authorIdentity"
           ]
+        },
+        "schemaUri": {
+          "type": "string"
         }
       },
       "required": [
@@ -181,8 +184,17 @@
             "type": "object",
             "javaType": "com.ericsson.eiffel.semantics.events.LiveLog",
             "properties": {
+              "mediaType": {
+                "type": "string"
+              },
               "name": {
                 "type": "string"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "uri": {
                 "type": "string"
@@ -246,6 +258,9 @@
           "target": {
             "type": "string",
             "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+          },
+          "domainId": {
+            "type": "string"
           }
         },
         "required": [
