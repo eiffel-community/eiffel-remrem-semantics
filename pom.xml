@@ -4,14 +4,15 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.14</version>
+        <version>2.0.19</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.4.2</version>
+    <version>2.4.4</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
         <license.dir>${basedir}</license.dir>
+        <eiffel.protocol.edition>edition-orizaba</eiffel.protocol.edition>
     </properties>
     <repositories>
         <repository>
@@ -24,7 +25,7 @@
         <dependency>
             <groupId>com.github.eiffel-community</groupId>
             <artifactId>eiffel-remrem-protocol-interface</artifactId>
-            <version>2.2.0</version>
+            <version>2.2.1</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -47,6 +48,11 @@
             <groupId>com.vdurmont</groupId>
             <artifactId>semver4j</artifactId>
             <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.package-url</groupId>
+            <artifactId>packageurl-java</artifactId>
+            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.hk2.external</groupId>
@@ -144,10 +150,11 @@
                             <cleanupDaemonThreads>false</cleanupDaemonThreads>
                             <mainClass>com.ericsson.eiffel.remrem.semantics.clone.PrepareLocalEiffelSchemas</mainClass>
                             <arguments>
+                                <argument>${project.build.directory}</argument>
                                 <argument>https://github.com/eiffel-community/eiffel.git</argument>
-                                <argument>tags/edition-orizaba</argument>
+                                <argument>tags/${eiffel.protocol.edition}</argument>
                                 <argument>https://github.com/Ericsson/eiffel-operations-extension.git</argument>
-                                <argument>tags/edition-agen</argument>
+                                <argument>tags/${eiffel.protocol.edition}</argument>
                             </arguments>
                         </configuration>
                     </plugin>

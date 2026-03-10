@@ -31,10 +31,12 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
+import com.ericsson.eiffel.remrem.semantics.validator.EiffelValidator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -88,13 +90,19 @@ public class ServiceTest {
 
     @Test
     public void testGenerate() {
+        HashMap<String, Object> properties = new HashMap<>();
+        // TODO Enable PURL validation
+        properties.put(SemanticsService.VALIDATE_PURL_FOR_ART_C, false);
         try {
             File file = new File("src/test/resources/input");
             if (file.exists()) {
                 for (File inputFile : file.listFiles()) {
+                    if (inputFile.isDirectory())
+                        continue;
+
                     JsonObject object = parser.parse(new FileReader(inputFile)).getAsJsonObject();
                     String msgType=object.get("msgParams").getAsJsonObject().get("meta").getAsJsonObject().get("type").getAsString();
-                    String msg = service.generateMsg(msgType, object);
+                    String msg = service.generateMsg(msgType, object, properties);
                     Assert.assertTrue(msg.contains("data"));
                     Assert.assertTrue(msg.contains("meta"));
                     Assert.assertTrue(msg.contains("links"));
@@ -106,7 +114,39 @@ public class ServiceTest {
             Assert.assertFalse(true);
         }
     }
-    
+
+    @Test
+    public void testGeneratePurlValidationOnPass() {
+        String fileName = "src/test/resources/input/valid-purl/ArtifactCreated.json";
+        String msg = testGeneratePurlValidationOn(fileName);
+        Assert.assertTrue(msg.contains("data"));
+        Assert.assertTrue(msg.contains("meta"));
+        Assert.assertTrue(msg.contains("links"));
+    }
+
+    @Test
+    public void testGeneratePurlValidationOnFail() {
+        String fileName = "src/test/resources/input/ArtifactCreated.json";
+        String msg = testGeneratePurlValidationOn(fileName);
+        Assert.assertTrue(msg.contains("Cannot validate PURL"));
+    }
+
+    private String testGeneratePurlValidationOn(String fileName) {
+        HashMap<String, Object> properties = new HashMap<>();
+        properties.put(SemanticsService.VALIDATE_PURL_FOR_ART_C, true);
+        try {
+            File inputFile = new File(fileName);
+            JsonObject object = parser.parse(new FileReader(inputFile)).getAsJsonObject();
+            String msgType=object.get("msgParams").getAsJsonObject().get("meta").getAsJsonObject().get("type").getAsString();
+            return service.generateMsg(msgType, object, properties);
+        } catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
+            System.out.println("Exception occurred while generating event");
+            e.printStackTrace();
+            Assert.assertFalse(true);
+        }
+
+        return null;
+    }
 
     @Test
     public void testUnknownMessage() throws UnsupportedEncodingException, JsonIOException, JsonSyntaxException, FileNotFoundException {
@@ -251,16 +291,22 @@ public class ServiceTest {
     
     @Test
     public void testInvalid_lv_Message_Success() throws JsonIOException, JsonSyntaxException, FileNotFoundException, UnsupportedEncodingException {
-            URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
-            String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
-            File file = new File(path);
-            JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
-            String msg = service.generateMsg("EiffelArtifactCreatedEvent", input, true);
-            Assert.assertTrue(msg.contains("remremGenerateFailures"));
-            Assert.assertTrue(msg.contains("data"));
-            Assert.assertTrue(msg.contains("meta"));
-            Assert.assertTrue(msg.contains("links"));
+        HashMap<String, Object> properties = new HashMap<>();
+        // TODO enable PURL validation
+        properties.put(SemanticsService.VALIDATE_PURL_FOR_ART_C, false);
+        properties.put(SemanticsService.LENIENT_VALIDATION, true);
+
+        URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");
+        String path = URLDecoder.decode(url.getPath(), StandardCharsets.UTF_8.name());
+        File file = new File(path);
+        JsonObject input = parser.parse(new FileReader(file)).getAsJsonObject();
+        String msg = service.generateMsg("EiffelArtifactCreatedEvent", input, properties);
+        Assert.assertTrue(msg.contains("remremGenerateFailures"));
+        Assert.assertTrue(msg.contains("data"));
+        Assert.assertTrue(msg.contains("meta"));
+        Assert.assertTrue(msg.contains("links"));
     }
+
     @Test
     public void testInvalid_lv_Message_fail() throws JsonIOException, JsonSyntaxException, FileNotFoundException, UnsupportedEncodingException {
             URL url = getClass().getClassLoader().getResource("invalid/lv_EiffelArtifactCreatedEventInvalid.json");

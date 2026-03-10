@@ -24,6 +24,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.bind.ValidationException;
+
+import com.ericsson.eiffel.remrem.semantics.EiffelEventType;
+import com.ericsson.eiffel.remrem.semantics.util.PropertiesUtil;
+import com.github.packageurl.MalformedPackageURLException;
+import com.github.packageurl.PackageURL;
+import com.google.gson.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,12 +42,12 @@ import com.github.fge.jsonschema.core.report.ProcessingMessage;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+
+import static com.ericsson.eiffel.remrem.protocol.MsgService.LENIENT_VALIDATION;
+import static com.ericsson.eiffel.remrem.semantics.SemanticsService.*;
+import static com.ericsson.eiffel.remrem.semantics.schemas.EiffelConstants.META;
 
 public class EiffelValidator {
 
@@ -94,11 +100,19 @@ public class EiffelValidator {
     }
 
     public JsonObject validate(JsonObject jsonObjectInput, Boolean lenientValidation) throws EiffelValidationException {
+        HashMap<String, Object> validationProperties = new HashMap<>();
+        validationProperties.put(LENIENT_VALIDATION, lenientValidation);
+        return validate(jsonObjectInput, validationProperties);
+    }
+
+    public JsonObject validate(JsonObject jsonObjectInput, HashMap<String, Object> validationProperties) throws EiffelValidationException {
         JsonArray remremGenerateFailures = new JsonArray();
         log.debug("VALIDATING Schema used: {}", schemaResourceName);
         try {
             final ProcessingReport report = validationSchema.validate(JsonLoader.fromString(jsonObjectInput.toString()),
                     true);
+            boolean lenientValidation = PropertiesUtil.getProperty(validationProperties, LENIENT_VALIDATION, false);
+
             if (!report.isSuccess() && lenientValidation) {
                 log.info("Trying to revalidate the Eiffel message with only mandatory Eiffel message fields.");
                 String revalidatedJson = removeErrorProperties(report, jsonObjectInput, remremGenerateFailures);
@@ -143,8 +157,8 @@ public class EiffelValidator {
                 }
                 String errorPath = element.getAsJsonObject().get(INSTANCE).getAsJsonObject().get(POINTER)
                         .getAsString();
-                JsonObject addValidationFailurs = addValidationFailures(element, processingMessage.getMessage());
-                remremGenerateFailures.add(addValidationFailurs);
+                JsonObject addValidationFailures = addValidationFailures(element, processingMessage.getMessage());
+                remremGenerateFailures.add(addValidationFailures);
                 doc.delete(getPath(errorPath));
             }
         }
@@ -228,6 +242,16 @@ public class EiffelValidator {
      * @throws EiffelValidationException if any validation fails
      */
     public void customValidation(JsonObject jsonObjectInput) throws EiffelValidationException {
+        customValidation(jsonObjectInput, new HashMap<>());
+
+    }
+
+    public void customValidation(JsonObject jsonObjectInput, HashMap<String, Object> validationProperties) throws EiffelValidationException {
+        validateLinks(jsonObjectInput);
+        validateArtC(jsonObjectInput, validationProperties);
+    }
+
+    public void validateLinks(JsonObject jsonObjectInput) throws EiffelValidationException {
         // Links validation
         Map<String, Integer> linksCountMapForEvent = new HashMap<String, Integer>();
         try {
@@ -267,6 +291,49 @@ public class EiffelValidator {
             }
         } catch (Exception e) {
             String message = "Cannot validate given JSON string";
+            log.debug(message, e);
+            throw new EiffelValidationException(message, e);
+        }
+    }
+
+    public void validateArtC(JsonObject jsonObjectInput, HashMap<String, Object> validationProperties) throws EiffelValidationException {
+        Object validate = PropertiesUtil.getProperty(validationProperties, VALIDATE_PURL_FOR_ART_C, true);
+        if (validate == null || validate instanceof Boolean && !((Boolean)validate))
+            // Validation property not set,  no need to continue.
+            return;
+
+        JsonObject meta = jsonObjectInput.getAsJsonObject(META);
+        if (meta == null) {
+            return;
+        }
+
+        JsonPrimitive type = meta.getAsJsonPrimitive(TYPE);
+        if (type == null) {
+            return;
+        }
+
+        if (EiffelEventType.fromString(type.getAsString()) != EiffelEventType.ARTIFACT_CREATED) {
+            // Not EiffelArtifactCreatedEvent, nothing to do...
+            return;
+        }
+
+        // OK, this is EiffelArtifactCreatedEvent, lets start checks...
+        JsonObject data = jsonObjectInput.getAsJsonObject(DATA);
+        if (data == null) {
+            return;
+        }
+
+        JsonPrimitive identity = data.getAsJsonPrimitive(IDENTITY);
+        if (identity == null) {
+            return;
+        }
+
+        String purl = identity.getAsString();
+        try {
+            PackageURL packageUrl = new PackageURL(purl);
+        }
+        catch (MalformedPackageURLException e) {
+            String message = "Cannot validate PURL '" + purl + "'";
             log.debug(message, e);
             throw new EiffelValidationException(message, e);
         }
