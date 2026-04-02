@@ -7,12 +7,13 @@
         <version>2.0.19</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.4.4</version>
+    <version>2.4.5</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
         <license.dir>${basedir}</license.dir>
         <eiffel.protocol.edition>edition-orizaba</eiffel.protocol.edition>
+        <eiffel.operations.extension.protocol.edition>edition-orizaba</eiffel.operations.extension.protocol.edition>
     </properties>
     <repositories>
         <repository>
@@ -154,7 +155,7 @@
                                 <argument>https://github.com/eiffel-community/eiffel.git</argument>
                                 <argument>tags/${eiffel.protocol.edition}</argument>
                                 <argument>https://github.com/Ericsson/eiffel-operations-extension.git</argument>
-                                <argument>tags/${eiffel.protocol.edition}</argument>
+                                <argument>tags/${eiffel.operations.extension.protocol.edition}</argument>
                             </arguments>
                         </configuration>
                     </plugin>
