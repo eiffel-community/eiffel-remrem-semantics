@@ -61,8 +61,8 @@ import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Named;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
