@@ -13,6 +13,7 @@
         <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
         <license.dir>${basedir}</license.dir>
         <eiffel.protocol.edition>edition-orizaba</eiffel.protocol.edition>
+        <eiffel.operations.extension.protocol.edition>edition-orizaba</eiffel.operations.extension.protocol.edition>
     </properties>
     <repositories>
         <repository>
@@ -155,7 +156,7 @@
                                 <argument>https://github.com/eiffel-community/eiffel.git</argument>
                                 <argument>tags/${eiffel.protocol.edition}</argument>
                                 <argument>https://github.com/Ericsson/eiffel-operations-extension.git</argument>
-                                <argument>tags/${eiffel.protocol.edition}</argument>
+                                <argument>tags/${eiffel.operations.extension.protocol.edition}</argument>
                             </arguments>
                         </configuration>
                     </plugin>
