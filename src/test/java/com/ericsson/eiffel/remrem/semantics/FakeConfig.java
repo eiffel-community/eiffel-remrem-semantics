@@ -14,7 +14,7 @@
 */
 package com.ericsson.eiffel.remrem.semantics;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 @Named public class FakeConfig {
 
