@@ -1,3 +1,6 @@
+## 2.4.7
+- Uplift parent from 2.0.21 to 2.0.22 version
+
 ## 2.4.4
 - Optional validation of PURLs added.
 
