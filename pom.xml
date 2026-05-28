@@ -10,7 +10,7 @@
     <version>2.4.7</version>
     <packaging>jar</packaging>
     <properties>
-        <eclipse.jgit.version>5.0.1.201806211838-r</eclipse.jgit.version>
+        <eclipse.jgit.version>7.6.0.202603022253-r</eclipse.jgit.version>
         <license.dir>${basedir}</license.dir>
         <eiffel.protocol.edition>edition-orizaba</eiffel.protocol.edition>
         <eiffel.operations.extension.protocol.edition>edition-orizaba</eiffel.operations.extension.protocol.edition>
