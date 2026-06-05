@@ -1,4 +1,4 @@
-## 2.4.8
+## 2.4.9
 - Vulnerability uplift
 
 ## 2.4.7

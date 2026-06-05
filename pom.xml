@@ -7,7 +7,7 @@
         <version>2.0.23</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.4.8</version>
+    <version>2.4.9</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>7.6.0.202603022253-r</eclipse.jgit.version>
