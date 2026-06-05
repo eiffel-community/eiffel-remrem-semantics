@@ -4,10 +4,10 @@
     <parent>
         <groupId>com.github.eiffel-community</groupId>
         <artifactId>eiffel-remrem-parent</artifactId>
-        <version>2.0.22</version>
+        <version>2.0.23</version>
     </parent>
     <artifactId>eiffel-remrem-semantics</artifactId>
-    <version>2.4.8</version>
+    <version>2.4.9</version>
     <packaging>jar</packaging>
     <properties>
         <eclipse.jgit.version>7.6.0.202603022253-r</eclipse.jgit.version>
@@ -92,11 +92,6 @@
             <version>4.5.13</version>
         </dependency>
         <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <version>2.9.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
@@ -123,7 +118,10 @@
             <artifactId>jakarta.annotation-api</artifactId>
             <version>3.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+        </dependency>
     </dependencies>
     <profiles>
         <!-- By default these profiles were disabled if user wants to override 
@@ -214,6 +212,10 @@
     </profiles>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.spdx</groupId>
+                <artifactId>spdx-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
