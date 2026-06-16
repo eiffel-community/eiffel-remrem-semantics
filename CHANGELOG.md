@@ -1,5 +1,5 @@
 ## 2.4.10
-- Made compatible with Spring-boot 4.x.y
+- SemanticsService registered via SPI
 
 ## 2.4.9
 - Vulnerability uplift
