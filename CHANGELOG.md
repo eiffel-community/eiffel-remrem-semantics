@@ -1,3 +1,6 @@
+## 2.4.10
+- SemanticsService registered via SPI
+
 ## 2.4.9
 - Vulnerability uplift
 
